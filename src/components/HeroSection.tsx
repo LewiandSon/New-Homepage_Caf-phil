@@ -134,6 +134,7 @@ export function HeroSection() {
               alt=""
               fill
               className="object-contain"
+              unoptimized
             />
           </div>
         </div>

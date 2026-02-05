@@ -369,7 +369,7 @@ export function AboutSection() {
 
         {/* Image: IMG_4886 1 */}
         <div 
-          className="absolute"
+          className="absolute overflow-hidden"
           style={{
             width: '806px',
             height: '531px',
@@ -381,9 +381,8 @@ export function AboutSection() {
           <Image
             src="/images/assets/neues_foto.jpg"
             alt="Café Interior"
-            width={806}
-            height={531}
-            className="object-contain"
+            fill
+            className="object-cover"
             loading="lazy"
           />
         </div>
