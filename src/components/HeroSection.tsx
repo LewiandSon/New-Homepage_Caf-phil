@@ -57,18 +57,8 @@ export function HeroSection() {
             marginRight: "-1.5rem",
           }}
         >
-          {/* Bordüre: Hintergrund-Layer mit niedrigerem z-index */}
-          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-            <Image
-              src="/images/assets/Bordure2.png"
-              alt=""
-              fill
-              className="object-contain"
-              unoptimized
-            />
-          </div>
-          {/* Hauptfoto: über der Bordüre, innerhalb des Rahmens */}
-          <div className="absolute inset-[16%] overflow-hidden rounded-sm" style={{ zIndex: 10 }}>
+          {/* Hauptfoto: zuerst, wie in der ursprünglichen Version */}
+          <div className="absolute inset-[16%] overflow-hidden">
             <Image
               src="/images/assets/neues_foto.jpg"
               alt="Café Interior im phil"
@@ -77,6 +67,16 @@ export function HeroSection() {
               priority
               fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 0px"
+            />
+          </div>
+          {/* Bordüre: darüber, wie in der ursprünglichen Version - zurück zur SVG */}
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/assets/bordüre 1.svg"
+              alt=""
+              fill
+              className="object-contain"
+              unoptimized
             />
           </div>
         </div>
