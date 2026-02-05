@@ -59,16 +59,17 @@ export function HeroSection() {
             minHeight: "300px",
           }}
         >
-          {/* Hauptfoto: zuerst im DOM, als Hintergrund */}
+          {/* Hauptfoto: zuerst im DOM, als Hintergrund - zurück zur ursprünglichen Datei wie auf Desktop */}
           <div className="absolute inset-[16%] overflow-hidden" style={{ zIndex: 1 }}>
             <Image
-              src="/images/assets/neues_foto.jpg"
+              src="/images/assets/IMG_4886 1.svg"
               alt="Café Interior im phil"
               fill
               className="object-cover"
               priority
               fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 0px"
+              unoptimized
             />
           </div>
           {/* Bordüre: darüber, als Rahmen - muss transparente Bereiche haben */}
