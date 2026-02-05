@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-serif: var(--font-vollkorn);
+  --font-sans: var(--font-vollkorn);
+  --font-handwriting: var(--font-caveat);
+
+  --color-background: #f9f1da;
+  --color-foreground: #573b30;
+  --color-primary: #d72333;
+  --color-secondary: #573b30;
+  --color-cream: #f9f1da;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@utility heading-header {
+  @apply font-serif text-[32px] font-medium leading-[150%] text-primary;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility heading-content {
+  @apply font-serif text-[35px] font-black italic leading-[150%] text-primary;
+}
+
+@utility body-text {
+  @apply font-serif text-[23px] font-medium leading-[150%] text-primary;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-serif;
+  }
+  
+  /* Scroll offset for anchor links to account for fixed header */
+  #uber-uns,
+  #speisekarte,
+  #kontakt {
+    scroll-margin-top: 135px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .nav-link {
+    @apply relative inline-block transition-all duration-200;
+    display: inline-block;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 3px;
+    background-color: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+  
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  .bordure-rotated {
+    transform: rotate(-90deg) !important;
+    transform-origin: center center !important;
+  }
 }

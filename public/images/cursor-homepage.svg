@@ -1,0 +1,9 @@
+<svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Klick-Striche links -->
+  <path d="M10 15L4 12" stroke="#D72333" stroke-width="3" stroke-linecap="round"/>
+  <path d="M8 20L2 20" stroke="#D72333" stroke-width="3" stroke-linecap="round"/>
+  <path d="M10 25L4 28" stroke="#D72333" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Pfeil-K�rper (zeigt nach rechts) -->
+  <path d="M18 20L55 5L45 20L55 35L18 20Z" fill="none" stroke="#D72333" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
