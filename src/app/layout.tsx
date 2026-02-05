@@ -31,14 +31,6 @@ export const metadata: Metadata = {
     siteName: "phil Café",
     locale: "de_AT",
     type: "website",
-    images: [
-      {
-        url: "/images/assets/IMG_4886.webp",
-        width: 806,
-        height: 531,
-        alt: "Café Interior im phil",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",

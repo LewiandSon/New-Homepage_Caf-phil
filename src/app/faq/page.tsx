@@ -176,6 +176,7 @@ export default function FAQPage() {
               fill
               className="object-contain"
               sizes="319px"
+              unoptimized
             />
           </div>
         </div>
@@ -285,6 +286,7 @@ export default function FAQPage() {
               alt="phil Engel"
               fill
               className="object-contain"
+              unoptimized
             />
           </div>
           <p
@@ -344,6 +346,7 @@ export default function FAQPage() {
                 alt="Folge uns auf Instagram"
                 fill
                 className="object-contain"
+                unoptimized
               />
             </a>
           </div>

@@ -19,19 +19,19 @@ export function HeroSection() {
 
   // Static decorative items - positions from Builder.io
   const decorativeItems: DecorativeItem[] = [
-    { id: 'lamp4', left: 786, top: 43, width: 297, height: 422, rotation: 6.687, src: '/images/assets/lamp4.webp', alt: lang === 'de' ? 'Lampe 4' : 'Lamp 4' },
-    { id: 'lamp1', left: 585, top: 133, width: 194, height: 182, rotation: -7.105, src: '/images/assets/lamp1.webp', alt: lang === 'de' ? 'Lampe 1' : 'Lamp 1' },
-    { id: 'loffel', left: 527, top: 585, width: 120, height: 182, rotation: 11.949, src: '/images/assets/loeffel.webp', alt: lang === 'de' ? 'Löffel' : 'Spoon' },
-    { id: 'kaennchen', left: 830, top: 526, width: 124, height: 134, rotation: -9.647, src: '/images/assets/kaennchen.webp', alt: lang === 'de' ? 'Kännchen' : 'Little pot' },
-    { id: 'cup2', left: 644, top: 634, width: 156, height: 234, rotation: 0, src: '/images/assets/cup2.webp', alt: lang === 'de' ? 'Tasse 2' : 'Cup 2' },
-    { id: 'pomidoro', left: 363, top: 655, width: 217, height: 157, rotation: 1.856, src: '/images/assets/pomidoro.webp', alt: 'Pomidoro' },
-    { id: 'books2', left: 776, top: 655, width: 251, height: 282, rotation: 0, src: '/images/assets/books2.webp', alt: lang === 'de' ? 'Bücher 2' : 'Books 2' },
+    { id: 'lamp4', left: 786, top: 43, width: 297, height: 422, rotation: 6.687, src: '/images/assets/lamp4 1.svg', alt: lang === 'de' ? 'Lampe 4' : 'Lamp 4' },
+    { id: 'lamp1', left: 585, top: 133, width: 194, height: 182, rotation: -7.105, src: '/images/assets/lamp1 1.svg', alt: lang === 'de' ? 'Lampe 1' : 'Lamp 1' },
+    { id: 'loffel', left: 527, top: 585, width: 120, height: 182, rotation: 11.949, src: '/images/assets/löffel 1.svg', alt: lang === 'de' ? 'Löffel' : 'Spoon' },
+    { id: 'kaennchen', left: 830, top: 526, width: 124, height: 134, rotation: -9.647, src: '/images/assets/kaennchen 1.svg', alt: lang === 'de' ? 'Kännchen' : 'Little pot' },
+    { id: 'cup2', left: 644, top: 634, width: 156, height: 234, rotation: 0, src: '/images/assets/cup2 1.svg', alt: lang === 'de' ? 'Tasse 2' : 'Cup 2' },
+    { id: 'pomidoro', left: 363, top: 655, width: 217, height: 157, rotation: 1.856, src: '/images/assets/pomidoro 1.svg', alt: 'Pomidoro' },
+    { id: 'books2', left: 776, top: 655, width: 251, height: 282, rotation: 0, src: '/images/assets/books2 1.svg', alt: lang === 'de' ? 'Bücher 2' : 'Books 2' },
   ];
 
   return (
-    <header className="relative w-full max-w-[1440px] mx-auto">
+    <div className="relative w-full max-w-[1440px] mx-auto">
       {/* Mobile layout – phil-Heading, Foto, Collage, dann handschriftliche Grafik */}
-      <section className="block md:hidden px-4 pt-6 pb-12 max-w-[720px] mx-auto" aria-label={lang === "de" ? "Hero-Bereich" : "Hero section"}>
+      <div className="block md:hidden px-4 pt-6 pb-12 max-w-[720px] mx-auto">
         <h1
           className="mb-6 text-center"
           style={{
@@ -49,7 +49,7 @@ export function HeroSection() {
         </h1>
 
         {/* Foto mit Bordüre – auf Mobile über die Innenränder hinausziehen */}
-        <figure
+        <div
           className="relative mb-8"
           style={{
             width: "calc(100% + 3rem)", // noch ein kleines Stück über den Rand hinaus
@@ -62,26 +62,27 @@ export function HeroSection() {
           {/* Hauptfoto: zuerst im DOM, als Hintergrund - zurück zur ursprünglichen Datei wie auf Desktop */}
           <div className="absolute inset-[16%] overflow-hidden" style={{ zIndex: 1 }}>
             <Image
-              src="/images/assets/IMG_4886.webp"
-              alt={lang === "de" ? "Gemütliches Café-Interior im phil mit Bücherregalen, Retro-Einrichtung und Kaffeehaus-Atmosphäre in Wien" : "Cozy café interior at phil with bookshelves, retro furniture and coffeehouse atmosphere in Vienna"}
+              src="/images/assets/IMG_4886 1.svg"
+              alt="Café Interior im phil"
               fill
               className="object-cover"
               priority
               fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 0px"
+              unoptimized
             />
           </div>
           {/* Bordüre: darüber, als Rahmen - muss transparente Bereiche haben */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
             <Image
-              src="/images/assets/bordure.webp"
+              src="/images/assets/bordüre 1.svg"
               alt=""
               fill
               className="object-contain"
-              aria-hidden="true"
+              unoptimized
             />
           </div>
-        </figure>
+        </div>
 
         {/* Collage-Elemente oberhalb – Lampen, Löffel, Kännchen, Tasse */}
         <div className="flex flex-wrap justify-center gap-3 -mb-4">
@@ -103,22 +104,24 @@ export function HeroSection() {
                   height={Math.round(item.height * 0.35)}
                   className="object-contain w-full h-full"
                   loading="lazy"
+                  unoptimized
                 />
               </div>
             ))}
         </div>
 
         {/* Handschriftlicher Spruch */}
-        <figure className="w-full mb-8" role="img" aria-label={lang === "de" ? "Wo Kaffee, Bücher & Kultur in Wien zusammenkommen" : "Where coffee, books & culture come together in Vienna"}>
+        <div className="w-full mb-8">
           <Image
-            src="/images/assets/wo-kaffee-2.webp"
-            alt={lang === "de" ? "Handschriftlicher Spruch: Wo Kaffee, Bücher & Kultur in Wien zusammenkommen" : "Handwritten quote: Where coffee, books & culture come together in Vienna"}
+            src="/images/assets/wo-kaffee-2 1.svg"
+            alt={lang === "de" ? "Wo Kaffee, Bücher & Kultur in Wien zusammenkommen" : "Where coffee, books & culture come together in Vienna"}
             width={800}
             height={300}
             className="w-full h-auto object-contain"
             loading="lazy"
+            unoptimized
           />
-        </figure>
+        </div>
 
         {/* 2 Bilder unterhalb – Dosen (Pomidoro) und Bücher */}
         <div className="flex flex-wrap justify-center gap-3 mb-3">
@@ -140,13 +143,14 @@ export function HeroSection() {
                   height={Math.round(item.height * 0.35)}
                   className="object-contain w-full h-full"
                   loading="lazy"
+                  unoptimized
                 />
               </div>
             ))}
         </div>
 
         {/* Besuch-uns-Button + Hinweis "walk in's only" – auf Mobile etwas kleiner, Text direkt unter dem Button zentriert */}
-        <nav className="mt-4 flex flex-col items-center gap-1" aria-label={lang === "de" ? "Navigation" : "Navigation"}>
+        <div className="mt-4 flex flex-col items-center gap-1">
           <a
             href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8"
             target="_blank"
@@ -179,20 +183,21 @@ export function HeroSection() {
           >
             {lang === "de" ? "walk in's only" : "walk-ins only"}
           </p>
-        </nav>
-      </section>
+        </div>
+      </div>
 
       {/* Collage-Layout – nur auf Desktop, damit die Seite auf Mobile nicht 1440px breit wird */}
-      <section className="hidden md:block relative w-[1440px] mx-auto" aria-label={lang === "de" ? "Hero-Bereich" : "Hero section"}>
+      <div className="hidden md:block relative w-[1440px] mx-auto">
         {/* Handwritten text graphic "wo-kaffee-2 1.svg" - positioned relative to centered container */}
         <div className="absolute left-[272px] w-[643px] h-[237px]" style={{ top: '400px', transform: 'rotate(4.548deg)' }}>
           <Image
-            src="/images/assets/wo-kaffee-2.webp"
-            alt={lang === 'de' ? 'Handschriftlicher Spruch: Wo Kaffee, Bücher & Kultur in Wien zusammenkommen' : 'Handwritten quote: Where coffee, books & culture come together in Vienna'}
+            src="/images/assets/wo-kaffee-2 1.svg"
+            alt={lang === 'de' ? 'Wo Kaffee, Bücher & Kultur in Wien zusammenkommen' : 'Where coffee, books & culture come together in Vienna'}
             width={643}
             height={237}
             className="object-contain"
             loading="lazy"
+            unoptimized
           />
         </div>
 
@@ -206,7 +211,7 @@ export function HeroSection() {
         
             {/* Main heading: "phil - Café, Buchhandlung & Bar in Wien" */}
             {/* From Figma: color: #D72333, font-family: Vollkorn, font-size: 35px, font-style: italic, font-weight: 900, line-height: 150% */}
-            <h1 
+            <div 
               className="absolute left-[106px] w-[561px] h-[147px] flex flex-col justify-center"
               style={{
                 top: '24px',
@@ -230,7 +235,7 @@ export function HeroSection() {
                   & bar in Vienna
                 </>
               )}
-            </h1>
+            </div>
 
             {/* Decorative Floating Images */}
             {decorativeItems.map((item) => {
@@ -253,6 +258,7 @@ export function HeroSection() {
                     height={item.height}
                     className="object-contain pointer-events-none"
                     loading="lazy"
+                    unoptimized
                     draggable={false}
                   />
                 </div>
@@ -261,29 +267,26 @@ export function HeroSection() {
 
             {/* "Besuch uns" button with hover effect and Google Maps link */}
             {/* From Figma: color: #D72333, font-family: Vollkorn, font-size: 25px, font-style: italic, font-weight: 900, line-height: 150% */}
-            <nav aria-label={lang === "de" ? "Navigation" : "Navigation"}>
-              <a
-                href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute left-[-180px] w-[189px] h-[73px] border-[5px] border-primary flex items-center justify-center transition-all duration-200 hover:bg-primary group z-20"
-                style={{
-                  top: '671px',
-                  textAlign: 'center',
-                  color: '#D72333',
-                  fontFamily: 'Vollkorn, serif',
-                  fontSize: '25px',
-                  fontStyle: 'italic',
-                  fontWeight: 900,
-                  lineHeight: '150%',
-                }}
-                aria-label={lang === 'de' ? 'Besuch uns auf Google Maps' : 'Visit us on Google Maps'}
-              >
-                <span className="group-hover:text-cream transition-colors duration-200">
-                  {lang === 'de' ? 'Besuch uns' : 'Visit us'}
-                </span>
-              </a>
-            </nav>
+            <a
+              href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute left-[-180px] w-[189px] h-[73px] border-[5px] border-primary flex items-center justify-center transition-all duration-200 hover:bg-primary group z-20"
+              style={{
+                top: '671px',
+                textAlign: 'center',
+                color: '#D72333',
+                fontFamily: 'Vollkorn, serif',
+                fontSize: '25px',
+                fontStyle: 'italic',
+                fontWeight: 900,
+                lineHeight: '150%',
+              }}
+            >
+              <span className="group-hover:text-cream transition-colors duration-200">
+                {lang === 'de' ? 'Besuch uns' : 'Visit us'}
+              </span>
+            </a>
 
             {/* "walk in's only" text - wie ursprünglich auf Desktop (breiter, linksbündig) */}
             {/* From Figma: color: #D72333, font-family: Vollkorn, font-size: 30px, font-style: normal, font-weight: 500, line-height: 150% */}
@@ -305,7 +308,7 @@ export function HeroSection() {
 
           </div>
         </div>
-      </section>
-    </header>
+      </div>
+    </div>
   );
 }

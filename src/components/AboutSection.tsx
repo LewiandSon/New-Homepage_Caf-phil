@@ -157,11 +157,12 @@ export function AboutSection() {
               }}
             >
               <Image
-                src="/images/assets/cup.webp"
+                src="/images/assets/cup 1.svg"
                 alt="Cup"
                 width={110}
                 height={88}
                 className="object-contain w-full h-full"
+                unoptimized
               />
             </div>
           </div>
@@ -170,6 +171,7 @@ export function AboutSection() {
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[400px] bg-[#F9F1DA] rounded-lg overflow-hidden">
               <video
+                src="/images/assets/analog-cafe-giff.mp4"
                 autoPlay
                 loop
                 muted
@@ -180,10 +182,7 @@ export function AboutSection() {
                   objectFit: 'contain',
                   backgroundColor: '#F9F1DA',
                 }}
-              >
-                <source src="/images/assets/analog-cafe-giff.webm" type="video/webm" />
-                <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
-              </video>
+              />
             </div>
           </div>
 
@@ -210,10 +209,11 @@ export function AboutSection() {
             <div className="mb-8">
               <Image
                 src="/images/assets/IMG_4905 1.jpg"
-                alt={lang === "de" ? "Bücherregale im phil Café" : "Bookshelves at phil café"}
+                alt=""
                 width={479}
                 height={571}
                 className="w-full h-auto object-contain"
+                unoptimized
               />
             </div>
 
@@ -245,10 +245,11 @@ export function AboutSection() {
             <div className="mb-8">
               <Image
                 src="/images/assets/I91A2497 1.jpg"
-                alt={lang === "de" ? "Bücherauswahl im phil" : "Book selection at phil"}
+                alt=""
                 width={589}
                 height={393}
                 className="w-full h-auto object-contain"
+                unoptimized
               />
             </div>
 
@@ -295,20 +296,22 @@ export function AboutSection() {
               <div className="w-full md:w-1/2 flex gap-4 justify-start md:justify-end items-end">
                 <div style={{ width: '80px', height: 'auto' }}>
                   <Image
-                    src="/images/assets/monstera.webp"
+                    src="/images/assets/monstera 1.svg"
                     alt=""
                     width={162}
                     height={199}
                     className="w-full h-auto object-contain"
+                    unoptimized
                   />
                 </div>
                 <div style={{ width: '110px', height: 'auto' }}>
                   <Image
-                    src="/images/assets/books1.webp"
+                    src="/images/assets/books1 1.svg"
                     alt=""
                     width={222}
                     height={194}
                     className="w-full h-auto object-contain"
+                    unoptimized
                   />
                 </div>
               </div>
@@ -351,7 +354,7 @@ export function AboutSection() {
           }}
         >
           <Image
-            src="/images/assets/bordure.webp"
+            src="/images/assets/bordüre 1.svg"
             alt=""
             width={1064}
             height={851}
@@ -360,6 +363,7 @@ export function AboutSection() {
               width: '100%',
               height: '100%',
             }}
+            unoptimized
           />
         </div>
 
@@ -375,12 +379,13 @@ export function AboutSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_4886.webp"
-            alt={lang === "de" ? "Gemütliches Café-Interior im phil" : "Cozy café interior at phil"}
+            src="/images/assets/IMG_4886 1.svg"
+            alt="Café Interior"
             width={806}
             height={531}
             className="object-contain"
             loading="lazy"
+            unoptimized
           />
         </div>
 

@@ -115,7 +115,6 @@ export default function BucherPage() {
               preload="none"
               className="w-full h-full object-cover"
             >
-              <source src="/images/assets/books-website-mit-hg.webm" type="video/webm" />
               <source src="/images/assets/books-website-mit-hg.mp4" type="video/mp4" />
             </video>
           </div>
@@ -166,10 +165,11 @@ export default function BucherPage() {
           }}
         >
            <Image
-             src="/images/assets/bordure2.webp"
+             src="/images/assets/bordüre2.svg"
              alt="Border"
              fill
              className="object-contain"
+             unoptimized
            />
         </div>
 
@@ -295,7 +295,6 @@ export default function BucherPage() {
             preload="none"
             className="w-full h-full object-contain"
           >
-            <source src="/images/assets/books-website-mit-hg.webm" type="video/webm" />
             <source src="/images/assets/books-website-mit-hg.mp4" type="video/mp4" />
           </video>
         </div>
