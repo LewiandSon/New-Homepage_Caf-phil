@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../LanguageContext";
 
-interface DraggableItem {
+interface DecorativeItem {
   id: string;
   left: number;
   top: number;
@@ -16,14 +15,10 @@ interface DraggableItem {
 }
 
 export function HeroSection() {
-  const [itemPositions, setItemPositions] = useState<Record<string, { x: number; y: number }>>({});
-  const [dragging, setDragging] = useState<string | null>(null);
-  const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const { lang } = useLanguage();
 
-  // Initial positions from Builder.io
-  const draggableItems: DraggableItem[] = [
+  // Static decorative items - positions from Builder.io
+  const decorativeItems: DecorativeItem[] = [
     { id: 'lamp4', left: 786, top: 43, width: 297, height: 422, rotation: 6.687, src: '/images/assets/lamp4 1.svg', alt: lang === 'de' ? 'Lampe 4' : 'Lamp 4' },
     { id: 'lamp1', left: 585, top: 133, width: 194, height: 182, rotation: -7.105, src: '/images/assets/lamp1 1.svg', alt: lang === 'de' ? 'Lampe 1' : 'Lamp 1' },
     { id: 'loffel', left: 527, top: 585, width: 120, height: 182, rotation: 11.949, src: '/images/assets/löffel 1.svg', alt: lang === 'de' ? 'Löffel' : 'Spoon' },
@@ -32,59 +27,6 @@ export function HeroSection() {
     { id: 'pomidoro', left: 363, top: 655, width: 217, height: 157, rotation: 1.856, src: '/images/assets/pomidoro 1.svg', alt: 'Pomidoro' },
     { id: 'books2', left: 776, top: 655, width: 251, height: 282, rotation: 0, src: '/images/assets/books2 1.svg', alt: lang === 'de' ? 'Bücher 2' : 'Books 2' },
   ];
-
-  const handleMouseDown = (e: React.MouseEvent, itemId: string, initialLeft: number, initialTop: number) => {
-    e.preventDefault();
-    const containerRect = containerRef.current?.getBoundingClientRect();
-    if (!containerRect) return;
-
-    const currentX = itemPositions[itemId]?.x ?? initialLeft;
-    const currentY = itemPositions[itemId]?.y ?? initialTop;
-
-    setDragging(itemId);
-    setDragStart({
-      x: e.clientX - containerRect.left - currentX,
-      y: e.clientY - containerRect.top - currentY,
-    });
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!dragging || !dragStart || !containerRef.current) return;
-
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const newX = e.clientX - containerRect.left - dragStart.x;
-      const newY = e.clientY - containerRect.top - dragStart.y;
-
-      setItemPositions(prev => ({
-        ...prev,
-        [dragging]: { x: newX, y: newY },
-      }));
-    };
-
-    const handleMouseUp = () => {
-      setDragging(null);
-      setDragStart(null);
-    };
-
-    if (dragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [dragging, dragStart]);
-
-  const getItemPosition = (item: DraggableItem) => {
-    const position = itemPositions[item.id];
-    return {
-      left: position?.x ?? item.left,
-      top: position?.y ?? item.top,
-    };
-  };
 
   return (
     <div className="relative w-full max-w-[1440px] mx-auto">
@@ -141,7 +83,7 @@ export function HeroSection() {
 
         {/* Collage-Elemente oberhalb – Lampen, Löffel, Kännchen, Tasse */}
         <div className="flex flex-wrap justify-center gap-3 -mb-4">
-          {draggableItems
+          {decorativeItems
             .filter((item) => ["lamp4", "lamp1", "loffel", "kaennchen", "cup2"].includes(item.id))
             .map((item) => (
               <div
@@ -180,7 +122,7 @@ export function HeroSection() {
 
         {/* 2 Bilder unterhalb – Dosen (Pomidoro) und Bücher */}
         <div className="flex flex-wrap justify-center gap-3 mb-3">
-          {draggableItems
+          {decorativeItems
             .filter((item) => ["pomidoro", "books2"].includes(item.id))
             .map((item) => (
               <div
@@ -258,7 +200,6 @@ export function HeroSection() {
 
         {/* Outer container - positioned relative to centered container */}
         <div 
-          ref={containerRef}
           className="absolute left-[326px] w-[1130px] h-[878px]"
           style={{ top: '40px' }}
         >
@@ -293,21 +234,19 @@ export function HeroSection() {
               )}
             </div>
 
-            {/* Draggable Floating Images */}
-            {draggableItems.map((item) => {
-              const position = getItemPosition(item);
+            {/* Decorative Floating Images */}
+            {decorativeItems.map((item) => {
               return (
                 <div
                   key={item.id}
-                  className="absolute cursor-move select-none z-10 transition-opacity hover:opacity-90"
+                  className="absolute select-none z-10"
                   style={{
-                    left: `${position.left}px`,
-                    top: `${position.top}px`,
+                    left: `${item.left}px`,
+                    top: `${item.top}px`,
                     width: `${item.width}px`,
                     height: `${item.height}px`,
                     transform: `rotate(${item.rotation}deg)`,
                   }}
-                  onMouseDown={(e) => handleMouseDown(e, item.id, item.left, item.top)}
                 >
                   <Image
                     src={item.src}
