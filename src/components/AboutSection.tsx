@@ -369,7 +369,7 @@ export function AboutSection() {
 
         {/* Image: IMG_4886 1 */}
         <div 
-          className="absolute overflow-hidden"
+          className="absolute"
           style={{
             width: '806px',
             height: '531px',
@@ -378,15 +378,14 @@ export function AboutSection() {
             zIndex: 10
           }}
         >
-          <div className="relative w-full h-full">
-            <Image
-              src="/images/assets/neues_foto.jpg"
-              alt="Café Interior"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          <Image
+            src="/images/assets/IMG_4886 1.svg"
+            alt="Café Interior"
+            width={806}
+            height={531}
+            className="object-contain"
+            unoptimized
+          />
         </div>
 
         {/* Heading: "Unsere Geschichte" */}
