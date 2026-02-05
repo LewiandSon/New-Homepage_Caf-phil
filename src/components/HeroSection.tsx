@@ -57,18 +57,8 @@ export function HeroSection() {
             marginRight: "-1.5rem",
           }}
         >
-          {/* Bordüre: Hintergrund-Layer */}
-          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-            <Image
-              src="/images/assets/Bordure2.png"
-              alt=""
-              fill
-              className="object-contain"
-              unoptimized
-            />
-          </div>
-          {/* Hauptfoto: über der Bordüre, mit Padding innerhalb der Bordüre */}
-          <div className="absolute inset-[12%] overflow-hidden" style={{ zIndex: 2 }}>
+          {/* Hauptfoto: zuerst, damit es als Hintergrund dient */}
+          <div className="absolute inset-[16%] overflow-hidden" style={{ zIndex: 1 }}>
             <Image
               src="/images/assets/neues_foto.jpg"
               alt="Café Interior im phil"
@@ -77,6 +67,16 @@ export function HeroSection() {
               priority
               fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 0px"
+            />
+          </div>
+          {/* Bordüre: darüber, als Rahmen */}
+          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
+            <Image
+              src="/images/assets/Bordure2.png"
+              alt=""
+              fill
+              className="object-contain"
+              unoptimized
             />
           </div>
         </div>
