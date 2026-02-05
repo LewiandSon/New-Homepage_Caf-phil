@@ -378,13 +378,15 @@ export function AboutSection() {
             zIndex: 10
           }}
         >
-          <Image
-            src="/images/assets/neues_foto.jpg"
-            alt="Café Interior"
-            fill
-            className="object-cover"
-            loading="lazy"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src="/images/assets/neues_foto.jpg"
+              alt="Café Interior"
+              fill
+              className="object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
 
         {/* Heading: "Unsere Geschichte" */}
