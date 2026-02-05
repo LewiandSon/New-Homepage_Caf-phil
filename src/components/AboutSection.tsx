@@ -344,7 +344,7 @@ export function AboutSection() {
       >
         {/* Bordüre 1 - decorative border */}
         <div 
-          className="absolute"
+          className="absolute pointer-events-none"
           style={{ 
             width: '1063.75px', 
             height: '851px', 
@@ -355,7 +355,7 @@ export function AboutSection() {
         >
           <Image
             src="/images/assets/bordüre 1.svg"
-            alt="Bordüre"
+            alt=""
             width={1064}
             height={851}
             className="object-contain"
@@ -384,7 +384,7 @@ export function AboutSection() {
               alt="Café Interior"
               fill
               className="object-cover"
-              loading="lazy"
+              priority
             />
           </div>
         </div>
