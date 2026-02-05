@@ -50,25 +50,17 @@ export function HeroSection() {
 
         {/* Foto mit Bordüre – auf Mobile über die Innenränder hinausziehen */}
         <div
-          className="relative mb-8 aspect-[4/3]"
+          className="relative mb-8"
           style={{
             width: "calc(100% + 3rem)", // noch ein kleines Stück über den Rand hinaus
             marginLeft: "-1.5rem",
             marginRight: "-1.5rem",
+            aspectRatio: "4/3",
+            minHeight: "300px",
           }}
         >
-          {/* Bordüre: Hintergrund-Layer */}
-          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-            <Image
-              src="/images/assets/bordüre 1.svg"
-              alt=""
-              fill
-              className="object-contain"
-              unoptimized
-            />
-          </div>
-          {/* Hauptfoto: über der Bordüre */}
-          <div className="absolute inset-[16%] overflow-hidden rounded-sm" style={{ zIndex: 10 }}>
+          {/* Hauptfoto: zuerst im DOM, als Hintergrund */}
+          <div className="absolute inset-[16%] overflow-hidden" style={{ zIndex: 1 }}>
             <Image
               src="/images/assets/neues_foto.jpg"
               alt="Café Interior im phil"
@@ -77,6 +69,16 @@ export function HeroSection() {
               priority
               fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 0px"
+            />
+          </div>
+          {/* Bordüre: darüber, als Rahmen - muss transparente Bereiche haben */}
+          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
+            <Image
+              src="/images/assets/bordüre 1.svg"
+              alt=""
+              fill
+              className="object-contain"
+              unoptimized
             />
           </div>
         </div>
