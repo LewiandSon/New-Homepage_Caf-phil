@@ -157,7 +157,7 @@ export function AboutSection() {
               }}
             >
               <Image
-                src="/images/assets/cup 1.svg"
+                src="/images/assets/cup.webp"
                 alt="Cup"
                 width={110}
                 height={88}
@@ -171,7 +171,7 @@ export function AboutSection() {
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[400px] bg-[#F9F1DA] rounded-lg overflow-hidden">
               <video
-                src="/images/assets/analog-cafe-giff.mp4"
+                src="/images/assets/analog-cafe-giff.webm"
                 autoPlay
                 loop
                 muted
@@ -296,7 +296,7 @@ export function AboutSection() {
               <div className="w-full md:w-1/2 flex gap-4 justify-start md:justify-end items-end">
                 <div style={{ width: '80px', height: 'auto' }}>
                   <Image
-                    src="/images/assets/monstera 1.svg"
+                    src="/images/assets/monstera.webp"
                     alt=""
                     width={162}
                     height={199}
@@ -306,7 +306,7 @@ export function AboutSection() {
                 </div>
                 <div style={{ width: '110px', height: 'auto' }}>
                   <Image
-                    src="/images/assets/books1 1.svg"
+                    src="/images/assets/books1.webp"
                     alt=""
                     width={222}
                     height={194}
@@ -354,7 +354,7 @@ export function AboutSection() {
           }}
         >
           <Image
-            src="/images/assets/bordüre 1.svg"
+            src="/images/assets/bordure.webp"
             alt=""
             width={1064}
             height={851}
@@ -379,7 +379,7 @@ export function AboutSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_4886 1.svg"
+            src="/images/assets/IMG_4886.webp"
             alt="Café Interior"
             width={806}
             height={531}
