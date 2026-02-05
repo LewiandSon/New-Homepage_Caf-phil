@@ -89,7 +89,7 @@ export function Header() {
             }}
           >
             <Image
-              src="/images/assets/ausgesprochen_viel.webp"
+              src="/images/assets/ausgesprochen_viel 1.svg"
               alt="phil logo"
               width={100}
               height={100}
