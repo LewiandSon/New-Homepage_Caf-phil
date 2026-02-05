@@ -347,20 +347,20 @@ export function QuoteSection() {
             alt={lang === "de" ? "Events & Bar im phil" : "Events & bar at phil"}
             fill
             className="object-cover"
-            unoptimized
           />
 
           {/* Video-GIF unten über das Foto gelegt (größer) */}
           <div className="absolute -bottom-8 right-0 w-[80%] shadow-lg overflow-hidden">
-            <video
-              src="/images/assets/events-diashow-website.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <video
+            src="/images/assets/events-diashow-website.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover"
+          />
+        </div>
         </div>
 
         {/* Textblöcke */}
@@ -854,6 +854,7 @@ export function QuoteSection() {
             loop
             muted
             playsInline
+            preload="metadata"
             style={{
               width: '100%',
               height: '100%',
@@ -880,7 +881,7 @@ export function QuoteSection() {
             width={479}
             height={571}
             className="object-contain"
-            unoptimized
+            loading="lazy"
           />
         </div>
       </div>
@@ -926,7 +927,7 @@ export function QuoteSection() {
             width={589}
             height={393}
             className="object-contain"
-            unoptimized
+            loading="lazy"
           />
         </div>
       </div>
@@ -1471,7 +1472,7 @@ export function QuoteSection() {
             alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
             fill
             className="object-cover"
-            unoptimized
+            loading="lazy"
           />
         </div>
       </div>
@@ -1681,6 +1682,7 @@ export function QuoteSection() {
             loop
             muted
             playsInline
+            preload="metadata"
             style={{
               width: '100%',
               height: '100%',

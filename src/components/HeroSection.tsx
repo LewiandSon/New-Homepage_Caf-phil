@@ -122,6 +122,8 @@ export function HeroSection() {
               fill
               className="object-cover"
               priority
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 0px"
             />
           </div>
           <div className="absolute inset-0 pointer-events-none">
@@ -130,7 +132,9 @@ export function HeroSection() {
               alt=""
               fill
               className="object-contain"
-              unoptimized
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 0px"
             />
           </div>
         </div>

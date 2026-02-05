@@ -176,6 +176,7 @@ export function AboutSection() {
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-auto"
                 style={{
                   objectFit: 'contain',

@@ -112,6 +112,7 @@ export default function BucherPage() {
               loop
               muted
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
             >
               <source src="/images/assets/books-website-mit-hg.mp4" type="video/mp4" />
@@ -127,7 +128,6 @@ export default function BucherPage() {
             width={1280}
             height={900}
             className="w-full h-auto object-cover"
-            unoptimized
           />
           {/* Überschrift optisch über der linken Genre-Liste */}
           <h2
@@ -189,7 +189,6 @@ export default function BucherPage() {
             alt="Bücherregal"
             fill
             className="object-cover"
-            unoptimized
           />
         </div>
 
@@ -315,7 +314,6 @@ export default function BucherPage() {
             alt="Raumplan - Bücher und wo sie zu finden sind"
             fill
             className="object-cover"
-            unoptimized
           />
         </div>
 
@@ -436,7 +434,6 @@ export default function BucherPage() {
             alt="phil Engel"
             fill
             className="object-contain"
-            unoptimized
           />
         </div>
         <p
@@ -496,7 +493,6 @@ export default function BucherPage() {
               alt="Folge uns auf Instagram"
               fill
               className="object-contain"
-              unoptimized
             />
           </a>
         </div>
