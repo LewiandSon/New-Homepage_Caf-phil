@@ -72,7 +72,7 @@ export function HeroSection() {
           {/* Bordüre: kleinere PNG-Variante statt großer SVG */}
           <div className="absolute inset-0 pointer-events-none">
             <Image
-              src="/images/assets/Bordüre2.png"
+              src="/images/assets/Bordure2.png"
               alt=""
               fill
               className="object-contain"

@@ -73,7 +73,7 @@
 | Datei | Größe | Status |
 |-------|-------|--------|
 | `neues_foto.jpg` | **87KB** | ✅ Ersetzt `IMG_4886 1.svg` (12MB) - **98% Reduktion** |
-| `Bordüre2.png` | **427KB** | ✅ Ersetzt `bordüre 1.svg` (713KB) - **40% Reduktion**, `unoptimized` hinzugefügt (400-Fehler behoben) |
+| `Bordure2.png` | **427KB** | ✅ Ersetzt `bordüre 1.svg` (713KB) - **40% Reduktion**, Dateiname ohne Sonderzeichen (ü→u) für Vercel-Kompatibilität |
 
 ---
 
