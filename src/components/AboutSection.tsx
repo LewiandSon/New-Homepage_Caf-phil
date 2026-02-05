@@ -176,7 +176,7 @@ export function AboutSection() {
                 loop
                 muted
                 playsInline
-                preload="metadata"
+                preload="none"
                 className="w-full h-auto"
                 style={{
                   objectFit: 'contain',
@@ -379,12 +379,12 @@ export function AboutSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_4886 1.svg"
+            src="/images/assets/neues_foto.jpg"
             alt="Café Interior"
             width={806}
             height={531}
             className="object-contain"
-            unoptimized
+            loading="lazy"
           />
         </div>
 

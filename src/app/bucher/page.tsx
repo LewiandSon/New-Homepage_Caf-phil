@@ -112,7 +112,7 @@ export default function BucherPage() {
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="none"
               className="w-full h-full object-cover"
             >
               <source src="/images/assets/books-website-mit-hg.mp4" type="video/mp4" />
@@ -292,6 +292,7 @@ export default function BucherPage() {
             loop
             muted
             playsInline
+            preload="none"
             className="w-full h-full object-contain"
           >
             <source src="/images/assets/books-website-mit-hg.mp4" type="video/mp4" />

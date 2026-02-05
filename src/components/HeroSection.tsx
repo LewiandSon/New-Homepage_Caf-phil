@@ -115,9 +115,10 @@ export function HeroSection() {
             marginRight: "-1.5rem",
           }}
         >
+          {/* Hauptfoto: jetzt als komprimiertes JPG statt 12MB-SVG */}
           <div className="absolute inset-[16%] overflow-hidden">
             <Image
-              src="/images/assets/IMG_4886 1.svg"
+              src="/images/assets/neues_foto.jpg"
               alt="Café Interior im phil"
               fill
               className="object-cover"
@@ -126,15 +127,13 @@ export function HeroSection() {
               sizes="(max-width: 768px) 100vw, 0px"
             />
           </div>
+          {/* Bordüre: kleinere PNG-Variante statt großer SVG */}
           <div className="absolute inset-0 pointer-events-none">
             <Image
-              src="/images/assets/bordüre 1.svg"
+              src="/images/assets/Bordüre2.png"
               alt=""
               fill
               className="object-contain"
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 768px) 100vw, 0px"
             />
           </div>
         </div>

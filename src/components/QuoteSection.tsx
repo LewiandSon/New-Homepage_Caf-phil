@@ -91,7 +91,6 @@ export function QuoteSection() {
               width={400}
               height={600}
               className="w-full h-auto object-contain"
-              unoptimized
             />
           </button>
           <button
@@ -105,7 +104,6 @@ export function QuoteSection() {
               width={400}
               height={600}
               className="w-full h-auto object-contain"
-              unoptimized
             />
           </button>
           <button
@@ -119,7 +117,6 @@ export function QuoteSection() {
               width={400}
               height={600}
               className="w-full h-auto object-contain"
-              unoptimized
             />
           </button>
           <button
@@ -133,7 +130,6 @@ export function QuoteSection() {
               width={400}
               height={600}
               className="w-full h-auto object-contain"
-              unoptimized
             />
           </button>
         </div>
@@ -205,7 +201,7 @@ export function QuoteSection() {
               alt="Schanigarten"
               fill
               className="object-cover"
-              unoptimized
+              loading="lazy"
             />
           </div>
           <div className="absolute inset-0 pointer-events-none">
@@ -257,7 +253,7 @@ export function QuoteSection() {
               width={36}
               height={48}
               className="object-contain"
-              unoptimized
+              loading="lazy"
             />
           </div>
           <h2
@@ -347,6 +343,7 @@ export function QuoteSection() {
             alt={lang === "de" ? "Events & Bar im phil" : "Events & bar at phil"}
             fill
             className="object-cover"
+            loading="lazy"
           />
 
           {/* Video-GIF unten über das Foto gelegt (größer) */}
@@ -357,7 +354,7 @@ export function QuoteSection() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
             className="w-full h-full object-cover"
           />
         </div>
@@ -604,7 +601,7 @@ export function QuoteSection() {
             width={260}
             height={330}
             className="object-contain"
-            unoptimized
+            loading="lazy"
           />
         </div>
 
@@ -854,7 +851,7 @@ export function QuoteSection() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
             style={{
               width: '100%',
               height: '100%',
@@ -1361,7 +1358,7 @@ export function QuoteSection() {
             alt="Schanigarten"
             fill
             className="object-cover"
-            unoptimized
+            loading="lazy"
           />
         </div>
       </div>
@@ -1449,7 +1446,7 @@ export function QuoteSection() {
             width={214}
             height={304}
             className="object-contain"
-            unoptimized
+            loading="lazy"
           />
         </div>
       </div>
@@ -1682,7 +1679,7 @@ export function QuoteSection() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
             style={{
               width: '100%',
               height: '100%',
@@ -1745,7 +1742,7 @@ export function QuoteSection() {
             width={290}
             height={338}
             className="object-contain"
-            unoptimized
+            loading="lazy"
           />
         </div>
       </div>
@@ -2045,7 +2042,7 @@ export function QuoteSection() {
             width={300}
             height={375}
             className="object-contain"
-            unoptimized
+            loading="lazy"
           />
         </div>
 
