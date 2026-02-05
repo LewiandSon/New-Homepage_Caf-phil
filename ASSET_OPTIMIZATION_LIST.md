@@ -68,12 +68,22 @@
 
 ---
 
-## ✅ Bereits optimiert
+## ✅ Bereits optimiert (2026-02-05)
 
-| Datei | Größe | Status |
-|-------|-------|--------|
-| `neues_foto.jpg` | **87KB** | ✅ Ersetzt `IMG_4886 1.svg` (12MB) - **98% Reduktion** |
-| `Bordure2.png` | **427KB** | ✅ Ersetzt `bordüre 1.svg` (713KB) - **40% Reduktion**, Dateiname ohne Sonderzeichen (ü→u) für Vercel-Kompatibilität |
+| Original | Optimiert | Reduktion |
+|----------|-----------|-----------|
+| `IMG_4886 1.svg` (12MB) | `IMG_4886.webp` (1.4MB) | 88% |
+| `IMG_5028 1.svg` (11MB) | `IMG_5028.webp` (1.4MB) | 88% |
+| `IMG_4843-2 1.svg` (9.5MB) | `IMG_4843-2.webp` (1.1MB) | 88% |
+| `mirror1 1.svg` (12MB) | `mirror1.webp` (761KB) | 94% |
+| `disco 1.svg` (6.9MB) | `disco.webp` (388KB) | 94% |
+| `bordüre 1.svg` (713KB) | `bordure.webp` (185KB) | 74% |
+| `bordüre2.svg` (573KB) | `bordure2.webp` (171KB) | 70% |
+| HeroSection Collage (lamp4, lamp1, löffel, kaennchen, cup2, pomidoro, books2) | `.webp` | ~90% |
+| `ausgesprochen_viel 1.svg` (905KB) | `ausgesprochen_viel.webp` (198KB) | 78% |
+| Alle weiteren großen SVGs | `.webp` | siehe `scripts/optimize-assets.mjs` |
+
+**Script:** `node scripts/optimize-assets.mjs` extrahiert eingebettete Raster aus SVGs und konvertiert zu WebP.
 
 ---
 

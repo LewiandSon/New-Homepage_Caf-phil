@@ -169,12 +169,11 @@ export function QuoteSection() {
         </div>
         <div className="mt-6">
           <Image
-            src="/images/assets/saltpepper 1.svg"
+            src="/images/assets/saltpepper.webp"
             alt="Salt & Pepper"
             width={150}
             height={150}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -197,7 +196,7 @@ export function QuoteSection() {
         <div className="relative w-full max-w-[400px] mx-auto aspect-[3/4] mb-8">
           <div className="absolute inset-[12%] overflow-hidden rounded-sm">
             <Image
-              src="/images/assets/IMG_5028 1.svg"
+              src="/images/assets/IMG_5028.webp"
               alt="Schanigarten"
               fill
               className="object-cover"
@@ -206,11 +205,10 @@ export function QuoteSection() {
           </div>
           <div className="absolute inset-0 pointer-events-none">
             <Image
-              src="/images/assets/bordüre2.svg"
+              src="/images/assets/bordure2.webp"
               alt=""
               fill
               className="object-contain"
-              unoptimized
             />
           </div>
         </div>
@@ -248,7 +246,7 @@ export function QuoteSection() {
         <div className="flex items-center gap-3 mb-6">
           <div className="flex-shrink-0">
             <Image
-              src="/images/assets/disco 1.svg"
+              src="/images/assets/disco.webp"
               alt=""
               width={36}
               height={48}
@@ -277,7 +275,6 @@ export function QuoteSection() {
             alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
             fill
             className="object-cover"
-            unoptimized
           />
         </div>
 
@@ -339,7 +336,7 @@ export function QuoteSection() {
         {/* Foto mit überlagertem GIF/Video */}
         <div className="relative w-full max-w-[420px] mx-auto aspect-[3/4] mb-10 overflow-hidden rounded-sm">
           <Image
-            src="/images/assets/IMG_4843-2 1.svg"
+            src="/images/assets/IMG_4843-2.webp"
             alt={lang === "de" ? "Events & Bar im phil" : "Events & bar at phil"}
             fill
             className="object-cover"
@@ -349,14 +346,16 @@ export function QuoteSection() {
           {/* Video-GIF unten über das Foto gelegt (größer) */}
           <div className="absolute -bottom-8 right-0 w-[80%] shadow-lg overflow-hidden">
           <video
-            src="/images/assets/events-diashow-website.mp4"
             autoPlay
             loop
             muted
             playsInline
             preload="none"
             className="w-full h-full object-cover"
-          />
+          >
+            <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
+            <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
+          </video>
         </div>
         </div>
 
@@ -444,12 +443,11 @@ export function QuoteSection() {
         <div className="flex flex-col items-center mb-10">
           <div className="mb-4">
             <Image
-              src="/images/assets/lamp2 1.svg"
+              src="/images/assets/lamp2.webp"
               alt={lang === "de" ? "Lampe" : "Lamp"}
               width={140}
               height={210}
               className="object-contain"
-              unoptimized
             />
           </div>
           <a
@@ -596,7 +594,7 @@ export function QuoteSection() {
         {/* Bildrahmen */}
         <div className="mb-6">
           <Image
-            src="/images/assets/bild 1.svg"
+            src="/images/assets/bild.webp"
             alt={lang === "de" ? "Person mit Büchern" : "Person with books"}
             width={260}
             height={330}
@@ -608,12 +606,11 @@ export function QuoteSection() {
         {/* Zuckerstreuer, mit moderatem Abstand unter dem Bild */}
         <div className="mt-6 mb-8">
           <Image
-            src="/images/assets/sugar 1.svg"
+            src="/images/assets/sugar.webp"
             alt={lang === "de" ? "Zuckerstreuer" : "Sugar dispenser"}
             width={140}
             height={220}
             className="object-contain -rotate-12"
-            unoptimized
           />
         </div>
 
@@ -661,7 +658,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain max-h-[85vh] w-auto bg-[#F8F7F6]"
-            unoptimized
           />
         </div>
         <button
@@ -824,12 +820,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/cup 1.svg"
+            src="/images/assets/cup.webp"
             alt="Cup"
             width={234}
             height={191}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -846,7 +841,6 @@ export function QuoteSection() {
           }}
         >
           <video
-            src="/images/assets/analog-cafe-giff.mp4"
             autoPlay
             loop
             muted
@@ -857,7 +851,10 @@ export function QuoteSection() {
               height: '100%',
               objectFit: 'contain',
             }}
-          />
+          >
+            <source src="/images/assets/analog-cafe-giff.webm" type="video/webm" />
+            <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 
@@ -1015,12 +1012,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/monstera 1.svg"
+            src="/images/assets/monstera.webp"
             alt=""
             width={162}
             height={199}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1037,12 +1033,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/books1 1.svg"
+            src="/images/assets/books1.webp"
             alt=""
             width={222}
             height={194}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1089,12 +1084,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/cursor 1.svg"
+            src="/images/assets/cursor.webp"
             alt=""
             width={59}
             height={111}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1141,7 +1135,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(0)}
           />
         </div>
@@ -1162,7 +1155,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(1)}
           />
         </div>
@@ -1186,7 +1178,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(2)}
           />
         </div>
@@ -1207,7 +1198,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(3)}
           />
         </div>
@@ -1231,7 +1221,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(4)}
           />
         </div>
@@ -1281,12 +1270,11 @@ export function QuoteSection() {
           </div>
 
           <Image
-            src="/images/assets/saltpepper 1.svg"
+            src="/images/assets/saltpepper.webp"
             alt="Salt & Pepper"
             width={200}
             height={200}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1332,12 +1320,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/bordüre2.svg"
+            src="/images/assets/bordure2.webp"
             alt="Bordüre"
             width={674}
             height={860}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1354,7 +1341,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_5028 1.svg"
+            src="/images/assets/IMG_5028.webp"
             alt="Schanigarten"
             fill
             className="object-cover"
@@ -1441,7 +1428,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/disco 1.svg"
+            src="/images/assets/disco.webp"
             alt="Disco Kugel"
             width={214}
             height={304}
@@ -1486,12 +1473,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/pfeil 1.svg"
+            src="/images/assets/pfeil.webp"
             alt="Pfeil"
             width={356}
             height={383}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1582,12 +1568,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_4843-2 1.svg"
+            src="/images/assets/IMG_4843-2.webp"
             alt="Events & Bar Atmosphere"
             width={759}
             height={1074}
             className="object-contain"
-            unoptimized
           />
           
           {/* Text Container: Events & Bar */}
@@ -1674,7 +1659,6 @@ export function QuoteSection() {
           }}
         >
           <video
-            src="/images/assets/events-diashow-website.mp4"
             autoPlay
             loop
             muted
@@ -1685,7 +1669,10 @@ export function QuoteSection() {
               height: '100%',
               objectFit: 'cover',
             }}
-          />
+          >
+            <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
+            <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 
@@ -1737,7 +1724,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/mirror1 1.svg"
+            src="/images/assets/mirror1.webp"
             alt="Mirror"
             width={290}
             height={338}
@@ -1830,12 +1817,11 @@ export function QuoteSection() {
             {/* Cursor */}
             <div className="absolute -right-[160px] bottom-[0px] w-[100px] h-[100px]">
                <Image
-                src="/images/assets/cursor 2.svg"
+                src="/images/assets/cursor2.webp"
                 alt="Cursor"
                 width={100}
                 height={100}
                 className="object-contain"
-                unoptimized
               />
             </div>
           </a>
@@ -1872,12 +1858,11 @@ export function QuoteSection() {
         {/* Lamp Image */}
         <div className="absolute left-[380px] top-[0px] w-[200px] h-[300px]">
           <Image
-            src="/images/assets/lamp2 1.svg"
+            src="/images/assets/lamp2.webp"
             alt="Lampe"
             width={200}
             height={300}
             className="object-contain"
-            unoptimized
           />
         </div>
 
@@ -2037,7 +2022,7 @@ export function QuoteSection() {
         {/* Picture Frame */}
         <div className="absolute left-1/2 -translate-x-1/2 top-[0px] w-[300px] h-[375px]">
           <Image
-            src="/images/assets/bild 1.svg"
+            src="/images/assets/bild.webp"
             alt="Bild"
             width={300}
             height={375}
@@ -2049,12 +2034,11 @@ export function QuoteSection() {
         {/* Sugar Dispenser (Overlapping) */}
         <div className="absolute left-[450px] top-[250px] w-[200px] h-[333px]">
           <Image
-            src="/images/assets/sugar 1.svg"
+            src="/images/assets/sugar.webp"
             alt="Zucker"
             width={200}
             height={333}
             className="object-contain transform -rotate-12"
-            unoptimized
           />
         </div>
 
@@ -2088,12 +2072,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/sieb 1.svg"
+            src="/images/assets/sieb.webp"
             alt="Sieb"
             width={252}
             height={252}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -2111,7 +2094,6 @@ export function QuoteSection() {
           alt="phil Engel"
           fill
           className="object-contain"
-          unoptimized
         />
       </div>
       <p
@@ -2171,7 +2153,6 @@ export function QuoteSection() {
             alt="Folge uns auf Instagram"
             fill
             className="object-contain"
-            unoptimized
           />
         </a>
       </div>

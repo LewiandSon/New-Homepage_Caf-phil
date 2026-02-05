@@ -89,12 +89,11 @@ export function Header() {
             }}
           >
             <Image
-              src="/images/assets/ausgesprochen_viel 1.svg"
+              src="/images/assets/ausgesprochen_viel.webp"
               alt="phil logo"
               width={100}
               height={100}
               className="object-contain hover:opacity-80 transition-opacity"
-              unoptimized
             />
           </a>
         </div>

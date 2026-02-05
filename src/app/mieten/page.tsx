@@ -43,7 +43,6 @@ export default function MietenPage() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 532px"
                   priority
-                  unoptimized
                 />
               </div>
               <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
@@ -53,7 +52,6 @@ export default function MietenPage() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 532px"
-                  unoptimized
                 />
               </div>
             </div>
@@ -203,7 +201,6 @@ export default function MietenPage() {
               alt="phil Engel"
               fill
               className="object-contain"
-              unoptimized
             />
           </div>
           <p
@@ -263,7 +260,6 @@ export default function MietenPage() {
                 alt="Folge uns auf Instagram"
                 fill
                 className="object-contain"
-                unoptimized
               />
             </a>
           </div>

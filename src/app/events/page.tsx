@@ -271,7 +271,6 @@ export default function EventsPage() {
                           (e.target as HTMLImageElement).onerror = null;
                           (e.target as HTMLImageElement).src = "/images/assets/veranstaltung_1.jpg";
                         }}
-                        unoptimized
                       />
                     </div>
                     <div className="flex flex-col flex-1">
@@ -337,7 +336,6 @@ export default function EventsPage() {
               alt="phil Engel"
               fill
               className="object-contain"
-              unoptimized
             />
           </div>
           <p
@@ -397,7 +395,6 @@ export default function EventsPage() {
                 alt="Folge uns auf Instagram"
                 fill
                 className="object-contain"
-                unoptimized
               />
             </a>
           </div>
