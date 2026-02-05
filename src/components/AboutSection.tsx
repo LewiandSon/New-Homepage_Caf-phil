@@ -384,6 +384,7 @@ export function AboutSection() {
             width={806}
             height={531}
             className="object-contain"
+            loading="lazy"
             unoptimized
           />
         </div>

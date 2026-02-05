@@ -158,6 +158,7 @@ export function HeroSection() {
                   width={Math.round(item.width * 0.35)}
                   height={Math.round(item.height * 0.35)}
                   className="object-contain w-full h-full"
+                  loading="lazy"
                   unoptimized
                 />
               </div>
@@ -172,6 +173,7 @@ export function HeroSection() {
             width={800}
             height={300}
             className="w-full h-auto object-contain"
+            loading="lazy"
             unoptimized
           />
         </div>
@@ -195,6 +197,7 @@ export function HeroSection() {
                   width={Math.round(item.width * 0.35)}
                   height={Math.round(item.height * 0.35)}
                   className="object-contain w-full h-full"
+                  loading="lazy"
                   unoptimized
                 />
               </div>
@@ -248,6 +251,7 @@ export function HeroSection() {
             width={643}
             height={237}
             className="object-contain"
+            loading="lazy"
             unoptimized
           />
         </div>
@@ -311,6 +315,7 @@ export function HeroSection() {
                     width={item.width}
                     height={item.height}
                     className="object-contain pointer-events-none"
+                    loading="lazy"
                     unoptimized
                     draggable={false}
                   />
