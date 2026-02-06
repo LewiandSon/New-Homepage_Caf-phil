@@ -598,7 +598,7 @@ export function QuoteSection() {
         {/* Bildrahmen */}
         <div className="mb-6">
           <Image
-            src="/images/assets/bild 1.svg"
+            src="/images/assets/bild.webp"
             alt={lang === "de" ? "Person mit Büchern" : "Person with books"}
             width={260}
             height={330}
@@ -2043,7 +2043,7 @@ export function QuoteSection() {
         {/* Picture Frame */}
         <div className="absolute left-1/2 -translate-x-1/2 top-[0px] w-[300px] h-[375px]">
           <Image
-            src="/images/assets/bild 1.svg"
+            src="/images/assets/bild.webp"
             alt="Bild"
             width={300}
             height={375}
