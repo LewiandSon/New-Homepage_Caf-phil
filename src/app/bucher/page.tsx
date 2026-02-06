@@ -17,7 +17,7 @@ export default function BucherPage() {
         {/* Hero image */}
         <div className="w-full mb-8">
           <Image
-            src="/images/assets/bucher_bordure_image.jpg"
+            src="/images/assets/bucher_bordure_image.webp"
             alt="Bücherregal"
             width={800}
             height={500}
@@ -124,7 +124,7 @@ export default function BucherPage() {
         {/* Genres heading + Room plan – Überschrift wie im Plan positioniert */}
         <div className="mb-10 relative">
           <Image
-            src="/images/assets/raumplan2.jpg"
+            src="/images/assets/raumplan2.webp"
             alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
             width={1280}
             height={900}
@@ -186,7 +186,7 @@ export default function BucherPage() {
           }}
         >
           <Image
-            src="/images/assets/bucher_bordure_image.jpg"
+            src="/images/assets/bucher_bordure_image.webp"
             alt="Bücherregal"
             fill
             className="object-cover"
@@ -198,7 +198,7 @@ export default function BucherPage() {
           className="absolute"
           style={{
             left: "133px",
-            top: "858px",
+            top: "700px",
             fontFamily: "Vollkorn",
             fontSize: "35px",
             fontStyle: "italic",
@@ -216,7 +216,7 @@ export default function BucherPage() {
           className="absolute"
           style={{
             left: "133px",
-            top: "940px",
+            top: "782px",
             width: "666px",
             fontFamily: "Vollkorn",
             fontSize: "23px",
@@ -313,7 +313,7 @@ export default function BucherPage() {
           }}
         >
           <Image
-            src="/images/assets/raumplan2.jpg"
+            src="/images/assets/raumplan2.webp"
             alt="Raumplan - Bücher und wo sie zu finden sind"
             fill
             className="object-cover"
