@@ -197,7 +197,7 @@ export function QuoteSection() {
         <div className="relative w-full max-w-[400px] mx-auto aspect-[3/4] mb-8">
           <div className="absolute inset-[12%] overflow-hidden rounded-sm">
             <Image
-              src="/images/assets/IMG_5028 1.svg"
+              src="/images/assets/IMG_5028.webp"
               alt="Schanigarten"
               fill
               className="object-cover"
@@ -248,7 +248,7 @@ export function QuoteSection() {
         <div className="flex items-center gap-3 mb-6">
           <div className="flex-shrink-0">
             <Image
-              src="/images/assets/disco 1.svg"
+              src="/images/assets/disco.webp"
               alt=""
               width={36}
               height={48}
@@ -339,7 +339,7 @@ export function QuoteSection() {
         {/* Foto mit überlagertem GIF/Video */}
         <div className="relative w-full max-w-[420px] mx-auto aspect-[3/4] mb-10 overflow-hidden rounded-sm">
           <Image
-            src="/images/assets/IMG_4843-2 1.svg"
+            src="/images/assets/IMG_4843-2.webp"
             alt={lang === "de" ? "Events & Bar im phil" : "Events & bar at phil"}
             fill
             className="object-cover"
@@ -1586,7 +1586,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_4843-2 1.svg"
+            src="/images/assets/IMG_4843-2.webp"
             alt="Events & Bar Atmosphere"
             width={759}
             height={1074}
@@ -1743,7 +1743,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/mirror1 1.svg"
+            src="/images/assets/mirror1.webp"
             alt="Mirror"
             width={290}
             height={338}
