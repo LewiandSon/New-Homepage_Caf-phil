@@ -1358,7 +1358,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_5028 1.svg"
+            src="/images/assets/IMG_5028.webp"
             alt="Schanigarten"
             fill
             className="object-cover"
@@ -1445,7 +1445,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/disco 1.svg"
+            src="/images/assets/disco.webp"
             alt="Disco Kugel"
             width={214}
             height={304}
