@@ -356,7 +356,7 @@ export function AboutSection() {
           }}
         >
           <Image
-            src="/images/assets/bordure.webp"
+            src="/images/assets/bordüre 1.svg"
             alt=""
             width={1064}
             height={851}
