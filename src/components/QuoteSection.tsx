@@ -349,14 +349,16 @@ export function QuoteSection() {
           {/* Video-GIF unten über das Foto gelegt (größer) */}
           <div className="absolute -bottom-8 right-0 w-[80%] shadow-lg overflow-hidden">
           <video
-            src="/images/assets/events-diashow-website.mp4"
             autoPlay
             loop
             muted
             playsInline
             preload="none"
             className="w-full h-full object-cover"
-          />
+          >
+            <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
+            <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
+          </video>
         </div>
         </div>
 
@@ -846,7 +848,6 @@ export function QuoteSection() {
           }}
         >
           <video
-            src="/images/assets/analog-cafe-giff.mp4"
             autoPlay
             loop
             muted
@@ -857,7 +858,10 @@ export function QuoteSection() {
               height: '100%',
               objectFit: 'contain',
             }}
-          />
+          >
+            <source src="/images/assets/analog-cafe-giff.webm" type="video/webm" />
+            <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 
@@ -1674,7 +1678,6 @@ export function QuoteSection() {
           }}
         >
           <video
-            src="/images/assets/events-diashow-website.mp4"
             autoPlay
             loop
             muted
@@ -1685,7 +1688,10 @@ export function QuoteSection() {
               height: '100%',
               objectFit: 'cover',
             }}
-          />
+          >
+            <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
+            <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 

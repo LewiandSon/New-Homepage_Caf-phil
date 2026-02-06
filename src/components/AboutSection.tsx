@@ -171,7 +171,6 @@ export function AboutSection() {
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[400px] bg-[#F9F1DA] rounded-lg overflow-hidden">
               <video
-                src="/images/assets/analog-cafe-giff.mp4"
                 autoPlay
                 loop
                 muted
@@ -182,7 +181,10 @@ export function AboutSection() {
                   objectFit: 'contain',
                   backgroundColor: '#F9F1DA',
                 }}
-              />
+              >
+                <source src="/images/assets/analog-cafe-giff.webm" type="video/webm" />
+                <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
 
