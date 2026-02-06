@@ -283,7 +283,7 @@ export default function BucherPage() {
           className="absolute"
           style={{
             left: "1006px",
-            top: "730px",
+            top: "760px",
             width: "411px",
             height: "580px"
           }}
