@@ -62,22 +62,24 @@ export function HeroSection() {
           {/* Hauptfoto: zuerst im DOM, als Hintergrund - zurück zur ursprünglichen Datei wie auf Desktop */}
           <div className="absolute inset-[16%] overflow-hidden" style={{ zIndex: 1 }}>
             <Image
-              src="/images/assets/IMG_4886.webp"
+              src="/images/assets/IMG_4886 1.svg"
               alt="Café Interior im phil"
               fill
               className="object-cover"
               priority
               fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 0px"
+              unoptimized
             />
           </div>
           {/* Bordüre: darüber, als Rahmen - muss transparente Bereiche haben */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
             <Image
-              src="/images/assets/bordure.webp"
+              src="/images/assets/bordüre 1.svg"
               alt=""
               fill
               className="object-contain"
+              unoptimized
             />
           </div>
         </div>
@@ -95,14 +97,15 @@ export function HeroSection() {
                   height: Math.round(item.height * 0.28),
                 }}
               >
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    width={Math.round(item.width * 0.35)}
-                    height={Math.round(item.height * 0.35)}
-                    className="object-contain w-full h-full"
-                    loading="lazy"
-                  />
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={Math.round(item.width * 0.35)}
+                  height={Math.round(item.height * 0.35)}
+                  className="object-contain w-full h-full"
+                  loading="lazy"
+                  unoptimized
+                />
               </div>
             ))}
         </div>
@@ -110,12 +113,13 @@ export function HeroSection() {
         {/* Handschriftlicher Spruch */}
         <div className="w-full mb-8">
           <Image
-            src="/images/assets/wo-kaffee-2.png"
+            src="/images/assets/wo-kaffee-2 1.svg"
             alt={lang === "de" ? "Wo Kaffee, Bücher & Kultur in Wien zusammenkommen" : "Where coffee, books & culture come together in Vienna"}
             width={800}
             height={300}
             className="w-full h-auto object-contain"
             loading="lazy"
+            unoptimized
           />
         </div>
 
@@ -187,12 +191,13 @@ export function HeroSection() {
         {/* Handwritten text graphic "wo-kaffee-2 1.svg" - positioned relative to centered container */}
         <div className="absolute left-[272px] w-[643px] h-[237px]" style={{ top: '400px', transform: 'rotate(4.548deg)' }}>
           <Image
-            src="/images/assets/wo-kaffee-2.png"
+            src="/images/assets/wo-kaffee-2 1.svg"
             alt={lang === 'de' ? 'Wo Kaffee, Bücher & Kultur in Wien zusammenkommen' : 'Where coffee, books & culture come together in Vienna'}
             width={643}
             height={237}
             className="object-contain"
             loading="lazy"
+            unoptimized
           />
         </div>
 
@@ -253,6 +258,7 @@ export function HeroSection() {
                     height={item.height}
                     className="object-contain pointer-events-none"
                     loading="lazy"
+                    unoptimized
                     draggable={false}
                   />
                 </div>
