@@ -23,7 +23,7 @@ export function HeroSection() {
     { id: 'lamp1', left: 585, top: 133, width: 194, height: 182, rotation: -7.105, src: '/images/assets/lamp1 1.svg', alt: lang === 'de' ? 'Lampe 1' : 'Lamp 1' },
     { id: 'loffel', left: 527, top: 585, width: 120, height: 182, rotation: 11.949, src: '/images/assets/löffel 1.svg', alt: lang === 'de' ? 'Löffel' : 'Spoon' },
     { id: 'kaennchen', left: 830, top: 526, width: 124, height: 134, rotation: -9.647, src: '/images/assets/kaennchen 1.svg', alt: lang === 'de' ? 'Kännchen' : 'Little pot' },
-    { id: 'cup2', left: 644, top: 634, width: 156, height: 234, rotation: 0, src: '/images/assets/cup2 1.svg', alt: lang === 'de' ? 'Tasse 2' : 'Cup 2' },
+    { id: 'cup2', left: 644, top: 634, width: 156, height: 234, rotation: 0, src: '/images/assets/cup2.webp', alt: lang === 'de' ? 'Tasse 2' : 'Cup 2' },
     { id: 'pomidoro', left: 363, top: 655, width: 217, height: 157, rotation: 1.856, src: '/images/assets/pomidoro 1.svg', alt: 'Pomidoro' },
     { id: 'books2', left: 776, top: 655, width: 251, height: 282, rotation: 0, src: '/images/assets/books2 1.svg', alt: lang === 'de' ? 'Bücher 2' : 'Books 2' },
   ];

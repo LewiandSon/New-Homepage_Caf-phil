@@ -7,13 +7,13 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ASSETS_DIR = join(__dirname, '../public/images/assets');
 
-// Single image conversion: bild 1.svg → bild.webp
-// viewBox="0 0 238 319" → 238x319 WebP
+// Single image conversion: cup2 1.svg → cup2.webp
+// viewBox="0 0 156 234" → 156x234 WebP
 const CONVERSION = {
-  input: 'bild 1.svg',
-  output: 'bild.webp',
-  width: 238,
-  height: 319,
+  input: 'cup2 1.svg',
+  output: 'cup2.webp',
+  width: 156,
+  height: 234,
 };
 
 async function convertImage() {
