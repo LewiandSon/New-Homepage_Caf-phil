@@ -141,7 +141,7 @@ export default function EventsPage() {
                 className={`flex flex-col ${upcomingEvents.length === 1 ? 'lg:col-start-1 lg:col-span-2 lg:mx-auto lg:max-w-[calc((100%-4rem)/3)]' : ''}`}
               >
                 <div
-                  className="relative w-full aspect-[4/5] mb-6 border-[3px] border-[#D72333]"
+                  className="relative w-full aspect-[4/5] mb-6 border-[1px] border-[#D72333]"
                   aria-hidden="true"
                 />
                 <div className="flex flex-col flex-1">

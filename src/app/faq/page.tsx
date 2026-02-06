@@ -171,7 +171,7 @@ export default function FAQPage() {
             }}
           >
             <Image
-              src="/images/assets/table.png"
+              src="/images/assets/table.webp"
               alt="Tisch Illustration"
               fill
               className="object-contain"
@@ -205,7 +205,7 @@ export default function FAQPage() {
               <div
                 key={index}
                 style={{
-                  border: "5px solid #D72333",
+                  border: "1px solid #D72333",
                   backgroundColor: "transparent",
                   marginBottom: "10px",
                 }}
@@ -259,7 +259,7 @@ export default function FAQPage() {
                       fontWeight: 500,
                       color: "#D72333",
                       lineHeight: "150%",
-                      borderTop: "5px solid #D72333",
+                      borderTop: "1px solid #D72333",
                       display: "flex",
                       alignItems: "center",
                       minHeight: "100px",
