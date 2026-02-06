@@ -174,7 +174,6 @@ export function QuoteSection() {
             width={150}
             height={150}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -206,11 +205,10 @@ export function QuoteSection() {
           </div>
           <div className="absolute inset-0 pointer-events-none">
             <Image
-              src="/images/assets/bordüre2.svg"
+              src="/images/assets/bordure2.webp"
               alt=""
               fill
               className="object-contain"
-              unoptimized
             />
           </div>
         </div>
@@ -273,11 +271,10 @@ export function QuoteSection() {
         {/* Event-Poster (Weltfrauentag Platzhalter) – auf Mobile nur noch dekorativ, nicht klickbar */}
         <div className="relative w-full max-w-[320px] aspect-[4/5] mx-auto mb-6">
           <Image
-            src="/images/assets/veranstaltung_1.jpg"
+            src="/images/assets/veranstaltung_1.webp"
             alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
             fill
             className="object-cover"
-            unoptimized
           />
         </div>
 
@@ -445,14 +442,13 @@ export function QuoteSection() {
         {/* Lampe + Besuch-uns-Button */}
         <div className="flex flex-col items-center mb-10">
           <div className="mb-4">
-            <Image
-              src="/images/assets/lamp2.webp"
-              alt={lang === "de" ? "Lampe" : "Lamp"}
-              width={140}
-              height={210}
-              className="object-contain"
-              unoptimized
-            />
+          <Image
+            src="/images/assets/lamp2.webp"
+            alt={lang === "de" ? "Lampe" : "Lamp"}
+            width={140}
+            height={210}
+            className="object-contain"
+          />
           </div>
           <a
             href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8"
@@ -615,7 +611,6 @@ export function QuoteSection() {
             width={140}
             height={220}
             className="object-contain -rotate-12"
-            unoptimized
           />
         </div>
 
@@ -663,7 +658,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain max-h-[85vh] w-auto bg-[#F8F7F6]"
-            unoptimized
           />
         </div>
         <button
@@ -831,7 +825,6 @@ export function QuoteSection() {
             width={234}
             height={191}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -877,7 +870,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_4905 1.jpg"
+            src="/images/assets/IMG_4905.webp"
             alt=""
             width={479}
             height={571}
@@ -923,7 +916,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/I91A2497 1.jpg"
+            src="/images/assets/I91A2497.webp"
             alt=""
             width={589}
             height={393}
@@ -1024,7 +1017,6 @@ export function QuoteSection() {
             width={162}
             height={199}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1046,7 +1038,6 @@ export function QuoteSection() {
             width={222}
             height={194}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1098,7 +1089,6 @@ export function QuoteSection() {
             width={59}
             height={111}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1145,7 +1135,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(0)}
           />
         </div>
@@ -1166,7 +1155,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(1)}
           />
         </div>
@@ -1190,7 +1178,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(2)}
           />
         </div>
@@ -1211,7 +1198,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(3)}
           />
         </div>
@@ -1235,7 +1221,6 @@ export function QuoteSection() {
             width={558}
             height={793}
             className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-            unoptimized
             onClick={() => openLightbox(4)}
           />
         </div>
@@ -1290,7 +1275,6 @@ export function QuoteSection() {
             width={200}
             height={200}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1324,7 +1308,7 @@ export function QuoteSection() {
       </div>
 
 
-      {/* Bordüre 2 */}
+      {/* Bordüre 2 (optimierte WebP-Version) */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7636px', zIndex: 1 }}>
         <div 
           className="absolute"
@@ -1336,12 +1320,11 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/bordüre2.svg"
+            src="/images/assets/bordure2.webp"
             alt="Bordüre"
             width={674}
             height={860}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1358,7 +1341,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_5028 1.svg"
+            src="/images/assets/IMG_5028.webp"
             alt="Schanigarten"
             fill
             className="object-cover"
@@ -1445,7 +1428,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/disco 1.svg"
+            src="/images/assets/disco.webp"
             alt="Disco Kugel"
             width={214}
             height={304}
@@ -1468,8 +1451,8 @@ export function QuoteSection() {
           }}
           onClick={() => setShowEventLightbox(true)}
         >
-           <Image
-            src="/images/assets/veranstaltung_1.jpg"
+          <Image
+            src="/images/assets/veranstaltung_1.webp"
             alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
             fill
             className="object-cover"
@@ -1495,7 +1478,6 @@ export function QuoteSection() {
             width={356}
             height={383}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -1878,12 +1860,11 @@ export function QuoteSection() {
         {/* Lamp Image */}
         <div className="absolute left-[380px] top-[0px] w-[200px] h-[300px]">
           <Image
-            src="/images/assets/lamp2 1.svg"
+            src="/images/assets/lamp2.webp"
             alt="Lampe"
             width={200}
             height={300}
             className="object-contain"
-            unoptimized
           />
         </div>
 
@@ -2060,7 +2041,6 @@ export function QuoteSection() {
             width={200}
             height={333}
             className="object-contain transform -rotate-12"
-            unoptimized
           />
         </div>
 
@@ -2099,7 +2079,6 @@ export function QuoteSection() {
             width={252}
             height={252}
             className="object-contain"
-            unoptimized
           />
         </div>
       </div>
@@ -2117,7 +2096,6 @@ export function QuoteSection() {
           alt="phil Engel"
           fill
           className="object-contain"
-          unoptimized
         />
       </div>
       <p
@@ -2177,7 +2155,6 @@ export function QuoteSection() {
             alt="Folge uns auf Instagram"
             fill
             className="object-contain"
-            unoptimized
           />
         </a>
       </div>

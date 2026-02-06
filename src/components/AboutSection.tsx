@@ -162,7 +162,6 @@ export function AboutSection() {
                 width={110}
                 height={88}
                 className="object-contain w-full h-full"
-                unoptimized
               />
             </div>
           </div>
@@ -215,7 +214,6 @@ export function AboutSection() {
                 width={479}
                 height={571}
                 className="w-full h-auto object-contain"
-                unoptimized
               />
             </div>
 
@@ -251,7 +249,6 @@ export function AboutSection() {
                 width={589}
                 height={393}
                 className="w-full h-auto object-contain"
-                unoptimized
               />
             </div>
 
@@ -303,7 +300,6 @@ export function AboutSection() {
                     width={162}
                     height={199}
                     className="w-full h-auto object-contain"
-                    unoptimized
                   />
                 </div>
                 <div style={{ width: '110px', height: 'auto' }}>
@@ -313,7 +309,6 @@ export function AboutSection() {
                     width={222}
                     height={194}
                     className="w-full h-auto object-contain"
-                    unoptimized
                   />
                 </div>
               </div>
@@ -344,7 +339,7 @@ export function AboutSection() {
         className="hidden md:block absolute left-1/2 -translate-x-1/2 w-[1440px] h-[1567px]"
         style={{ top: '1086px' }}
       >
-        {/* Bordüre 1 - decorative border */}
+        {/* Bordüre 1 - decorative border (optimierte WebP-Version) */}
         <div 
           className="absolute pointer-events-none"
           style={{ 
@@ -356,7 +351,7 @@ export function AboutSection() {
           }}
         >
           <Image
-            src="/images/assets/bordüre 1.svg"
+            src="/images/assets/bordure.webp"
             alt=""
             width={1064}
             height={851}
@@ -365,11 +360,10 @@ export function AboutSection() {
               width: '100%',
               height: '100%',
             }}
-            unoptimized
           />
         </div>
 
-        {/* Image: IMG_4886 1 */}
+        {/* Image: IMG_4886 1 (bereits als WebP, jetzt mit Next-Optimierung) */}
         <div 
           className="absolute"
           style={{
@@ -387,7 +381,6 @@ export function AboutSection() {
             height={531}
             className="object-contain"
             loading="lazy"
-            unoptimized
           />
         </div>
 
