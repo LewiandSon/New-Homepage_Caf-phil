@@ -169,7 +169,7 @@ export function QuoteSection() {
         </div>
         <div className="mt-6">
           <Image
-            src="/images/assets/saltpepper 1.svg"
+            src="/images/assets/saltpepper.webp"
             alt="Salt & Pepper"
             width={150}
             height={150}
@@ -446,7 +446,7 @@ export function QuoteSection() {
         <div className="flex flex-col items-center mb-10">
           <div className="mb-4">
             <Image
-              src="/images/assets/lamp2 1.svg"
+              src="/images/assets/lamp2.webp"
               alt={lang === "de" ? "Lampe" : "Lamp"}
               width={140}
               height={210}
@@ -610,7 +610,7 @@ export function QuoteSection() {
         {/* Zuckerstreuer, mit moderatem Abstand unter dem Bild */}
         <div className="mt-6 mb-8">
           <Image
-            src="/images/assets/sugar 1.svg"
+            src="/images/assets/sugar.webp"
             alt={lang === "de" ? "Zuckerstreuer" : "Sugar dispenser"}
             width={140}
             height={220}
@@ -826,7 +826,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/cup 1.svg"
+            src="/images/assets/cup.webp"
             alt="Cup"
             width={234}
             height={191}
@@ -1019,7 +1019,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/monstera 1.svg"
+            src="/images/assets/monstera.webp"
             alt=""
             width={162}
             height={199}
@@ -1041,7 +1041,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/books1 1.svg"
+            src="/images/assets/books1.webp"
             alt=""
             width={222}
             height={194}
@@ -1093,7 +1093,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/cursor 1.svg"
+            src="/images/assets/cursor.webp"
             alt=""
             width={59}
             height={111}
@@ -1285,7 +1285,7 @@ export function QuoteSection() {
           </div>
 
           <Image
-            src="/images/assets/saltpepper 1.svg"
+            src="/images/assets/saltpepper.webp"
             alt="Salt & Pepper"
             width={200}
             height={200}
@@ -2055,7 +2055,7 @@ export function QuoteSection() {
         {/* Sugar Dispenser (Overlapping) */}
         <div className="absolute left-[450px] top-[250px] w-[200px] h-[333px]">
           <Image
-            src="/images/assets/sugar 1.svg"
+            src="/images/assets/sugar.webp"
             alt="Zucker"
             width={200}
             height={333}
