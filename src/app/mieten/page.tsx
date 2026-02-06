@@ -37,7 +37,7 @@ export default function MietenPage() {
             <div className="flex flex-col gap-6 md:gap-8 order-1 md:order-1">
               <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
                 <Image
-                  src="/images/assets/mieten_1.jpg"
+                  src="/images/assets/mieten_1.webp"
                   alt="Galerie im phil – Innenansicht"
                   fill
                   className="object-cover"
@@ -48,7 +48,7 @@ export default function MietenPage() {
               </div>
               <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
                 <Image
-                  src="/images/assets/mieten_2.jpg"
+                  src="/images/assets/mieten_2.webp"
                   alt="Galerie im phil – Atmosphäre"
                   fill
                   className="object-cover"
