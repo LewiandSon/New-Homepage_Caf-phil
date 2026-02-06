@@ -197,7 +197,6 @@ export function HeroSection() {
             height={237}
             className="object-contain"
             loading="lazy"
-            unoptimized
           />
         </div>
 
@@ -258,7 +257,6 @@ export function HeroSection() {
                     height={item.height}
                     className="object-contain pointer-events-none"
                     loading="lazy"
-                    unoptimized
                     draggable={false}
                   />
                 </div>
