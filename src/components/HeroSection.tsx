@@ -62,14 +62,13 @@ export function HeroSection() {
           {/* Hauptfoto: zuerst im DOM, als Hintergrund - zurück zur ursprünglichen Datei wie auf Desktop */}
           <div className="absolute inset-[16%] overflow-hidden" style={{ zIndex: 1 }}>
             <Image
-              src="/images/assets/IMG_4886 1.svg"
+              src="/images/assets/IMG_4886.webp"
               alt="Café Interior im phil"
               fill
               className="object-cover"
               priority
               fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 0px"
-              unoptimized
             />
           </div>
           {/* Bordüre: darüber, als Rahmen - muss transparente Bereiche haben */}
@@ -79,7 +78,8 @@ export function HeroSection() {
               alt=""
               fill
               className="object-contain"
-              unoptimized
+              priority
+              fetchPriority="high"
             />
           </div>
         </div>
