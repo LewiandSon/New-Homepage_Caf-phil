@@ -21,7 +21,7 @@ const UPCOMING_EVENTS_DE: EventItem[] = [
     title: "Weltfrauentag im phil",
     description:
       "Gemeinsamer Abend zum Weltfrauentag im phil – mit Literatur, Gesprächen und einem feministisch geprägten Programm. Weitere Details folgen in Kürze.",
-    imageUrl: "/images/assets/veranstaltung_1.jpg",
+    imageUrl: "/images/assets/veranstaltung_1.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -33,7 +33,7 @@ const UPCOMING_EVENTS_EN: EventItem[] = [
     title: "International Women’s Day at phil",
     description:
       "A shared evening for International Women’s Day at phil – with literature, conversation and a programme shaped by feminist perspectives. Further details coming soon.",
-    imageUrl: "/images/assets/veranstaltung_1.jpg",
+    imageUrl: "/images/assets/veranstaltung_1.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -44,7 +44,7 @@ const PAST_EVENTS_DE: EventItem[] = [
     date: "27.11.2025, 19:00 Uhr",
     title: "Lesung mit Gertraud Klemm",
     description: "Wir freuen uns auf einen spannenden Abend: Gertraud Klemm stellt ihre neue, kraftvolle Streitschrift »Abschied vom Phallozän« bei uns vor. Sei dabei!",
-    imageUrl: "/images/events/klemm-cover.jpg",
+    imageUrl: "/images/events/klemm-cover.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -52,7 +52,7 @@ const PAST_EVENTS_DE: EventItem[] = [
     date: "18.09.2025, 19:00 Uhr",
     title: "Spoken Word Abend",
     description: "FIKTION ALS REVOLUTION Gedichte, Kurzgeschichten, Performance – alles, was ihr mit Worten ausdrücken könnt und in zehn Minuten Platz findet. Außerdem Musik, Getränke und viele tolle Literaturliebhaber:innen.",
-    imageUrl: "/images/events/spoken_word.jpg",
+    imageUrl: "/images/events/spoken_word.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -60,7 +60,7 @@ const PAST_EVENTS_DE: EventItem[] = [
     date: "25.08.2025, 10:00 Uhr",
     title: "Bücherflohmarkt",
     description: "Am Montag, den 25. August ab 10 Uhr, verwandelt sich das phil in ein Bücherparadies! Ob neu, gebraucht oder alt – stöbere dich durch eine bunte Auswahl an Büchern zum Schnäppchenpreis. Und nicht nur Bücher: auch DVDs mit tollen Filmen und CDs mit feiner Musik warten auf dich.",
-    imageUrl: "/images/events/bücherflohmarkt.png",
+    imageUrl: "/images/events/bücherflohmarkt.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -72,7 +72,7 @@ const PAST_EVENTS_EN: EventItem[] = [
     title: "Reading with Gertraud Klemm",
     description:
       "We’re looking forward to an exciting evening: Gertraud Klemm presents her powerful new polemic »Farewell to the Phallocene« here at phil. Come join us!",
-    imageUrl: "/images/events/klemm-cover.jpg",
+    imageUrl: "/images/events/klemm-cover.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -81,7 +81,7 @@ const PAST_EVENTS_EN: EventItem[] = [
     title: "Spoken Word Night",
     description:
       "FICTION AS REVOLUTION – poetry, short stories, performance – anything you can express with words and fit into ten minutes. Plus music, drinks and plenty of fellow lovers of literature.",
-    imageUrl: "/images/events/spoken_word.jpg",
+    imageUrl: "/images/events/spoken_word.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -90,7 +90,7 @@ const PAST_EVENTS_EN: EventItem[] = [
     title: "Book flea market",
     description:
       "On Monday 25 August from 10 a.m., phil turns into a book paradise! Whether new, second‑hand or well‑loved – browse your way through a colourful selection of books at bargain prices. And it’s not just books: DVDs with great films and CDs full of fine music are waiting for you as well.",
-    imageUrl: "/images/events/bücherflohmarkt.png",
+    imageUrl: "/images/events/bücherflohmarkt.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -122,7 +122,7 @@ export default function EventsPage() {
           {lang === "de" ? "Unsere nächsten Veranstaltungen" : "Our upcoming events"}
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 ${upcomingEvents.length === 1 ? 'lg:flex lg:justify-center' : 'lg:grid-cols-3'}`}>
           {upcomingEvents.map((event, idx) => {
             const [datePartRaw, timePartRaw] = event.date.split(",");
             const datePart = (datePartRaw || event.date).trim();
