@@ -122,7 +122,7 @@ export default function EventsPage() {
           {lang === "de" ? "Unsere nächsten Veranstaltungen" : "Our upcoming events"}
         </h1>
 
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 ${upcomingEvents.length === 1 ? 'lg:flex lg:justify-center' : 'lg:grid-cols-3'}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 ${upcomingEvents.length === 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
           {upcomingEvents.map((event, idx) => {
             const [datePartRaw, timePartRaw] = event.date.split(",");
             const datePart = (datePartRaw || event.date).trim();
@@ -138,7 +138,7 @@ export default function EventsPage() {
             return (
               <div
                 key={`upcoming-${event.title}-${event.date}-${idx}`}
-                className="flex flex-col"
+                className={`flex flex-col ${upcomingEvents.length === 1 ? 'lg:col-start-1 lg:col-span-2 lg:mx-auto lg:max-w-[calc((100%-4rem)/3)]' : ''}`}
               >
                 <div
                   className="relative w-full aspect-[4/5] mb-6 border-[3px] border-[#D72333]"
