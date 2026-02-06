@@ -365,8 +365,6 @@ export function AboutSection() {
               width: '100%',
               height: '100%',
             }}
-            priority
-            fetchPriority="high"
           />
         </div>
 

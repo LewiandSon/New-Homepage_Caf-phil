@@ -78,8 +78,6 @@ export function HeroSection() {
               alt=""
               fill
               className="object-contain"
-              priority
-              fetchPriority="high"
             />
           </div>
         </div>
