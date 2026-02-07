@@ -20,7 +20,7 @@ const FAQ_DATA_DE: FAQItem[] = [
     answer: (
       <>
         Unsere Öffnungszeiten findest du auf unserer{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80">Kontaktseite</a>.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>Kontaktseite</a>.
       </>
     ),
   },
@@ -29,7 +29,7 @@ const FAQ_DATA_DE: FAQItem[] = [
     answer: (
       <>
         Du kannst uns direkt{" "}
-        <a href="mailto:info@phil.info" className="underline hover:opacity-80">kontaktieren</a>{" "}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>kontaktieren</a>{" "}
         oder vorbeikommen, um ein Buch zu bestellen.
       </>
     ),
@@ -79,9 +79,9 @@ const FAQ_DATA_DE: FAQItem[] = [
     answer: (
       <>
         Kein Problem! Kontaktiere uns gerne direkt über unsere{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80">Kontaktseite</a>
-        {" "}oder schreib uns eine{" "}
-        <a href="mailto:info@phil.info" className="underline hover:opacity-80">E-Mail</a>.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>Kontaktseite</a>{" "}
+        oder schreib uns eine{" "}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>E-Mail</a>.
       </>
     ),
   },
@@ -97,7 +97,7 @@ const FAQ_DATA_EN: FAQItem[] = [
     answer: (
       <>
         You’ll find our opening hours on our{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80">contact page</a>.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>contact page</a>.
       </>
     ),
   },
@@ -106,7 +106,7 @@ const FAQ_DATA_EN: FAQItem[] = [
     answer: (
       <>
         You can{" "}
-        <a href="mailto:info@phil.info" className="underline hover:opacity-80">contact us directly</a>{" "}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>contact us directly</a>{" "}
         or simply drop by to order a book.
       </>
     ),
@@ -156,10 +156,9 @@ const FAQ_DATA_EN: FAQItem[] = [
     answer: (
       <>
         No problem! Feel free to contact us directly via our{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80">
-          contact section
-        </a>
-        {" "}or send us an email.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>contact section</a>{" "}
+        or send us an{" "}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>email</a>.
       </>
     ),
   },
@@ -281,12 +280,14 @@ export default function FAQPage() {
                       color: "#D72333",
                       lineHeight: "150%",
                       borderTop: "1px solid #D72333",
-                      display: "flex",
-                      alignItems: "flex-start",
                       minHeight: "100px",
                     }}
                   >
-                    {typeof faq.answer === "string" ? <p>{faq.answer}</p> : faq.answer}
+                    {typeof faq.answer === "string" ? (
+                      <p style={{ margin: 0 }}>{faq.answer}</p>
+                    ) : (
+                      <p style={{ margin: 0, wordBreak: "normal", overflowWrap: "normal" }}>{faq.answer}</p>
+                    )}
                   </div>
                 )}
               </div>

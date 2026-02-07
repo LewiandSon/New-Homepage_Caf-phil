@@ -658,12 +658,12 @@ export function QuoteSection() {
     {/* Lightbox Overlay - funktioniert auf Mobile und Desktop */}
     {lightboxIndex !== null && (
       <div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 md:px-12"
         onClick={closeLightbox}
       >
         <button
           onClick={prevImage}
-          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-2 z-10 rounded-full hover:bg-white/20"
+          className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
           aria-label="Previous image"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -671,7 +671,7 @@ export function QuoteSection() {
           </svg>
         </button>
         <div
-          className="relative max-w-[90vw] max-h-[85vh] flex items-center justify-center"
+          className="relative max-w-[75vw] max-h-[85vh] flex items-center justify-center"
           onClick={(e) => e.stopPropagation()}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -685,7 +685,7 @@ export function QuoteSection() {
         </div>
         <button
           onClick={nextImage}
-          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-2 z-10 rounded-full hover:bg-white/20"
+          className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
           aria-label="Next image"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
