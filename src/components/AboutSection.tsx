@@ -127,7 +127,7 @@ export function AboutSection() {
               {lang === 'de' ? (
                 <>
                   <p>
-                    "Wie andere in den Park oder in den Wald, lief ich immer ins Kaffehaus, um mich abzulenken und zu beruhigen, mein -ganzes Leben."
+                    "Wie andere in den Park oder in den Wald, lief ich immer ins Kaffehaus, um mich abzulenken und zu beruhigen, mein ganzes Leben."
                   </p>
                   <p style={{ marginTop: '1rem' }}>
                     -Thomas Bernhard

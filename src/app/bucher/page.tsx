@@ -61,7 +61,7 @@ export default function BucherPage() {
               </p>
               <p className="mb-4">
                 ✓ Über 4.000 Titel lagernd<br />
-                ✓ Alle lieferbaren Bücher bestellbar<br />
+                ✓ Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a><br />
                 ✓ Besondere Titel, die du nicht überall findest<br />
                 ✓ Deutschsprachige & englischsprachige Bücher<br />
                 ✓ Perfekt als Geschenk oder Mitbringsel
@@ -80,7 +80,7 @@ export default function BucherPage() {
               </p>
               <p className="mb-4">
                 ✓ Over 4,000 titles in stock<br />
-                ✓ Any available book can be ordered<br />
+                ✓ Any available book can be <a href="mailto:info@phil.info" className="underline hover:opacity-80">ordered</a><br />
                 ✓ Special titles you won’t find everywhere<br />
                 ✓ German‑language & English‑language books<br />
                 ✓ Perfect as gifts or souvenirs
@@ -232,7 +232,7 @@ export default function BucherPage() {
               Das phil ist nicht nur ein Café, sondern auch eine vollwertige Buchhandlung mitten in Wien-Mariahilf. Unsere Auswahl ist handverlesen, ungewöhnlich und inspirierend – von Neuerscheinungen und Bestsellern bis hin zu besonderen Titeln, die du nicht in jeder Buchhandlung findest. Eine bunte Auswahl an internationalen Autoren in deutschsprachiger und englischsprachiger Fassung. Viele unserer Bücher eignen sich perfekt als Geschenk oder Mitbringsel.
               <br /><br />
               ✓ Über 4.000 Titel lagernd<br />
-              ✓ Alle lieferbaren Bücher bestellbar<br />
+              ✓ Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a><br />
               ✓ Besondere Titel, die du nicht überall findest<br />
               ✓ Deutschsprachige & englischsprachige Bücher<br />
               ✓ Perfekt als Geschenk oder Mitbringsel
@@ -244,7 +244,7 @@ export default function BucherPage() {
               phil is not just a café, but a fully fledged bookshop in the heart of Vienna–Mariahilf. Our selection is hand‑picked, unusual and inspiring – from new releases and bestsellers to special titles you won’t find in every bookshop. You’ll discover a colourful range of international authors in both German and English. Many of our books make perfect gifts or little treats to take home.
               <br /><br />
               ✓ Over 4,000 titles in stock<br />
-              ✓ Any available book can be ordered<br />
+              ✓ Any available book can be <a href="mailto:info@phil.info" className="underline hover:opacity-80">ordered</a><br />
               ✓ Special titles you won’t find everywhere<br />
               ✓ German‑language & English‑language books<br />
               ✓ Perfect as gifts or souvenirs

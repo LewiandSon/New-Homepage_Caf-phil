@@ -17,11 +17,22 @@ const FAQ_DATA_DE: FAQItem[] = [
   },
   {
     question: "Wie sind eure Öffnungszeiten?",
-    answer: "Unsere Öffnungszeiten findest du auf unserer Kontaktseite.",
+    answer: (
+      <>
+        Unsere Öffnungszeiten findest du auf unserer{" "}
+        <a href="/#kontakt" className="underline hover:opacity-80">Kontaktseite</a>.
+      </>
+    ),
   },
   {
     question: "Wie kann ich bei euch ein Buch bestellen?",
-    answer: "Du kannst uns direkt kontaktieren oder vorbeikommen, um ein Buch zu bestellen.",
+    answer: (
+      <>
+        Du kannst uns direkt{" "}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80">kontaktieren</a>{" "}
+        oder vorbeikommen, um ein Buch zu bestellen.
+      </>
+    ),
   },
   {
     question: "Habt ihr Gutscheine?",
@@ -45,7 +56,7 @@ const FAQ_DATA_DE: FAQItem[] = [
   },
   {
     question: "Seid ihr barrierefrei?",
-    answer: "Bitte kontaktiere uns direkt, um Details zur Barrierefreiheit zu erfahren.",
+    answer: "Ein Großteil des Lokals ist barrierefrei. Für Details kontaktiere uns gerne direkt.",
   },
   {
     question: "Darf man Bücher lesen ohne sie zu kaufen?",
@@ -68,10 +79,9 @@ const FAQ_DATA_DE: FAQItem[] = [
     answer: (
       <>
         Kein Problem! Kontaktiere uns gerne direkt über unsere{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80">
-          Kontaktseite
-        </a>
-        {" "}oder schreib uns eine E-Mail.
+        <a href="/#kontakt" className="underline hover:opacity-80">Kontaktseite</a>
+        {" "}oder schreib uns eine{" "}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80">E-Mail</a>.
       </>
     ),
   },
@@ -84,11 +94,22 @@ const FAQ_DATA_EN: FAQItem[] = [
   },
   {
     question: "What are your opening hours?",
-    answer: "You’ll find our opening hours on our contact page.",
+    answer: (
+      <>
+        You’ll find our opening hours on our{" "}
+        <a href="/#kontakt" className="underline hover:opacity-80">contact page</a>.
+      </>
+    ),
   },
   {
     question: "How can I order a book from you?",
-    answer: "You can contact us directly or simply drop by to order a book.",
+    answer: (
+      <>
+        You can{" "}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80">contact us directly</a>{" "}
+        or simply drop by to order a book.
+      </>
+    ),
   },
   {
     question: "Do you offer gift vouchers?",
@@ -112,7 +133,7 @@ const FAQ_DATA_EN: FAQItem[] = [
   },
   {
     question: "Are you accessible?",
-    answer: "Please contact us directly so we can give you detailed information about accessibility.",
+    answer: "A large part of our venue is accessible. For details, please contact us directly.",
   },
   {
     question: "Can I read books without buying them?",
@@ -261,7 +282,7 @@ export default function FAQPage() {
                       lineHeight: "150%",
                       borderTop: "1px solid #D72333",
                       display: "flex",
-                      alignItems: "center",
+                      alignItems: "flex-start",
                       minHeight: "100px",
                     }}
                   >

@@ -94,7 +94,7 @@ export default function MietenPage() {
                         Lesungen, Vorträge, Kunst, Gespräche, Poetry, private Anlässe.
                       </p>
                       <p style={{ marginBottom: "10px" }}>
-                        Wenn du eine Idee hast, die zum phil passt, schreib uns gern eine{" "}
+                        Wenn du ein Teil des Lokals mieten willst für ein Event, schreib uns gern eine{" "}
                         <a href="mailto:info@phil.info" className="underline hover:opacity-80">
                           E-Mail
                         </a>
@@ -113,7 +113,7 @@ export default function MietenPage() {
                         It’s ideal for larger groups (up to around 40 people) and for formats that need space – readings, talks, art, conversations, poetry, private events.
                       </p>
                       <p style={{ marginBottom: "10px" }}>
-                        If you have an idea that fits phil, we’d love to hear from you by{" "}
+                        If you want to rent part of the venue for an event, we’d love to hear from you by{" "}
                         <a href="mailto:info@phil.info" className="underline hover:opacity-80">
                           email
                         </a>

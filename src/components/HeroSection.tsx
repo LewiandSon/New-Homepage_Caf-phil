@@ -179,7 +179,7 @@ export function HeroSection() {
               lineHeight: "150%",
             }}
           >
-            {lang === "de" ? "walk in's only" : "walk-ins only"}
+            {lang === "de" ? "walk ins only" : "walk ins only"}
           </p>
         </div>
       </div>
@@ -299,7 +299,7 @@ export function HeroSection() {
                 lineHeight: '150%',
               }}
             >
-              {lang === 'de' ? "walk in's only" : "walk-ins only"}
+              {lang === 'de' ? "walk ins only" : "walk ins only"}
             </div>
 
           </div>

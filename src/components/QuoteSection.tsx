@@ -239,14 +239,14 @@ export function QuoteSection() {
         >
           {lang === "de" ? (
             <>
-              Genieße Kaffee, Frühstück und Bücher auch draußen in unserem gemütlichen Schanigarten mitten in Wien. Ob Sonne oder Schatten – hier findest du deinen Lieblingsplatz im Freien. Mehr zu{" "}
+              Genieße Kaffee, Frühstück und Bücher auch draußen in unserem gemütlichen Schanigarten mitten in Wien. Offen von April bis Oktober. Ob Sonne oder Schatten – hier findest du deinen Lieblingsplatz im Freien. Mehr zu{" "}
               <a href="#speisekarte" className="underline">
                 unseren Kaffee- und Frühstücksangeboten.
               </a>
             </>
           ) : (
             <>
-              Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Whether you prefer sun or shade – here you'll find your favourite spot in the open air.{" "}
+              Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Open from April to October. Whether you prefer sun or shade – here you'll find your favourite spot in the open air.{" "}
               <a href="#speisekarte" className="underline">
                 Learn more about our coffee and breakfast options.
               </a>
@@ -399,7 +399,7 @@ export function QuoteSection() {
             >
               {lang === "de" ? (
                 <>
-                  Im phil findest du alles philhältig: Lesungen, Buchpräsentationen und DJ-Sets. Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
+                  Im phil findest du alles philfältig: Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
                   <a href="https://www.instagram.com/philcafe" target="_blank" rel="noreferrer" className="underline">
                     Instagram
                   </a>{" "}
@@ -411,7 +411,7 @@ export function QuoteSection() {
                 </>
               ) : (
                 <>
-                  At phil you’ll find everything that makes our programme so very “phil”: readings, book launches and DJ sets. Our line‑up ranges from literary highlights and exciting book presentations to electrifying DJ nights. Follow us on{" "}
+                  At phil you’ll find everything that makes our programme so very “phil”: our line‑up ranges from literary highlights and exciting book presentations to electrifying DJ nights. Follow us on{" "}
                   <a href="https://www.instagram.com/philcafe" target="_blank" rel="noreferrer" className="underline">
                     Instagram
                   </a>{" "}
@@ -551,8 +551,12 @@ export function QuoteSection() {
                 lineHeight: "150%",
               }}
             >
-              <p>Gumpendorfer Straße 10 – 12</p>
-              <p>1060 Wien, {lang === "de" ? "Österreich" : "Austria"}</p>
+              <p>
+                <a href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-90">
+                  Gumpendorfer Straße 10 – 12<br />
+                  1060 Wien, {lang === "de" ? "Österreich" : "Austria"}
+                </a>
+              </p>
               <p>01 581 04 89</p>
               <p>
                 <a href="mailto:info@phil.info">info@phil.info</a>
@@ -806,7 +810,7 @@ export function QuoteSection() {
           {lang === 'de' ? (
             <>
               <p>
-                "Wie andere in den Park oder in den Wald, lief ich immer ins Kaffehaus, um mich abzulenken und zu beruhigen, mein -ganzes Leben."
+                "Wie andere in den Park oder in den Wald, lief ich immer ins Kaffehaus, um mich abzulenken und zu beruhigen, mein ganzes Leben."
               </p>
               <p style={{ marginTop: '1rem' }}>
                 -Thomas Bernhard
@@ -1404,14 +1408,14 @@ export function QuoteSection() {
         >
           {lang === "de" ? (
             <>
-              Genieße Kaffee, Frühstück und Bücher auch draußen in unserem gemütlichen Schanigarten mitten in Wien. Ob Sonne oder Schatten – hier findest du deinen Lieblingsplatz im Freien. Mehr zu&nbsp;unseren&nbsp;
+              Genieße Kaffee, Frühstück und Bücher auch draußen in unserem gemütlichen Schanigarten mitten in Wien. Offen von April bis Oktober. Ob Sonne oder Schatten – hier findest du deinen Lieblingsplatz im Freien. Mehr zu&nbsp;unseren&nbsp;
               <a href="#speisekarte" className="underline">
                 Kaffee- und Frühstücksangeboten.
               </a>
             </>
           ) : (
             <>
-              Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Whether you prefer sun or shade – here you’ll find your favourite spot in the open air.{" "}
+              Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Open from April to October. Whether you prefer sun or shade – here you’ll find your favourite spot in the open air.{" "}
               <a href="#speisekarte" className="underline">
                 Learn more about our coffee and breakfast options.
               </a>
@@ -1637,13 +1641,13 @@ export function QuoteSection() {
               }}>
                 {lang === 'de' ? (
                   <>
-                    Im phil findest du alles philhältig: Lesungen, Buchpräsentationen und DJ-Sets. Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
+                    Im phil findest du alles philfältig: Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
                     <a href="#" className="underline">Instagram</a> oder kontaktiere uns direkt{" "}
                     <a href="#" className="underline">hier</a>.
                   </>
                 ) : (
                   <>
-                    At phil you’ll find everything that makes our programme so very “phil”: readings, book launches and DJ sets. Our line‑up ranges from literary highlights and exciting book presentations to electrifying DJ nights. Follow us on{" "}
+                    At phil you’ll find everything that makes our programme so very “phil”: our line‑up ranges from literary highlights and exciting book presentations to electrifying DJ nights. Follow us on{" "}
                     <a href="#" className="underline">Instagram</a> or get in touch with us{" "}
                     <a href="#" className="underline">here</a>.
                   </>
@@ -1994,8 +1998,12 @@ export function QuoteSection() {
                 lineHeight: '150%',
                 textAlign: 'left', // Force left
               }}>
-                <p>Gumpendorfer Straße 10 – 12</p>
-                <p>1060 Wien, {lang === 'de' ? 'Österreich' : 'Austria'}</p>
+                <p>
+                  <a href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-90" style={{ color: 'inherit' }}>
+                    Gumpendorfer Straße 10 – 12<br />
+                    1060 Wien, {lang === 'de' ? 'Österreich' : 'Austria'}
+                  </a>
+                </p>
                 <p>01 581 04 89</p>
                 <p><a href="mailto:info@phil.info">info@phil.info</a></p>
               </div>
