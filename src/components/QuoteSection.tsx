@@ -132,6 +132,19 @@ export function QuoteSection() {
               className="w-full h-auto object-contain"
             />
           </button>
+          <button
+            type="button"
+            onClick={() => openLightbox(4)}
+            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] transition-transform duration-300"
+          >
+            <Image
+              src={lang === "de" ? "/images/assets/Limo.svg" : "/images/assets/limo-en.svg"}
+              alt={lang === "de" ? "Limo Karte" : "Soft drinks menu"}
+              width={400}
+              height={600}
+              className="w-full h-auto object-contain"
+            />
+          </button>
         </div>
       </div>
 
