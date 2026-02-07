@@ -400,11 +400,11 @@ export function QuoteSection() {
               {lang === "de" ? (
                 <>
                   Im phil findest du alles philfältig: Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
-                  <a href="https://www.instagram.com/philcafe" target="_blank" rel="noreferrer" className="underline">
+                  <a href="https://www.instagram.com/phil.in.wien/" target="_blank" rel="noreferrer" className="underline">
                     Instagram
                   </a>{" "}
                   oder kontaktiere uns direkt{" "}
-                  <a href="/events" className="underline">
+                  <a href="mailto:info@phil.info" className="underline">
                     hier
                   </a>
                   .
@@ -412,11 +412,11 @@ export function QuoteSection() {
               ) : (
                 <>
                   At phil you’ll find everything that makes our programme so very “phil”: our line‑up ranges from literary highlights and exciting book presentations to electrifying DJ nights. Follow us on{" "}
-                  <a href="https://www.instagram.com/philcafe" target="_blank" rel="noreferrer" className="underline">
+                  <a href="https://www.instagram.com/phil.in.wien/" target="_blank" rel="noreferrer" className="underline">
                     Instagram
                   </a>{" "}
                   or get in touch with us{" "}
-                  <a href="/events" className="underline">
+                  <a href="mailto:info@phil.info" className="underline">
                     here
                   </a>
                   .
@@ -663,10 +663,10 @@ export function QuoteSection() {
       >
         <button
           onClick={prevImage}
-          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white hover:text-primary transition-colors p-2 z-10 rounded-full hover:bg-white/10"
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-2 z-10 rounded-full hover:bg-white/20"
           aria-label="Previous image"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>
@@ -674,21 +674,21 @@ export function QuoteSection() {
           className="relative max-w-[90vw] max-h-[85vh] flex items-center justify-center"
           onClick={(e) => e.stopPropagation()}
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={menuItems[lightboxIndex].src}
             alt={menuItems[lightboxIndex].alt}
+            className="max-h-[85vh] w-auto object-contain bg-[#F8F7F6]"
             width={558}
             height={793}
-            className="object-contain max-h-[85vh] w-auto bg-[#F8F7F6]"
-            unoptimized
           />
         </div>
         <button
           onClick={nextImage}
-          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white hover:text-primary transition-colors p-2 z-10 rounded-full hover:bg-white/10"
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-2 z-10 rounded-full hover:bg-white/20"
           aria-label="Next image"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
@@ -1642,14 +1642,14 @@ export function QuoteSection() {
                 {lang === 'de' ? (
                   <>
                     Im phil findest du alles philfältig: Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
-                    <a href="#" className="underline">Instagram</a> oder kontaktiere uns direkt{" "}
-                    <a href="#" className="underline">hier</a>.
+                    <a href="https://www.instagram.com/phil.in.wien/" target="_blank" rel="noreferrer" className="underline">Instagram</a> oder kontaktiere uns direkt{" "}
+                    <a href="mailto:info@phil.info" className="underline">hier</a>.
                   </>
                 ) : (
                   <>
                     At phil you’ll find everything that makes our programme so very “phil”: our line‑up ranges from literary highlights and exciting book presentations to electrifying DJ nights. Follow us on{" "}
-                    <a href="#" className="underline">Instagram</a> or get in touch with us{" "}
-                    <a href="#" className="underline">here</a>.
+                    <a href="https://www.instagram.com/phil.in.wien/" target="_blank" rel="noreferrer" className="underline">Instagram</a> or get in touch with us{" "}
+                    <a href="mailto:info@phil.info" className="underline">here</a>.
                   </>
                 )}
               </p>
