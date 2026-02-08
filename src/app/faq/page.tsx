@@ -179,23 +179,18 @@ export default function FAQPage() {
       <Header />
 
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 pb-24">
-        {/* Table Image - unterhalb des Headers, oberhalb der FAQ-Box, weiter links */}
-        <div className="relative w-full" style={{ minHeight: "282px", marginBottom: "40px", marginTop: "20px" }}>
+        {/* Table Image - unterhalb des Headers, oberhalb der FAQ-Box */}
+        <div className="relative w-full flex justify-center md:justify-end md:pr-[150px]" style={{ minHeight: "282px", marginBottom: "40px", marginTop: "20px" }}>
           <div 
-            className="absolute top-0 hidden md:block" 
-            style={{ 
-              width: "319px", 
-              height: "282px",
-              zIndex: 10,
-              right: "150px",
-            }}
+            className="relative w-[280px] h-[247px] md:w-[319px] md:h-[282px]"
+            style={{ zIndex: 10 }}
           >
             <Image
               src="/images/assets/table.webp"
-              alt="Tisch Illustration"
+              alt="Tisch und Stühle"
               fill
               className="object-contain"
-              sizes="319px"
+              sizes="(max-width: 768px) 280px, 319px"
               unoptimized
             />
           </div>
