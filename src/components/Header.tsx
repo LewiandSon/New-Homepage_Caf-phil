@@ -54,23 +54,45 @@ export function Header() {
     setMobileOpen(false);
   };
 
-  // Wenn wir mit Hash (#uber-uns, #speisekarte, #kontakt) auf die Startseite kommen
+  // Wenn wir mit Hash (#uber-uns, #speisekarte, #schanigarten, #kontakt) auf die Startseite kommen
   // (z.B. von einer Unterseite), scrollen wir nach dem Laden automatisch an die richtige Position.
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (pathname !== "/") return;
-
+    if (typeof window === "undefined" || pathname !== "/") return;
     const hash = window.location.hash;
     const offsets: Record<string, number> = {
       "#uber-uns": 2100,
       "#speisekarte": 4737,
+      "#schanigarten": 7546,
       "#kontakt": 13600,
     };
-
     const top = offsets[hash];
     if (typeof top === "number") {
       window.scrollTo({ top, behavior: "smooth" });
+    } else if (hash && document.querySelector(hash)) {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
     }
+  }, [pathname]);
+
+  // Hash-Wechsel auf der Startseite (z.B. Klick auf #speisekarte von Schanigarten)
+  useEffect(() => {
+    const scrollToHash = () => {
+      if (pathname !== "/") return;
+      const hash = window.location.hash;
+      const offsets: Record<string, number> = {
+        "#uber-uns": 2100,
+        "#speisekarte": 4737,
+        "#schanigarten": 7546,
+        "#kontakt": 13600,
+      };
+      const top = offsets[hash];
+      if (typeof top === "number") {
+        window.scrollTo({ top, behavior: "smooth" });
+      } else if (hash && document.querySelector(hash)) {
+        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
   }, [pathname]);
 
   return (

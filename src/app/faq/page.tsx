@@ -20,7 +20,7 @@ const FAQ_DATA_DE: FAQItem[] = [
     answer: (
       <>
         Unsere Öffnungszeiten findest du auf unserer{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>Kontaktseite</a>.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>Kontaktseite</a>.
       </>
     ),
   },
@@ -29,8 +29,8 @@ const FAQ_DATA_DE: FAQItem[] = [
     answer: (
       <>
         Du kannst uns direkt{" "}
-        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>kontaktieren</a>{" "}
-        oder vorbeikommen, um ein Buch zu bestellen.
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>kontaktieren</a>
+        {"\u00A0"}oder vorbeikommen, um ein Buch zu bestellen.
       </>
     ),
   },
@@ -79,9 +79,9 @@ const FAQ_DATA_DE: FAQItem[] = [
     answer: (
       <>
         Kein Problem! Kontaktiere uns gerne direkt über unsere{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>Kontaktseite</a>{" "}
-        oder schreib uns eine{" "}
-        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>E-Mail</a>.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>Kontaktseite</a>
+        {"\u00A0"}oder schreib uns eine{"\u00A0"}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>E-Mail</a>.
       </>
     ),
   },
@@ -97,7 +97,7 @@ const FAQ_DATA_EN: FAQItem[] = [
     answer: (
       <>
         You’ll find our opening hours on our{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>contact page</a>.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>contact page</a>.
       </>
     ),
   },
@@ -106,8 +106,8 @@ const FAQ_DATA_EN: FAQItem[] = [
     answer: (
       <>
         You can{" "}
-        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>contact us directly</a>{" "}
-        or simply drop by to order a book.
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>contact us directly</a>
+        {"\u00A0"}or simply drop by to order a book.
       </>
     ),
   },
@@ -156,9 +156,9 @@ const FAQ_DATA_EN: FAQItem[] = [
     answer: (
       <>
         No problem! Feel free to contact us directly via our{" "}
-        <a href="/#kontakt" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>contact section</a>{" "}
-        or send us an{" "}
-        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ margin: "0 0.2em" }}>email</a>.
+        <a href="/#kontakt" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>contact section</a>
+        {"\u00A0"}or send us an{"\u00A0"}
+        <a href="mailto:info@phil.info" className="underline hover:opacity-80" style={{ padding: "0 0.15em" }}>email</a>.
       </>
     ),
   },
@@ -281,12 +281,13 @@ export default function FAQPage() {
                       lineHeight: "150%",
                       borderTop: "1px solid #D72333",
                       minHeight: "100px",
+                      overflow: "visible",
                     }}
                   >
                     {typeof faq.answer === "string" ? (
                       <p style={{ margin: 0 }}>{faq.answer}</p>
                     ) : (
-                      <p style={{ margin: 0, wordBreak: "normal", overflowWrap: "normal" }}>{faq.answer}</p>
+                      <p style={{ margin: 0, wordBreak: "normal", overflowWrap: "normal", maxWidth: "100%" }}>{faq.answer}</p>
                     )}
                   </div>
                 )}

@@ -240,14 +240,14 @@ export function QuoteSection() {
           {lang === "de" ? (
             <>
               Genieße Kaffee, Frühstück und Bücher auch draußen in unserem gemütlichen Schanigarten mitten in Wien. Offen von April bis Oktober. Ob Sonne oder Schatten – hier findest du deinen Lieblingsplatz im Freien. Mehr zu{" "}
-              <a href="#speisekarte" className="underline">
+              <a href="/#speisekarte" className="underline">
                 unseren Kaffee- und Frühstücksangeboten.
               </a>
             </>
           ) : (
             <>
               Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Open from April to October. Whether you prefer sun or shade – here you'll find your favourite spot in the open air.{" "}
-              <a href="#speisekarte" className="underline">
+              <a href="/#speisekarte" className="underline">
                 Learn more about our coffee and breakfast options.
               </a>
             </>
@@ -663,7 +663,7 @@ export function QuoteSection() {
       >
         <button
           onClick={prevImage}
-          className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
+          className="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
           aria-label="Previous image"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -685,7 +685,7 @@ export function QuoteSection() {
         </div>
         <button
           onClick={nextImage}
-          className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
+          className="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
           aria-label="Next image"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1120,7 +1120,7 @@ export function QuoteSection() {
         </div>
       </div>
 
-      {/* "Unsere Speisekarte" Heading */}
+      {/* "Unsere Speisekarte" Heading - id nur auf Mobile-Section, Desktop nutzt Header-Scroll */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4737px' }}>
         <div 
           className="absolute"
@@ -1409,14 +1409,14 @@ export function QuoteSection() {
           {lang === "de" ? (
             <>
               Genieße Kaffee, Frühstück und Bücher auch draußen in unserem gemütlichen Schanigarten mitten in Wien. Offen von April bis Oktober. Ob Sonne oder Schatten – hier findest du deinen Lieblingsplatz im Freien. Mehr zu&nbsp;unseren&nbsp;
-              <a href="#speisekarte" className="underline">
+              <a href="/#speisekarte" className="underline">
                 Kaffee- und Frühstücksangeboten.
               </a>
             </>
           ) : (
             <>
               Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Open from April to October. Whether you prefer sun or shade – here you’ll find your favourite spot in the open air.{" "}
-              <a href="#speisekarte" className="underline">
+              <a href="/#speisekarte" className="underline">
                 Learn more about our coffee and breakfast options.
               </a>
             </>
@@ -1960,7 +1960,7 @@ export function QuoteSection() {
 
       </div>
 
-      {/* Info Section (Footer) */}
+      {/* Info Section (Footer) - id nur auf Mobile-Section, Desktop nutzt Header-Scroll */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '13600px' }}>
         <div className="flex justify-center gap-[60px]">
           

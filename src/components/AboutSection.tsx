@@ -42,7 +42,7 @@ export function AboutSection() {
                 <>
                   <p className="mb-4">
                     Erfahre mehr über unseren{" "}
-                    <a href="#schanigarten" className="underline">
+                    <a href="/#schanigarten" className="underline">
                       Schanigarten
                     </a>
                     {" "}oder stöbere in unserer{" "}
@@ -78,7 +78,7 @@ export function AboutSection() {
                 <>
                   <p className="mb-4">
                     Learn more about our{" "}
-                    <a href="#schanigarten" className="underline">
+                    <a href="/#schanigarten" className="underline">
                       outdoor seating
                     </a>
                     {" "}or explore our{" "}
@@ -437,7 +437,7 @@ export function AboutSection() {
             <>
               <p>
                 Im phil verschmelzen Café und Buchhandlung zu einem gemütlichen Wohnzimmer Wiens. Seit 2004 kannst du bei uns entspannen, eintauchen in Bücherwelten und den Alltagsstress hinter dir lassen. In der charmanten Retro‑Einrichtung genießt du erlesene Kaffeespezialitäten, während du in sorgfältig kuratierten Bücherregalen stöberst – unsere Auswahl lädt dich ein, neue Welten zu entdecken. Erfahre mehr über unseren{" "}
-                <a href="#schanigarten" className="underline" style={{ color: "#D72333" }}>
+                <a href="/#schanigarten" className="underline" style={{ color: "#D72333" }}>
                   Schanigarten
                 </a>
                 {" "}oder stöbere in unserer{" "}
@@ -454,7 +454,7 @@ export function AboutSection() {
             <>
               <p>
                 At phil, café and bookshop blend into one of Vienna’s cosiest living rooms. Since 2004, you’ve been able to relax here, dive into worlds of books and leave everyday stress at the door. In our charming retro interior you enjoy carefully selected coffee specialities while browsing lovingly curated shelves – our selection invites you to discover new worlds. Learn more about our{" "}
-                <a href="#schanigarten" className="underline" style={{ color: "#D72333" }}>
+                <a href="/#schanigarten" className="underline" style={{ color: "#D72333" }}>
                   outdoor seating
                 </a>
                 {" "}or explore our{" "}
