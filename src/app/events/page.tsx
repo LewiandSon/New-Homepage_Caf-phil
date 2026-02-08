@@ -17,10 +17,14 @@ type EventItem = {
 
 const UPCOMING_EVENTS_DE: EventItem[] = [
   {
-    date: "09.03.2026, 19:00 Uhr",
+    date: "09.03.2026, ab 15:30 Uhr",
     title: "Weltfrauentag im phil",
     description:
-      "Gemeinsamer Abend zum Weltfrauentag im phil – mit Literatur, Gesprächen und einem feministisch geprägten Programm. Weitere Details folgen in Kürze.",
+      '<strong>15:30 Uhr</strong> „Der Tag, an dem die Frauen streikten“ – Lesung mit Christine Heuer aus dem inspirierenden Sachbilderbuch von Linda Olafsdottir anlässlich des großen Frauenstreiks in Island vor 50 Jahren. Für Mütter und Töchter, Väter und Söhne von 7 bis 99 Jahren. Diskussion ausdrücklich erwünscht.<br/><br/>' +
+      '<strong>16:30 Uhr</strong> (Burg)Schauspielerin und Bestseller-Autorin Caroline Peters liest aus ihrem Roman „Ein anderes Leben“. Darin zeichnet sie das Porträt einer Frau, die das enge Korsett patriarchaler Rollenerwartungen sprengt, um radikal ihrem eigenen Weg und Begehren zu folgen. Eine scharfsinnige Auseinandersetzung mit weiblicher Selbstbestimmung und der Frage, welchen Preis Frauen für die Freiheit jenseits gesellschaftlicher Normen zahlen mussten.<br/><br/>' +
+      '<strong>17–18 Uhr</strong> Prosecco Happy Hour<br/><br/>' +
+      '<strong>19 Uhr</strong> Lenka Reschenbach präsentiert ihr preisgekröntes Buch „Der Patriarchatsindex“. Mit illustrierten Infografiken zeigt die Art-Direktorin, Illustratorin und Juristin, dass das Patriarchat in Österreich kein Mythos ist. Ein bedrückender, aber auch humor- und hoffnungsvoller Ausflug in die Welt der Daten und Statistiken.<br/><br/>' +
+      '<strong>20:15 Uhr</strong> Pub-Quiz „Female Edition“ von und mit Tex Rubinowitz. Es gibt tolle Preise zu gewinnen.',
     imageUrl: "/images/assets/veranstaltung_1.webp",
     signupLink: "nein",
     status: "Aktiv",
@@ -29,10 +33,10 @@ const UPCOMING_EVENTS_DE: EventItem[] = [
 
 const UPCOMING_EVENTS_EN: EventItem[] = [
   {
-    date: "09.03.2026, 19:00",
+    date: "09.03.2026, from 3:30 pm",
     title: "International Women’s Day at phil",
     description:
-      "A shared evening for International Women’s Day at phil – with literature, conversation and a programme shaped by feminist perspectives. Further details coming soon.",
+      '<strong>3:30 pm</strong> "The Day the Women Went on Strike" – Reading with Christine Heuer from Linda Olafsdottir\'s inspiring non-fiction picture book marking the great women\'s strike in Iceland 50 years ago. For mothers and daughters, fathers and sons aged 7 to 99. Discussion expressly welcome.<br/><br/><strong>4:30 pm</strong> Actress and bestselling author Caroline Peters reads from her novel "A Different Life", portraying a woman who breaks free from patriarchal role expectations to radically follow her own path and desires. A sharp exploration of female self-determination and the price women paid for freedom beyond societal norms.<br/><br/><strong>5–6 pm</strong> Prosecco Happy Hour<br/><br/><strong>7 pm</strong> Lenka Reschenbach presents her award-winning book "The Patriarchy Index". With illustrated infographics, the art director, illustrator and lawyer shows that patriarchy in Austria is no myth. A sobering yet humorous and hopeful excursion into the world of data and statistics.<br/><br/><strong>8:15 pm</strong> Pub quiz "Female Edition" with Tex Rubinowitz. Great prizes to be won.',
     imageUrl: "/images/assets/veranstaltung_1.webp",
     signupLink: "nein",
     status: "Aktiv",

@@ -307,11 +307,11 @@ export function QuoteSection() {
         >
           {lang === "de" ? (
             <>
-              Gemeinsamer Abend zum Weltfrauentag im phil – mit Literatur, Gesprächen und einem feministisch geprägten Programm. Weitere Details folgen in Kürze.
+              Gemeinsamer Abend zum Weltfrauentag im phil – mit Lesungen (Christine Heuer, Caroline Peters, Lenka Reschenbach), Prosecco Happy Hour und Pub-Quiz „Female Edition“ mit Tex Rubinowitz. Ab 15:30 Uhr.
             </>
           ) : (
             <>
-              A shared evening for International Women's Day at phil – with literature, conversation and a programme shaped by feminist perspectives. Further details coming soon.
+              A shared evening for International Women's Day at phil – with readings (Christine Heuer, Caroline Peters, Lenka Reschenbach), Prosecco Happy Hour and pub quiz "Female Edition" with Tex Rubinowitz. From 3:30 pm.
             </>
           )}
         </p>
