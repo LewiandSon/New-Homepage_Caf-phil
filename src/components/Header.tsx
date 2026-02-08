@@ -26,73 +26,56 @@ export function Header() {
     return pathname === path || pathname?.startsWith(path + "/");
   };
 
-  // Desktop: gezieltes Scrollen zu festen Bereichen der Startseite
+  // Findet das sichtbare Element für eine Section (Mobile/Desktop haben unterschiedliche Layouts)
+  const scrollToSection = (sectionId: string) => {
+    // Erst nach id suchen
+    const byId = document.getElementById(sectionId);
+    if (byId && byId.offsetParent !== null) {
+      byId.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    // Fallback: data-section (für doppelte Sections auf Mobile/Desktop)
+    const candidates = document.querySelectorAll(`[data-section="${sectionId}"]`);
+    const visible = Array.from(candidates).find((el) => el instanceof HTMLElement && el.offsetParent !== null);
+    if (visible) {
+      visible.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   const handleDesktopNav = (
     e: React.MouseEvent<HTMLAnchorElement>,
     target: "uber-uns" | "speisekarte" | "kontakt"
   ) => {
     e.preventDefault();
-
-    // Wenn wir nicht auf der Startseite sind, zuerst dorthin navigieren
     if (pathname !== "/") {
       window.location.href = `/#${target}`;
       return;
     }
-
-    const offsets: Record<typeof target, number> = {
-      "uber-uns": 2100, // wieder eine kleine Spur weiter nach unten
-      speisekarte: 4737,
-      kontakt: 13600,
-    };
-
-    const top = offsets[target] ?? 0;
-    window.scrollTo({ top, behavior: "smooth" });
+    scrollToSection(target);
   };
 
-  // Mobile: nur Menü schließen, Browser kümmert sich um den Anker
   const handleInPageNav = () => {
     setMobileOpen(false);
   };
 
-  // Wenn wir mit Hash (#uber-uns, #speisekarte, #schanigarten, #kontakt) auf die Startseite kommen
-  // (z.B. von einer Unterseite), scrollen wir nach dem Laden automatisch an die richtige Position.
+  // Hash beim Laden bzw. bei Navigation zur Startseite
   useEffect(() => {
     if (typeof window === "undefined" || pathname !== "/") return;
-    const hash = window.location.hash;
-    const offsets: Record<string, number> = {
-      "#uber-uns": 2100,
-      "#speisekarte": 4737,
-      "#schanigarten": 7546,
-      "#kontakt": 13600,
-    };
-    const top = offsets[hash];
-    if (typeof top === "number") {
-      window.scrollTo({ top, behavior: "smooth" });
-    } else if (hash && document.querySelector(hash)) {
-      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+    const hash = window.location.hash?.slice(1);
+    if (hash) {
+      setTimeout(() => scrollToSection(hash), 50);
     }
   }, [pathname]);
 
   // Hash-Wechsel auf der Startseite (z.B. Klick auf #speisekarte von Schanigarten)
   useEffect(() => {
-    const scrollToHash = () => {
+    const onHashChange = () => {
       if (pathname !== "/") return;
-      const hash = window.location.hash;
-      const offsets: Record<string, number> = {
-        "#uber-uns": 2100,
-        "#speisekarte": 4737,
-        "#schanigarten": 7546,
-        "#kontakt": 13600,
-      };
-      const top = offsets[hash];
-      if (typeof top === "number") {
-        window.scrollTo({ top, behavior: "smooth" });
-      } else if (hash && document.querySelector(hash)) {
-        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
-      }
+      const hash = window.location.hash?.slice(1);
+      if (hash) scrollToSection(hash);
     };
-    window.addEventListener("hashchange", scrollToHash);
-    return () => window.removeEventListener("hashchange", scrollToHash);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
   }, [pathname]);
 
   return (

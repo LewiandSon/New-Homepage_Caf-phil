@@ -8,7 +8,7 @@ export function AboutSection() {
   const { lang } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <section id="uber-uns" className="relative w-full z-10">
+    <section id="uber-uns" data-section="uber-uns" className="relative w-full z-10" style={{ scrollMarginTop: "120px" }}>
       {/* Mobile layout – ohne Foto (steht schon im Hero), nur Text */}
       <div className="block md:hidden px-4 pb-24 pt-6 max-w-[720px] mx-auto">
         <h2

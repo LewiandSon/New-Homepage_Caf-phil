@@ -64,7 +64,7 @@ export function QuoteSection() {
   return (
     <>
     {/* Mobile layout: vereinfachte, schmale Version */}
-    <section className="block md:hidden px-4 pb-24 max-w-[720px] mx-auto" id="speisekarte">
+    <section className="block md:hidden px-4 pb-24 max-w-[720px] mx-auto" data-section="speisekarte" style={{ scrollMarginTop: "120px" }}>
       {/* Speisekarte-Teaser */}
       <div className="mb-8 mt-2">
         <h2
@@ -193,7 +193,7 @@ export function QuoteSection() {
       </div>
 
       {/* Schanigarten Section - Mobile */}
-      <div className="mb-16" id="schanigarten">
+      <div className="mb-16" data-section="schanigarten" style={{ scrollMarginTop: "120px" }}>
         <h2
           className="mb-6 text-center"
           style={{
@@ -454,7 +454,7 @@ export function QuoteSection() {
       </div>
 
       {/* Reservierungen + Adresse/Öffnungszeiten – Mobile Version */}
-      <section className="mt-12 mb-20" id="kontakt">
+      <section className="mt-12 mb-20" data-section="kontakt" style={{ scrollMarginTop: "120px" }}>
         {/* Lampe + Besuch-uns-Button */}
         <div className="flex flex-col items-center mb-10">
           <div className="mb-4">
@@ -1120,8 +1120,8 @@ export function QuoteSection() {
         </div>
       </div>
 
-      {/* "Unsere Speisekarte" Heading - id nur auf Mobile-Section, Desktop nutzt Header-Scroll */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4737px' }}>
+      {/* "Unsere Speisekarte" Heading */}
+      <div id="speisekarte" data-section="speisekarte" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4737px', scrollMarginTop: '120px' }}>
         <div 
           className="absolute"
           style={{
@@ -1315,7 +1315,7 @@ export function QuoteSection() {
       {/* Schanigarten Section */}
       
       {/* Heading: Schanigarten */}
-      <div id="schanigarten" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7546px' }}>
+      <div id="schanigarten" data-section="schanigarten" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7546px', scrollMarginTop: '120px' }}>
         <div 
           className="absolute"
           style={{
@@ -1960,8 +1960,8 @@ export function QuoteSection() {
 
       </div>
 
-      {/* Info Section (Footer) - id nur auf Mobile-Section, Desktop nutzt Header-Scroll */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '13600px' }}>
+      {/* Info Section (Footer) */}
+      <div id="kontakt" data-section="kontakt" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '13600px', scrollMarginTop: '120px' }}>
         <div className="flex justify-center gap-[60px]">
           
           {/* Box 1: Adresse */}
