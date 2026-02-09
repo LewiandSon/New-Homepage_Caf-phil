@@ -2266,9 +2266,9 @@ export function QuoteSection() {
 
     </section>
 
-    {/* Footer - außerhalb des section Elements, gleicher Stil wie Unterseiten */}
+    {/* Footer - außerhalb des section Elements, gleicher Stil wie Unterseiten - sichtbar auf Mobile und Desktop */}
     <footer
-      className="mt-4 flex flex-col items-center justify-center py-16 px-6"
+      className="mt-4 flex flex-col items-center justify-center py-16 px-6 w-full"
       style={{ backgroundColor: "#D72333" }}
     >
       <div className="w-[90px] h-[140px] relative mb-8">
