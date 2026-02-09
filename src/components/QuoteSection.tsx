@@ -24,7 +24,9 @@ export function QuoteSection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showEventLightbox, setShowEventLightbox] = useState(false);
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
-  const [showInstagramStrich, setShowInstagramStrich] = useState(false);
+  const [showInstagramStrichMobile, setShowInstagramStrichMobile] = useState(false);
+  const [showInstagramStrichDesktop, setShowInstagramStrichDesktop] = useState(false);
+  const [showInstagramStrichFooter, setShowInstagramStrichFooter] = useState(false);
   const { lang } = useLanguage();
   const menuItems = lang === "de" ? MENU_ITEMS_DE : MENU_ITEMS_EN;
 
@@ -428,18 +430,18 @@ export function QuoteSection() {
                     target="_blank" 
                     rel="noreferrer" 
                     className="underline relative inline-block"
-                    onMouseEnter={() => setShowInstagramStrich(true)}
-                    onMouseLeave={() => setShowInstagramStrich(false)}
+                    onMouseEnter={() => setShowInstagramStrichMobile(true)}
+                    onMouseLeave={() => setShowInstagramStrichMobile(false)}
                   >
                     Instagram
-                    {showInstagramStrich && (
+                    {showInstagramStrichMobile && (
                       <Image
                         src="/images/assets/unterstreichung-beige.png"
                         alt=""
-                        width={200}
-                        height={30}
-                        className="absolute bottom-0 left-0 object-contain pointer-events-none"
-                        style={{ zIndex: 10 }}
+                        width={120}
+                        height={20}
+                        className="absolute bottom-[-5px] left-0 object-contain pointer-events-none"
+                        style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
                         unoptimized
                       />
                     )}
@@ -1711,18 +1713,18 @@ export function QuoteSection() {
                       target="_blank" 
                       rel="noreferrer" 
                       className="underline relative inline-block"
-                      onMouseEnter={() => setShowInstagramStrich(true)}
-                      onMouseLeave={() => setShowInstagramStrich(false)}
+                      onMouseEnter={() => setShowInstagramStrichDesktop(true)}
+                      onMouseLeave={() => setShowInstagramStrichDesktop(false)}
                     >
                       Instagram
-                      {showInstagramStrich && (
+                      {showInstagramStrichDesktop && (
                         <Image
                           src="/images/assets/unterstreichung-beige.png"
                           alt=""
-                          width={200}
-                          height={30}
-                          className="absolute bottom-0 left-0 object-contain pointer-events-none"
-                          style={{ zIndex: 10 }}
+                          width={120}
+                          height={20}
+                          className="absolute bottom-[-5px] left-0 object-contain pointer-events-none"
+                          style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
                           unoptimized
                         />
                       )}
@@ -1737,18 +1739,18 @@ export function QuoteSection() {
                       target="_blank" 
                       rel="noreferrer" 
                       className="underline relative inline-block"
-                      onMouseEnter={() => setShowInstagramStrich(true)}
-                      onMouseLeave={() => setShowInstagramStrich(false)}
+                      onMouseEnter={() => setShowInstagramStrichDesktop(true)}
+                      onMouseLeave={() => setShowInstagramStrichDesktop(false)}
                     >
                       Instagram
-                      {showInstagramStrich && (
+                      {showInstagramStrichDesktop && (
                         <Image
                           src="/images/assets/unterstreichung-beige.png"
                           alt=""
-                          width={200}
-                          height={30}
-                          className="absolute bottom-0 left-0 object-contain pointer-events-none"
-                          style={{ zIndex: 10 }}
+                          width={120}
+                          height={20}
+                          className="absolute bottom-[-5px] left-0 object-contain pointer-events-none"
+                          style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
                           unoptimized
                         />
                       )}
@@ -2296,8 +2298,8 @@ export function QuoteSection() {
           rel="noreferrer"
           aria-label="Instagram: phil.in.wien"
           className="block w-[300px] h-[120px] relative"
-          onMouseEnter={() => setShowInstagramStrich(true)}
-          onMouseLeave={() => setShowInstagramStrich(false)}
+          onMouseEnter={() => setShowInstagramStrichFooter(true)}
+          onMouseLeave={() => setShowInstagramStrichFooter(false)}
         >
           <Image
             src="/images/assets/instagram 1.svg"
@@ -2306,14 +2308,14 @@ export function QuoteSection() {
             className="object-contain"
             unoptimized
           />
-          {showInstagramStrich && (
+          {showInstagramStrichFooter && (
             <Image
               src="/images/assets/unterstreichung-beige.png"
               alt=""
-              width={300}
-              height={47}
-              className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 object-contain pointer-events-none"
-              style={{ zIndex: 10 }}
+              width={140}
+              height={25}
+              className="absolute bottom-[20px] left-[50%] -translate-x-1/2 object-contain pointer-events-none"
+              style={{ zIndex: 10, transform: 'translateX(-50%) rotate(-2deg)' }}
               unoptimized
             />
           )}
