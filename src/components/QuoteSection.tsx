@@ -64,7 +64,7 @@ export function QuoteSection() {
   return (
     <>
     {/* Mobile layout: vereinfachte, schmale Version */}
-    <section className="block md:hidden px-4 pb-24 max-w-[720px] mx-auto" data-section="speisekarte" style={{ scrollMarginTop: "120px" }}>
+    <section className="block md:hidden px-6 pb-24 max-w-[720px] mx-auto" data-section="speisekarte" style={{ scrollMarginTop: "120px" }}>
       {/* Speisekarte-Teaser */}
       <div className="mb-8 mt-2">
         <h2
@@ -149,7 +149,7 @@ export function QuoteSection() {
       </div>
 
       {/* Lewis Carroll Quote & Saltpepper - Mobile */}
-      <div className="mb-12 flex flex-col items-center">
+      <div className="mb-12 flex flex-col items-start">
         <div
           style={{
             color: "#D72333",
@@ -160,7 +160,7 @@ export function QuoteSection() {
             lineHeight: "150%",
             textAlign: "left",
             maxWidth: "100%",
-            paddingLeft: "1rem",
+            paddingLeft: "0",
             paddingRight: "1rem",
           }}
         >
@@ -192,6 +192,28 @@ export function QuoteSection() {
         </div>
       </div>
 
+      {/* Mehr Fotos nach Speisekarte - Mobile */}
+      <div className="mb-12 grid grid-cols-2 gap-4">
+        <div className="relative w-full aspect-[3/4]">
+          <Image
+            src="/images/assets/IMG_4905.webp"
+            alt="Café Interior"
+            fill
+            className="object-cover rounded-sm"
+            loading="lazy"
+          />
+        </div>
+        <div className="relative w-full aspect-[3/4]">
+          <Image
+            src="/images/assets/IMG_4886.webp"
+            alt="Café Interior"
+            fill
+            className="object-cover rounded-sm"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
       {/* Schanigarten Section - Mobile */}
       <div className="mb-16" data-section="schanigarten" style={{ scrollMarginTop: "120px" }}>
         <h2
@@ -206,11 +228,11 @@ export function QuoteSection() {
         >
           {lang === "de" ? "Schanigarten" : "Outdoor seating"}
         </h2>
-        {/* Foto mit Bordüre */}
+        {/* Foto mit Bordüre - neues Foto von Emily */}
         <div className="relative w-full max-w-[400px] mx-auto aspect-[3/4] mb-8">
           <div className="absolute inset-[12%] overflow-hidden rounded-sm">
             <Image
-              src="/images/assets/IMG_5028.webp"
+              src="/images/assets/schanigarten_foto.jpg"
               alt="Schanigarten"
               fill
               className="object-cover"
@@ -228,7 +250,7 @@ export function QuoteSection() {
           </div>
         </div>
         <p
-          className="text-center max-w-[600px] mx-auto"
+          className="text-left max-w-[600px]"
           style={{
             fontFamily: "Vollkorn",
             fontSize: "18px",
@@ -257,20 +279,20 @@ export function QuoteSection() {
 
       {/* Veranstaltungen Section - Mobile (Weltfrauentag Platzhalter) */}
       <div className="mb-16 relative overflow-hidden rounded-lg bg-[#F9F1DA] px-6 py-8" id="veranstaltungen">
-        {/* Disco Ball links neben dem Titel */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex-shrink-0">
+        {/* Disco Ball links neben dem Titel - größer und überlappend */}
+        <div className="flex items-center gap-3 mb-6 relative">
+          <div className="flex-shrink-0 absolute -left-2 -top-2 z-0">
             <Image
               src="/images/assets/disco.webp"
               alt=""
-              width={36}
-              height={48}
-              className="object-contain"
+              width={56}
+              height={75}
+              className="object-contain opacity-80"
               loading="lazy"
             />
           </div>
           <h2
-            className="flex-1 text-left"
+            className="flex-1 text-left relative z-10 pl-12"
               style={{
                 fontFamily: "Vollkorn",
                 fontSize: "28px",
@@ -488,6 +510,28 @@ export function QuoteSection() {
           </a>
         </div>
 
+        {/* Fotos vom Lokal unter Besuch-uns Button */}
+        <div className="grid grid-cols-2 gap-4 mb-10">
+          <div className="relative w-full aspect-[3/4]">
+            <Image
+              src="/images/assets/IMG_4843-2.webp"
+              alt="Lokal Interior"
+              fill
+              className="object-cover rounded-sm"
+              loading="lazy"
+            />
+          </div>
+          <div className="relative w-full aspect-[3/4]">
+            <Image
+              src="/images/assets/IMG_4905.webp"
+              alt="Lokal Interior"
+              fill
+              className="object-cover rounded-sm"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
         {/* Reservierungen Text */}
         <div className="mb-10 px-2">
           <h3
@@ -611,9 +655,9 @@ export function QuoteSection() {
       </section>
 
       {/* Willkommen-Section – Bildrahmen, Zuckerstreuer & Text (Mobile Version) */}
-      <section className="mt-10 mb-1 flex flex-col items-center">
+      <section className="mt-10 mb-1 flex flex-col items-center relative">
         {/* Bildrahmen */}
-        <div className="mb-6">
+        <div className="mb-6 relative z-10">
           <Image
             src="/images/assets/bild.webp"
             alt={lang === "de" ? "Person mit Büchern" : "Person with books"}
@@ -624,13 +668,13 @@ export function QuoteSection() {
           />
         </div>
 
-        {/* Zuckerstreuer, mit moderatem Abstand unter dem Bild */}
-        <div className="mt-6 mb-8">
+        {/* Zuckerstreuer - Original-Format über Bildrahmen */}
+        <div className="absolute top-[180px] right-[20px] z-20">
           <Image
             src="/images/assets/sugar.webp"
             alt={lang === "de" ? "Zuckerstreuer" : "Sugar dispenser"}
-            width={140}
-            height={220}
+            width={200}
+            height={333}
             className="object-contain -rotate-12"
             unoptimized
           />
@@ -734,7 +778,7 @@ export function QuoteSection() {
               <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
                 Imprint
               </div>
-              <div>phil Cafe &amp; Bookshop</div>
+              <div><strong>phil Cafe &amp; Bookshop</strong></div>
               <div>Gumpendorfer Straße 10 – 12</div>
               <div>1060 Vienna, Austria</div>
               <div>Phone: 01 581 04 89</div>
@@ -1278,7 +1322,8 @@ export function QuoteSection() {
             fontStyle: 'normal', 
             fontWeight: 500,
             marginBottom: '40px',
-            width: '400px'
+            width: '400px',
+            textAlign: 'left'
           }}>
             {lang === "de" ? (
               <>

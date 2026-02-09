@@ -106,6 +106,7 @@ export default function EventsPage() {
   const pastEvents = lang === "de" ? PAST_EVENTS_DE : PAST_EVENTS_EN;
   const [signupModal, setSignupModal] = useState<{ eventTitle: string; eventDate: string } | null>(null);
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
+  const [expandedEvent, setExpandedEvent] = useState<string | null>(null);
 
   return (
     <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[150px]">
@@ -138,6 +139,13 @@ export default function EventsPage() {
                 : "/" + (event.imageUrl || "images/assets/veranstaltung_1.jpg");
             const signupAktiv = event.signupLink?.trim().toLowerCase() === "ja";
             const signupGeschlossen = event.signupLink?.trim().toLowerCase() === "geschlossen";
+            const isWeltfrauentag = event.title.includes("Weltfrauentag") || event.title.includes("Women's Day");
+            const isExpanded = expandedEvent === event.title;
+            const shortDescription = isWeltfrauentag 
+              ? (lang === "de" 
+                  ? "Gemeinsamer Abend zum Weltfrauentag im phil – mit Lesungen, Prosecco Happy Hour und Pub-Quiz. Ab 15:30 Uhr."
+                  : "A shared evening for International Women's Day at phil – with readings, Prosecco Happy Hour and pub quiz. From 3:30 pm.")
+              : event.description;
 
             return (
               <div
@@ -154,7 +162,7 @@ export default function EventsPage() {
                       fontFamily: "Vollkorn",
                       fontSize: "18px",
                       fontWeight: 600,
-                      color: "#573B30",
+                      color: "#D72333",
                       marginBottom: "4px",
                     }}
                   >
@@ -177,11 +185,34 @@ export default function EventsPage() {
                       fontFamily: "Vollkorn",
                       fontSize: "16px",
                       lineHeight: "1.6",
-                      color: "#573B30",
+                      color: "#D72333",
                       marginBottom: "20px"
                     }}
-                    dangerouslySetInnerHTML={{ __html: event.description || "" }}
+                    dangerouslySetInnerHTML={{ __html: isExpanded ? event.description : shortDescription }}
                   />
+                  {isWeltfrauentag && (
+                    <button
+                      type="button"
+                      onClick={() => setExpandedEvent(isExpanded ? null : event.title)}
+                      style={{
+                        fontFamily: "Vollkorn",
+                        fontSize: "16px",
+                        fontWeight: 600,
+                        color: "#D72333",
+                        textDecoration: "underline",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        padding: 0,
+                        marginTop: "-10px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      {isExpanded 
+                        ? (lang === "de" ? "Weniger anzeigen" : "Show less")
+                        : (lang === "de" ? "Vollständiges Programm anzeigen" : "Show full program")}
+                    </button>
+                  )}
                 </div>
 
                 {signupAktiv && (
@@ -243,7 +274,7 @@ export default function EventsPage() {
                 fontWeight: 900,
                 lineHeight: "150%",
                 color: "#D72333",
-                marginTop: "48px",
+                marginTop: "72px",
               }}
             >
               {lang === "de" ? "Vergangene Veranstaltungen" : "Past events"}
@@ -356,8 +387,8 @@ export default function EventsPage() {
           >
             2026 phil Cafe &amp; Bookshop. All rights reserved
           </p>
-          {/* Legal Links - klein, im Hintergrund */}
-          <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
+          {/* Legal Links - klein, im Hintergrund - linksbündig */}
+          <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[1440px] mx-auto">
             {[
               { id: "imprint" as const, label: "Imprint" },
               { id: "privacy" as const, label: "Privacy Policy" },
@@ -437,7 +468,7 @@ export default function EventsPage() {
             {footerModal === "imprint" && (
               <div style={{ fontFamily: "Vollkorn", fontSize: "22px", lineHeight: "150%" }}>
                 <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>Imprint</div>
-                <div>phil Cafe &amp; Bookshop</div>
+                <div><strong>phil Cafe &amp; Bookshop</strong></div>
                 <div>Gumpendorfer Straße 10 – 12</div>
                 <div>1060 Vienna, Austria</div>
                 <div>Phone: 01 581 04 89</div>

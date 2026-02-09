@@ -79,10 +79,10 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-background">
+    <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-background/80 backdrop-blur-sm md:bg-background">
       <div className="w-full max-w-[1440px] h-[90px] md:h-[115px] mx-auto flex items-center justify-between px-4 md:px-10">
         {/* Logo */}
-        <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] flex-shrink-0">
+        <div className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex-shrink-0">
           <a
             href="/"
             onClick={(e) => {
@@ -270,11 +270,11 @@ export function Header() {
 
       {/* Mobile navigation */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#D72333] bg-background">
-          <nav className="flex flex-col px-6 py-4 gap-3">
+        <div className="md:hidden border-t border-[#D72333] bg-background/95 backdrop-blur-sm">
+          <nav className="flex flex-col px-6 py-4 gap-4">
             <a
               href="/#uber-uns"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
               style={linkStyle}
               onClick={handleInPageNav}
             >
@@ -282,7 +282,7 @@ export function Header() {
             </a>
             <a
               href="/#speisekarte"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
               style={linkStyle}
               onClick={handleInPageNav}
             >
@@ -290,7 +290,7 @@ export function Header() {
             </a>
             <a
               href="/bucher"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
               style={linkStyle}
               onClick={() => setMobileOpen(false)}
             >
@@ -298,7 +298,7 @@ export function Header() {
             </a>
             <a
               href="/events"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
               style={linkStyle}
               onClick={() => setMobileOpen(false)}
             >
@@ -306,7 +306,7 @@ export function Header() {
             </a>
             <a
               href="/mieten"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
               style={linkStyle}
               onClick={() => setMobileOpen(false)}
             >
@@ -314,7 +314,7 @@ export function Header() {
             </a>
             <a
               href="/#kontakt"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
               style={linkStyle}
               onClick={handleInPageNav}
             >
@@ -322,7 +322,7 @@ export function Header() {
             </a>
             <a
               href="/faq"
-              className="hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
               style={linkStyle}
               onClick={() => setMobileOpen(false)}
             >

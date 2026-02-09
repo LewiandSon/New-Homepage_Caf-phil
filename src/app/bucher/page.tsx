@@ -59,7 +59,7 @@ export default function BucherPage() {
               <p className="mb-4">
                 Eine bunte Auswahl an internationalen Autor:innen in deutschsprachiger und englischsprachiger Fassung. Viele unserer Bücher eignen sich perfekt als Geschenk oder Mitbringsel.
               </p>
-              <p className="mb-4">
+              <p className="mb-4" style={{ paddingLeft: "1.5rem" }}>
                 ✓ Über 4.000 Titel lagernd<br />
                 ✓ Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a><br />
                 ✓ Besondere Titel, die du nicht überall findest<br />
@@ -231,11 +231,11 @@ export default function BucherPage() {
             <>
               Das phil ist nicht nur ein Café, sondern auch eine vollwertige Buchhandlung mitten in Wien-Mariahilf. Unsere Auswahl ist handverlesen, ungewöhnlich und inspirierend – von Neuerscheinungen und Bestsellern bis hin zu besonderen Titeln, die du nicht in jeder Buchhandlung findest. Eine bunte Auswahl an internationalen Autoren in deutschsprachiger und englischsprachiger Fassung. Viele unserer Bücher eignen sich perfekt als Geschenk oder Mitbringsel.
               <br /><br />
-              ✓ Über 4.000 Titel lagernd<br />
-              ✓ Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a><br />
-              ✓ Besondere Titel, die du nicht überall findest<br />
-              ✓ Deutschsprachige & englischsprachige Bücher<br />
-              ✓ Perfekt als Geschenk oder Mitbringsel
+              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Über 4.000 Titel lagernd</span>
+              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a></span>
+              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Besondere Titel, die du nicht überall findest</span>
+              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Deutschsprachige & englischsprachige Bücher</span>
+              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Perfekt als Geschenk oder Mitbringsel</span>
               <br /><br />
               Bei uns darfst du Bücher direkt an deinen Tisch mitnehmen und in Ruhe schmökern – gerne bei Kaffee oder Frühstück.
             </>
@@ -373,7 +373,7 @@ export default function BucherPage() {
                   <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
                     Imprint
                   </div>
-                  <div>phil Cafe &amp; Bookshop</div>
+                  <div><strong>phil Cafe &amp; Bookshop</strong></div>
                   <div>Gumpendorfer Straße 10 – 12</div>
                   <div>1060 Vienna, Austria</div>
                   <div>Phone: 01 581 04 89</div>
@@ -451,8 +451,8 @@ export default function BucherPage() {
         >
           2026 phil Cafe &amp; Bookshop. All rights reserved
         </p>
-        {/* Legal Links - klein, im Hintergrund */}
-        <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
+        {/* Legal Links - klein, im Hintergrund - linksbündig */}
+        <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[1440px] mx-auto">
           {[
             { id: "imprint" as const, label: "Imprint" },
             { id: "privacy" as const, label: "Privacy Policy" },

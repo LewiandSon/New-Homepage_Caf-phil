@@ -30,11 +30,26 @@ export default function MietenPage() {
           </h1>
         </div>
 
-        {/* Galerie-Bereich: Fotos links (ab Mitte des Logos), Text rechts breiter */}
+        {/* Galerie-Bereich: Slideshow links, statische Fotos unten, Text rechts breiter */}
         <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-x-12 gap-y-10 md:gap-y-0 md:pl-[70px]">
-            {/* Links: beide Fotos untereinander, mit Abstand */}
+            {/* Links: Slideshow oben, statische Fotos unten */}
             <div className="flex flex-col gap-6 md:gap-8 order-1 md:order-1">
+              {/* Slideshow mit Event-Fotos */}
+              <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                  style={{ aspectRatio: "4/3" }}
+                >
+                  <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
+                  <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
+                </video>
+              </div>
+              {/* Statische Fotos unten */}
               <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
                 <Image
                   src="/images/assets/mieten_1.webp"
@@ -218,8 +233,8 @@ export default function MietenPage() {
           >
             2026 phil Cafe &amp; Bookshop. All rights reserved
           </p>
-          {/* Legal Links - klein, im Hintergrund */}
-          <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
+          {/* Legal Links - klein, im Hintergrund - linksbündig */}
+          <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[1440px] mx-auto">
             {[
               { id: "imprint" as const, label: "Imprint" },
               { id: "privacy" as const, label: "Privacy Policy" },
@@ -292,7 +307,7 @@ export default function MietenPage() {
             {footerModal === "imprint" && (
               <div style={{ fontFamily: "Vollkorn", fontSize: "22px", lineHeight: "150%" }}>
                 <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>Imprint</div>
-                <div>phil Cafe &amp; Bookshop</div>
+                <div><strong>phil Cafe &amp; Bookshop</strong></div>
                 <div>Gumpendorfer Straße 10 – 12</div>
                 <div>1060 Vienna, Austria</div>
                 <div>Phone: 01 581 04 89</div>

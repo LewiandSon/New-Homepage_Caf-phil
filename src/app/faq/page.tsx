@@ -179,8 +179,8 @@ export default function FAQPage() {
       <Header />
 
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 pb-24">
-        {/* Table Image - unterhalb des Headers, oberhalb der FAQ-Box */}
-        <div className="relative w-full flex justify-center md:justify-end md:pr-[150px]" style={{ minHeight: "282px", marginBottom: "40px", marginTop: "20px" }}>
+        {/* Table Image - näher zur Überschrift */}
+        <div className="relative w-full flex justify-center md:justify-end md:pr-[150px]" style={{ minHeight: "200px", marginBottom: "20px", marginTop: "10px" }}>
           <div 
             className="relative w-[280px] h-[247px] md:w-[319px] md:h-[282px]"
             style={{ zIndex: 10 }}
@@ -197,7 +197,7 @@ export default function FAQPage() {
         </div>
 
         {/* Heading: Frequently asked Questions - linksbündig mit FAQ-Box */}
-        <div className="mb-16 max-w-[994px] mx-auto">
+        <div className="mb-12 max-w-[994px] mx-auto">
           <h1
             style={{
               fontFamily: "Vollkorn",
@@ -244,8 +244,9 @@ export default function FAQPage() {
                     transition: "background-color 0.2s ease",
                   }}
                 >
-                  <span>{faq.question}</span>
+                  <span className="flex-1 pr-4">{faq.question}</span>
                   <span
+                    className="flex-shrink-0"
                     style={{
                       fontFamily: "Vollkorn",
                       fontSize: "50px",
@@ -269,7 +270,7 @@ export default function FAQPage() {
                     style={{
                       padding: "25px",
                       fontFamily: "Vollkorn",
-                      fontSize: "23px",
+                      fontSize: "18px",
                       fontStyle: "normal",
                       fontWeight: 500,
                       color: "#D72333",
@@ -319,8 +320,8 @@ export default function FAQPage() {
           >
             2026 phil Cafe &amp; Bookshop. All rights reserved
           </p>
-          {/* Legal Links - klein, im Hintergrund */}
-          <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
+          {/* Legal Links - klein, im Hintergrund - linksbündig */}
+          <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[994px] mx-auto">
             {[
               { id: "imprint" as const, label: "Imprint" },
               { id: "privacy" as const, label: "Privacy Policy" },
@@ -393,7 +394,7 @@ export default function FAQPage() {
             {footerModal === "imprint" && (
               <div style={{ fontFamily: "Vollkorn", fontSize: "22px", lineHeight: "150%" }}>
                 <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>Imprint</div>
-                <div>phil Cafe &amp; Bookshop</div>
+                <div><strong>phil Cafe &amp; Bookshop</strong></div>
                 <div>Gumpendorfer Straße 10 – 12</div>
                 <div>1060 Vienna, Austria</div>
                 <div>Phone: 01 581 04 89</div>
