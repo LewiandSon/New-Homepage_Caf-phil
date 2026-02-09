@@ -440,7 +440,7 @@ export function QuoteSection() {
                         alt=""
                         width={120}
                         height={20}
-                        className="absolute bottom-[-5px] left-0 object-contain pointer-events-none"
+                        className="absolute bottom-[2px] left-[10px] object-contain pointer-events-none"
                         style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
                         unoptimized
                       />
@@ -1723,7 +1723,7 @@ export function QuoteSection() {
                           alt=""
                           width={120}
                           height={20}
-                          className="absolute bottom-[-5px] left-0 object-contain pointer-events-none"
+                          className="absolute bottom-[2px] left-[10px] object-contain pointer-events-none"
                           style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
                           unoptimized
                         />
@@ -1749,7 +1749,7 @@ export function QuoteSection() {
                           alt=""
                           width={120}
                           height={20}
-                          className="absolute bottom-[-5px] left-0 object-contain pointer-events-none"
+                          className="absolute bottom-[2px] left-[10px] object-contain pointer-events-none"
                           style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
                           unoptimized
                         />
@@ -2314,8 +2314,8 @@ export function QuoteSection() {
               alt=""
               width={140}
               height={25}
-              className="absolute bottom-[20px] left-[50%] -translate-x-1/2 object-contain pointer-events-none"
-              style={{ zIndex: 10, transform: 'translateX(-50%) rotate(-2deg)' }}
+              className="absolute bottom-[35px] left-[55%] object-contain pointer-events-none"
+              style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
               unoptimized
             />
           )}
