@@ -270,7 +270,7 @@ export function Header() {
 
       {/* Mobile navigation */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#D72333] bg-transparent">
+        <div className="md:hidden border-t border-[#D72333] bg-background">
           <nav className="flex flex-col px-6 py-4 gap-4">
             <a
               href="/#uber-uns"
