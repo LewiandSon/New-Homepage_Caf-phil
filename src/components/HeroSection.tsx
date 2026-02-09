@@ -18,14 +18,15 @@ export function HeroSection() {
   const { lang } = useLanguage();
 
   // Static decorative items - positions from Builder.io
+  // Kleine Items größer gemacht und Verteilung wilder/chaotischer
   const decorativeItems: DecorativeItem[] = [
     { id: 'lamp4', left: 786, top: 43, width: 297, height: 422, rotation: 6.687, src: '/images/assets/lamp4.webp', alt: lang === 'de' ? 'Lampe 4' : 'Lamp 4' },
     { id: 'lamp1', left: 585, top: 133, width: 194, height: 182, rotation: -7.105, src: '/images/assets/lamp1.webp', alt: lang === 'de' ? 'Lampe 1' : 'Lamp 1' },
-    { id: 'loffel', left: 527, top: 585, width: 120, height: 182, rotation: 11.949, src: '/images/assets/loffel.webp', alt: lang === 'de' ? 'Löffel' : 'Spoon' },
-    { id: 'kaennchen', left: 830, top: 526, width: 124, height: 134, rotation: -9.647, src: '/images/assets/kaennchen.webp', alt: lang === 'de' ? 'Kännchen' : 'Little pot' },
-    { id: 'cup2', left: 644, top: 634, width: 156, height: 234, rotation: 0, src: '/images/assets/cup2.webp', alt: lang === 'de' ? 'Tasse 2' : 'Cup 2' },
-    { id: 'pomidoro', left: 363, top: 655, width: 217, height: 157, rotation: 1.856, src: '/images/assets/pomidoro.webp', alt: 'Pomidoro' },
-    { id: 'books2', left: 776, top: 655, width: 251, height: 282, rotation: 0, src: '/images/assets/books2.webp', alt: lang === 'de' ? 'Bücher 2' : 'Books 2' },
+    { id: 'loffel', left: 510, top: 570, width: 160, height: 240, rotation: 15.5, src: '/images/assets/loffel.webp', alt: lang === 'de' ? 'Löffel' : 'Spoon' },
+    { id: 'kaennchen', left: 845, top: 510, width: 165, height: 180, rotation: -12.3, src: '/images/assets/kaennchen.webp', alt: lang === 'de' ? 'Kännchen' : 'Little pot' },
+    { id: 'cup2', left: 630, top: 620, width: 200, height: 300, rotation: -5.2, src: '/images/assets/cup2.webp', alt: lang === 'de' ? 'Tasse 2' : 'Cup 2' },
+    { id: 'pomidoro', left: 350, top: 640, width: 217, height: 157, rotation: 8.5, src: '/images/assets/pomidoro.webp', alt: 'Pomidoro' },
+    { id: 'books2', left: 790, top: 665, width: 251, height: 282, rotation: -3.8, src: '/images/assets/books2.webp', alt: lang === 'de' ? 'Bücher 2' : 'Books 2' },
   ];
 
   return (
