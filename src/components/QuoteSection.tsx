@@ -428,8 +428,8 @@ export function QuoteSection() {
                     target="_blank" 
                     rel="noreferrer" 
                     className="underline relative inline-block"
-                    onClick={() => setShowInstagramStrich(true)}
-                    onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
+                    onMouseEnter={() => setShowInstagramStrich(true)}
+                    onMouseLeave={() => setShowInstagramStrich(false)}
                   >
                     Instagram
                     {showInstagramStrich && (
@@ -1711,8 +1711,8 @@ export function QuoteSection() {
                       target="_blank" 
                       rel="noreferrer" 
                       className="underline relative inline-block"
-                      onClick={() => setShowInstagramStrich(true)}
-                      onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
+                      onMouseEnter={() => setShowInstagramStrich(true)}
+                      onMouseLeave={() => setShowInstagramStrich(false)}
                     >
                       Instagram
                       {showInstagramStrich && (
@@ -1737,8 +1737,8 @@ export function QuoteSection() {
                       target="_blank" 
                       rel="noreferrer" 
                       className="underline relative inline-block"
-                      onClick={() => setShowInstagramStrich(true)}
-                      onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
+                      onMouseEnter={() => setShowInstagramStrich(true)}
+                      onMouseLeave={() => setShowInstagramStrich(false)}
                     >
                       Instagram
                       {showInstagramStrich && (
@@ -2296,8 +2296,8 @@ export function QuoteSection() {
           rel="noreferrer"
           aria-label="Instagram: phil.in.wien"
           className="block w-[300px] h-[120px] relative"
-          onClick={() => setShowInstagramStrich(true)}
-          onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
+          onMouseEnter={() => setShowInstagramStrich(true)}
+          onMouseLeave={() => setShowInstagramStrich(false)}
         >
           <Image
             src="/images/assets/instagram 1.svg"
