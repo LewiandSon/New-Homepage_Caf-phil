@@ -450,7 +450,7 @@ export function QuoteSection() {
                           alt=""
                           width={110}
                           height={16}
-                          className="absolute bottom-[-18px] left-[-5px] object-contain pointer-events-none"
+                          className="absolute bottom-[-30px] left-[-5px] object-contain pointer-events-none"
                           style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
                           unoptimized
                         />
@@ -2357,7 +2357,7 @@ export function QuoteSection() {
                 alt=""
                 width={110}
                 height={16}
-                className="absolute bottom-[38px] left-[43%] object-contain pointer-events-none"
+                className="absolute bottom-[26px] left-[43%] object-contain pointer-events-none"
                 style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
                 unoptimized
               />
