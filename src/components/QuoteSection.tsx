@@ -24,6 +24,7 @@ export function QuoteSection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showEventLightbox, setShowEventLightbox] = useState(false);
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
+  const [showInstagramStrich, setShowInstagramStrich] = useState(false);
   const { lang } = useLanguage();
   const menuItems = lang === "de" ? MENU_ITEMS_DE : MENU_ITEMS_EN;
 
@@ -422,8 +423,26 @@ export function QuoteSection() {
               {lang === "de" ? (
                 <>
                   Im phil findest du alles philfältig: Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
-                  <a href="https://www.instagram.com/phil.in.wien/" target="_blank" rel="noreferrer" className="underline">
+                  <a 
+                    href="https://www.instagram.com/phil.in.wien/" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="underline relative inline-block"
+                    onClick={() => setShowInstagramStrich(true)}
+                    onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
+                  >
                     Instagram
+                    {showInstagramStrich && (
+                      <Image
+                        src="/images/assets/unterstreichung-beige.png"
+                        alt=""
+                        width={200}
+                        height={30}
+                        className="absolute bottom-0 left-0 object-contain pointer-events-none"
+                        style={{ zIndex: 10 }}
+                        unoptimized
+                      />
+                    )}
                   </a>{" "}
                   oder kontaktiere uns direkt{" "}
                   <a href="mailto:info@phil.info" className="underline">
@@ -1687,13 +1706,53 @@ export function QuoteSection() {
                 {lang === 'de' ? (
                   <>
                     Im phil findest du alles philfältig: Unser Programm reicht von literarischen Highlights über spannende Buchpräsentationen bis hin zu elektrisierenden DJ-Sets. Folge uns auf{" "}
-                    <a href="https://www.instagram.com/phil.in.wien/" target="_blank" rel="noreferrer" className="underline">Instagram</a> oder kontaktiere uns direkt{" "}
+                    <a 
+                      href="https://www.instagram.com/phil.in.wien/" 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="underline relative inline-block"
+                      onClick={() => setShowInstagramStrich(true)}
+                      onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
+                    >
+                      Instagram
+                      {showInstagramStrich && (
+                        <Image
+                          src="/images/assets/unterstreichung-beige.png"
+                          alt=""
+                          width={200}
+                          height={30}
+                          className="absolute bottom-0 left-0 object-contain pointer-events-none"
+                          style={{ zIndex: 10 }}
+                          unoptimized
+                        />
+                      )}
+                    </a> oder kontaktiere uns direkt{" "}
                     <a href="mailto:info@phil.info" className="underline">hier</a>.
                   </>
                 ) : (
                   <>
                     At phil you’ll find everything that makes our programme so very “phil”: our line‑up ranges from literary highlights and exciting book presentations to electrifying DJ nights. Follow us on{" "}
-                    <a href="https://www.instagram.com/phil.in.wien/" target="_blank" rel="noreferrer" className="underline">Instagram</a> or get in touch with us{" "}
+                    <a 
+                      href="https://www.instagram.com/phil.in.wien/" 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="underline relative inline-block"
+                      onClick={() => setShowInstagramStrich(true)}
+                      onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
+                    >
+                      Instagram
+                      {showInstagramStrich && (
+                        <Image
+                          src="/images/assets/unterstreichung-beige.png"
+                          alt=""
+                          width={200}
+                          height={30}
+                          className="absolute bottom-0 left-0 object-contain pointer-events-none"
+                          style={{ zIndex: 10 }}
+                          unoptimized
+                        />
+                      )}
+                    </a> or get in touch with us{" "}
                     <a href="mailto:info@phil.info" className="underline">here</a>.
                   </>
                 )}
@@ -2237,6 +2296,8 @@ export function QuoteSection() {
           rel="noreferrer"
           aria-label="Instagram: phil.in.wien"
           className="block w-[300px] h-[120px] relative"
+          onClick={() => setShowInstagramStrich(true)}
+          onMouseLeave={() => setTimeout(() => setShowInstagramStrich(false), 2000)}
         >
           <Image
             src="/images/assets/instagram 1.svg"
@@ -2245,6 +2306,17 @@ export function QuoteSection() {
             className="object-contain"
             unoptimized
           />
+          {showInstagramStrich && (
+            <Image
+              src="/images/assets/unterstreichung-beige.png"
+              alt=""
+              width={300}
+              height={47}
+              className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 object-contain pointer-events-none"
+              style={{ zIndex: 10 }}
+              unoptimized
+            />
+          )}
         </a>
       </div>
     </footer>
