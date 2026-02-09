@@ -435,15 +435,26 @@ export function QuoteSection() {
                   >
                     Instagram
                     {showInstagramStrichMobile && (
-                      <Image
-                        src="/images/assets/unterstreichung-beige.png"
-                        alt=""
-                        width={90}
-                        height={16}
-                        className="absolute bottom-[-6px] left-[2px] object-contain pointer-events-none"
-                        style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
-                        unoptimized
-                      />
+                      <>
+                        <Image
+                          src="/images/assets/unterstreichung-beige.png"
+                          alt=""
+                          width={110}
+                          height={16}
+                          className="absolute bottom-[-6px] left-[-5px] object-contain pointer-events-none"
+                          style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                          unoptimized
+                        />
+                        <Image
+                          src="/images/assets/unterstreichung-beige.png"
+                          alt=""
+                          width={110}
+                          height={16}
+                          className="absolute bottom-[-12px] left-[-5px] object-contain pointer-events-none"
+                          style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                          unoptimized
+                        />
+                      </>
                     )}
                   </a>{" "}
                   oder kontaktiere uns direkt{" "}
@@ -1718,15 +1729,26 @@ export function QuoteSection() {
                     >
                       Instagram
                       {showInstagramStrichDesktop && (
-                        <Image
-                          src="/images/assets/unterstreichung-beige.png"
-                          alt=""
-                          width={90}
-                          height={16}
-                          className="absolute bottom-[-6px] left-[2px] object-contain pointer-events-none"
-                          style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
-                          unoptimized
-                        />
+                        <>
+                          <Image
+                            src="/images/assets/unterstreichung-beige.png"
+                            alt=""
+                            width={110}
+                            height={16}
+                            className="absolute bottom-[-6px] left-[-5px] object-contain pointer-events-none"
+                            style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                            unoptimized
+                          />
+                          <Image
+                            src="/images/assets/unterstreichung-beige.png"
+                            alt=""
+                            width={110}
+                            height={16}
+                            className="absolute bottom-[-12px] left-[-5px] object-contain pointer-events-none"
+                            style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                            unoptimized
+                          />
+                        </>
                       )}
                     </a> oder kontaktiere uns direkt{" "}
                     <a href="mailto:info@phil.info" className="underline">hier</a>.
@@ -1744,15 +1766,26 @@ export function QuoteSection() {
                     >
                       Instagram
                       {showInstagramStrichDesktop && (
-                        <Image
-                          src="/images/assets/unterstreichung-beige.png"
-                          alt=""
-                          width={90}
-                          height={16}
-                          className="absolute bottom-[-6px] left-[2px] object-contain pointer-events-none"
-                          style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
-                          unoptimized
-                        />
+                        <>
+                          <Image
+                            src="/images/assets/unterstreichung-beige.png"
+                            alt=""
+                            width={110}
+                            height={16}
+                            className="absolute bottom-[-6px] left-[-5px] object-contain pointer-events-none"
+                            style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                            unoptimized
+                          />
+                          <Image
+                            src="/images/assets/unterstreichung-beige.png"
+                            alt=""
+                            width={110}
+                            height={16}
+                            className="absolute bottom-[-12px] left-[-5px] object-contain pointer-events-none"
+                            style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                            unoptimized
+                          />
+                        </>
                       )}
                     </a> or get in touch with us{" "}
                     <a href="mailto:info@phil.info" className="underline">here</a>.
@@ -2309,15 +2342,26 @@ export function QuoteSection() {
             unoptimized
           />
           {showInstagramStrichFooter && (
-            <Image
-              src="/images/assets/unterstreichung-beige.png"
-              alt=""
-              width={90}
-              height={16}
-              className="absolute bottom-[50px] left-[45%] object-contain pointer-events-none"
-              style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
-              unoptimized
-            />
+            <>
+              <Image
+                src="/images/assets/unterstreichung-beige.png"
+                alt=""
+                width={110}
+                height={16}
+                className="absolute bottom-[50px] left-[43%] object-contain pointer-events-none"
+                style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                unoptimized
+              />
+              <Image
+                src="/images/assets/unterstreichung-beige.png"
+                alt=""
+                width={110}
+                height={16}
+                className="absolute bottom-[44px] left-[43%] object-contain pointer-events-none"
+                style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                unoptimized
+              />
+            </>
           )}
         </a>
       </div>
