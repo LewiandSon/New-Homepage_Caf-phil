@@ -438,10 +438,10 @@ export function QuoteSection() {
                       <Image
                         src="/images/assets/unterstreichung-beige.png"
                         alt=""
-                        width={100}
-                        height={18}
-                        className="absolute bottom-[-2px] left-0 object-contain pointer-events-none"
-                        style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
+                        width={90}
+                        height={16}
+                        className="absolute bottom-[-6px] left-[2px] object-contain pointer-events-none"
+                        style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
                         unoptimized
                       />
                     )}
@@ -1721,10 +1721,10 @@ export function QuoteSection() {
                         <Image
                           src="/images/assets/unterstreichung-beige.png"
                           alt=""
-                          width={100}
-                          height={18}
-                          className="absolute bottom-[-2px] left-0 object-contain pointer-events-none"
-                          style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
+                          width={90}
+                          height={16}
+                          className="absolute bottom-[-6px] left-[2px] object-contain pointer-events-none"
+                          style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
                           unoptimized
                         />
                       )}
@@ -1747,10 +1747,10 @@ export function QuoteSection() {
                         <Image
                           src="/images/assets/unterstreichung-beige.png"
                           alt=""
-                          width={100}
-                          height={18}
-                          className="absolute bottom-[-2px] left-0 object-contain pointer-events-none"
-                          style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
+                          width={90}
+                          height={16}
+                          className="absolute bottom-[-6px] left-[2px] object-contain pointer-events-none"
+                          style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
                           unoptimized
                         />
                       )}
@@ -2312,10 +2312,10 @@ export function QuoteSection() {
             <Image
               src="/images/assets/unterstreichung-beige.png"
               alt=""
-              width={110}
-              height={20}
-              className="absolute bottom-[45px] left-[48%] object-contain pointer-events-none"
-              style={{ zIndex: 10, transform: 'rotate(-2deg)' }}
+              width={90}
+              height={16}
+              className="absolute bottom-[50px] left-[45%] object-contain pointer-events-none"
+              style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
               unoptimized
             />
           )}
