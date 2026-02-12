@@ -80,9 +80,9 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-background backdrop-blur-sm md:bg-background md:backdrop-blur-none">
-      <div className="w-full max-w-[1440px] h-[90px] md:h-[115px] mx-auto flex items-center justify-between px-4 md:px-10">
+      <div className="w-full max-w-[1440px] h-[70px] md:h-[100px] mx-auto flex items-center justify-between px-4 md:px-10">
         {/* Logo */}
-        <div className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex-shrink-0">
+        <div className="w-[50px] h-[50px] md:w-[90px] md:h-[90px] flex-shrink-0">
           <a
             href="/"
             onClick={(e) => {
