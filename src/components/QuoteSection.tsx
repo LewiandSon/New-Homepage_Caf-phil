@@ -810,30 +810,30 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     {/* Lightbox Overlay – per Portal in document.body, damit fixed nicht vom md:scale-Wrapper beeinflusst wird */}
     {lightboxIndex !== null && typeof document !== "undefined" && createPortal(
       <div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-2 md:px-6"
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-1 md:px-6"
         onClick={closeLightbox}
       >
         {/* Pfeile direkt links und rechts der Speisekarte, etwas größer */}
         <div
-          className="flex flex-row items-center justify-center gap-2 md:gap-4 max-w-[98vw] md:max-w-[95vw]"
+          className="flex flex-row items-center justify-center gap-1 md:gap-4 max-w-[99vw] md:max-w-[95vw]"
           onClick={(e) => e.stopPropagation()}
         >
           <button
             type="button"
             onClick={prevImage}
-            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-2 rounded-full hover:bg-white/20 z-10"
+            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-1 md:p-2 rounded-full hover:bg-white/20 z-10"
             aria-label="Previous image"
           >
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[40px] md:h-[40px]">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <div className="relative max-h-[95vh] md:max-h-[90vh] flex items-center justify-center min-w-0">
+          <div className="relative max-h-[98vh] md:max-h-[90vh] flex items-center justify-center min-w-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={menuItems[lightboxIndex].src}
               alt={menuItems[lightboxIndex].alt}
-              className="max-h-[95vh] md:max-h-[90vh] w-auto object-contain bg-[#F8F7F6]"
+              className="max-h-[98vh] md:max-h-[90vh] w-auto object-contain bg-[#F8F7F6]"
               width={558}
               height={793}
             />
@@ -841,10 +841,10 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           <button
             type="button"
             onClick={nextImage}
-            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-2 rounded-full hover:bg-white/20 z-10"
+            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-1 md:p-2 rounded-full hover:bg-white/20 z-10"
             aria-label="Next image"
           >
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[40px] md:h-[40px]">
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
