@@ -362,7 +362,7 @@ export default function FAQPage() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram: phil.in.wien"
-              className="block w-[300px] h-[120px] relative"
+              className="block w-[300px] h-[120px] relative active:scale-95 transition-transform duration-150"
               onMouseEnter={() => setShowInstagramStrich(true)}
               onMouseLeave={() => setShowInstagramStrich(false)}
             >

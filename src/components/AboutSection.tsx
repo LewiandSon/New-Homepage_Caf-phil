@@ -316,7 +316,7 @@ export function AboutSection() {
             <div className="mt-8 flex justify-start">
               <a
                 href="/bucher"
-                className="inline-block transition-colors duration-300 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] cursor-pointer border-[3px] border-[#D72333] px-6 py-3 whitespace-nowrap"
+                className="inline-block transition-all duration-150 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] active:bg-[#D72333] active:text-[#f9f1da] active:scale-95 cursor-pointer border-[3px] border-[#D72333] px-6 py-3 whitespace-nowrap"
                 style={{
                   fontFamily: 'Vollkorn',
                   fontSize: '16px',

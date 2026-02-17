@@ -1265,7 +1265,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2373px' }}>
         <a 
           href="/bucher"
-          className="absolute transition-colors duration-300 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] cursor-pointer"
+          className="absolute transition-all duration-150 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] active:bg-[#D72333] active:text-[#f9f1da] active:scale-95 cursor-pointer"
           style={{
             display: 'flex',
             width: 'fit-content',
@@ -1730,7 +1730,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
         <a 
           href="/events"
-          className="absolute transition-colors duration-300 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] cursor-pointer"
+          className="absolute transition-all duration-150 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] active:bg-[#D72333] active:text-[#f9f1da] active:scale-95 cursor-pointer"
           style={{
             display: 'flex',
             width: 'fit-content',
@@ -2443,7 +2443,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           target="_blank"
           rel="noreferrer"
           aria-label="Instagram: phil.in.wien"
-          className="block w-[300px] h-[120px] relative"
+          className="block w-[300px] h-[120px] relative active:scale-95 transition-transform duration-150"
           onMouseEnter={() => setShowInstagramStrichFooter(true)}
           onMouseLeave={() => setShowInstagramStrichFooter(false)}
         >
