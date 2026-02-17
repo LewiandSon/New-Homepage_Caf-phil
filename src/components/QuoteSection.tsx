@@ -537,7 +537,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             className="inline-flex items-center justify-center border-[3px] border-[#D72333] px-6 py-2 transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-95 group"
           >
             <span
-              className="text-[#D72333] group-hover:text-[#F9F1DA] transition-colors duration-200"
+              className="text-[#D72333] group-hover:text-[#F9F1DA] group-active:text-[#F9F1DA] transition-colors duration-200"
               style={{
                 fontFamily: "Vollkorn",
                 fontSize: "20px",
@@ -574,8 +574,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
             >
-              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>wien.info</h3>
-              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Kaffee und Bücher im "phil"</p>
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>wien.info</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Kaffee und Bücher im "phil"</p>
             </a>
             
             {/* Box 2 */}
@@ -585,8 +585,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
             >
-              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Die Frühstückerinnen</h3>
-              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Frühstück im phil, 1060 Wien</p>
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Die Frühstückerinnen</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Frühstück im phil, 1060 Wien</p>
             </a>
             
             {/* Box 3 */}
@@ -596,8 +596,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
             >
-              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Falter</h3>
-              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Lokalprofil auf Falter.at</p>
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Falter</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Lokalprofil auf Falter.at</p>
             </a>
             
             {/* Box 4 */}
@@ -607,8 +607,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
             >
-              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Stadtbekannt.at</h3>
-              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>phil - Cafe, Bar, Buchgeschäft & Frühstückslokal</p>
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Stadtbekannt.at</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>phil - Cafe, Bar, Buchgeschäft & Frühstückslokal</p>
             </a>
             
             {/* Box 5 */}
@@ -618,8 +618,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
             >
-              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Falstaff</h3>
-              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>phil in Wien - Falstaff Cafeguide</p>
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Falstaff</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>phil in Wien - Falstaff Cafeguide</p>
             </a>
             
             {/* Box 6 */}
@@ -629,8 +629,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
             >
-              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>1000things</h3>
-              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>8 gemütliche Büchercafés in Wien</p>
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>1000things</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>8 gemütliche Büchercafés in Wien</p>
             </a>
             
             {/* Box 7 */}
@@ -640,8 +640,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
             >
-              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>1000things</h3>
-              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Unsere liebsten Cafés im 6. Bezirk</p>
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>1000things</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Unsere liebsten Cafés im 6. Bezirk</p>
             </a>
           </div>
         </div>
