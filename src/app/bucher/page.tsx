@@ -155,7 +155,7 @@ export default function BucherPage() {
           className="absolute"
           style={{
             left: "158px",
-            top: "-100px",
+            top: "-150px",
             width: "650px",
             height: "850px",
             transform: "rotate(90deg)",
@@ -176,7 +176,7 @@ export default function BucherPage() {
           className="absolute"
           style={{
             left: "140px",
-            top: "88px",
+            top: "38px",
             width: "685px",
             height: "474px",
             zIndex: 2
@@ -195,7 +195,7 @@ export default function BucherPage() {
           className="absolute"
           style={{
             left: "133px",
-            top: "700px",
+            top: "650px",
             fontFamily: "Vollkorn",
             fontSize: "35px",
             fontStyle: "italic",
