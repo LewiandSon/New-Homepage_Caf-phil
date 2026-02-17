@@ -313,7 +313,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           onClick={() => setShowEventLightbox(true)}
         >
           <Image
-            src="/images/assets/Weltfrauentag-phil-Instagrampost (2).webp"
+            src="/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp"
             alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
             fill
             className="object-cover border-2 border-[#D72333]"
@@ -873,7 +873,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/assets/Weltfrauentag-phil-Instagrampost (2).webp"
+            src="/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp"
             alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
             className="max-h-[90vh] w-auto object-contain border-2 border-[#D72333]"
           />
@@ -1597,7 +1597,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             aria-label={lang === "de" ? "Veranstaltung vergrößern" : "View event"}
           >
             <Image
-              src="/images/assets/Weltfrauentag-phil-Instagrampost (2).webp"
+              src="/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp"
               alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
               fill
               className="object-cover pointer-events-none border-2 border-[#D72333]"

@@ -24,7 +24,7 @@ const UPCOMING_EVENTS_DE: EventItem[] = [
       '<strong>17–18 Uhr</strong> Prosecco Happy Hour<br/><br/>' +
       '<strong>19 Uhr</strong> Lenka Reschenbach präsentiert ihr preisgekröntes Buch „Der Patriarchatsindex“ – illustrierte Infografiken zum Patriarchat in Österreich.<br/><br/>' +
       '<strong>20:15 Uhr</strong> Pub-Quiz „Female Edition“ mit Tex Rubinowitz. Tolle Preise zu gewinnen.',
-    imageUrl: "/images/assets/Weltfrauentag-phil-Instagrampost (2).webp",
+    imageUrl: "/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -36,7 +36,7 @@ const UPCOMING_EVENTS_EN: EventItem[] = [
     title: "International Women’s Day at phil",
     description:
       '<strong>3:30 pm</strong> Reading with Christine Heuer from Linda Olafsdottir\'s picture book about the women\'s strike in Iceland 50 years ago – for everyone aged 7 to 99.<br/><br/><strong>4:30 pm</strong> Caroline Peters reads from her novel "A Different Life" about a woman who breaks free from patriarchal role expectations.<br/><br/><strong>5–6 pm</strong> Prosecco Happy Hour<br/><br/><strong>7 pm</strong> Lenka Reschenbach presents her award-winning book "The Patriarchy Index" – illustrated infographics on patriarchy in Austria.<br/><br/><strong>8:15 pm</strong> Pub quiz "Female Edition" with Tex Rubinowitz. Great prizes to be won.',
-    imageUrl: "/images/assets/Weltfrauentag-phil-Instagrampost (2).webp",
+    imageUrl: "/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp",
     signupLink: "nein",
     status: "Aktiv",
   },
