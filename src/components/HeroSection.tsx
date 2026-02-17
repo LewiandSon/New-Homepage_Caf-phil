@@ -177,9 +177,8 @@ export function HeroSection() {
             href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8"
             target="_blank"
             rel="noopener noreferrer"
-            className="border-[2px] border-primary px-4 py-1.5 inline-flex items-center justify-center transition-all duration-200 hover:bg-primary group"
+            className="border-[2px] border-primary px-4 py-1.5 inline-flex items-center justify-center transition-all duration-150 text-[#D72333] hover:bg-primary hover:text-cream active:bg-primary active:text-cream active:scale-95"
             style={{
-              color: "#D72333",
               fontFamily: "Vollkorn, serif",
               fontSize: "16px",
               fontStyle: "italic",
@@ -187,9 +186,7 @@ export function HeroSection() {
               lineHeight: "150%",
             }}
           >
-            <span className="group-hover:text-cream transition-colors duration-200">
-              {lang === "de" ? "Besuch uns" : "Visit us"}
-            </span>
+            {lang === "de" ? "Besuch uns" : "Visit us"}
           </a>
 
           <p
