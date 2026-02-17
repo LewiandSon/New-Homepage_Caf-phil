@@ -12,7 +12,7 @@ export function HomeFooter({ onModalOpen }: HomeFooterProps) {
 
   return (
     <footer
-      className="hidden md:flex flex-col items-center justify-center py-16 px-6 mt-16"
+      className="hidden md:flex flex-col items-center justify-center py-16 px-6 mt-32"
       style={{ backgroundColor: "#D72333" }}
     >
       <div className="w-[90px] h-[140px] relative mb-8">
@@ -47,6 +47,7 @@ export function HomeFooter({ onModalOpen }: HomeFooterProps) {
             <button
               type="button"
               onClick={() => onModalOpen(item.id)}
+              className="hover:opacity-80 active:opacity-60 transition-opacity"
               style={{
                 color: "#F9F1DA",
                 fontFamily: "Vollkorn",
@@ -79,30 +80,29 @@ export function HomeFooter({ onModalOpen }: HomeFooterProps) {
           onMouseLeave={() => setShowInstagramStrich(false)}
         >
           <Image
-            src="/images/assets/instagram 1.svg"
+            src="/images/assets/instagram-optimized.webp"
             alt="Folge uns auf Instagram"
             fill
             className="object-contain"
-            unoptimized
           />
           {showInstagramStrich && (
             <>
               <Image
                 src="/images/assets/unterstreichung-beige.png"
                 alt=""
-                width={110}
-                height={16}
-                className="absolute bottom-[50px] left-[43%] object-contain pointer-events-none"
-                style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                width={180}
+                height={22}
+                className="absolute bottom-[50px] left-[24%] object-contain pointer-events-none"
+                style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
                 unoptimized
               />
               <Image
                 src="/images/assets/unterstreichung-beige.png"
                 alt=""
-                width={110}
-                height={16}
-                className="absolute bottom-[8px] left-[43%] object-contain pointer-events-none"
-                style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                width={130}
+                height={22}
+                className="absolute bottom-[8px] left-[40%] object-contain pointer-events-none"
+                style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
                 unoptimized
               />
             </>

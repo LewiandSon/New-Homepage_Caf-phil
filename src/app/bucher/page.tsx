@@ -6,6 +6,7 @@ import { useLanguage } from "../../LanguageContext";
 
 export default function BucherPage() {
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
+  const [showInstagramStrich, setShowInstagramStrich] = useState(false);
   const { lang } = useLanguage();
   return (
     <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
@@ -453,6 +454,7 @@ export default function BucherPage() {
               <button
                 type="button"
                 onClick={() => setFooterModal(item.id)}
+                className="hover:opacity-80 active:opacity-60 transition-opacity"
                 style={{
                   color: "#F9F1DA",
                   fontFamily: "Vollkorn",
@@ -481,13 +483,37 @@ export default function BucherPage() {
             rel="noreferrer"
             aria-label="Instagram: phil.in.wien"
             className="block w-[300px] h-[120px] relative"
+            onMouseEnter={() => setShowInstagramStrich(true)}
+            onMouseLeave={() => setShowInstagramStrich(false)}
           >
             <Image
-              src="/images/assets/instagram 1.svg"
+              src="/images/assets/instagram-optimized.webp"
               alt="Folge uns auf Instagram"
               fill
               className="object-contain"
             />
+            {showInstagramStrich && (
+              <>
+                <Image
+                  src="/images/assets/unterstreichung-beige.png"
+                  alt=""
+                  width={180}
+                  height={22}
+                  className="absolute bottom-[50px] left-[24%] object-contain pointer-events-none"
+                  style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
+                  unoptimized
+                />
+                <Image
+                  src="/images/assets/unterstreichung-beige.png"
+                  alt=""
+                  width={130}
+                  height={22}
+                  className="absolute bottom-[8px] left-[40%] object-contain pointer-events-none"
+                  style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
+                  unoptimized
+                />
+              </>
+            )}
           </a>
         </div>
       </footer>

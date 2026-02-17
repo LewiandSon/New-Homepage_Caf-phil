@@ -169,7 +169,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Lewis Carroll Quote & Saltpepper - Mobile */}
-      <div className="mb-12 flex flex-col items-start">
+      <div className="mb-12">
         <div
           style={{
             color: "#D72333",
@@ -200,15 +200,30 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             </>
           )}
         </div>
-        <div className="mt-6">
-          <Image
-            src="/images/assets/saltpepper.webp"
-            alt={lang === "de" ? "Salz und Pfeffer" : "Salt and pepper"}
-            width={150}
-            height={150}
-            className="object-contain"
-            unoptimized
-          />
+        <div className="mt-6 flex justify-end items-center w-full pr-8">
+          <div className="relative flex justify-center items-center">
+            {/* Plate behind saltpepper */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-[150px] h-[120px]">
+              <Image
+                src="/images/assets/plate.webp"
+                alt=""
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+            {/* Saltpepper on top */}
+            <div className="relative z-10">
+              <Image
+                src="/images/assets/saltpepper.webp"
+                alt={lang === "de" ? "Salz und Pfeffer" : "Salt and pepper"}
+                width={100}
+                height={100}
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -348,7 +363,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         <div className="mt-4 flex justify-center">
           <a
             href="/events"
-            className="inline-flex items-center justify-center px-5 py-2 border-2 border-[#D72333] text-[#D72333] hover:bg-[#D72333] hover:text-[#F9F1DA] transition-colors"
+            className="inline-flex items-center justify-center px-5 py-2 border-2 border-[#D72333] text-[#D72333] hover:bg-[#D72333] hover:text-[#F9F1DA] active:bg-[#D72333] active:text-[#F9F1DA] active:scale-95 transition-all duration-150"
             style={{
               fontFamily: "Vollkorn",
               fontSize: "16px",
@@ -519,7 +534,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center border-[3px] border-[#D72333] px-6 py-2 transition-colors duration-200 hover:bg-[#D72333] group"
+            className="inline-flex items-center justify-center border-[3px] border-[#D72333] px-6 py-2 transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-95 group"
           >
             <span
               className="text-[#D72333] group-hover:text-[#F9F1DA] transition-colors duration-200"
@@ -536,25 +551,98 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           </a>
         </div>
 
-        {/* Fotos vom Lokal unter Besuch-uns Button */}
-        <div className="grid grid-cols-2 gap-4 mb-10">
-          <div className="relative w-full aspect-[3/4]">
-            <Image
-              src="/images/assets/IMG_4843-2.webp"
-              alt="Lokal Interior"
-              fill
-              className="object-cover rounded-sm"
-              loading="lazy"
-            />
-          </div>
-          <div className="relative w-full aspect-[3/4]">
-            <Image
-              src="/images/assets/IMG_4905.webp"
-              alt="Lokal Interior"
-              fill
-              className="object-cover rounded-sm"
-              loading="lazy"
-            />
+        {/* Reviews Section - Mobile */}
+        <div className="mb-10 mt-8">
+          <h2
+            className="mb-6 text-center"
+            style={{
+              fontFamily: "Vollkorn",
+              fontSize: "24px",
+              fontStyle: "italic",
+              fontWeight: 900,
+              color: "#D72333",
+            }}
+          >
+            {lang === 'de' ? 'Was andere über uns sagen' : 'What others say about us'}
+          </h2>
+          
+          <div className="grid grid-cols-2 gap-3 max-w-[600px] mx-auto">
+            {/* Box 1 */}
+            <a 
+              href="https://www.wien.info/de/essen-trinken/cafes/phil-355232"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+            >
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>wien.info</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Kaffee und Bücher im "phil"</p>
+            </a>
+            
+            {/* Box 2 */}
+            <a 
+              href="https://www.diefruehstueckerinnen.at/wien/phil/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+            >
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Die Frühstückerinnen</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Frühstück im phil, 1060 Wien</p>
+            </a>
+            
+            {/* Box 3 */}
+            <a 
+              href="https://www.falter.at/lokal/5631/phil"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+            >
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Falter</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Lokalprofil auf Falter.at</p>
+            </a>
+            
+            {/* Box 4 */}
+            <a 
+              href="https://lokalfuehrer.stadtbekannt.at/restaurants/phil-cafe/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+            >
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Stadtbekannt.at</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>phil - Cafe, Bar, Buchgeschäft & Frühstückslokal</p>
+            </a>
+            
+            {/* Box 5 */}
+            <a 
+              href="https://www.falstaff.com/at/cafes/phil"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+            >
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>Falstaff</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>phil in Wien - Falstaff Cafeguide</p>
+            </a>
+            
+            {/* Box 6 */}
+            <a 
+              href="https://www.1000thingsmagazine.com/de/a/2668/wiener-buechercafes/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+            >
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>1000things</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>8 gemütliche Büchercafés in Wien</p>
+            </a>
+            
+            {/* Box 7 */}
+            <a 
+              href="https://www.1000thingsmagazine.com/de/a/5240/die-besten-cafes-sechster-bezirk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+            >
+              <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>1000things</h3>
+              <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Unsere liebsten Cafés im 6. Bezirk</p>
+            </a>
           </div>
         </div>
 
@@ -694,13 +782,13 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           />
         </div>
 
-        {/* Zuckerstreuer - kleiner, 40° nach rechts, weiter unten */}
-        <div className="absolute top-[220px] right-[20px] z-20">
+        {/* Zuckerstreuer - kleiner, 40° nach rechts */}
+        <div className="absolute top-[200px] right-[20px] z-20">
           <Image
             src="/images/assets/sugar.webp"
             alt={lang === "de" ? "Zuckerstreuer" : "Sugar dispenser"}
-            width={123}
-            height={165}
+            width={100}
+            height={135}
             className="object-contain rotate-[40deg]"
             unoptimized
           />
@@ -891,11 +979,11 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     )}
 
     {/* Desktop-Layout: ursprüngliche, absolut positionierte Version */}
-    {/* minHeight angepasst: Welcome Section bei 12711px mit height 435px, endet bei 12711+435=13146px */}
-    {/* Scale-Effekt (0.855): Visuell endet Content bei 13146px, aber Layout-Höhe bleibt 13146px */}
-    {/* Problem: Scale skaliert nur visuelle Höhe, nicht Layout-Höhe → Leerraum durch Scale-Effekt: 13146 * (1 - 0.855) = 1907px */}
+    {/* minHeight angepasst: Welcome Section bei 12711px mit height 535px (mehr Abstand), endet bei 12711+535=13246px */}
+    {/* Scale-Effekt (0.855): Visuell endet Content bei 13246px, aber Layout-Höhe bleibt 13246px */}
+    {/* Problem: Scale skaliert nur visuelle Höhe, nicht Layout-Höhe → Leerraum durch Scale-Effekt: 13246 * (1 - 0.855) = 1921px */}
     {/* Lösung: Negativer marginBottom kompensiert den Scale-Leerraum. Da marginBottom auch skaliert wird, muss er durch 0.855 geteilt werden */}
-    <section className="hidden md:block relative w-full" style={{ minHeight: '13146px', marginBottom: 'calc(-1 * (13146px * (1 - 0.855)) / 0.855)' }}>
+    <section className="hidden md:block relative w-full" style={{ minHeight: '13246px', marginBottom: 'calc(-1 * (13246px * (1 - 0.855)) / 0.855)' }}>
       {/* Quote container */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '600px' }}>
         <div 
@@ -964,31 +1052,25 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         </div>
       </div>
 
-      {/* Analog cafe animation - WebM mit Alpha (transparent) */}
+      {/* Analog cafe animation - GIF für bessere Transparenz */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '820px' }}>
         <div 
           className="absolute"
           style={{
             width: '623px',
             height: '392px',
-            left: '-80px',
+            left: '-10px',
             top: '0px',
           }}
         >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-            }}
-          >
-            <source src="/images/assets/analog-cafe_v2.webm" type="video/webm" />
-          </video>
+          <Image
+            src="/images/assets/analog-cafe_v2.gif"
+            alt="Analog Cafe"
+            width={1536}
+            height={966}
+            className="w-full h-full object-contain"
+            unoptimized
+          />
         </div>
       </div>
 
@@ -1207,30 +1289,6 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         </a>
       </div>
 
-      {/* Cursor 1 image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2459px' }}>
-        <div 
-          className="absolute"
-          style={{
-            width: '59px',
-            height: '111px',
-            left: '1031px',
-            top: '0px',
-            transform: 'rotate(-20deg)', // 30° nach links (war 10deg, jetzt -20deg)
-            transformOrigin: 'center center',
-          }}
-        >
-          <Image
-            src="/images/assets/cursor.webp"
-            alt=""
-            width={59}
-            height={111}
-            className="object-contain"
-            unoptimized
-          />
-        </div>
-      </div>
-
       {/* "Unsere Speisekarte" Heading */}
       <div id="speisekarte" data-section="speisekarte" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2684px', scrollMarginTop: '120px' }}>
         <div 
@@ -1395,14 +1453,29 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             )}
           </div>
 
-          <Image
-            src="/images/assets/saltpepper.webp"
-            alt={lang === "de" ? "Salz und Pfeffer" : "Salt and pepper"}
-            width={200}
-            height={200}
-            className="object-contain"
-            unoptimized
-          />
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Plate behind saltpepper */}
+            <div style={{ position: 'absolute', left: '50%', top: '70%', transform: 'translate(-50%, -50%)', zIndex: 0, width: '250px', height: '200px' }}>
+              <Image
+                src="/images/assets/plate.webp"
+                alt=""
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+            {/* Saltpepper on top */}
+            <div style={{ position: 'relative', zIndex: 10 }}>
+              <Image
+                src="/images/assets/saltpepper.webp"
+                alt={lang === "de" ? "Salz und Pfeffer" : "Salt and pepper"}
+                width={170}
+                height={170}
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2236,12 +2309,11 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Welcome Section */}
-      {/* Höhe reduziert: Text bei top-[400px], Text-Höhe ~35px (23px * 1.5), Section-Höhe = 400px + 35px = 435px */}
-      {/* Aber: Text endet genau bei 435px, also keine zusätzliche Höhe nötig - height auf exakte Text-Endposition */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12711px', height: '435px' }}>
+      {/* Mehr Abstand: Text höher positioniert für mehr Raum zu Bild/Zucker, und mehr Raum nach unten zum Footer */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12711px', height: '535px' }}>
         
         {/* Picture Frame */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[-160px] w-[360px] h-[450px]">
+        <div className="absolute left-1/2 -translate-x-1/2 top-[-210px] w-[360px] h-[450px]">
           <Image
             src="/images/assets/bild.webp"
             alt="Bild"
@@ -2252,20 +2324,20 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           />
         </div>
 
-        {/* Sugar Dispenser (Overlapping) – 40° nach rechts, etwas in die Länge gezogen */}
-        <div className="absolute left-[850px] top-[140px] w-[164px] h-[250px]">
+        {/* Sugar Dispenser (Overlapping) – 40° nach rechts */}
+        <div className="absolute left-[850px] top-[90px] w-[164px] h-[250px]">
           <Image
             src="/images/assets/sugar.webp"
             alt="Zucker"
-            width={205}
-            height={275}
-            className="object-fill object-center transform rotate-[40deg] w-full h-full"
+            width={835}
+            height={1564}
+            className="object-contain transform rotate-[40deg] w-full h-full"
             unoptimized
           />
         </div>
 
         {/* Welcome Text */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-full text-center">
+        <div className="absolute left-1/2 -translate-x-1/2 top-[450px] w-full text-center">
           <p style={{
             color: '#D72333',
             fontFamily: 'Vollkorn',
@@ -2343,6 +2415,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             <button
               type="button"
               onClick={() => setFooterModal(item.id)}
+              className="hover:opacity-80 active:opacity-60 transition-opacity"
               style={{
                 color: "#F9F1DA",
                 fontFamily: "Vollkorn",
@@ -2375,30 +2448,29 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           onMouseLeave={() => setShowInstagramStrichFooter(false)}
         >
           <Image
-            src="/images/assets/instagram 1.svg"
+            src="/images/assets/instagram-optimized.webp"
             alt="Folge uns auf Instagram"
             fill
             className="object-contain"
-            unoptimized
           />
           {showInstagramStrichFooter && (
             <>
               <Image
                 src="/images/assets/unterstreichung-beige.png"
                 alt=""
-                width={110}
-                height={16}
-                className="absolute bottom-[50px] left-[43%] object-contain pointer-events-none"
-                style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                width={180}
+                height={22}
+                className="absolute bottom-[50px] left-[24%] object-contain pointer-events-none"
+                style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
                 unoptimized
               />
               <Image
                 src="/images/assets/unterstreichung-beige.png"
                 alt=""
-                width={110}
-                height={16}
-                className="absolute bottom-[8px] left-[43%] object-contain pointer-events-none"
-                style={{ zIndex: 10, transform: 'rotate(-3deg)' }}
+                width={130}
+                height={22}
+                className="absolute bottom-[8px] left-[40%] object-contain pointer-events-none"
+                style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
                 unoptimized
               />
             </>
