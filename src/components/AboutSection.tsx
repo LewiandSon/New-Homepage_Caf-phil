@@ -181,7 +181,7 @@ export function AboutSection() {
           </div>
 
           {/* Bücher Section - Mobile */}
-          <div className="mb-16 mt-24">
+          <div className="mb-16 mt-16">
             {/* 1. Titel "Bücher" */}
             <div className="mb-8">
               <h2
