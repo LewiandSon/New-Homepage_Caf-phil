@@ -770,8 +770,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           <Image
             src="/images/assets/bild.webp"
             alt={lang === "de" ? "Person mit Büchern" : "Person with books"}
-            width={260}
-            height={330}
+            width={220}
+            height={280}
             className="object-contain"
             loading="lazy"
           />
