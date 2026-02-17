@@ -534,20 +534,16 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             href="https://maps.app.goo.gl/pV95cu8bmQELWfgS8"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center border-[3px] border-[#D72333] px-6 py-2 transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-95 group"
+            className="inline-flex items-center justify-center border-[3px] border-[#D72333] px-6 py-2 transition-all duration-150 text-[#D72333] hover:bg-[#D72333] hover:text-[#F9F1DA] active:bg-[#D72333] active:text-[#F9F1DA] active:scale-95"
+            style={{
+              fontFamily: "Vollkorn",
+              fontSize: "20px",
+              fontStyle: "italic",
+              fontWeight: 900,
+              lineHeight: "150%",
+            }}
           >
-            <span
-              className="text-[#D72333] group-hover:text-[#F9F1DA] group-active:text-[#F9F1DA] transition-colors duration-200"
-              style={{
-                fontFamily: "Vollkorn",
-                fontSize: "20px",
-                fontStyle: "italic",
-                fontWeight: 900,
-                lineHeight: "150%",
-              }}
-            >
-              {lang === "de" ? "Besuch uns" : "Visit us"}
-            </span>
+            {lang === "de" ? "Besuch uns" : "Visit us"}
           </a>
         </div>
 
