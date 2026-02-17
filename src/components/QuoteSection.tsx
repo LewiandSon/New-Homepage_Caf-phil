@@ -91,7 +91,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           <button
             type="button"
             onClick={() => openLightbox(0)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] transition-transform duration-300"
+            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
           >
             <Image
               src={lang === "de" ? "/images/assets/Kaffee.svg" : "/images/assets/kaffee-en.svg"}
@@ -104,7 +104,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           <button
             type="button"
             onClick={() => openLightbox(1)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] transition-transform duration-300"
+            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
           >
             <Image
               src={lang === "de" ? "/images/assets/fruhstueck.svg" : "/images/assets/fruhstueck-en.svg"}
@@ -117,7 +117,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           <button
             type="button"
             onClick={() => openLightbox(2)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] transition-transform duration-300"
+            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
           >
             <Image
               src={lang === "de" ? "/images/assets/snacks.svg" : "/images/assets/snacks-en.svg"}
@@ -130,7 +130,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           <button
             type="button"
             onClick={() => openLightbox(3)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] transition-transform duration-300"
+            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
           >
             <Image
               src={lang === "de" ? "/images/assets/Wein.svg" : "/images/assets/wein-en.svg"}
@@ -143,7 +143,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           <button
             type="button"
             onClick={() => openLightbox(4)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] transition-transform duration-300"
+            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
           >
             <Image
               src={lang === "de" ? "/images/assets/Limo.svg" : "/images/assets/limo-en.svg"}
