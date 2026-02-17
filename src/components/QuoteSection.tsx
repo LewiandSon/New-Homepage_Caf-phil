@@ -520,13 +520,12 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       <section className="mt-12 mb-20">
         {/* Lampe + Besuch-uns-Button */}
         <div className="flex flex-col items-center mb-10">
-          <div className="mb-4 w-[140px] h-[210px]">
+          <div className="mb-4 w-[140px] h-[210px] relative">
             <Image
-              src="/images/assets/lamp2.webp"
+              src="/images/assets/lamp2 1.svg"
               alt={lang === "de" ? "Lampe" : "Lamp"}
-              width={140}
-              height={210}
-              className="object-contain w-full h-full"
+              fill
+              className="object-contain"
               unoptimized
             />
           </div>
