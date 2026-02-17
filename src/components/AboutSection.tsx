@@ -168,7 +168,7 @@ export function AboutSection() {
 
           {/* Analog cafe animation - WebM mit Alpha (transparent), GIF-Fallback */}
           <div className="mb-8 flex justify-center">
-            <div className="w-full max-w-[400px] rounded-lg overflow-hidden">
+            <div className="w-full max-w-[400px] rounded-lg overflow-hidden bg-[#F9F1DA]">
               <video
                 autoPlay
                 loop
@@ -176,8 +176,10 @@ export function AboutSection() {
                 playsInline
                 preload="metadata"
                 className="w-full h-auto object-contain"
+                style={{ backgroundColor: 'transparent' }}
               >
                 <source src="/images/assets/analog-cafe_v2.webm" type="video/webm" />
+                <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
               </video>
             </div>
           </div>

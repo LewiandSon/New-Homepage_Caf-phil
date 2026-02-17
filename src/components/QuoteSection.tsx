@@ -810,12 +810,12 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     {/* Lightbox Overlay – per Portal in document.body, damit fixed nicht vom md:scale-Wrapper beeinflusst wird */}
     {lightboxIndex !== null && typeof document !== "undefined" && createPortal(
       <div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 md:px-6"
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-2 md:px-6"
         onClick={closeLightbox}
       >
         {/* Pfeile direkt links und rechts der Speisekarte, etwas größer */}
         <div
-          className="flex flex-row items-center justify-center gap-3 md:gap-4 max-w-[95vw]"
+          className="flex flex-row items-center justify-center gap-2 md:gap-4 max-w-[98vw] md:max-w-[95vw]"
           onClick={(e) => e.stopPropagation()}
         >
           <button
@@ -828,12 +828,12 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <div className="relative max-h-[90vh] flex items-center justify-center min-w-0">
+          <div className="relative max-h-[95vh] md:max-h-[90vh] flex items-center justify-center min-w-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={menuItems[lightboxIndex].src}
               alt={menuItems[lightboxIndex].alt}
-              className="max-h-[90vh] w-auto object-contain bg-[#F8F7F6]"
+              className="max-h-[95vh] md:max-h-[90vh] w-auto object-contain bg-[#F8F7F6]"
               width={558}
               height={793}
             />
