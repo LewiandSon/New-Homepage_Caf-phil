@@ -91,7 +91,7 @@ export default function BucherPage() {
         </div>
 
         {/* Books video */}
-        <div className="mb-10">
+        <div className="mb-10 mt-8">
           <h2
             className="mb-4 text-center"
             style={{
