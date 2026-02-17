@@ -78,11 +78,11 @@ export function Header() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, [pathname]);
 
-  return (
-    <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-background backdrop-blur-sm md:bg-background md:backdrop-blur-none">
-      <div className="w-full max-w-[1440px] h-[70px] md:h-[100px] mx-auto flex items-center justify-between px-4 md:px-10">
+  const headerContent = (
+    <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-background">
+      <div className="w-full max-w-[1440px] h-[72px] md:h-[70px] mx-auto flex items-center justify-between px-4 md:px-10">
         {/* Logo */}
-        <div className="w-[50px] h-[50px] md:w-[90px] md:h-[90px] flex-shrink-0">
+        <div className="w-[56px] h-[56px] md:w-[60px] md:h-[60px] flex-shrink-0">
           <a
             href="/"
             onClick={(e) => {
@@ -96,8 +96,8 @@ export function Header() {
             <Image
               src="/images/assets/ausgesprochen_viel.webp"
               alt="phil logo"
-              width={100}
-              height={100}
+              width={60}
+              height={60}
               className="object-contain hover:opacity-80 transition-opacity"
               unoptimized
             />
@@ -105,11 +105,11 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-[32px]">
+        <nav className="hidden md:flex items-center gap-[20px]">
           <a
             href="/#uber-uns"
             className="nav-link hover:opacity-80 transition-opacity whitespace-nowrap"
-            style={linkStyle}
+            style={{ ...linkStyle, fontSize: '22px' }}
             onClick={(e) => handleDesktopNav(e, "uber-uns")}
           >
             {lang === "de" ? "Über uns" : "About us"}
@@ -117,7 +117,7 @@ export function Header() {
           <a
             href="/#speisekarte"
             className="nav-link hover:opacity-80 transition-opacity whitespace-nowrap"
-            style={linkStyle}
+            style={{ ...linkStyle, fontSize: '22px' }}
             onClick={(e) => handleDesktopNav(e, "speisekarte")}
           >
             {lang === "de" ? "Speisekarte" : "Menu"}
@@ -127,7 +127,7 @@ export function Header() {
             className={`nav-link hover:opacity-80 transition-opacity whitespace-nowrap ${
               isActive("/bucher") ? "active" : ""
             }`}
-            style={linkStyle}
+            style={{ ...linkStyle, fontSize: '22px' }}
           >
             {lang === "de" ? "Bücher" : "Books"}
           </a>
@@ -136,7 +136,7 @@ export function Header() {
             className={`nav-link hover:opacity-80 transition-opacity whitespace-nowrap ${
               isActive("/events") ? "active" : ""
             }`}
-            style={linkStyle}
+            style={{ ...linkStyle, fontSize: '22px' }}
           >
             Events
           </a>
@@ -145,14 +145,14 @@ export function Header() {
             className={`nav-link hover:opacity-80 transition-opacity whitespace-nowrap ${
               isActive("/mieten") ? "active" : ""
             }`}
-            style={linkStyle}
+            style={{ ...linkStyle, fontSize: '22px' }}
           >
             {lang === "de" ? "Mieten" : "Venue hire"}
           </a>
           <a
             href="/#kontakt"
             className="nav-link hover:opacity-80 transition-opacity whitespace-nowrap"
-            style={linkStyle}
+            style={{ ...linkStyle, fontSize: '22px' }}
             onClick={(e) => handleDesktopNav(e, "kontakt")}
           >
             {lang === "de" ? "Kontakt" : "Contact"}
@@ -162,7 +162,7 @@ export function Header() {
             className={`nav-link hover:opacity-80 transition-opacity whitespace-nowrap ${
               isActive("/faq") ? "active" : ""
             }`}
-            style={linkStyle}
+            style={{ ...linkStyle, fontSize: '22px' }}
           >
             FAQ
           </a>
@@ -181,29 +181,29 @@ export function Header() {
                     : "bg-transparent text-[#D72333] hover:opacity-80"
                 }`}
                 style={{
-                  width: "57px",
-                  height: "40px",
+                  width: "44px",
+                  height: "30px",
                   fontFamily: "Vollkorn",
-                  fontSize: "28px",
+                  fontSize: "22px",
                   fontWeight: 500,
                   lineHeight: "1",
                 }}
               >
                 DE
               </button>
-              <span className="text-[#D72333] ml-2">|</span>
+              <span className="text-[#D72333] ml-1.5">|</span>
               <button
                 onClick={() => setLang("en")}
-                className={`ml-2 inline-flex items-center justify-center transition-all duration-200 ${
+                className={`ml-1.5 inline-flex items-center justify-center transition-all duration-200 ${
                   lang === "en"
                     ? "bg-[#D72333] text-[#F9F1DA]"
                     : "bg-transparent text-[#D72333] hover:opacity-80"
                 }`}
                 style={{
-                  width: "57px",
-                  height: "40px",
+                  width: "44px",
+                  height: "30px",
                   fontFamily: "Vollkorn",
-                  fontSize: "28px",
+                  fontSize: "22px",
                   fontWeight: 500,
                   lineHeight: "1",
                 }}
@@ -214,7 +214,7 @@ export function Header() {
           </div>
 
           {/* Mobile language + burger */}
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-2 md:hidden">
             <div className="flex items-center">
               <button
                 onClick={() => setLang("de")}
@@ -224,17 +224,17 @@ export function Header() {
                     : "bg-transparent text-[#D72333] hover:opacity-80"
                 }`}
                 style={{
-                  width: "44px",
-                  height: "32px",
+                  width: "32px",
+                  height: "24px",
                   fontFamily: "Vollkorn",
-                  fontSize: "22px",
+                  fontSize: "16px",
                   fontWeight: 500,
                   lineHeight: "1",
                 }}
               >
                 DE
               </button>
-              <span className="text-[#D72333] mx-1">|</span>
+              <span className="text-[#D72333] mx-0.5 text-xs">|</span>
               <button
                 onClick={() => setLang("en")}
                 className={`inline-flex items-center justify-center transition-all duration-200 ${
@@ -243,10 +243,10 @@ export function Header() {
                     : "bg-transparent text-[#D72333] hover:opacity-80"
                 }`}
                 style={{
-                  width: "44px",
-                  height: "32px",
+                  width: "32px",
+                  height: "24px",
                   fontFamily: "Vollkorn",
-                  fontSize: "22px",
+                  fontSize: "16px",
                   fontWeight: 500,
                   lineHeight: "1",
                 }}
@@ -260,9 +260,9 @@ export function Header() {
               className="text-[#D72333] hover:opacity-80 transition-opacity"
               aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
             >
-              <span className="block w-6 h-[2px] bg-[#D72333] mb-1" />
-              <span className="block w-6 h-[2px] bg-[#D72333] mb-1" />
-              <span className="block w-6 h-[2px] bg-[#D72333]" />
+              <span className="block w-5 h-[2px] bg-[#D72333] mb-1" />
+              <span className="block w-5 h-[2px] bg-[#D72333] mb-1" />
+              <span className="block w-5 h-[2px] bg-[#D72333]" />
             </button>
           </div>
         </div>
@@ -271,59 +271,59 @@ export function Header() {
       {/* Mobile navigation */}
       {mobileOpen && (
         <div className="md:hidden border-t border-[#D72333] bg-background">
-          <nav className="flex flex-col px-6 py-4 gap-4">
+          <nav className="flex flex-col px-4 py-3 gap-2">
             <a
               href="/#uber-uns"
-              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
-              style={linkStyle}
+              className="hover:opacity-80 transition-opacity"
+              style={{ ...linkStyle, fontSize: "20px" }}
               onClick={handleInPageNav}
             >
               {lang === "de" ? "Über uns" : "About us"}
             </a>
             <a
               href="/#speisekarte"
-              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
-              style={linkStyle}
+              className="hover:opacity-80 transition-opacity"
+              style={{ ...linkStyle, fontSize: "20px" }}
               onClick={handleInPageNav}
             >
               {lang === "de" ? "Speisekarte" : "Menu"}
             </a>
             <a
               href="/bucher"
-              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
-              style={linkStyle}
+              className="hover:opacity-80 transition-opacity"
+              style={{ ...linkStyle, fontSize: "20px" }}
               onClick={() => setMobileOpen(false)}
             >
               {lang === "de" ? "Bücher" : "Books"}
             </a>
             <a
               href="/events"
-              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
-              style={linkStyle}
+              className="hover:opacity-80 transition-opacity"
+              style={{ ...linkStyle, fontSize: "20px" }}
               onClick={() => setMobileOpen(false)}
             >
               Events
             </a>
             <a
               href="/mieten"
-              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
-              style={linkStyle}
+              className="hover:opacity-80 transition-opacity"
+              style={{ ...linkStyle, fontSize: "20px" }}
               onClick={() => setMobileOpen(false)}
             >
               {lang === "de" ? "Mieten" : "Venue hire"}
             </a>
             <a
               href="/#kontakt"
-              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
-              style={linkStyle}
+              className="hover:opacity-80 transition-opacity"
+              style={{ ...linkStyle, fontSize: "20px" }}
               onClick={handleInPageNav}
             >
               {lang === "de" ? "Kontakt" : "Contact"}
             </a>
             <a
               href="/faq"
-              className="hover:opacity-80 transition-all active:bg-[#D72333] active:text-[#F9F1DA] rounded px-2 py-1"
-              style={linkStyle}
+              className="hover:opacity-80 transition-opacity"
+              style={{ ...linkStyle, fontSize: "20px" }}
               onClick={() => setMobileOpen(false)}
             >
               FAQ
@@ -333,4 +333,6 @@ export function Header() {
       )}
     </header>
   );
+
+  return headerContent;
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components/Header";
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { useLanguage } from "../../LanguageContext";
@@ -10,12 +9,12 @@ export default function MietenPage() {
   const { lang } = useLanguage();
 
   return (
-    <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[150px]">
-      <Header />
-
+    <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
+      {/* Desktop: gleiche Runter-Skalierung wie Startseite, Bücher, Events */}
+      <div className="md:scale-[0.855] md:origin-top">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 pb-24">
-        {/* Abschnittsüberschrift über den Fotos */}
-        <div className="w-full mb-8 text-center md:text-left md:pl-[70px]">
+        {/* Abschnittsüberschrift – nur auf Desktop weiter rechts */}
+        <div className="w-full mb-8 text-center md:text-left md:pl-[250px]">
           <h1
             style={{
               fontFamily: "Vollkorn",
@@ -30,73 +29,35 @@ export default function MietenPage() {
           </h1>
         </div>
 
-        {/* Galerie-Bereich: Slideshow links, statische Fotos unten, Text rechts breiter */}
-        <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-x-12 gap-y-10 md:gap-y-0 md:pl-[70px]">
-            {/* Links: Slideshow oben, statische Fotos unten */}
-            <div className="flex flex-col gap-6 md:gap-8 order-1 md:order-1">
-              {/* Slideshow mit Event-Fotos */}
-              <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                  style={{ aspectRatio: "4/3" }}
-                >
-                  <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
-                  <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
-                </video>
-              </div>
-              {/* Statische Fotos unten */}
-              <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
-                <Image
-                  src="/images/assets/mieten_1.webp"
-                  alt="Galerie im phil – Innenansicht"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 532px"
-                  priority
-                  unoptimized
-                />
-              </div>
-              <div className="relative w-full md:w-[532px] md:h-[399px]" style={{ aspectRatio: "4/3" }}>
-                <Image
-                  src="/images/assets/mieten_2.webp"
-                  alt="Galerie im phil – Atmosphäre"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 532px"
-                  unoptimized
-                />
-              </div>
-            </div>
+        {/* Desktop: Spalte 1 fest 520px (180+340), Spalte 2 breiter für Text; Bilder außerhalb */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-[520px_480px] md:items-start gap-8 md:gap-x-12 md:gap-y-10 md:pl-[70px]">
+          {/* 1. Video – auf Desktop in 520px-Spalte, Video 180px eingerückt, max 340px breit */}
+          <div className="relative w-full max-w-[260px] mx-auto md:max-w-[340px] md:mx-0 md:ml-[180px]" style={{ aspectRatio: "9/16" }}>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-contain"
+            >
+              <source src="/images/assets/galerie-mieten.webm" type="video/webm" />
+              <source src="/images/assets/galerie-mieten-opt.mp4" type="video/mp4" />
+            </video>
+          </div>
 
-            {/* Rechts: Text + Button */}
-            <div className="flex flex-col justify-start order-2 md:order-2 md:pt-0 md:max-w-[680px] md:mt-[400px] lg:mt-[520px]">
-              {/* Galerie mieten + Text */}
-              <div
-                style={{
-                  height: "auto",
-                  display: "flex",
-                  flexDirection: "column",
-                  marginTop: "0",
-                }}
-                className="md:mt-10 lg:mt-14"
-              >
-                <div
-                  style={{
-                    fontFamily: "Vollkorn",
-                    fontSize: "20px",
-                    fontStyle: "normal",
-                    fontWeight: 500,
-                    color: "#D72333",
-                    lineHeight: "115%",
-                    flex: 1,
-                    overflow: "auto",
-                  }}
-                >
+          {/* 2. Text + Button – breitere Spalte, eine Spur weiter rechts */}
+          <div className="flex flex-col gap-4 md:gap-6 md:max-w-[480px] md:mt-16 md:ml-20">
+          <div
+            className="text-[20px] md:text-[23px]"
+            style={{
+              fontFamily: "Vollkorn",
+              fontStyle: "normal",
+              fontWeight: 500,
+              color: "#D72333",
+              lineHeight: "115%",
+            }}
+          >
                   {lang === "de" ? (
                     <>
                       <p style={{ marginBottom: "10px" }}>
@@ -139,77 +100,69 @@ export default function MietenPage() {
                       </p>
                     </>
                   )}
-                </div>
+          </div>
 
-                {/* Mobile: Button unterhalb des Textes, etwas kleiner */}
-                <div className="mt-6 md:hidden">
-                  <a
-                    href="/#kontakt"
-                    className="transition-all duration-200 inline-block"
-                    style={{
-                      padding: "10px 24px",
-                      fontFamily: "Vollkorn",
-                      fontSize: "20px",
-                      fontStyle: "italic",
-                      fontWeight: 900,
-                      color: "#D72333",
-                      backgroundColor: "#F9F1DA",
-                      border: "2px solid #D72333",
-                      cursor: "pointer",
-                      lineHeight: "140%",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#D72333";
-                      e.currentTarget.style.color = "#F9F1DA";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#F9F1DA";
-                      e.currentTarget.style.color = "#D72333";
-                    }}
-                  >
-                    {lang === "de" ? "Anfrage senden" : "Send enquiry"}
-                  </a>
-                </div>
+          {/* Anfrage senden Button – direkt unter dem Text */}
+          <a
+            href="/#kontakt"
+            className="transition-all duration-200 inline-block w-fit"
+            style={{
+              padding: "15px 40px",
+              fontFamily: "Vollkorn",
+              fontSize: "25px",
+              fontStyle: "italic",
+              fontWeight: 900,
+              color: "#D72333",
+              backgroundColor: "#F9F1DA",
+              border: "3px solid #D72333",
+              cursor: "pointer",
+              lineHeight: "150%",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#D72333";
+              e.currentTarget.style.color = "#F9F1DA";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "#F9F1DA";
+              e.currentTarget.style.color = "#D72333";
+            }}
+          >
+            {lang === "de" ? "Anfrage senden" : "Send enquiry"}
+          </a>
+          </div>
+        </div>
 
-                {/* Desktop: großer Button wie auf der Webversion, mit normalem Abstand zum Text */}
-                <div className="mt-10 hidden md:block">
-                  <a
-                    href="/#kontakt"
-                    className="transition-all duration-200 inline-block"
-                    style={{
-                      padding: "15px 40px",
-                      fontFamily: "Vollkorn",
-                      fontSize: "25px",
-                      fontStyle: "italic",
-                      fontWeight: 900,
-                      color: "#D72333",
-                      backgroundColor: "#F9F1DA",
-                      border: "3px solid #D72333",
-                      cursor: "pointer",
-                      lineHeight: "150%",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#D72333";
-                      e.currentTarget.style.color = "#F9F1DA";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#F9F1DA";
-                      e.currentTarget.style.color = "#D72333";
-                    }}
-                  >
-                    {lang === "de" ? "Anfrage senden" : "Send enquiry"}
-                  </a>
-                </div>
-              </div>
-            </div>
+        {/* Bilder – außerhalb des Grids, nebeneinander, mittig zentriert */}
+        <div className="flex flex-col md:flex-row md:justify-center gap-6 md:gap-6 w-full mt-8 md:mt-10">
+          <div className="relative w-full md:w-[520px] md:h-[390px] md:shrink-0 mx-auto md:mx-0" style={{ aspectRatio: "4/3" }}>
+            <Image
+              src="/images/assets/mieten_1.webp"
+              alt="Galerie im phil – Innenansicht"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 520px"
+              priority
+              unoptimized
+            />
+          </div>
+          <div className="relative w-full md:w-[520px] md:h-[390px] md:shrink-0 mx-auto md:mx-0" style={{ aspectRatio: "4/3" }}>
+            <Image
+              src="/images/assets/mieten_2.webp"
+              alt="Galerie im phil – Atmosphäre"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 520px"
+              unoptimized
+            />
           </div>
         </div>
 
       </div>
+      </div>
 
-      {/* Footer */}
+      {/* Footer – außerhalb Scale; Desktop: negativer Abstand wegen Scale-Leerraum */}
       <footer
-        className="mt-24 flex flex-col items-center justify-center py-16 px-6"
+        className="mt-24 md:-mt-[100px] flex flex-col items-center justify-center py-16 px-6"
         style={{ backgroundColor: "#D72333" }}
       >
           <div className="w-[90px] h-[140px] relative mb-8">
@@ -233,8 +186,8 @@ export default function MietenPage() {
           >
             2026 phil Cafe &amp; Bookshop. All rights reserved
           </p>
-          {/* Legal Links - klein, im Hintergrund - linksbündig */}
-          <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[1440px] mx-auto">
+          {/* Legal Links - klein, im Hintergrund */}
+          <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
             {[
               { id: "imprint" as const, label: "Imprint" },
               { id: "privacy" as const, label: "Privacy Policy" },

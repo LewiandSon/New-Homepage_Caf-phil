@@ -10,6 +10,7 @@ const ASSETS_DIR = join(__dirname, '../public');
 // Events page images conversions
 const CONVERSIONS = [
   { input: 'images/assets/veranstaltung_1.jpg', output: 'images/assets/veranstaltung_1.webp' },
+  { input: 'images/assets/Weltfrauentag-phil-Instagrampost_3.png', output: 'images/assets/Weltfrauentag-phil-Instagrampost_3.webp' },
   { input: 'images/events/klemm-cover.jpg', output: 'images/events/klemm-cover.webp' },
   { input: 'images/events/spoken_word.jpg', output: 'images/events/spoken_word.webp' },
   { input: 'images/events/bücherflohmarkt.png', output: 'images/events/bücherflohmarkt.webp' },

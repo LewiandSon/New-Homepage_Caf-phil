@@ -26,7 +26,17 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* Auf Mobile kein smooth – verursacht wobble */
+  }
+  @media (min-width: 768px) {
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Startseite & Bücher: kein smooth scroll – wirkt mit Scale-Wrapper oft komisch */
+    html:has([data-page="home"]),
+    html:has([data-page="bucher"]) {
+      scroll-behavior: auto;
+    }
   }
   body {
     @apply bg-background text-foreground font-serif;
@@ -38,6 +48,14 @@
   #kontakt {
     scroll-margin-top: 135px;
   }
+
+  /* Bücher-Seite: Footer direkt unter Raumplan – stark nach oben */
+  @media (min-width: 768px) {
+    .bucher-page-footer {
+      margin-top: calc(-1.55 * (2960px * (1 - 0.855)));
+    }
+  }
+
 }
 
 @layer components {

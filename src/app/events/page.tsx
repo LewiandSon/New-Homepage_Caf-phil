@@ -1,9 +1,8 @@
 "use client";
 
-import { Header } from "@/components/Header";
 import { AnmeldungModal } from "@/components/AnmeldungModal";
 import Image from "next/image";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { useLanguage } from "../../LanguageContext";
 
 type EventItem = {
@@ -25,7 +24,7 @@ const UPCOMING_EVENTS_DE: EventItem[] = [
       '<strong>17–18 Uhr</strong> Prosecco Happy Hour<br/><br/>' +
       '<strong>19 Uhr</strong> Lenka Reschenbach präsentiert ihr preisgekröntes Buch „Der Patriarchatsindex“ – illustrierte Infografiken zum Patriarchat in Österreich.<br/><br/>' +
       '<strong>20:15 Uhr</strong> Pub-Quiz „Female Edition“ mit Tex Rubinowitz. Tolle Preise zu gewinnen.',
-    imageUrl: "/images/assets/veranstaltung_1.webp",
+    imageUrl: "/images/assets/Weltfrauentag-phil-Instagrampost (2).webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -37,7 +36,7 @@ const UPCOMING_EVENTS_EN: EventItem[] = [
     title: "International Women’s Day at phil",
     description:
       '<strong>3:30 pm</strong> Reading with Christine Heuer from Linda Olafsdottir\'s picture book about the women\'s strike in Iceland 50 years ago – for everyone aged 7 to 99.<br/><br/><strong>4:30 pm</strong> Caroline Peters reads from her novel "A Different Life" about a woman who breaks free from patriarchal role expectations.<br/><br/><strong>5–6 pm</strong> Prosecco Happy Hour<br/><br/><strong>7 pm</strong> Lenka Reschenbach presents her award-winning book "The Patriarchy Index" – illustrated infographics on patriarchy in Austria.<br/><br/><strong>8:15 pm</strong> Pub quiz "Female Edition" with Tex Rubinowitz. Great prizes to be won.',
-    imageUrl: "/images/assets/veranstaltung_1.webp",
+    imageUrl: "/images/assets/Weltfrauentag-phil-Instagrampost (2).webp",
     signupLink: "nein",
     status: "Aktiv",
   },
@@ -107,11 +106,18 @@ export default function EventsPage() {
   const [signupModal, setSignupModal] = useState<{ eventTitle: string; eventDate: string } | null>(null);
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
   const [expandedEvent, setExpandedEvent] = useState<string | null>(null);
+  const [imageLightbox, setImageLightbox] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (imageLightbox) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [imageLightbox]);
 
   return (
-    <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[150px]">
-      <Header />
-
+    <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
+      {/* Desktop: gleiche Runter-Skalierung wie Startseite & Bücher */}
+      <div className="md:scale-[0.855] md:origin-top">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 pb-24">
         <h1
           className="text-center mb-12"
@@ -152,10 +158,23 @@ export default function EventsPage() {
                 key={`upcoming-${event.title}-${event.date}-${idx}`}
                 className={`flex flex-col ${upcomingEvents.length === 1 ? 'lg:col-start-1 lg:col-span-2 lg:mx-auto lg:max-w-[calc((100%-4rem)/3)]' : ''}`}
               >
-                <div
-                  className="relative w-full aspect-[4/5] mb-6 border-[1px] border-[#D72333]"
-                  aria-hidden="true"
-                />
+                <button
+                  type="button"
+                  className="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-[#F9F1DA] block cursor-pointer border-0 p-0 text-left"
+                  onClick={() => setImageLightbox(imgSrc)}
+                >
+                  <Image
+                    src={imgSrc}
+                    alt={event.title}
+                    fill
+                    className={`object-cover rounded-none ${isWeltfrauentag ? 'border-2 border-[#D72333]' : 'border-0'}`}
+                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).onerror = null;
+                      (e.target as HTMLImageElement).src = "/images/assets/veranstaltung_1.webp";
+                    }}
+                  />
+                </button>
                 <div className="flex flex-col flex-1">
                   <p
                     style={{
@@ -180,6 +199,22 @@ export default function EventsPage() {
                   >
                     {event.title}
                   </h2>
+                  {isWeltfrauentag && (
+                    <p
+                      style={{
+                        fontFamily: "Vollkorn",
+                        fontSize: "16px",
+                        fontWeight: 500,
+                        color: "#D72333",
+                        marginBottom: "8px",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      {lang === "de"
+                        ? "Freier Eintritt. Plätze nach Verfügbarkeit."
+                        : "Free entry. Seats subject to availability."}
+                    </p>
+                  )}
                   <div
                     style={{
                       fontFamily: "Vollkorn",
@@ -293,14 +328,18 @@ export default function EventsPage() {
                 return (
                   <div
                     key={`past-${event.title}-${event.date}-${idx}`}
-                    className="flex flex-col grayscale-[0.5] hover:grayscale-0 transition-all duration-300"
+                    className="flex flex-col grayscale-[0.5] hover:grayscale-0 transition-all duration-300 md:max-w-[280px] md:mx-auto"
                   >
-                    <div className="relative w-full aspect-[4/5] mb-6">
+                    <button
+                      type="button"
+                      className="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-[#F9F1DA] block cursor-pointer border-0 p-0 text-left"
+                      onClick={() => setImageLightbox(imgSrc)}
+                    >
                       <Image
                         src={imgSrc}
                         alt={event.title}
                         fill
-                        className="object-contain"
+                        className={`object-cover rounded-none ${event.title.includes("Weltfrauentag") || event.title.includes("Women's Day") ? 'border-2 border-[#D72333]' : 'border-0'}`}
                         sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
                         onError={(e) => {
                           (e.target as HTMLImageElement).onerror = null;
@@ -308,14 +347,14 @@ export default function EventsPage() {
                         }}
                         unoptimized
                       />
-                    </div>
+                    </button>
                     <div className="flex flex-col flex-1">
                       <p
                         style={{
                           fontFamily: "Vollkorn",
                           fontSize: "18px",
                           fontWeight: 600,
-                          color: "#573B30",
+                          color: "#D72333",
                           marginBottom: "4px",
                         }}
                       >
@@ -338,7 +377,7 @@ export default function EventsPage() {
                           fontFamily: "Vollkorn",
                           fontSize: "16px",
                           lineHeight: "1.6",
-                          color: "#573B30",
+                          color: "#D72333",
                         }}
                         dangerouslySetInnerHTML={{ __html: event.description || "" }}
                       />
@@ -360,10 +399,39 @@ export default function EventsPage() {
         )}
 
       </div>
+      </div>
 
-      {/* Footer */}
+      {/* Bild-Lightbox – außerhalb Scale, damit fixed korrekt wirkt */}
+      {imageLightbox && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 md:px-12"
+          onClick={() => setImageLightbox(null)}
+        >
+          <div
+            className="relative max-w-[85vw] max-h-[90vh] flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imageLightbox}
+              alt=""
+              className={`max-h-[90vh] w-auto object-contain ${imageLightbox?.includes('Weltfrauentag') ? 'border-2 border-[#D72333]' : ''}`}
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => setImageLightbox(null)}
+            className="absolute top-4 right-4 text-white hover:text-primary text-3xl p-2 z-10"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
+      {/* Footer – außerhalb Scale; Desktop: negativer Abstand wegen Scale-Leerraum */}
       <footer
-        className="mt-24 flex flex-col items-center justify-center py-16 px-6"
+        className="mt-24 md:-mt-[260px] flex flex-col items-center justify-center py-16 px-6"
         style={{ backgroundColor: "#D72333" }}
       >
           <div className="w-[90px] h-[140px] relative mb-8">
@@ -387,8 +455,8 @@ export default function EventsPage() {
           >
             2026 phil Cafe &amp; Bookshop. All rights reserved
           </p>
-          {/* Legal Links - klein, im Hintergrund - linksbündig */}
-          <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[1440px] mx-auto">
+          {/* Legal Links - klein, im Hintergrund */}
+          <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
             {[
               { id: "imprint" as const, label: "Imprint" },
               { id: "privacy" as const, label: "Privacy Policy" },

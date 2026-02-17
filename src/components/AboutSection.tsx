@@ -27,7 +27,7 @@ export function AboutSection() {
         <div
           style={{
             fontFamily: "Vollkorn",
-            fontSize: "18px",
+            fontSize: "20px",
             fontWeight: 500,
             lineHeight: "150%",
             color: "#D72333",
@@ -120,8 +120,7 @@ export function AboutSection() {
                 fontStyle: 'normal',
                 fontWeight: 300,
                 lineHeight: '150%',
-                textAlign: 'right',
-                paddingLeft: '2rem',
+                textAlign: 'left',
               }}
             >
               {lang === 'de' ? (
@@ -147,7 +146,7 @@ export function AboutSection() {
           </div>
 
           {/* Cup Image - Mobile */}
-          <div className="-mt-2 mb-4 flex justify-start">
+          <div className="-mt-2 mb-4 flex justify-end">
             <div
               style={{
                 width: '110px',
@@ -167,23 +166,18 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Analog cafe video - Mobile */}
+          {/* Analog cafe animation - WebM mit Alpha (transparent), GIF-Fallback */}
           <div className="mb-8 flex justify-center">
-            <div className="w-full max-w-[400px] bg-[#F9F1DA] rounded-lg overflow-hidden">
+            <div className="w-full max-w-[400px] rounded-lg overflow-hidden">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                preload="none"
-                className="w-full h-auto"
-                style={{
-                  objectFit: 'contain',
-                  backgroundColor: '#F9F1DA',
-                }}
+                preload="metadata"
+                className="w-full h-auto object-contain"
               >
-                <source src="/images/assets/analog-cafe-giff.webm" type="video/webm" />
-                <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
+                <source src="/images/assets/analog-cafe_v2.webm" type="video/webm" />
               </video>
             </div>
           </div>
@@ -224,7 +218,7 @@ export function AboutSection() {
               <div
                 style={{
                   fontFamily: 'Vollkorn',
-                  fontSize: '18px',
+                  fontSize: '20px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '150%',
@@ -266,10 +260,11 @@ export function AboutSection() {
                     justifyContent: 'center',
                     color: '#D72333',
                     fontFamily: 'Iosevka, "Courier New", monospace',
-                    fontSize: '18px',
+                    fontSize: '20px',
                     fontStyle: 'normal',
                     fontWeight: 300,
                     lineHeight: '150%',
+                    textAlign: 'left',
                   }}
                 >
                   {lang === 'de' ? (
@@ -342,54 +337,8 @@ export function AboutSection() {
       {/* Desktop layout – ursprüngliches Figma-Layout */}
       <div 
         className="hidden md:block absolute left-1/2 -translate-x-1/2 w-[1440px] h-[1567px]"
-        style={{ top: '1086px' }}
+        style={{ top: '0px' }}
       >
-        {/* Bordüre 1 - decorative border */}
-        <div 
-          className="absolute pointer-events-none"
-          style={{ 
-            width: '1063.75px', 
-            height: '851px', 
-            left: '206px',
-            top: '106px',
-            zIndex: 1
-          }}
-        >
-          <Image
-            src="/images/assets/bordüre 1.svg"
-            alt=""
-            width={1064}
-            height={851}
-            className="object-contain"
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-          />
-        </div>
-
-        {/* Image: IMG_4886 1 */}
-        <div 
-          className="absolute"
-          style={{
-            width: '806px',
-            height: '531px',
-            left: '338px',
-            top: '266px',
-            zIndex: 10
-          }}
-        >
-          <Image
-            src="/images/assets/IMG_4886.webp"
-            alt="Café Interior"
-            width={806}
-            height={531}
-            className="object-contain"
-            loading="lazy"
-            unoptimized
-          />
-        </div>
-
         {/* Heading: "Unsere Geschichte" */}
         <div 
           className="absolute"
@@ -397,7 +346,7 @@ export function AboutSection() {
             width: '561px',
             height: '147px',
             left: '217px',
-            top: '957px',
+            top: '0px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -420,13 +369,13 @@ export function AboutSection() {
             width: '666px',
             height: '465px',
             left: '212px',
-            top: '1055px',
+            top: '100px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             color: '#D72333',
             fontFamily: 'Vollkorn',
-            fontSize: '23px',
+            fontSize: '20px',
             fontStyle: 'normal',
             fontWeight: 500,
             lineHeight: '150%',

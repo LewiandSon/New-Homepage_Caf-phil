@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components/Header";
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { useLanguage } from "../../LanguageContext";
@@ -9,11 +8,9 @@ export default function BucherPage() {
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
   const { lang } = useLanguage();
   return (
-    <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[120px] md:pt-[150px]">
-      <Header />
-
+    <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
       {/* Mobile layout */}
-      <div className="block md:hidden px-4 pb-24 max-w-[720px] mx-auto">
+      <div className="block md:hidden px-4 pb-12 max-w-[720px] mx-auto">
         {/* Hero image */}
         <div className="w-full mb-8">
           <Image
@@ -45,7 +42,7 @@ export default function BucherPage() {
           className="mb-10"
           style={{
             fontFamily: "Vollkorn",
-            fontSize: "18px",
+            fontSize: "20px",
             fontWeight: 500,
             lineHeight: "150%",
             color: "#D72333",
@@ -59,13 +56,13 @@ export default function BucherPage() {
               <p className="mb-4">
                 Eine bunte Auswahl an internationalen Autor:innen in deutschsprachiger und englischsprachiger Fassung. Viele unserer Bücher eignen sich perfekt als Geschenk oder Mitbringsel.
               </p>
-              <p className="mb-4" style={{ paddingLeft: "1.5rem" }}>
-                ✓ Über 4.000 Titel lagernd<br />
-                ✓ Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a><br />
-                ✓ Besondere Titel, die du nicht überall findest<br />
-                ✓ Deutschsprachige & englischsprachige Bücher<br />
-                ✓ Perfekt als Geschenk oder Mitbringsel
-              </p>
+              <ul className="mb-4 list-disc pl-5 space-y-2" style={{ listStylePosition: "outside" }}>
+                <li>Über 4.000 Titel lagernd</li>
+                <li>Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a></li>
+                <li>Besondere Titel, die du nicht überall findest</li>
+                <li>Deutschsprachige & englischsprachige Bücher</li>
+                <li>Perfekt als Geschenk oder Mitbringsel</li>
+              </ul>
               <p>
                 Bei uns darfst du Bücher direkt an deinen Tisch mitnehmen und in Ruhe schmökern – gerne bei Kaffee oder Frühstück.
               </p>
@@ -78,13 +75,13 @@ export default function BucherPage() {
               <p className="mb-4">
                 You’ll discover a colourful range of international authors in both German and English. Many of our books make perfect gifts or little treasures to take home.
               </p>
-              <p className="mb-4">
-                ✓ Over 4,000 titles in stock<br />
-                ✓ Any available book can be <a href="mailto:info@phil.info" className="underline hover:opacity-80">ordered</a><br />
-                ✓ Special titles you won’t find everywhere<br />
-                ✓ German‑language & English‑language books<br />
-                ✓ Perfect as gifts or souvenirs
-              </p>
+              <ul className="mb-4 list-disc pl-5 space-y-2" style={{ listStylePosition: "outside" }}>
+                <li>Over 4,000 titles in stock</li>
+                <li>Any available book can be <a href="mailto:info@phil.info" className="underline hover:opacity-80">ordered</a></li>
+                <li>Special titles you won’t find everywhere</li>
+                <li>German‑language & English‑language books</li>
+                <li>Perfect as gifts or souvenirs</li>
+              </ul>
               <p>
                 You’re welcome to take books straight to your table and browse in peace – preferably with coffee or breakfast.
               </p>
@@ -121,36 +118,36 @@ export default function BucherPage() {
           </div>
         </div>
 
-        {/* Genres heading + Room plan – Überschrift wie im Plan positioniert */}
-        <div className="mb-10 relative">
-          <Image
-            src="/images/assets/raumplan2.webp"
-            alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
-            width={1280}
-            height={900}
-            className="w-full h-auto object-cover"
-          />
-          {/* Überschrift optisch über der linken Genre-Liste */}
+        {/* Genre-Überschrift + Raumplan – Überschrift weiter unten, Raumplan maximal groß */}
+        <div className="mb-4 mt-32">
           <h2
-            className="absolute"
+            className="mb-0 text-center leading-tight"
             style={{
-              top: "124px",
-              left: "16px",
               fontFamily: "Vollkorn",
-              fontSize: "12px",
+              fontSize: "24px",
               fontStyle: "italic",
               fontWeight: 900,
-              lineHeight: "150%",
               color: "#D72333",
             }}
           >
             {lang === "de" ? "Genre" : "Genres"}
           </h2>
+          <div className="max-w-[95vw] w-full mx-auto -mt-12">
+            <Image
+              src="/images/assets/raumplan-phil.webp"
+              alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
+              width={1440}
+              height={1920}
+              className="w-full h-auto block"
+            />
+          </div>
         </div>
       </div>
 
+      {/* Desktop: gleiche Runter skalierung wie Startseite (md:scale-[0.855]) */}
+      <div className="md:scale-[0.855] md:origin-top">
       {/* Desktop layout */}
-      <div className="relative hidden md:block w-[1440px] mx-auto" style={{ minHeight: '2650px' }}>
+      <div className="relative hidden md:block w-[1440px] mx-auto" style={{ minHeight: '2960px' }}>
         
         {/* Main Image Section with Border */}
         {/* Border - rotated 90deg per Figma */}
@@ -231,11 +228,13 @@ export default function BucherPage() {
             <>
               Das phil ist nicht nur ein Café, sondern auch eine vollwertige Buchhandlung mitten in Wien-Mariahilf. Unsere Auswahl ist handverlesen, ungewöhnlich und inspirierend – von Neuerscheinungen und Bestsellern bis hin zu besonderen Titeln, die du nicht in jeder Buchhandlung findest. Eine bunte Auswahl an internationalen Autoren in deutschsprachiger und englischsprachiger Fassung. Viele unserer Bücher eignen sich perfekt als Geschenk oder Mitbringsel.
               <br /><br />
-              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Über 4.000 Titel lagernd</span>
-              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a></span>
-              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Besondere Titel, die du nicht überall findest</span>
-              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Deutschsprachige & englischsprachige Bücher</span>
-              <span style={{ paddingLeft: "1.5rem", display: "block" }}>✓ Perfekt als Geschenk oder Mitbringsel</span>
+              <ul className="list-disc pl-5 space-y-2" style={{ listStylePosition: "outside", margin: "0.5rem 0" }}>
+                <li>Über 4.000 Titel lagernd</li>
+                <li>Alle lieferbaren Bücher <a href="mailto:info@phil.info" className="underline hover:opacity-80">bestellbar</a></li>
+                <li>Besondere Titel, die du nicht überall findest</li>
+                <li>Deutschsprachige & englischsprachige Bücher</li>
+                <li>Perfekt als Geschenk oder Mitbringsel</li>
+              </ul>
               <br /><br />
               Bei uns darfst du Bücher direkt an deinen Tisch mitnehmen und in Ruhe schmökern – gerne bei Kaffee oder Frühstück.
             </>
@@ -243,11 +242,13 @@ export default function BucherPage() {
             <>
               phil is not just a café, but a fully fledged bookshop in the heart of Vienna–Mariahilf. Our selection is hand‑picked, unusual and inspiring – from new releases and bestsellers to special titles you won’t find in every bookshop. You’ll discover a colourful range of international authors in both German and English. Many of our books make perfect gifts or little treats to take home.
               <br /><br />
-              ✓ Over 4,000 titles in stock<br />
-              ✓ Any available book can be <a href="mailto:info@phil.info" className="underline hover:opacity-80">ordered</a><br />
-              ✓ Special titles you won’t find everywhere<br />
-              ✓ German‑language & English‑language books<br />
-              ✓ Perfect as gifts or souvenirs
+              <ul className="list-disc pl-5 space-y-2" style={{ listStylePosition: "outside", margin: "0.5rem 0" }}>
+                <li>Over 4,000 titles in stock</li>
+                <li>Any available book can be <a href="mailto:info@phil.info" className="underline hover:opacity-80">ordered</a></li>
+                <li>Special titles you won’t find everywhere</li>
+                <li>German‑language & English‑language books</li>
+                <li>Perfect as gifts or souvenirs</li>
+              </ul>
               <br /><br />
               You’re welcome to take books straight to your table and browse in peace – preferably with coffee or breakfast.
             </>
@@ -301,134 +302,124 @@ export default function BucherPage() {
           </video>
         </div>
 
-        {/* Room Plan Image */}
+        {/* Raumplan (Karte mit Bildern) – auf Desktop ohne Genre-Überschrift, nach oben gerückt */}
         <div
-          className="absolute"
-          style={{
-            left: "80px",
-            top: "1637px",
-            width: "1281px",
-            height: "906px",
-            aspectRatio: "427/302"
-          }}
+          className="absolute left-0 right-0 w-full"
+          style={{ top: "1560px" }}
         >
-          <Image
-            src="/images/assets/raumplan2.webp"
-            alt="Raumplan - Bücher und wo sie zu finden sind"
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Genre Heading */}
-        <h2
-          className="absolute"
-          style={{
-            left: "138px",
-            top: "2077px",
-            width: "171px",
-            fontFamily: "Vollkorn",
-            fontSize: "35px",
-            fontStyle: "italic",
-            fontWeight: 900,
-            lineHeight: "150%",
-            color: "#D72333"
-          }}
-        >
-          {lang === "de" ? "Genre" : "Genres"}
-        </h2>
-
-
-        {/* Footer Modal Overlay */}
-        {footerModal && (
-          <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center"
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-            onClick={() => setFooterModal(null)}
+          <h2
+            className="mb-0 text-center leading-tight md:hidden"
+            style={{
+              fontFamily: "Vollkorn",
+              fontSize: "35px",
+              fontStyle: "italic",
+              fontWeight: 900,
+              color: "#D72333",
+            }}
           >
-            <div
-              className="relative w-[520px] bg-[#D72333] text-[#F9F1DA] px-8 py-10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() => setFooterModal(null)}
-                className="absolute right-4 top-4 text-[#F9F1DA] transition-colors duration-200"
-                style={{ fontSize: "28px", fontWeight: 900 }}
-                onMouseEnter={(e) => ((e.currentTarget.style.color = "#573B30"))}
-                onMouseLeave={(e) => ((e.currentTarget.style.color = "#F9F1DA"))}
-                aria-label="Close"
-              >
-                ×
-              </button>
-
-              {footerModal === "imprint" && (
-                <div
-                  style={{
-                    fontFamily: "Vollkorn",
-                    fontSize: "22px",
-                    lineHeight: "150%",
-                  }}
-                >
-                  <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
-                    Imprint
-                  </div>
-                  <div><strong>phil Cafe &amp; Bookshop</strong></div>
-                  <div>Gumpendorfer Straße 10 – 12</div>
-                  <div>1060 Vienna, Austria</div>
-                  <div>Phone: 01 581 04 89</div>
-                  <div>E-Mail: info@phil.info</div>
-                  <div>Owner: Lewi &amp; Son GmbH</div>
-                </div>
-              )}
-
-              {footerModal === "privacy" && (
-                <div
-                  style={{
-                    fontFamily: "Vollkorn",
-                    fontSize: "22px",
-                    lineHeight: "150%",
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
-                    Privacy Policy
-                  </div>
-                  <div>
-                    This website does not collect personal data except for what is necessary to
-                    process contact requests. For more information, please contact us at
-                    info@phil.info.
-                  </div>
-                </div>
-              )}
-
-              {footerModal === "terms" && (
-                <div
-                  style={{
-                    fontFamily: "Vollkorn",
-                    fontSize: "22px",
-                    lineHeight: "150%",
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
-                    Terms &amp; Conditions
-                  </div>
-                  <div>
-                    By using this website, you agree to our terms and conditions. For more
-                    information, please contact us at info@phil.info.
-                  </div>
-                </div>
-              )}
-            </div>
+            {lang === "de" ? "Genre" : "Genres"}
+          </h2>
+          <div className="max-w-[1040px] w-full mx-auto -mt-12 px-4 md:mt-0">
+            <Image
+              src="/images/assets/raumplan-phil.webp"
+              alt="Raumplan - Bücher und wo sie zu finden sind"
+              width={1440}
+              height={1920}
+              className="w-full h-auto block"
+            />
           </div>
-        )}
-
+        </div>
+      </div>
       </div>
 
-      {/* Footer - außerhalb des absoluten Containers, gleicher Stil wie andere Unterseiten */}
+      {/* Footer Modal Overlay – außerhalb Scale, damit fixed korrekt wirkt */}
+      {footerModal && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+          onClick={() => setFooterModal(null)}
+        >
+          <div
+            className="relative w-[520px] bg-[#D72333] text-[#F9F1DA] px-8 py-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setFooterModal(null)}
+              className="absolute right-4 top-4 text-[#F9F1DA] transition-colors duration-200"
+              style={{ fontSize: "28px", fontWeight: 900 }}
+              onMouseEnter={(e) => ((e.currentTarget.style.color = "#573B30"))}
+              onMouseLeave={(e) => ((e.currentTarget.style.color = "#F9F1DA"))}
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+            {footerModal === "imprint" && (
+              <div
+                style={{
+                  fontFamily: "Vollkorn",
+                  fontSize: "22px",
+                  lineHeight: "150%",
+                }}
+              >
+                <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
+                  Imprint
+                </div>
+                <div><strong>phil Cafe &amp; Bookshop</strong></div>
+                <div>Gumpendorfer Straße 10 – 12</div>
+                <div>1060 Vienna, Austria</div>
+                <div>Phone: 01 581 04 89</div>
+                <div>E-Mail: info@phil.info</div>
+                <div>Owner: Lewi &amp; Son GmbH</div>
+              </div>
+            )}
+
+            {footerModal === "privacy" && (
+              <div
+                style={{
+                  fontFamily: "Vollkorn",
+                  fontSize: "22px",
+                  lineHeight: "150%",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
+                  Privacy Policy
+                </div>
+                <div>
+                  This website does not collect personal data except for what is necessary to
+                  process contact requests. For more information, please contact us at
+                  info@phil.info.
+                </div>
+              </div>
+            )}
+
+            {footerModal === "terms" && (
+              <div
+                style={{
+                  fontFamily: "Vollkorn",
+                  fontSize: "22px",
+                  lineHeight: "150%",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ fontStyle: "italic", fontWeight: 900, marginBottom: "8px" }}>
+                  Terms &amp; Conditions
+                </div>
+                <div>
+                  By using this website, you agree to our terms and conditions. For more
+                  information, please contact us at info@phil.info.
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Footer – außerhalb Scale; Desktop: negativer Abstand damit er direkt unter Raumplan sitzt (≈ 665px) */}
       <footer
-        className="mt-24 flex flex-col items-center justify-center py-16 px-6"
+        className="mt-12 md:-mt-[520px] flex flex-col items-center justify-center py-16 px-6"
         style={{ backgroundColor: "#D72333" }}
       >
         <div className="w-[90px] h-[140px] relative mb-8">
@@ -451,8 +442,8 @@ export default function BucherPage() {
         >
           2026 phil Cafe &amp; Bookshop. All rights reserved
         </p>
-        {/* Legal Links - klein, im Hintergrund - linksbündig */}
-        <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[1440px] mx-auto">
+        {/* Legal Links - klein, im Hintergrund */}
+        <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
           {[
             { id: "imprint" as const, label: "Imprint" },
             { id: "privacy" as const, label: "Privacy Policy" },

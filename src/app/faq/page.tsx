@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components/Header";
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { useLanguage } from "../../LanguageContext";
@@ -175,9 +174,7 @@ export default function FAQPage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[150px]">
-      <Header />
-
+    <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px]">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 pb-24">
         {/* Table Image - näher zur Überschrift */}
         <div className="relative w-full flex justify-center md:justify-end md:pr-[150px]" style={{ minHeight: "200px", marginBottom: "20px", marginTop: "10px" }}>
@@ -222,17 +219,17 @@ export default function FAQPage() {
                 style={{
                   border: "1px solid #D72333",
                   backgroundColor: "transparent",
-                  marginBottom: "10px",
+                  marginBottom: "8px",
                 }}
               >
                 {/* Question Row - nur dieser Teil bekommt roten Hintergrund wenn geöffnet */}
                 <button
                   type="button"
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between cursor-pointer"
+                  className="w-full flex items-center justify-between cursor-pointer md:!text-[22px] md:!p-4 md:!px-6"
                   style={{
                     fontFamily: "Vollkorn",
-                    fontSize: "30px",
+                    fontSize: "18px",
                     fontStyle: "normal",
                     fontWeight: 500,
                     color: "#D72333",
@@ -240,43 +237,48 @@ export default function FAQPage() {
                     textAlign: "left",
                     background: isOpen ? "rgba(215, 35, 51, 0.15)" : "transparent",
                     border: "none",
-                    padding: "20px 25px",
+                    padding: "12px 16px",
                     transition: "background-color 0.2s ease",
                   }}
                 >
-                  <span className="flex-1 pr-4">{faq.question}</span>
+                  <span className="flex-1 pr-3">{faq.question}</span>
                   <span
                     className="flex-shrink-0"
                     style={{
-                      fontFamily: "Vollkorn",
-                      fontSize: "50px",
-                      fontWeight: 700,
-                      color: "#D72333",
-                      lineHeight: "150%",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                       transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                       transition: "transform 0.3s ease",
-                      display: "inline-block",
-                      width: "48px",
-                      textAlign: "center",
+                      width: "16px",
+                      height: "16px",
                     }}
                   >
-                    ‸
+                    <svg
+                      width="16"
+                      height="8"
+                      viewBox="0 0 16 8"
+                      fill="none"
+                      style={{ display: "block", color: "inherit" }}
+                    >
+                      <line x1="0" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      <line x1="16" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
                   </span>
                 </button>
 
                 {/* Answer (Collapsible) */}
                 {isOpen && (
                   <div
+                    className="text-[20px] md:text-[22px] md:p-6 md:px-6"
                     style={{
-                      padding: "25px",
+                      padding: "14px 16px",
                       fontFamily: "Vollkorn",
-                      fontSize: "18px",
                       fontStyle: "normal",
                       fontWeight: 500,
                       color: "#D72333",
                       lineHeight: "150%",
                       borderTop: "1px solid #D72333",
-                      minHeight: "100px",
                       overflow: "visible",
                     }}
                   >
@@ -320,8 +322,8 @@ export default function FAQPage() {
           >
             2026 phil Cafe &amp; Bookshop. All rights reserved
           </p>
-          {/* Legal Links - klein, im Hintergrund - linksbündig */}
-          <div className="flex items-center justify-start gap-[12px] mt-4 flex-wrap opacity-60 max-w-[994px] mx-auto">
+          {/* Legal Links - klein, im Hintergrund */}
+          <div className="flex items-center justify-center gap-[12px] mt-4 flex-wrap opacity-60">
             {[
               { id: "imprint" as const, label: "Imprint" },
               { id: "privacy" as const, label: "Privacy Policy" },

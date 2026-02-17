@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
+import { createPortal } from "react-dom";
 import { useLanguage } from "../LanguageContext";
 
 const MENU_ITEMS_DE = [
@@ -20,27 +21,31 @@ const MENU_ITEMS_EN = [
   { src: "/images/assets/limo-en.svg", alt: "Soft drinks menu" },
 ];
 
-export function QuoteSection() {
+interface QuoteSectionProps {
+  footerModal: "imprint" | "privacy" | "terms" | null;
+  setFooterModal: (modal: "imprint" | "privacy" | "terms" | null) => void;
+}
+
+export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showEventLightbox, setShowEventLightbox] = useState(false);
-  const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
   const [showInstagramStrichMobile, setShowInstagramStrichMobile] = useState(false);
   const [showInstagramStrichDesktop, setShowInstagramStrichDesktop] = useState(false);
   const [showInstagramStrichFooter, setShowInstagramStrichFooter] = useState(false);
   const { lang } = useLanguage();
   const menuItems = lang === "de" ? MENU_ITEMS_DE : MENU_ITEMS_EN;
 
-  // Prevent scrolling when lightbox is open
+  // Prevent scrolling when lightbox or footer modal is open
   useEffect(() => {
-    if (lightboxIndex !== null || showEventLightbox) {
+    if (lightboxIndex !== null || showEventLightbox || footerModal) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
-  }, [lightboxIndex, showEventLightbox]);
+  }, [lightboxIndex, showEventLightbox, footerModal]);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -151,13 +156,25 @@ export function QuoteSection() {
         </div>
       </div>
 
+      {/* Speisekarte GIF – unterhalb der Karten, mittig */}
+      <div className="mt-16 mb-16 flex justify-center w-full">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/assets/phil-speisen-handbeschriftet.gif"
+          alt={lang === "de" ? "Speisekarte handbeschriftet" : "Handwritten menu"}
+          className="max-w-full object-contain"
+          style={{ maxWidth: "328px" }}
+          loading="lazy"
+        />
+      </div>
+
       {/* Lewis Carroll Quote & Saltpepper - Mobile */}
       <div className="mb-12 flex flex-col items-start">
         <div
           style={{
             color: "#D72333",
             fontFamily: 'Iosevka, "Courier New", monospace',
-            fontSize: "18px",
+            fontSize: "20px",
             fontStyle: "normal",
             fontWeight: 300,
             lineHeight: "150%",
@@ -186,33 +203,11 @@ export function QuoteSection() {
         <div className="mt-6">
           <Image
             src="/images/assets/saltpepper.webp"
-            alt="Salt & Pepper"
+            alt={lang === "de" ? "Salz und Pfeffer" : "Salt and pepper"}
             width={150}
             height={150}
             className="object-contain"
             unoptimized
-          />
-        </div>
-      </div>
-
-      {/* Mehr Fotos nach Speisekarte - Mobile */}
-      <div className="mb-12 grid grid-cols-2 gap-4">
-        <div className="relative w-full aspect-[3/4]">
-          <Image
-            src="/images/assets/IMG_4905.webp"
-            alt="Café Interior"
-            fill
-            className="object-cover rounded-sm"
-            loading="lazy"
-          />
-        </div>
-        <div className="relative w-full aspect-[3/4]">
-          <Image
-            src="/images/assets/IMG_4886.webp"
-            alt="Café Interior"
-            fill
-            className="object-cover rounded-sm"
-            loading="lazy"
           />
         </div>
       </div>
@@ -233,16 +228,19 @@ export function QuoteSection() {
         </h2>
         {/* Foto mit Bordüre - neues Foto von Emily */}
         <div className="relative w-full max-w-[400px] mx-auto aspect-[3/4] mb-8">
-          <div className="absolute inset-[12%] overflow-hidden rounded-sm">
-            <Image
-              src="/images/assets/schanigarten_foto.jpg"
-              alt="Schanigarten"
-              fill
-              className="object-cover"
-              loading="lazy"
-            />
+          <div className="absolute inset-[12%] overflow-hidden rounded-sm z-0">
+            <div className="relative w-full h-full">
+              <Image
+                src="/images/assets/schanigarten.webp"
+                alt="Schanigarten"
+                fill
+                className="object-cover"
+                loading="lazy"
+                sizes="400px"
+              />
+            </div>
           </div>
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none z-10">
             <Image
               src="/images/assets/bordüre2.svg"
               alt=""
@@ -256,7 +254,7 @@ export function QuoteSection() {
           className="text-left max-w-[600px]"
           style={{
             fontFamily: "Vollkorn",
-            fontSize: "18px",
+            fontSize: "20px",
             fontWeight: 500,
             lineHeight: "150%",
             color: "#D72333",
@@ -281,7 +279,7 @@ export function QuoteSection() {
       </div>
 
       {/* Veranstaltungen Section - Mobile (Weltfrauentag Platzhalter) */}
-      <div className="mb-16 relative overflow-hidden rounded-lg bg-[#F9F1DA] px-6 py-8" id="veranstaltungen">
+      <div className="mb-16 relative overflow-hidden rounded-lg bg-[#F9F1DA] px-6 py-8 text-left" id="veranstaltungen">
         {/* Disco Ball links neben dem Titel - größer und überlappend */}
         <div className="flex items-center gap-3 mb-6 relative">
           <div className="flex-shrink-0 absolute -left-2 -top-2 z-0">
@@ -308,26 +306,31 @@ export function QuoteSection() {
           </h2>
         </div>
 
-        {/* Event-Poster (Weltfrauentag Platzhalter) – auf Mobile nur noch dekorativ, nicht klickbar */}
-        <div className="relative w-full max-w-[320px] aspect-[4/5] mx-auto mb-6">
+        {/* Event-Poster (Weltfrauentag) – klickbar für Lightbox */}
+        <button
+          type="button"
+          className="relative w-full max-w-[320px] aspect-[4/5] mx-auto mb-6 block cursor-pointer border-0 p-0 bg-transparent"
+          onClick={() => setShowEventLightbox(true)}
+        >
           <Image
-            src="/images/assets/veranstaltung_1.jpg"
+            src="/images/assets/Weltfrauentag-phil-Instagrampost (2).webp"
             alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
             fill
-            className="object-cover"
-            unoptimized
+            className="object-cover border-2 border-[#D72333]"
+            loading="lazy"
           />
-        </div>
+        </button>
 
-        {/* Beschreibungstext */}
+        {/* Beschreibungstext – linksbündig, Button bleibt mittig */}
         <p
-          className="text-center max-w-[600px] mx-auto mb-4"
+          className="text-left max-w-[600px] mb-4"
           style={{
             fontFamily: "Vollkorn",
-            fontSize: "16px",
+            fontSize: "20px",
             fontWeight: 500,
             lineHeight: "150%",
             color: "#D72333",
+            textAlign: "left",
           }}
         >
           {lang === "de" ? (
@@ -374,30 +377,19 @@ export function QuoteSection() {
           Events &amp; Bar
         </h2>
 
-        {/* Foto mit überlagertem GIF/Video */}
-        <div className="relative w-full max-w-[420px] mx-auto aspect-[3/4] mb-10 overflow-hidden rounded-sm">
-          <Image
-            src="/images/assets/IMG_4843-2.webp"
-            alt={lang === "de" ? "Events & Bar im phil" : "Events & bar at phil"}
-            fill
-            className="object-cover"
-            loading="lazy"
-          />
-
-          {/* Video-GIF unten über das Foto gelegt (größer) */}
-          <div className="absolute -bottom-8 right-0 w-[80%] shadow-lg overflow-hidden">
+        {/* Video-Slideshow (Hochformat) */}
+        <div className="relative w-full max-w-[340px] mx-auto aspect-[3/4] mb-10 overflow-hidden">
           <video
             autoPlay
             loop
             muted
             playsInline
-            preload="none"
+            preload="metadata"
             className="w-full h-full object-cover"
           >
-            <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
-            <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
+            <source src="/images/assets/event-slideshow-phil-mobile.webm" type="video/webm" />
+            <source src="/images/assets/event-slideshow-phil-mobile.mp4" type="video/mp4" />
           </video>
-        </div>
         </div>
 
         {/* Textblöcke */}
@@ -418,8 +410,9 @@ export function QuoteSection() {
             <p
               style={{
                 fontFamily: "Vollkorn",
-                fontSize: "16px",
+                fontSize: "20px",
                 lineHeight: "150%",
+                fontWeight: 500,
               }}
             >
               {lang === "de" ? (
@@ -495,8 +488,9 @@ export function QuoteSection() {
             <p
               style={{
                 fontFamily: "Vollkorn",
-                fontSize: "16px",
+                fontSize: "20px",
                 lineHeight: "150%",
+                fontWeight: 500,
               }}
             >
               {lang === "de"
@@ -508,7 +502,7 @@ export function QuoteSection() {
       </div>
 
       {/* Reservierungen + Adresse/Öffnungszeiten – Mobile Version */}
-      <section className="mt-12 mb-20" data-section="kontakt" style={{ scrollMarginTop: "120px" }}>
+      <section className="mt-12 mb-20">
         {/* Lampe + Besuch-uns-Button */}
         <div className="flex flex-col items-center mb-10">
           <div className="mb-4">
@@ -531,7 +525,7 @@ export function QuoteSection() {
               className="text-[#D72333] group-hover:text-[#F9F1DA] transition-colors duration-200"
               style={{
                 fontFamily: "Vollkorn",
-                fontSize: "18px",
+                fontSize: "20px",
                 fontStyle: "italic",
                 fontWeight: 900,
                 lineHeight: "150%",
@@ -583,7 +577,7 @@ export function QuoteSection() {
             style={{
               color: "#D72333",
               fontFamily: "Vollkorn",
-              fontSize: "18px",
+              fontSize: "20px",
               fontStyle: "normal",
               fontWeight: 500,
               lineHeight: "150%",
@@ -596,7 +590,7 @@ export function QuoteSection() {
         </div>
 
         {/* Adresse & Öffnungszeiten Karten */}
-        <div className="space-y-6">
+        <div id="kontakt" data-section="kontakt" className="space-y-6" style={{ scrollMarginTop: "120px" }}>
           {/* Adresse */}
           <div
             className="px-6 py-6"
@@ -621,7 +615,7 @@ export function QuoteSection() {
               style={{
                 color: "#F9F1DA",
                 fontFamily: "Vollkorn",
-                fontSize: "18px",
+                fontSize: "20px",
                 fontStyle: "normal",
                 fontWeight: 500,
                 lineHeight: "150%",
@@ -664,7 +658,7 @@ export function QuoteSection() {
               style={{
                 color: "#F9F1DA",
                 fontFamily: "Vollkorn",
-                fontSize: "18px",
+                fontSize: "20px",
                 fontStyle: "normal",
                 fontWeight: 500,
                 lineHeight: "150%",
@@ -700,27 +694,27 @@ export function QuoteSection() {
           />
         </div>
 
-        {/* Zuckerstreuer - Original-Format über Bildrahmen */}
-        <div className="absolute top-[180px] right-[20px] z-20">
+        {/* Zuckerstreuer - kleiner, 40° nach rechts, weiter unten */}
+        <div className="absolute top-[220px] right-[20px] z-20">
           <Image
             src="/images/assets/sugar.webp"
             alt={lang === "de" ? "Zuckerstreuer" : "Sugar dispenser"}
-            width={200}
-            height={333}
-            className="object-contain -rotate-12"
+            width={123}
+            height={165}
+            className="object-contain rotate-[40deg]"
             unoptimized
           />
         </div>
 
         {/* Willkommen-Text – mit kompaktem Abstand zum Zuckerstreuer */}
         <p
-          className="text-center px-6 mt-4"
+          className="text-center px-6 mt-10"
           style={{
             color: "#D72333",
             fontFamily: "Vollkorn",
-            fontSize: "18px",
+            fontSize: "20px",
             fontStyle: "italic",
-            fontWeight: 400,
+            fontWeight: 700,
             lineHeight: "150%",
           }}
         >
@@ -731,54 +725,7 @@ export function QuoteSection() {
       </section>
     </section>
 
-    {/* Lightbox Overlay - funktioniert auf Mobile und Desktop */}
-    {lightboxIndex !== null && (
-      <div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 md:px-12"
-        onClick={closeLightbox}
-      >
-        <button
-          onClick={prevImage}
-          className="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
-          aria-label="Previous image"
-        >
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <div
-          className="relative max-w-[75vw] max-h-[85vh] flex items-center justify-center"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={menuItems[lightboxIndex].src}
-            alt={menuItems[lightboxIndex].alt}
-            className="max-h-[85vh] w-auto object-contain bg-[#F8F7F6]"
-            width={558}
-            height={793}
-          />
-        </div>
-        <button
-          onClick={nextImage}
-          className="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 text-[#D72333] hover:opacity-90 transition-opacity p-1 z-10 rounded-full hover:bg-white/20"
-          aria-label="Next image"
-        >
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-        <button
-          onClick={closeLightbox}
-          className="absolute top-4 right-4 text-white hover:text-primary text-3xl p-2 z-10"
-          aria-label="Close"
-        >
-          ×
-        </button>
-      </div>
-    )}
-
-    {/* Footer Modal Overlay – jetzt auch auf Mobile sichtbar */}
+    {/* Footer Modal (Imprint / Privacy / Terms) – von Mobile-Footer-Links geöffnet */}
     {footerModal && (
       <div
         className="fixed inset-0 z-[9999] flex items-center justify-center"
@@ -798,7 +745,6 @@ export function QuoteSection() {
           >
             ×
           </button>
-
           {footerModal === "imprint" && (
             <div
               style={{
@@ -861,10 +807,97 @@ export function QuoteSection() {
       </div>
     )}
 
+    {/* Lightbox Overlay – per Portal in document.body, damit fixed nicht vom md:scale-Wrapper beeinflusst wird */}
+    {lightboxIndex !== null && typeof document !== "undefined" && createPortal(
+      <div
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 md:px-6"
+        onClick={closeLightbox}
+      >
+        {/* Pfeile direkt links und rechts der Speisekarte, etwas größer */}
+        <div
+          className="flex flex-row items-center justify-center gap-3 md:gap-4 max-w-[95vw]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            onClick={prevImage}
+            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-2 rounded-full hover:bg-white/20 z-10"
+            aria-label="Previous image"
+          >
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <div className="relative max-h-[90vh] flex items-center justify-center min-w-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={menuItems[lightboxIndex].src}
+              alt={menuItems[lightboxIndex].alt}
+              className="max-h-[90vh] w-auto object-contain bg-[#F8F7F6]"
+              width={558}
+              height={793}
+            />
+          </div>
+          <button
+            type="button"
+            onClick={nextImage}
+            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-2 rounded-full hover:bg-white/20 z-10"
+            aria-label="Next image"
+          >
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+        <button
+          type="button"
+          onClick={closeLightbox}
+          className="absolute top-4 right-4 text-white hover:text-primary text-3xl p-2 z-10"
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>,
+      document.body
+    )}
+
+    {/* Event-Poster Lightbox (Weltfrauentag) – per Portal wie Speisekarte, damit fixed korrekt wirkt */}
+    {showEventLightbox && typeof document !== "undefined" && createPortal(
+      <div
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 md:px-12"
+        onClick={() => setShowEventLightbox(false)}
+      >
+        <div
+          className="relative max-w-[85vw] max-h-[90vh] flex items-center justify-center"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/assets/Weltfrauentag-phil-Instagrampost (2).webp"
+            alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
+            className="max-h-[90vh] w-auto object-contain border-2 border-[#D72333]"
+          />
+        </div>
+        <button
+          type="button"
+          onClick={() => setShowEventLightbox(false)}
+          className="absolute top-4 right-4 text-white hover:text-primary text-3xl p-2 z-10"
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>,
+      document.body
+    )}
+
     {/* Desktop-Layout: ursprüngliche, absolut positionierte Version */}
-    <section className="hidden md:block relative w-full" style={{ minHeight: '15000px' }}>
+    {/* minHeight angepasst: Welcome Section bei 12711px mit height 435px, endet bei 12711+435=13146px */}
+    {/* Scale-Effekt (0.855): Visuell endet Content bei 13146px, aber Layout-Höhe bleibt 13146px */}
+    {/* Problem: Scale skaliert nur visuelle Höhe, nicht Layout-Höhe → Leerraum durch Scale-Effekt: 13146 * (1 - 0.855) = 1907px */}
+    {/* Lösung: Negativer marginBottom kompensiert den Scale-Leerraum. Da marginBottom auch skaliert wird, muss er durch 0.855 geteilt werden */}
+    <section className="hidden md:block relative w-full" style={{ minHeight: '13146px', marginBottom: 'calc(-1 * (13146px * (1 - 0.855)) / 0.855)' }}>
       {/* Quote container */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2653px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '600px' }}>
         <div 
           className="absolute"
           style={{
@@ -879,6 +912,7 @@ export function QuoteSection() {
             fontStyle: 'normal',
             fontWeight: 300,
             lineHeight: '150%',
+            textAlign: 'left',
             left: '751px',
             top: '0px',
           }}
@@ -905,14 +939,15 @@ export function QuoteSection() {
         </div>
       </div>
 
-      {/* Cup 1 image - decorative element */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2971px' }}>
+      {/* Cup 1 image - decorative element - rechtsbündig */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '918px' }}>
         <div 
           className="absolute"
           style={{
             width: '234px',
             height: '191px',
-            left: '230px',
+            right: '230px',
+            left: 'auto',
             top: '0px',
             transform: 'rotate(10deg)',
             transformOrigin: 'center center',
@@ -929,14 +964,14 @@ export function QuoteSection() {
         </div>
       </div>
 
-      {/* Analog cafe video - animated element */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3057px' }}>
+      {/* Analog cafe animation - WebM mit Alpha (transparent) */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '820px' }}>
         <div 
           className="absolute"
           style={{
             width: '623px',
             height: '392px',
-            left: '647px',
+            left: '-80px',
             top: '0px',
           }}
         >
@@ -945,21 +980,20 @@ export function QuoteSection() {
             loop
             muted
             playsInline
-            preload="none"
+            preload="metadata"
             style={{
               width: '100%',
               height: '100%',
               objectFit: 'contain',
             }}
           >
-            <source src="/images/assets/analog-cafe-giff.webm" type="video/webm" />
-            <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
+            <source src="/images/assets/analog-cafe_v2.webm" type="video/webm" />
           </video>
         </div>
       </div>
 
       {/* IMG_4905 1 image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3492px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '1439px' }}>
         <div 
           className="absolute"
           style={{
@@ -981,7 +1015,7 @@ export function QuoteSection() {
       </div>
 
       {/* "Bücher" Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3505px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '1452px' }}>
         <div 
           className="absolute"
           style={{
@@ -1005,7 +1039,7 @@ export function QuoteSection() {
       </div>
 
       {/* I91A2497 1 image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3670px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '1617px' }}>
         <div 
           className="absolute"
           style={{
@@ -1027,7 +1061,7 @@ export function QuoteSection() {
       </div>
 
       {/* Text block: Bücherwelt */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3960px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '1907px' }}>
         <div 
           className="absolute"
           style={{
@@ -1038,7 +1072,7 @@ export function QuoteSection() {
             justifyContent: 'center',
             color: '#D72333',
             fontFamily: 'Vollkorn',
-            fontSize: '23px',
+            fontSize: '20px',
             fontStyle: 'normal',
             fontWeight: 500,
             lineHeight: '150%',
@@ -1059,7 +1093,7 @@ export function QuoteSection() {
       </div>
 
       {/* Second Quote: Cicero */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4098px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2045px' }}>
         <div 
           className="absolute"
           style={{
@@ -1074,6 +1108,7 @@ export function QuoteSection() {
             fontStyle: 'normal',
             fontWeight: 300,
             lineHeight: '150%',
+            textAlign: 'left',
             left: '181px',
             top: '0px',
           }}
@@ -1101,7 +1136,7 @@ export function QuoteSection() {
       </div>
 
       {/* Monstera 1 image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4425px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2372px' }}>
         <div 
           className="absolute"
           style={{
@@ -1123,7 +1158,7 @@ export function QuoteSection() {
       </div>
 
       {/* Books1 1 image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4495px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2442px' }}>
         <div 
           className="absolute"
           style={{
@@ -1145,7 +1180,7 @@ export function QuoteSection() {
       </div>
 
       {/* "Entdecke unsere Bücherwelt" Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4426px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2373px' }}>
         <a 
           href="/bucher"
           className="absolute transition-colors duration-300 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] cursor-pointer"
@@ -1173,7 +1208,7 @@ export function QuoteSection() {
       </div>
 
       {/* Cursor 1 image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4512px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2459px' }}>
         <div 
           className="absolute"
           style={{
@@ -1181,7 +1216,7 @@ export function QuoteSection() {
             height: '111px',
             left: '1031px',
             top: '0px',
-            transform: 'rotate(10deg)', // Adjusted to point to button (upper left)
+            transform: 'rotate(-20deg)', // 30° nach links (war 10deg, jetzt -20deg)
             transformOrigin: 'center center',
           }}
         >
@@ -1197,7 +1232,7 @@ export function QuoteSection() {
       </div>
 
       {/* "Unsere Speisekarte" Heading */}
-      <div id="speisekarte" data-section="speisekarte" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4737px', scrollMarginTop: '120px' }}>
+      <div id="speisekarte" data-section="speisekarte" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2684px', scrollMarginTop: '120px' }}>
         <div 
           className="absolute"
           style={{
@@ -1222,116 +1257,98 @@ export function QuoteSection() {
       </div>
 
       {/* Speisekarte Image (Left) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4900px' }}>
-        <div 
-          className="absolute"
-          style={{
-            width: '558px',
-            height: '793px',
-            left: '132px',
-            top: '0px',
-          }}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2847px' }}>
+        <button
+          type="button"
+          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] left-[132px] top-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
+          style={{ left: '132px', top: '0px' }}
+          onClick={() => openLightbox(0)}
+          aria-label={lang === "de" ? "Kaffee Karte vergrößern" : "View coffee menu"}
         >
           <Image
             src={lang === "de" ? "/images/assets/Kaffee.svg" : "/images/assets/kaffee-en.svg"}
             alt={lang === "de" ? "Kaffee Karte" : "Coffee menu"}
             width={558}
             height={793}
-            className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
             unoptimized
-            onClick={() => openLightbox(0)}
           />
-        </div>
+        </button>
 
         {/* Frühstück Image (Right) */}
-        <div 
-          className="absolute"
-          style={{
-            width: '558px',
-            height: '793px',
-            left: '750px',
-            top: '0px',
-          }}
+        <button
+          type="button"
+          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
+          style={{ left: '750px', top: '0px' }}
+          onClick={() => openLightbox(1)}
+          aria-label={lang === "de" ? "Frühstück Karte vergrößern" : "View breakfast menu"}
         >
           <Image
             src={lang === "de" ? "/images/assets/fruhstueck.svg" : "/images/assets/fruhstueck-en.svg"}
             alt={lang === "de" ? "Frühstück Karte" : "Breakfast menu"}
             width={558}
             height={793}
-            className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
             unoptimized
-            onClick={() => openLightbox(1)}
           />
-        </div>
+        </button>
       </div>
 
       {/* Row 2: Snacks & Wein */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '5753px' }}>
-        {/* Snacks Image (Left) */}
-        <div 
-          className="absolute"
-          style={{
-            width: '558px',
-            height: '793px',
-            left: '132px',
-            top: '0px',
-          }}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3700px' }}>
+        <button
+          type="button"
+          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
+          style={{ left: '132px', top: '0px' }}
+          onClick={() => openLightbox(2)}
+          aria-label={lang === "de" ? "Snacks Karte vergrößern" : "View snacks menu"}
         >
           <Image
             src={lang === "de" ? "/images/assets/snacks.svg" : "/images/assets/snacks-en.svg"}
             alt={lang === "de" ? "Snacks Karte" : "Snacks menu"}
             width={558}
             height={793}
-            className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
             unoptimized
-            onClick={() => openLightbox(2)}
           />
-        </div>
+        </button>
 
-        {/* Wein Image (Right) */}
-        <div 
-          className="absolute"
-          style={{
-            width: '558px',
-            height: '793px',
-            left: '750px',
-            top: '0px',
-          }}
+        <button
+          type="button"
+          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
+          style={{ left: '750px', top: '0px' }}
+          onClick={() => openLightbox(3)}
+          aria-label={lang === "de" ? "Wein Karte vergrößern" : "View wine menu"}
         >
           <Image
             src={lang === "de" ? "/images/assets/Wein.svg" : "/images/assets/wein-en.svg"}
             alt={lang === "de" ? "Wein Karte" : "Wine menu"}
             width={558}
             height={793}
-            className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
             unoptimized
-            onClick={() => openLightbox(3)}
           />
-        </div>
+        </button>
       </div>
 
         {/* Row 3: Limo & Quote */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6606px' }}>
-        {/* Limo Image (Left) */}
-        <div 
-          className="absolute"
-          style={{
-            width: '558px',
-            height: '793px',
-            left: '132px',
-            top: '0px',
-          }}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4553px' }}>
+        <button
+          type="button"
+          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
+          style={{ left: '132px', top: '0px' }}
+          onClick={() => openLightbox(4)}
+          aria-label={lang === "de" ? "Limo Karte vergrößern" : "View soft drinks menu"}
         >
           <Image
             src={lang === "de" ? "/images/assets/Limo.svg" : "/images/assets/limo-en.svg"}
             alt={lang === "de" ? "Limo Karte" : "Soft drinks menu"}
             width={558}
             height={793}
-            className="object-contain cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
             unoptimized
-            onClick={() => openLightbox(4)}
           />
-        </div>
+        </button>
 
         {/* Quote & Saltpepper (Right) */}
         <div 
@@ -1380,7 +1397,7 @@ export function QuoteSection() {
 
           <Image
             src="/images/assets/saltpepper.webp"
-            alt="Salt & Pepper"
+            alt={lang === "de" ? "Salz und Pfeffer" : "Salt and pepper"}
             width={200}
             height={200}
             className="object-contain"
@@ -1389,10 +1406,22 @@ export function QuoteSection() {
         </div>
       </div>
 
+      {/* Speisekarte GIF – unterhalb der Speisekarten, mittig zentriert (Desktop) */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px] flex justify-center" style={{ top: '5440px' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/assets/phil-speisen-handbeschriftet.gif"
+          alt={lang === "de" ? "Speisekarte handbeschriftet" : "Handwritten menu"}
+          className="object-contain"
+          style={{ width: '558px', height: '558px' }}
+          loading="lazy"
+        />
+      </div>
+
       {/* Schanigarten Section */}
       
       {/* Heading: Schanigarten */}
-      <div id="schanigarten" data-section="schanigarten" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7546px', scrollMarginTop: '120px' }}>
+      <div id="schanigarten" data-section="schanigarten" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6057px', scrollMarginTop: '120px' }}>
         <div 
           className="absolute"
           style={{
@@ -1419,7 +1448,7 @@ export function QuoteSection() {
 
 
       {/* Bordüre 2 */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7636px', zIndex: 1 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6147px', zIndex: 1 }}>
         <div 
           className="absolute"
           style={{
@@ -1440,8 +1469,8 @@ export function QuoteSection() {
         </div>
       </div>
 
-      {/* Schanigarten Image (IMG_5028 1) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7719px', zIndex: 10 }}>
+      {/* Schanigarten Image */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6230px', zIndex: 10 }}>
         <div 
           className="absolute"
           style={{
@@ -1452,7 +1481,7 @@ export function QuoteSection() {
           }}
         >
           <Image
-            src="/images/assets/IMG_5028.webp"
+            src="/images/assets/schanigarten.webp"
             alt="Schanigarten"
             fill
             className="object-cover"
@@ -1462,7 +1491,7 @@ export function QuoteSection() {
       </div>
 
       {/* Text: Genieße Kaffee... */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8417px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6928px' }}>
         <div 
           className="absolute"
           style={{
@@ -1473,7 +1502,7 @@ export function QuoteSection() {
             justifyContent: 'center',
             color: '#D72333',
             fontFamily: 'Vollkorn',
-            fontSize: '23px',
+            fontSize: '20px',
             fontStyle: 'normal',
             fontWeight: 500,
             lineHeight: '150%',
@@ -1502,7 +1531,7 @@ export function QuoteSection() {
       </div>
 
       {/* Veranstaltungen Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8800px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7311px' }}>
         <div 
           className="absolute"
           style={{
@@ -1528,7 +1557,7 @@ export function QuoteSection() {
       </div>
 
       {/* Disco Ball Image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8950px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7461px' }}>
         <div 
           className="absolute"
           style={{
@@ -1550,30 +1579,36 @@ export function QuoteSection() {
       </div>
 
       {/* Single Event Image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9050px', zIndex: 10 }}>
-        <div 
-          className="absolute cursor-pointer transition-transform duration-300 hover:scale-105"
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7561px', zIndex: 10 }}>
+        <div
+          className="absolute"
           style={{
-            width: '400px', 
+            width: '400px',
             height: '500px',
             left: '50%',
             top: '0px',
-            transform: 'translateX(-50%)', // Removed rotation
+            transform: 'translateX(-50%)',
           }}
-          onClick={() => setShowEventLightbox(true)}
         >
-           <Image
-            src="/images/assets/veranstaltung_1.jpg"
-            alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
-            fill
-            className="object-cover"
-            loading="lazy"
-          />
+          <button
+            type="button"
+            className="absolute inset-0 border-0 bg-transparent p-0 cursor-pointer w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2 hover:scale-105 transition-transform duration-300"
+            onClick={() => setShowEventLightbox(true)}
+            aria-label={lang === "de" ? "Veranstaltung vergrößern" : "View event"}
+          >
+            <Image
+              src="/images/assets/Weltfrauentag-phil-Instagrampost (2).webp"
+              alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
+              fill
+              className="object-cover pointer-events-none border-2 border-[#D72333]"
+              loading="lazy"
+            />
+          </button>
         </div>
       </div>
 
       {/* Arrow pointing to Event */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9300px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7811px' }}>
         <div 
           className="absolute"
           style={{
@@ -1595,7 +1630,7 @@ export function QuoteSection() {
       </div>
 
       {/* "aktuelle Veranstaltung" Text */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9700px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
         <div 
           className="absolute"
           style={{
@@ -1619,7 +1654,7 @@ export function QuoteSection() {
       </div>
 
       {/* Anmeldung Button */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9700px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
         <a 
           href="/events"
           className="absolute transition-colors duration-300 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] cursor-pointer"
@@ -1649,7 +1684,7 @@ export function QuoteSection() {
       {/* Events & Bar Section */}
       
       {/* Heading: Events & Bar */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10000px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8511px' }}>
         <div 
           className="absolute"
           style={{
@@ -1669,7 +1704,7 @@ export function QuoteSection() {
       </div>
 
       {/* Main Image (IMG_4843-2 1.svg) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10150px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8661px' }}>
         <div 
           className="absolute"
           style={{
@@ -1692,7 +1727,7 @@ export function QuoteSection() {
           <div style={{
             position: 'absolute',
             left: '40px',
-            top: '600px', // Moved much further down (was 350px/bottom-aligned)
+            top: '540px',
             width: '400px',
             display: 'flex',
             flexDirection: 'column',
@@ -1713,8 +1748,9 @@ export function QuoteSection() {
               <p style={{
                 color: '#f9f1da',
                 fontFamily: 'Vollkorn',
-                fontSize: '18px',
-                lineHeight: '1.4',
+                fontSize: '20px',
+                lineHeight: '150%',
+                fontWeight: 500,
               }}>
                 {lang === 'de' ? (
                   <>
@@ -1809,8 +1845,9 @@ export function QuoteSection() {
               <p style={{
                 color: '#f9f1da',
                 fontFamily: 'Vollkorn',
-                fontSize: '18px',
-                lineHeight: '1.4',
+                fontSize: '20px',
+                lineHeight: '150%',
+                fontWeight: 500,
               }}>
                 {lang === 'de'
                   ? 'Am Abend verwandelt sich unser Café-Buchhandel in eine gemütliche Bar, in der im Diskokugelschein und bei sanften Beats auch Longdrinks und Espresso Martini geschlürft werden können.'
@@ -1822,7 +1859,7 @@ export function QuoteSection() {
       </div>
 
       {/* Video (Overlapping) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10550px', zIndex: 20 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9061px', zIndex: 20 }}>
         <div 
           className="absolute"
           style={{
@@ -1852,7 +1889,7 @@ export function QuoteSection() {
       </div>
 
       {/* Quote Right */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '11000px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9511px' }}>
         <div 
           className="absolute"
           style={{
@@ -1862,6 +1899,7 @@ export function QuoteSection() {
             color: '#D72333',
             fontFamily: 'Vollkorn',
             fontSize: '20px',
+            textAlign: 'left',
           }}
         >
           {lang === 'de' ? (
@@ -1887,13 +1925,13 @@ export function QuoteSection() {
       </div>
 
       {/* Mirror Image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '11350px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9861px' }}>
         <div 
           className="absolute"
           style={{
-            width: '290px',
-            height: '338px',
-            left: '100px',
+            width: '350px',
+            height: '408px',
+            left: '520px',
             top: '0px',
             transform: 'rotate(3.65deg)',
           }}
@@ -1901,8 +1939,8 @@ export function QuoteSection() {
           <Image
             src="/images/assets/mirror1.webp"
             alt="Mirror"
-            width={290}
-            height={338}
+            width={350}
+            height={408}
             className="object-contain"
             loading="lazy"
           />
@@ -1912,7 +1950,7 @@ export function QuoteSection() {
       {/* Reviews Section */}
       
       {/* Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12000px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10511px' }}>
         <div 
           className="absolute"
           style={{
@@ -1932,7 +1970,7 @@ export function QuoteSection() {
       </div>
 
       {/* Reviews Grid */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12150px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10661px' }}>
         {/* Row 1 */}
         <div className="absolute left-[100px] flex gap-[30px]">
           {/* Box 1 */}
@@ -2029,10 +2067,10 @@ export function QuoteSection() {
       </div>
 
       {/* Reservations Section */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '13000px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '11511px' }}>
         
         {/* Lamp Image */}
-        <div className="absolute left-[380px] top-[0px] w-[200px] h-[300px]">
+        <div className="absolute left-[380px] top-[-50px] w-[200px] h-[300px]">
           <Image
             src="/images/assets/lamp2 1.svg"
             alt="Lampe"
@@ -2085,7 +2123,7 @@ export function QuoteSection() {
             style={{
               color: '#D72333',
               fontFamily: 'Vollkorn',
-              fontSize: '23px',
+              fontSize: '20px',
               fontStyle: 'normal',
               fontWeight: 500,
               lineHeight: '150%',
@@ -2100,7 +2138,7 @@ export function QuoteSection() {
       </div>
 
       {/* Info Section (Footer) */}
-      <div id="kontakt" data-section="kontakt" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '13600px', scrollMarginTop: '120px' }}>
+      <div data-section="kontakt" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12111px', scrollMarginTop: '120px' }}>
         <div className="flex justify-center gap-[60px]">
           
           {/* Box 1: Adresse */}
@@ -2198,40 +2236,42 @@ export function QuoteSection() {
       </div>
 
       {/* Welcome Section */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '14200px' }}>
+      {/* Höhe reduziert: Text bei top-[400px], Text-Höhe ~35px (23px * 1.5), Section-Höhe = 400px + 35px = 435px */}
+      {/* Aber: Text endet genau bei 435px, also keine zusätzliche Höhe nötig - height auf exakte Text-Endposition */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12711px', height: '435px' }}>
         
         {/* Picture Frame */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[0px] w-[300px] h-[375px]">
+        <div className="absolute left-1/2 -translate-x-1/2 top-[-160px] w-[360px] h-[450px]">
           <Image
             src="/images/assets/bild.webp"
             alt="Bild"
-            width={300}
-            height={375}
+            width={360}
+            height={450}
             className="object-contain"
             loading="lazy"
           />
         </div>
 
-        {/* Sugar Dispenser (Overlapping) */}
-        <div className="absolute left-[450px] top-[250px] w-[200px] h-[333px]">
+        {/* Sugar Dispenser (Overlapping) – 40° nach rechts, etwas in die Länge gezogen */}
+        <div className="absolute left-[850px] top-[140px] w-[164px] h-[250px]">
           <Image
             src="/images/assets/sugar.webp"
             alt="Zucker"
-            width={200}
-            height={333}
-            className="object-contain transform -rotate-12"
+            width={205}
+            height={275}
+            className="object-fill object-center transform rotate-[40deg] w-full h-full"
             unoptimized
           />
         </div>
 
         {/* Welcome Text */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[680px] w-full text-center">
+        <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-full text-center">
           <p style={{
             color: '#D72333',
             fontFamily: 'Vollkorn',
             fontSize: '23px',
             fontStyle: 'italic',
-            fontWeight: 400,
+            fontWeight: 700,
             lineHeight: '150%',
           }}>
             {lang === 'de'
@@ -2243,21 +2283,21 @@ export function QuoteSection() {
       </div>
 
       {/* Sieve Image (Bottom Left) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '11450px', zIndex: 10 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9961px', zIndex: 10 }}>
         <div 
           className="absolute"
           style={{
-            width: '252px', // Estimated
-            height: '252px',
-            left: '230px', // Moved Right to overlap edge
+            width: '305px',
+            height: '305px',
+            left: '660px',
             top: '0px',
           }}
         >
           <Image
             src="/images/assets/sieb 1.svg"
             alt="Sieb"
-            width={252}
-            height={252}
+            width={305}
+            height={305}
             className="object-contain"
             unoptimized
           />
@@ -2266,9 +2306,9 @@ export function QuoteSection() {
 
     </section>
 
-    {/* Footer - außerhalb des section Elements, gleicher Stil wie Unterseiten */}
+    {/* Footer - nur auf Mobile, Desktop wird separat gebaut */}
     <footer
-      className="mt-4 flex flex-col items-center justify-center py-16 px-6"
+      className="md:hidden mt-4 flex flex-col items-center justify-center py-16 px-6"
       style={{ backgroundColor: "#D72333" }}
     >
       <div className="w-[90px] h-[140px] relative mb-8">

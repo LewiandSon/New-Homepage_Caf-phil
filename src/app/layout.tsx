@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Vollkorn, Caveat } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "../LanguageContext";
+import { Header } from "@/components/Header";
 
 const vollkorn = Vollkorn({
   subsets: ["latin"],
@@ -50,9 +51,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <body className={`${vollkorn.variable} ${caveat.variable} font-serif antialiased`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <Header />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
