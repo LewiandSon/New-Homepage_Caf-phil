@@ -778,12 +778,12 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         </div>
 
         {/* Zuckerstreuer - kleiner, 40° nach rechts */}
-        <div className="absolute top-[200px] right-[20px] z-20">
+        <div className="absolute top-[180px] right-[20px] z-20">
           <Image
             src="/images/assets/sugar.webp"
             alt={lang === "de" ? "Zuckerstreuer" : "Sugar dispenser"}
-            width={100}
-            height={135}
+            width={85}
+            height={115}
             className="object-contain rotate-[40deg]"
             unoptimized
           />
