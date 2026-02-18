@@ -119,7 +119,7 @@ export default function BucherPage() {
           </div>
         </div>
 
-        {/* Genre-Überschrift + Raumplan – Überschrift weiter unten, Raumplan maximal groß */}
+        {/* Genre-Überschrift */}
         <div className="mb-4 mt-32">
           <h2
             className="mb-0 text-center leading-tight"
@@ -133,16 +133,18 @@ export default function BucherPage() {
           >
             {lang === "de" ? "Genre" : "Genres"}
           </h2>
-          <div className="relative -mt-20 left-1/2 -translate-x-1/2 w-screen">
-            <Image
-              src="/images/assets/raumplan-phil.webp"
-              alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
-              width={1440}
-              height={1920}
-              className="w-full h-auto block"
-            />
-          </div>
         </div>
+      </div>
+
+      {/* Raumplan - außerhalb des Parent-Containers für volle Breite (nur Mobile) */}
+      <div className="block md:hidden w-full -mt-20 mb-4">
+        <Image
+          src="/images/assets/raumplan-phil.webp"
+          alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
+          width={1440}
+          height={1920}
+          className="w-full h-auto block"
+        />
       </div>
 
       {/* Desktop: gleiche Runter skalierung wie Startseite (md:scale-[0.855]) */}
