@@ -2441,8 +2441,14 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           className="block w-[300px] h-[120px] relative active:scale-95 transition-transform duration-150"
           onMouseEnter={() => setShowInstagramStrichFooter(true)}
           onMouseLeave={() => setShowInstagramStrichFooter(false)}
-          onTouchStart={() => setShowInstagramStrichFooter(true)}
-          onTouchEnd={() => setTimeout(() => setShowInstagramStrichFooter(false), 300)}
+          onClick={(e) => {
+            e.preventDefault();
+            setShowInstagramStrichFooter(true);
+            setTimeout(() => {
+              window.open('https://www.instagram.com/phil.in.wien/', '_blank');
+              setShowInstagramStrichFooter(false);
+            }, 200);
+          }}
         >
           <Image
             src="/images/assets/instagram-optimized.webp"
