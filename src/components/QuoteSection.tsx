@@ -2259,7 +2259,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
                   </a>
                 </p>
                 <p>01 581 04 89</p>
-                <p><a href="mailto:info@phil.info">info@phil.info</a></p>
+                <p><a href="mailto:info@phil.info" onClick={() => gtag.event({ action: 'click', category: 'Contact', label: 'Email - Mobile' })}>info@phil.info</a></p>
               </div>
             </div>
           </div>
