@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { useLanguage } from "../../LanguageContext";
+import { InstagramLink } from "@/components/InstagramLink";
+import * as gtag from "@/lib/gtag";
 
 type FAQItem = {
   question: string;
@@ -166,7 +168,6 @@ const FAQ_DATA_EN: FAQItem[] = [
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0); // First item open by default
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
-  const [showInstagramStrich, setShowInstagramStrich] = useState(false);
   const { lang } = useLanguage();
   const FAQ_DATA = lang === "de" ? FAQ_DATA_DE : FAQ_DATA_EN;
 

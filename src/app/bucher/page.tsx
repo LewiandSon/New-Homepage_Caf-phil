@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { useLanguage } from "../../LanguageContext";
+import { InstagramLink } from "@/components/InstagramLink";
+import * as gtag from "@/lib/gtag";
 
 export default function BucherPage() {
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
-  const [showInstagramStrich, setShowInstagramStrich] = useState(false);
   const { lang } = useLanguage();
   return (
     <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">

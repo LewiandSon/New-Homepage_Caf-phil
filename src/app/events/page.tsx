@@ -107,7 +107,6 @@ export default function EventsPage() {
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
   const [expandedEvent, setExpandedEvent] = useState<string | null>(null);
   const [imageLightbox, setImageLightbox] = useState<string | null>(null);
-  const [showInstagramStrich, setShowInstagramStrich] = useState(false);
 
   useEffect(() => {
     if (imageLightbox) document.body.style.overflow = "hidden";
