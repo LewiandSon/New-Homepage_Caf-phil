@@ -3,6 +3,8 @@ import { Vollkorn, Caveat } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "../LanguageContext";
 import { Header } from "@/components/Header";
+import Script from "next/script";
+import { GA_TRACKING_ID } from "@/lib/gtag";
 
 const vollkorn = Vollkorn({
   subsets: ["latin"],
@@ -52,6 +54,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
+      <head>
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+      </head>
       <body className={`${vollkorn.variable} ${caveat.variable} font-serif antialiased`}>
         <LanguageProvider>
           <Header />
