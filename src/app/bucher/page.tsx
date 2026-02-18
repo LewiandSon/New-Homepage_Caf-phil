@@ -9,7 +9,7 @@ export default function BucherPage() {
   const [showInstagramStrich, setShowInstagramStrich] = useState(false);
   const { lang } = useLanguage();
   return (
-    <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
+    <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] md:overflow-x-hidden">
       {/* Mobile layout */}
       <div className="block md:hidden px-4 pb-12 max-w-[720px] mx-auto overflow-visible">
         {/* Hero image */}
