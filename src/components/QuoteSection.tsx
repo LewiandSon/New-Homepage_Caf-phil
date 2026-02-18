@@ -317,7 +317,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
                 color: "#D72333",
               }}
             >
-            {lang === "de" ? "Unsere nächsten Veranstaltungen" : "Our upcoming events"}
+            {lang === "de" ? "Unsere nächsten Veranstaltungen" : "Our Upcoming Events"}
           </h2>
         </div>
 
@@ -372,7 +372,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               whiteSpace: "nowrap",
             }}
           >
-            {lang === "de" ? "Alle Veranstaltungen" : "All events"}
+            {lang === "de" ? "Alle Veranstaltungen" : "All Events"}
           </a>
         </div>
       </div>
@@ -542,7 +542,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               lineHeight: "150%",
             }}
           >
-            {lang === "de" ? "Besuch uns" : "Visit us"}
+            {lang === "de" ? "Besuch uns" : "Visit Us"}
           </a>
         </div>
 

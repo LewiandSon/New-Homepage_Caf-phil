@@ -186,7 +186,7 @@ export function HeroSection() {
               lineHeight: "150%",
             }}
           >
-            {lang === "de" ? "Besuch uns" : "Visit us"}
+            {lang === "de" ? "Besuch uns" : "Visit Us"}
           </a>
 
           <p

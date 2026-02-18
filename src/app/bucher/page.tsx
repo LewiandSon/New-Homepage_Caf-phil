@@ -102,7 +102,7 @@ export default function BucherPage() {
               color: "#D72333",
             }}
           >
-            {lang === "de" ? "Bücher und wo sie zu finden sind..." : "Books – and where to find them..."}
+            {lang === "de" ? "Bücher und wo sie zu finden sind..." : "Books – And Where to Find Them..."}
           </h2>
           <div className="w-full max-w-full aspect-[3/4] mx-auto overflow-hidden">
             <video
