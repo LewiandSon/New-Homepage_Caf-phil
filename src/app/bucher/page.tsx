@@ -136,15 +136,16 @@ export default function BucherPage() {
         </div>
       </div>
 
-      {/* Raumplan - volle Viewport-Breite nur auf Mobile */}
-      <div className="block md:hidden -mt-20 mb-4">
+      {/* Raumplan - volle Viewport-Breite nur auf Mobile, skaliert um Bild-Padding zu kompensieren */}
+      <div className="block md:hidden -mt-20 mb-4 overflow-hidden">
         <div className="relative" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
           <Image
             src="/images/assets/raumplan-phil.webp"
             alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
             width={1440}
             height={1920}
-            className="w-full h-auto block"
+            className="w-full h-auto block scale-110"
+            style={{ transformOrigin: 'center center' }}
           />
         </div>
       </div>
