@@ -172,8 +172,8 @@ export function AboutSection() {
               <Image
                 src="/images/assets/analog-cafe_v2.gif"
                 alt="Analog Cafe"
-                width={623}
-                height={392}
+                width={1536}
+                height={966}
                 className="w-full h-auto object-contain"
                 unoptimized
               />
