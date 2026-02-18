@@ -11,7 +11,7 @@ export default function BucherPage() {
   return (
     <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
       {/* Mobile layout */}
-      <div className="block md:hidden px-4 pb-12 max-w-[720px] mx-auto overflow-x-hidden">
+      <div className="block md:hidden px-4 pb-12 max-w-[720px] mx-auto overflow-visible">
         {/* Hero image */}
         <div className="w-full mb-8">
           <Image
@@ -133,16 +133,14 @@ export default function BucherPage() {
           >
             {lang === "de" ? "Genre" : "Genres"}
           </h2>
-          <div className="-mx-4 -mt-20">
-            <div className="w-screen">
-              <Image
-                src="/images/assets/raumplan-phil.webp"
-                alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
-                width={1440}
-                height={1920}
-                className="w-full h-auto block"
-              />
-            </div>
+          <div className="relative -mt-20 left-1/2 -translate-x-1/2 w-screen">
+            <Image
+              src="/images/assets/raumplan-phil.webp"
+              alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
+              width={1440}
+              height={1920}
+              className="w-full h-auto block"
+            />
           </div>
         </div>
       </div>
