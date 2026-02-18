@@ -131,7 +131,7 @@ export default function EventsPage() {
             color: "#D72333",
           }}
         >
-          {lang === "de" ? "Unsere nächsten Veranstaltungen" : "Our upcoming events"}
+          {lang === "de" ? "Unsere nächsten Veranstaltungen" : "Our Upcoming Events"}
         </h1>
 
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 ${upcomingEvents.length === 1 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
