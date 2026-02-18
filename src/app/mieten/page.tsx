@@ -229,6 +229,8 @@ export default function MietenPage() {
               className="block w-[300px] h-[120px] relative active:scale-95 transition-transform duration-150"
               onMouseEnter={() => setShowInstagramStrich(true)}
               onMouseLeave={() => setShowInstagramStrich(false)}
+              onTouchStart={() => setShowInstagramStrich(true)}
+              onTouchEnd={() => setTimeout(() => setShowInstagramStrich(false), 300)}
             >
               <Image
                 src="/images/assets/instagram-optimized.webp"
