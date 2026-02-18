@@ -2441,13 +2441,22 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           className="block w-[300px] h-[120px] relative active:scale-95 transition-transform duration-150"
           onMouseEnter={() => setShowInstagramStrichFooter(true)}
           onMouseLeave={() => setShowInstagramStrichFooter(false)}
+          onTouchStart={() => setShowInstagramStrichFooter(true)}
           onClick={(e) => {
-            e.preventDefault();
-            setShowInstagramStrichFooter(true);
-            setTimeout(() => {
-              window.open('https://www.instagram.com/phil.in.wien/', '_blank');
-              setShowInstagramStrichFooter(false);
-            }, 200);
+            if (showInstagramStrichFooter) {
+              e.preventDefault();
+              setTimeout(() => {
+                window.open('https://www.instagram.com/phil.in.wien/', '_blank');
+                setShowInstagramStrichFooter(false);
+              }, 250);
+            } else {
+              e.preventDefault();
+              setShowInstagramStrichFooter(true);
+              setTimeout(() => {
+                window.open('https://www.instagram.com/phil.in.wien/', '_blank');
+                setShowInstagramStrichFooter(false);
+              }, 250);
+            }
           }}
         >
           <Image
