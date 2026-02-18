@@ -85,7 +85,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             color: "#D72333",
           }}
         >
-          {lang === "de" ? "Unsere Speisekarte" : "Our menu"}
+          {lang === "de" ? "Unsere Speisekarte" : "Our Menu"}
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <button
@@ -558,7 +558,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               color: "#D72333",
             }}
           >
-            {lang === 'de' ? 'Was andere über uns sagen' : 'What others say about us'}
+            {lang === 'de' ? 'Was andere über uns sagen' : 'What Others Say About Us'}
           </h2>
           
           <div className="grid grid-cols-2 gap-3 max-w-[600px] mx-auto">
@@ -1280,7 +1280,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             whiteSpace: 'nowrap',
           }}
         >
-          {lang === "de" ? "Entdecke unsere Bücherwelt" : "Discover our world of books"}
+          {lang === "de" ? "Entdecke unsere Bücherwelt" : "Discover Our World of Books"}
         </a>
       </div>
 
@@ -1305,7 +1305,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             top: '0px',
           }}
         >
-          {lang === "de" ? "Unsere Speisekarte" : "Our menu"}
+          {lang === "de" ? "Unsere Speisekarte" : "Our Menu"}
         </div>
       </div>
 

@@ -22,7 +22,7 @@ export function AboutSection() {
             color: "#D72333",
           }}
         >
-          {lang === "de" ? "Unsere Geschichte" : "Our story"}
+          {lang === "de" ? "Unsere Geschichte" : "Our Story"}
         </h2>
         <div
           style={{
@@ -329,7 +329,7 @@ export function AboutSection() {
                   lineHeight: '150%',
                 }}
               >
-                {lang === "de" ? "Entdecke unsere Bücherwelt" : "Discover our world of books"}
+                {lang === "de" ? "Entdecke unsere Bücherwelt" : "Discover Our World of Books"}
               </a>
             </div>
           </div>
@@ -361,7 +361,7 @@ export function AboutSection() {
             zIndex: 20
           }}
         >
-          {lang === "de" ? "Unsere Geschichte" : "Our story"}
+          {lang === "de" ? "Unsere Geschichte" : "Our Story"}
         </div>
 
         {/* Main text block with underlined links */}
