@@ -2441,6 +2441,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           className="block w-[300px] h-[120px] relative active:scale-95 transition-transform duration-150"
           onMouseEnter={() => setShowInstagramStrichFooter(true)}
           onMouseLeave={() => setShowInstagramStrichFooter(false)}
+          onTouchStart={() => setShowInstagramStrichFooter(true)}
+          onTouchEnd={() => setTimeout(() => setShowInstagramStrichFooter(false), 300)}
         >
           <Image
             src="/images/assets/instagram-optimized.webp"
