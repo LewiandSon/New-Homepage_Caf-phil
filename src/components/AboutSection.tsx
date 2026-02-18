@@ -166,17 +166,21 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Analog cafe animation - GIF für bessere Mobile-Kompatibilität */}
+          {/* Analog cafe animation - Video mit höherer Qualität für Mobile */}
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[400px] rounded-lg overflow-hidden">
-              <Image
-                src="/images/assets/analog-cafe_v2.gif"
-                alt="Analog Cafe"
-                width={1536}
-                height={966}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
                 className="w-full h-auto object-contain"
-                unoptimized
-              />
+                style={{ backgroundColor: 'transparent' }}
+              >
+                <source src="/images/assets/analog-cafe-giff.webm" type="video/webm" />
+                <source src="/images/assets/analog-cafe-giff.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
 
