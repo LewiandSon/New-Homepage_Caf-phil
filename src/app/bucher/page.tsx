@@ -133,7 +133,7 @@ export default function BucherPage() {
           >
             {lang === "de" ? "Genre" : "Genres"}
           </h2>
-          <div className="w-full -mx-6 -mt-16">
+          <div className="w-full -mx-4 -mt-20">
             <Image
               src="/images/assets/raumplan-phil.webp"
               alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
