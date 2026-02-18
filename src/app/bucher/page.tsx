@@ -144,7 +144,7 @@ export default function BucherPage() {
             alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
             width={1440}
             height={1920}
-            className="w-full h-auto block scale-110"
+            className="w-full h-auto block scale-125"
             style={{ transformOrigin: 'center center' }}
           />
         </div>
