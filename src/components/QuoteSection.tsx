@@ -735,7 +735,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
                 lineHeight: "150%",
               }}
             >
-              {lang === "de" ? "Öffnungszeiten" : "Opening hours"}
+              {lang === "de" ? "Öffnungszeiten" : "Opening Hours"}
             </h3>
             <div
               style={{
