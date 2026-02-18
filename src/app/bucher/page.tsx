@@ -11,7 +11,7 @@ export default function BucherPage() {
   return (
     <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
       {/* Mobile layout */}
-      <div className="block md:hidden px-4 pb-12 max-w-[720px] mx-auto">
+      <div className="block md:hidden px-4 pb-12 max-w-full mx-auto">
         {/* Hero image */}
         <div className="w-full mb-8">
           <Image
