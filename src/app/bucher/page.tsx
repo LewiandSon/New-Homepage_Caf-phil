@@ -9,7 +9,7 @@ export default function BucherPage() {
   const [showInstagramStrich, setShowInstagramStrich] = useState(false);
   const { lang } = useLanguage();
   return (
-    <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] md:overflow-x-hidden">
+    <main data-page="bucher" className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
       {/* Mobile layout */}
       <div className="block md:hidden px-4 pb-12 max-w-[720px] mx-auto overflow-visible">
         {/* Hero image */}
@@ -136,15 +136,17 @@ export default function BucherPage() {
         </div>
       </div>
 
-      {/* Raumplan - außerhalb des Parent-Containers für volle Breite (nur Mobile) */}
-      <div className="block md:hidden relative w-screen left-1/2 -translate-x-1/2 -mt-20 mb-4">
-        <Image
-          src="/images/assets/raumplan-phil.webp"
-          alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
-          width={1440}
-          height={1920}
-          className="w-full h-auto block"
-        />
+      {/* Raumplan - volle Viewport-Breite nur auf Mobile */}
+      <div className="block md:hidden -mt-20 mb-4">
+        <div className="relative" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
+          <Image
+            src="/images/assets/raumplan-phil.webp"
+            alt={lang === "de" ? "Raumplan - Bücher und wo sie zu finden sind" : "Room plan – books and where to find them"}
+            width={1440}
+            height={1920}
+            className="w-full h-auto block"
+          />
+        </div>
       </div>
 
       {/* Desktop: gleiche Runter skalierung wie Startseite (md:scale-[0.855]) */}
