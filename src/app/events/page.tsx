@@ -313,7 +313,7 @@ export default function EventsPage() {
                 marginTop: "72px",
               }}
             >
-              {lang === "de" ? "Vergangene Veranstaltungen" : "Past events"}
+              {lang === "de" ? "Vergangene Veranstaltungen" : "Past Events"}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-70">
               {pastEvents.map((event, idx) => {
