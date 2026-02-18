@@ -50,6 +50,11 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
+    gtag.event({ 
+      action: 'open', 
+      category: 'Menu', 
+      label: menuItems[index]?.alt || `Menu ${index}` 
+    });
   };
 
   const closeLightbox = () => {
@@ -571,6 +576,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center border-[2px] border-[#D72333] p-2 min-h-[70px] text-center cursor-pointer transition-all duration-150 hover:bg-[#D72333] active:bg-[#D72333] active:scale-[0.98] group"
+              onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'wien.info' })}
             >
               <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>wien.info</h3>
               <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Kaffee und Bücher im "phil"</p>

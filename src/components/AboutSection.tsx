@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useLanguage } from "../LanguageContext";
+import * as gtag from "@/lib/gtag";
 
 export function AboutSection() {
   const { lang } = useLanguage();
@@ -328,6 +329,7 @@ export function AboutSection() {
                   fontWeight: 900,
                   lineHeight: '150%',
                 }}
+                onClick={() => gtag.event({ action: 'click', category: 'Navigation', label: 'Entdecke unsere Bücherwelt - Mobile' })}
               >
                 {lang === "de" ? "Entdecke unsere Bücherwelt" : "Discover Our World of Books"}
               </a>
