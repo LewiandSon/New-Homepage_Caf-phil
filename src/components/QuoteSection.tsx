@@ -372,6 +372,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               fontWeight: 900,
               whiteSpace: "nowrap",
             }}
+            onClick={() => gtag.event({ action: 'click', category: 'Navigation', label: 'Alle Veranstaltungen Button' })}
           >
             {lang === "de" ? "Alle Veranstaltungen" : "All Events"}
           </a>
@@ -542,6 +543,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               fontWeight: 900,
               lineHeight: "150%",
             }}
+            onClick={() => gtag.event({ action: 'click', category: 'CTA', label: 'Besuch uns Button - Mobile' })}
           >
             {lang === "de" ? "Besuch uns" : "Visit Us"}
           </a>

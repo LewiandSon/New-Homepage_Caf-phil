@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useLanguage } from "../LanguageContext";
+import * as gtag from "@/lib/gtag";
 
 interface DecorativeItem {
   id: string;
@@ -185,6 +186,7 @@ export function HeroSection() {
               fontWeight: 900,
               lineHeight: "150%",
             }}
+            onClick={() => gtag.event({ action: 'click', category: 'CTA', label: 'Besuch uns Button - Hero' })}
           >
             {lang === "de" ? "Besuch uns" : "Visit Us"}
           </a>
