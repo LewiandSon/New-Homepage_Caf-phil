@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
 import { createPortal } from "react-dom";
 import { useLanguage } from "../LanguageContext";
+import { InstagramLink } from "./InstagramLink";
+import * as gtag from "@/lib/gtag";
 
 const MENU_ITEMS_DE = [
   { src: "/images/assets/Kaffee.svg", alt: "Kaffee Karte" },
@@ -31,7 +33,6 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
   const [showEventLightbox, setShowEventLightbox] = useState(false);
   const [showInstagramStrichMobile, setShowInstagramStrichMobile] = useState(false);
   const [showInstagramStrichDesktop, setShowInstagramStrichDesktop] = useState(false);
-  const [showInstagramStrichFooter, setShowInstagramStrichFooter] = useState(false);
   const { lang } = useLanguage();
   const menuItems = lang === "de" ? MENU_ITEMS_DE : MENU_ITEMS_EN;
 
@@ -2433,61 +2434,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
       {/* Instagram - größer, prominent */}
       <div className="mt-12 flex flex-col items-center">
-        <a
-          href="https://www.instagram.com/phil.in.wien/"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Instagram: phil.in.wien"
-          className="block w-[300px] h-[120px] relative active:scale-95 transition-transform duration-150"
-          onMouseEnter={() => setShowInstagramStrichFooter(true)}
-          onMouseLeave={() => setShowInstagramStrichFooter(false)}
-          onTouchStart={() => setShowInstagramStrichFooter(true)}
-          onClick={(e) => {
-            if (showInstagramStrichFooter) {
-              e.preventDefault();
-              setTimeout(() => {
-                window.open('https://www.instagram.com/phil.in.wien/', '_blank');
-                setShowInstagramStrichFooter(false);
-              }, 250);
-            } else {
-              e.preventDefault();
-              setShowInstagramStrichFooter(true);
-              setTimeout(() => {
-                window.open('https://www.instagram.com/phil.in.wien/', '_blank');
-                setShowInstagramStrichFooter(false);
-              }, 250);
-            }
-          }}
-        >
-          <Image
-            src="/images/assets/instagram-optimized.webp"
-            alt="Folge uns auf Instagram"
-            fill
-            className="object-contain"
-          />
-          {showInstagramStrichFooter && (
-            <>
-              <Image
-                src="/images/assets/unterstreichung-beige.png"
-                alt=""
-                width={180}
-                height={22}
-                className="absolute bottom-[50px] left-[24%] object-contain pointer-events-none"
-                style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
-                unoptimized
-              />
-              <Image
-                src="/images/assets/unterstreichung-beige.png"
-                alt=""
-                width={130}
-                height={22}
-                className="absolute bottom-[8px] left-[40%] object-contain pointer-events-none"
-                style={{ zIndex: 10, transform: 'rotate(-3deg) scaleY(1.4)' }}
-                unoptimized
-              />
-            </>
-          )}
-        </a>
+        <InstagramLink />
       </div>
     </footer>
     </>
