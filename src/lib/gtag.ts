@@ -17,9 +17,11 @@ export const event = ({ action, category, label, value }: {
   value?: number;
 }) => {
   if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', action, {
-      event_category: category,
-      event_label: label,
+    // GA4 verwendet custom event names statt action
+    const eventName = `${category.toLowerCase()}_${action}`;
+    (window as any).gtag('event', eventName, {
+      category: category,
+      label: label,
       value: value,
     });
   }
