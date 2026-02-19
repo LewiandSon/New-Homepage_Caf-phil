@@ -17,11 +17,11 @@ export const event = ({ action, category, label, value }: {
   value?: number;
 }) => {
   if (typeof window !== 'undefined' && (window as any).gtag) {
-    // GA4 verwendet custom event names statt action
+    // GA4: use custom event name + standard parameters
     const eventName = `${category.toLowerCase()}_${action}`;
     (window as any).gtag('event', eventName, {
-      category: category,
-      label: label,
+      event_category: category,  // GA4 standard parameter
+      event_label: label,        // GA4 standard parameter
       value: value,
     });
   }
