@@ -2062,6 +2062,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center border-[5px] border-[#D72333] p-6 w-[380px] h-[180px] text-center cursor-pointer transition-colors duration-300 hover:bg-[#D72333] group"
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'wien.info - Desktop' })}
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>wien.info</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>Kaffee und Bücher im "phil"</p>
@@ -2072,6 +2073,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center border-[5px] border-[#D72333] p-6 w-[380px] h-[180px] text-center cursor-pointer transition-colors duration-300 hover:bg-[#D72333] group"
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'Die Frühstückerinnen - Desktop' })}
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>Die Frühstückerinnen</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>Frühstück im phil, 1060 Wien</p>
@@ -2082,6 +2084,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center border-[5px] border-[#D72333] p-6 w-[380px] h-[180px] text-center cursor-pointer transition-colors duration-300 hover:bg-[#D72333] group"
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'Falter - Desktop' })}
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>Falter</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>Lokalprofil auf Falter.at</p>
@@ -2096,6 +2099,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center border-[5px] border-[#D72333] p-6 w-[380px] h-[180px] text-center cursor-pointer transition-colors duration-300 hover:bg-[#D72333] group"
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'Stadtbekannt.at - Desktop' })}
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>Stadtbekannt.at</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>phil - Cafe, Bar, Buchgeschäft<br/>& Frühstückslokal</p>
@@ -2106,6 +2110,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex flex-col items-center justify-center border-[5px] border-[#D72333] p-6 w-[380px] h-[180px] text-center cursor-pointer transition-colors duration-300 hover:bg-[#D72333] group"
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'Falstaff - Desktop' })}
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>Falstaff</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>phil in Wien -<br/>Falstaff Cafeguide</p>
@@ -2132,6 +2137,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center border-[5px] border-[#D72333] p-6 w-[380px] h-[180px] text-center cursor-pointer transition-colors duration-300 hover:bg-[#D72333] group"
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: '1000things - Büchercafés - Desktop' })}
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>1000things</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>8 gemütliche Büchercafés<br/>in Wien</p>
@@ -2142,6 +2148,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center border-[5px] border-[#D72333] p-6 w-[380px] h-[180px] text-center cursor-pointer transition-colors duration-300 hover:bg-[#D72333] group"
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: '1000things - 6. Bezirk - Desktop' })}
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>1000things</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>Unsere liebsten Cafés<br/>im 6. Bezirk</p>
