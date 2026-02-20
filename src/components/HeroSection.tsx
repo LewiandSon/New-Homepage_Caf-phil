@@ -247,7 +247,7 @@ export function HeroSection() {
         {/* Outer container - positioned relative to centered container */}
         <div 
           className="absolute left-[326px] w-[1130px] h-[1500px]"
-          style={{ top: '40px' }}
+          style={{ top: '0px' }}
         >
           {/* phil-items container - inner container with all items */}
           <div className="absolute left-0 top-0 w-[1130px] h-[1500px] flex-shrink-0">
