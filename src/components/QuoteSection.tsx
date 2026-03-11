@@ -409,7 +409,6 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             preload="metadata"
             className="w-full h-full object-cover"
           >
-            <source src="/images/assets/event-slideshow-phil-mobile.webm" type="video/webm" />
             <source src="/images/assets/event-slideshow-phil-mobile.mp4" type="video/mp4" />
           </video>
         </div>
@@ -1966,7 +1965,6 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             }}
           >
             <source src="/images/assets/events-diashow-website.webm" type="video/webm" />
-            <source src="/images/assets/events-diashow-website.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
