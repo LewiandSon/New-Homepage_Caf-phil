@@ -9,6 +9,41 @@
       "source": "/alleeintraege",
       "destination": "/events",
       "permanent": true
+    },
+    {
+      "source": "/gemeinwesen/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/schmoekerdrom/:path*",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/veranstaltungen.html",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/veranstaltungen",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/bar",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/buecher.html",
+      "destination": "/bucher",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
