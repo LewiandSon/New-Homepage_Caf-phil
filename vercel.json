@@ -1,0 +1,36 @@
+{
+  "redirects": [
+    {
+      "source": "/profil/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/alleeintraege",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!api|_next|images|favicon.ico).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "cafephil.at"
+        }
+      ],
+      "destination": "https://phil.info/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!api|_next|images|favicon.ico).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.cafephil.at"
+        }
+      ],
+      "destination": "https://phil.info/:path*",
+      "permanent": true
+    }
+  ]
+}
