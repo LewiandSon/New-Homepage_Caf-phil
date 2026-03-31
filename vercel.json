@@ -44,6 +44,16 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/biblio/:path*",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/bar/:path*",
+      "destination": "/events",
+      "permanent": true
     }
   ]
 }
