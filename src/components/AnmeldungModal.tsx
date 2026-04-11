@@ -3,8 +3,7 @@
 import { useState, FormEvent } from "react";
 import { useLanguage } from "../LanguageContext";
 
-const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxcPyb4JUoQXjKKQM75j7NQJyAPR41h9hzlrLotZP2Sx4oq0ONCtgiZNe_b4nK3d3HO/exec";
+const SCRIPT_URL = "/api/signup";
 
 type AnmeldungModalProps = {
   isOpen: boolean;

@@ -1,0 +1,116 @@
+import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+import { google } from "googleapis";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
+const CAFE_EMAIL = "info@phil.info";
+
+async function appendToGoogleSheet(row: string[]) {
+  const auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    },
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
+
+  const sheets = google.sheets({ version: "v4", auth });
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: SHEET_ID,
+    range: "Anmeldungen!A:I",
+    valueInputOption: "USER_ENTERED",
+    requestBody: { values: [row] },
+  });
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const formData = await req.formData();
+
+    const eventTitle   = formData.get("eventTitle")?.toString()     ?? "";
+    const eventDate    = formData.get("eventDate")?.toString()      ?? "";
+    const vorname      = formData.get("vorname")?.toString()        ?? "";
+    const nachname     = formData.get("nachname")?.toString()       ?? "";
+    const email        = formData.get("email")?.toString()          ?? "";
+    const personen     = formData.get("personenanzahl")?.toString() ?? "1";
+    const kommentar    = formData.get("kommentar")?.toString()      ?? "";
+    const newsletter   = formData.get("newsletter")?.toString()     ?? "Nein";
+
+    if (!email || !vorname || !eventTitle) {
+      return NextResponse.json({ status: "error", message: "Pflichtfelder fehlen." }, { status: 400 });
+    }
+
+    // 1) Google Sheet speichern
+    try {
+      await appendToGoogleSheet([
+        new Date().toLocaleString("de-AT"),
+        eventTitle,
+        eventDate,
+        vorname,
+        nachname,
+        email,
+        personen,
+        kommentar,
+        newsletter,
+      ]);
+    } catch (sheetError) {
+      console.error("Google Sheet Fehler:", sheetError);
+      // Sheet-Fehler soll die Anmeldung nicht blockieren
+    }
+
+    // 2) Bestätigungs-Mail an den Gast
+    await resend.emails.send({
+      from: "phil Café <noreply@cafephil.at>",
+      to: email,
+      subject: `Anmeldung bestätigt – ${eventTitle}`,
+      html: `
+        <div style="font-family: Georgia, serif; color: #573B30; max-width: 560px; margin: 0 auto;">
+          <div style="background: #D72333; padding: 24px 32px;">
+            <h1 style="color: #F9F1DA; font-size: 24px; margin: 0;">phil Café & Buchhandlung</h1>
+          </div>
+          <div style="background: #F9F1DA; padding: 32px;">
+            <p style="font-size: 18px;">Hallo ${vorname},</p>
+            <p style="font-size: 16px; line-height: 1.6;">
+              vielen Dank für deine Anmeldung! Wir freuen uns, dich begrüßen zu dürfen.
+            </p>
+            <div style="background: #fff; border-left: 4px solid #D72333; padding: 16px 20px; margin: 24px 0;">
+              <p style="margin: 0; font-size: 18px; font-weight: bold; color: #D72333;">${eventTitle}</p>
+              <p style="margin: 8px 0 0; font-size: 16px;">${eventDate}</p>
+              <p style="margin: 4px 0 0; font-size: 15px;">Anzahl Personen: ${personen}</p>
+            </div>
+            <p style="font-size: 15px; color: #888;">Gumpendorfer Straße 10–12, 1060 Wien</p>
+            <p style="font-size: 16px; line-height: 1.6;">Bis bald,<br/><strong>Dein phil-Team</strong></p>
+          </div>
+        </div>
+      `,
+    });
+
+    // 3) Benachrichtigung ans Café
+    await resend.emails.send({
+      from: "phil Website <noreply@cafephil.at>",
+      to: CAFE_EMAIL,
+      subject: `Neue Anmeldung: ${eventTitle}`,
+      html: `
+        <div style="font-family: Georgia, serif; color: #333; max-width: 560px;">
+          <h2 style="color: #D72333;">Neue Event-Anmeldung</h2>
+          <table style="width:100%; border-collapse: collapse; font-size: 15px;">
+            <tr><td style="padding:6px; font-weight:bold;">Veranstaltung:</td><td style="padding:6px;">${eventTitle}</td></tr>
+            <tr><td style="padding:6px; font-weight:bold;">Datum:</td><td style="padding:6px;">${eventDate}</td></tr>
+            <tr><td style="padding:6px; font-weight:bold;">Name:</td><td style="padding:6px;">${vorname} ${nachname}</td></tr>
+            <tr><td style="padding:6px; font-weight:bold;">E-Mail:</td><td style="padding:6px;">${email}</td></tr>
+            <tr><td style="padding:6px; font-weight:bold;">Personen:</td><td style="padding:6px;">${personen}</td></tr>
+            <tr><td style="padding:6px; font-weight:bold;">Kommentar:</td><td style="padding:6px;">${kommentar || "–"}</td></tr>
+            <tr><td style="padding:6px; font-weight:bold;">Newsletter:</td><td style="padding:6px;">${newsletter}</td></tr>
+          </table>
+        </div>
+      `,
+    });
+
+    return NextResponse.json({ status: "success" });
+  } catch (err) {
+    console.error("Signup API Fehler:", err);
+    return NextResponse.json({ status: "error", message: "Interner Fehler." }, { status: 500 });
+  }
+}

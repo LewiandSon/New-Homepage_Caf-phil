@@ -6,6 +6,8 @@ import { createPortal } from "react-dom";
 import { useLanguage } from "../LanguageContext";
 import { InstagramLink } from "./InstagramLink";
 import * as gtag from "@/lib/gtag";
+import { client } from "@/sanity/client";
+import { upcomingEventsQuery } from "@/sanity/queries";
 
 const MENU_ITEMS_DE = [
   { src: "/images/assets/Kaffee.svg", alt: "Kaffee Karte" },
@@ -31,10 +33,24 @@ interface QuoteSectionProps {
 export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showEventLightbox, setShowEventLightbox] = useState(false);
+  const [nextEvent, setNextEvent] = useState<{ title_de: string; title_en?: string; imageUrl?: string } | null>(null);
   const [showInstagramStrichMobile, setShowInstagramStrichMobile] = useState(false);
   const [showInstagramStrichDesktop, setShowInstagramStrichDesktop] = useState(false);
   const { lang } = useLanguage();
   const menuItems = lang === "de" ? MENU_ITEMS_DE : MENU_ITEMS_EN;
+
+  useEffect(() => {
+    const now = new Date().toISOString();
+    client.fetch<Array<{ _id: string; title_de: string; title_en?: string; imageUrl?: string }>>(
+      upcomingEventsQuery, { now }
+    ).then((events) => {
+      if (events.length > 0) setNextEvent(events[0]);
+    });
+  }, []);
+
+  const nextEventImg = nextEvent?.imageUrl || "";
+  const nextEventTitle = nextEvent ? (lang === "de" ? nextEvent.title_de : (nextEvent.title_en || nextEvent.title_de)) : "";
+  const nextEventDesc = "";
 
   // Prevent scrolling when lightbox or footer modal is open
   useEffect(() => {
@@ -327,22 +343,24 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           </h2>
         </div>
 
-        {/* Event-Poster (Weltfrauentag) – klickbar für Lightbox */}
-        <button
-          type="button"
-          className="relative w-full max-w-[320px] aspect-[4/5] mx-auto mb-6 block cursor-pointer border-0 p-0 bg-transparent"
-          onClick={() => setShowEventLightbox(true)}
-        >
-          <Image
-            src="/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp"
-            alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
-            fill
-            className="object-cover border-2 border-[#D72333]"
-            loading="lazy"
-          />
-        </button>
+        {/* Event-Poster – klickbar für Lightbox */}
+        {nextEvent && (
+          <button
+            type="button"
+            className="relative w-full max-w-[320px] aspect-[4/5] mx-auto mb-6 block cursor-pointer border-0 p-0 bg-transparent"
+            onClick={() => setShowEventLightbox(true)}
+          >
+            <Image
+              src={nextEventImg}
+              alt={nextEventTitle}
+              fill
+              className="object-cover border-2 border-[#D72333]"
+              loading="lazy"
+            />
+          </button>
+        )}
 
-        {/* Beschreibungstext – linksbündig, Button bleibt mittig */}
+        {/* Beschreibungstext */}
         <p
           className="text-left max-w-[600px] mb-4"
           style={{
@@ -354,15 +372,10 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             textAlign: "left",
           }}
         >
-          {lang === "de" ? (
-            <>
-              Gemeinsamer Abend zum Weltfrauentag im phil – mit Lesungen (Christine Heuer, Caroline Peters, Lenka Reschenbach), Prosecco Happy Hour und Pub-Quiz „Female Edition“ mit Tex Rubinowitz. Ab 15:30 Uhr.
-            </>
-          ) : (
-            <>
-              A shared evening for International Women's Day at phil – with readings (Christine Heuer, Caroline Peters, Lenka Reschenbach), Prosecco Happy Hour and pub quiz "Female Edition" with Tex Rubinowitz. From 3:30 pm.
-            </>
-          )}
+          {nextEvent
+            ? nextEventDesc.replace(/<[^>]+>/g, " ").slice(0, 200).trim() + (nextEventDesc.length > 200 ? "…" : "")
+            : (lang === "de" ? "Schau bald wieder vorbei!" : "Check back soon – new events coming up!")
+          }
         </p>
 
         {/* Button zu allen Veranstaltungen */}
@@ -970,8 +983,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp"
-            alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
+            src={nextEventImg}
+            alt={nextEventTitle}
             className="max-h-[90vh] w-auto object-contain border-2 border-[#D72333]"
           />
         </div>
@@ -1660,82 +1673,82 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         </div>
       </div>
 
-      {/* Single Event Image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7561px', zIndex: 10 }}>
-        <div
-          className="absolute"
-          style={{
-            width: '400px',
-            height: '500px',
-            left: '50%',
-            top: '0px',
-            transform: 'translateX(-50%)',
-          }}
-        >
-          <button
-            type="button"
-            className="absolute inset-0 border-0 bg-transparent p-0 cursor-pointer w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2 hover:scale-105 transition-transform duration-300"
-            onClick={() => setShowEventLightbox(true)}
-            aria-label={lang === "de" ? "Veranstaltung vergrößern" : "View event"}
+      {/* Single Event Image – nur anzeigen wenn ein bevorstehendes Event existiert */}
+      {nextEvent && (
+        <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7561px', zIndex: 10 }}>
+          <div
+            className="absolute"
+            style={{
+              width: '400px',
+              height: '500px',
+              left: '50%',
+              top: '0px',
+              transform: 'translateX(-50%)',
+            }}
           >
-            <Image
-              src="/images/assets/Weltfrauentag-phil-Instagrampost-mit-Tex.webp"
-              alt={lang === "de" ? "Weltfrauentag im phil" : "International Women's Day at phil"}
-              fill
-              className="object-cover pointer-events-none border-2 border-[#D72333]"
-              loading="lazy"
-            />
-          </button>
+            <button
+              type="button"
+              className="absolute inset-0 border-0 bg-transparent p-0 cursor-pointer w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2 hover:scale-105 transition-transform duration-300"
+              onClick={() => setShowEventLightbox(true)}
+              aria-label={lang === "de" ? "Veranstaltung vergrößern" : "View event"}
+            >
+              <Image
+                src={nextEventImg}
+                alt={nextEventTitle}
+                fill
+                className="object-cover pointer-events-none border-2 border-[#D72333]"
+                loading="lazy"
+              />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Arrow pointing to Event */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7811px' }}>
-        <div 
-          className="absolute"
-          style={{
-            width: '356px', 
-            height: '383px', 
-            left: '200px',
-            top: '0px',
-          }}
-        >
-          <Image
-            src="/images/assets/pfeil 1.svg"
-            alt="Pfeil"
-            width={356}
-            height={383}
-            className="object-contain"
-            unoptimized
-          />
-        </div>
-      </div>
+      {/* Arrow + Label – nur wenn Event vorhanden */}
+      {nextEvent && (
+        <>
+          <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7811px' }}>
+            <div 
+              className="absolute"
+              style={{ width: '356px', height: '383px', left: '200px', top: '0px' }}
+            >
+              <Image
+                src="/images/assets/pfeil 1.svg"
+                alt="Pfeil"
+                width={356}
+                height={383}
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+          </div>
 
-      {/* "aktuelle Veranstaltung" Text */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
-        <div 
-          className="absolute"
-          style={{
-            width: '324px',
-            height: '66px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            color: '#D72333',
-            fontFamily: 'Vollkorn',
-            fontSize: '30px',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            lineHeight: '150%',
-            left: '200px', // Aligned with arrow
-            top: '0px',
-          }}
-        >
-          {lang === "de" ? "aktuelle Veranstaltung" : "Current event"}
-        </div>
-      </div>
+          <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
+            <div 
+              className="absolute"
+              style={{
+                width: '324px',
+                height: '66px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                color: '#D72333',
+                fontFamily: 'Vollkorn',
+                fontSize: '30px',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: '150%',
+                left: '200px',
+                top: '0px',
+              }}
+            >
+              {lang === "de" ? "aktuelle Veranstaltung" : "Current event"}
+            </div>
+          </div>
+        </>
+      )}
 
-      {/* Anmeldung Button */}
+      {/* Anmeldung / Alle Veranstaltungen Button */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
         <a 
           href="/events"
@@ -1752,14 +1765,16 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             fontStyle: 'italic',
             fontWeight: 900,
             lineHeight: '150%',
-            left: '900px', // Estimated position (right side)
+            left: '900px',
             top: '0px',
             transform: 'translateX(-50%)',
             border: '3px solid #D72333',
             whiteSpace: 'nowrap',
           }}
         >
-          {lang === "de" ? "Anmeldung" : "Register"}
+          {nextEvent
+            ? (lang === "de" ? "Anmeldung" : "Register")
+            : (lang === "de" ? "Alle Veranstaltungen" : "All Events")}
         </a>
       </div>
 
