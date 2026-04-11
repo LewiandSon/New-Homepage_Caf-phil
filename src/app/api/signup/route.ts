@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { google } from "googleapis";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResend = () => new Resend(process.env.RESEND_API_KEY ?? "placeholder");
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 const CAFE_EMAIL = "info@phil.info";
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 2) Bestätigungs-Mail an den Gast
-    await resend.emails.send({
+    await getResend().emails.send({
       from: "phil Café <noreply@cafephil.at>",
       to: email,
       subject: `Anmeldung bestätigt – ${eventTitle}`,
@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
     });
 
     // 3) Benachrichtigung ans Café
-    await resend.emails.send({
+    await getResend().emails.send({
       from: "phil Website <noreply@cafephil.at>",
       to: CAFE_EMAIL,
       subject: `Neue Anmeldung: ${eventTitle}`,
