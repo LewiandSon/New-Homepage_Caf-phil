@@ -10,6 +10,10 @@ const CAFE_EMAIL = "info@phil.info";
 async function appendToGoogleSheet(row: string[]) {
   const rawJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? "";
   const credentials = JSON.parse(rawJson);
+  // Vercel double-escapes newlines in env vars — fix them back
+  if (credentials.private_key) {
+    credentials.private_key = credentials.private_key.replace(/\\n/g, "\n");
+  }
   const auth = new google.auth.GoogleAuth({
     credentials,
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
