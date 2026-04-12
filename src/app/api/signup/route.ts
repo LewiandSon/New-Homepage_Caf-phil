@@ -8,13 +8,10 @@ const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 const CAFE_EMAIL = "info@phil.info";
 
 async function appendToGoogleSheet(row: string[]) {
+  const rawJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? "";
+  const credentials = JSON.parse(rawJson);
   const auth = new google.auth.GoogleAuth({
-    credentials: {
-      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: (process.env.GOOGLE_PRIVATE_KEY ?? "")
-        .replace(/^["']|["']$/g, "")   // äußere Anführungszeichen entfernen
-        .replace(/\\n/g, "\n"),         // \n → echte Zeilenumbrüche
-    },
+    credentials,
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
 
