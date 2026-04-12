@@ -55,8 +55,9 @@ export async function POST(req: NextRequest) {
         kommentar,
         newsletter,
       ]);
-    } catch (sheetError) {
-      console.error("Google Sheet Fehler:", sheetError);
+    } catch (sheetError: unknown) {
+      const msg = sheetError instanceof Error ? sheetError.message : String(sheetError);
+      console.error("Google Sheet Fehler:", msg);
       // Sheet-Fehler soll die Anmeldung nicht blockieren
     }
 
