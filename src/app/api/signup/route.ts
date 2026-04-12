@@ -42,11 +42,20 @@ export async function POST(req: NextRequest) {
     }
 
     // 1) Google Sheet speichern
+    const now = new Date();
+    const anmeldeDatum = now.toLocaleDateString("de-AT");
+    const anmeldeZeit  = now.toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" });
+
+    // eventDate kommt z.B. als "15.04.2026, 19:00 Uhr" — aufteilen
+    const [eventDatumTeil, eventZeitTeil] = eventDate.split(", ");
+
     try {
       await appendToGoogleSheet([
-        new Date().toLocaleString("de-AT"),
+        anmeldeDatum,
+        anmeldeZeit,
         eventTitle,
-        eventDate,
+        eventDatumTeil ?? eventDate,
+        eventZeitTeil ?? "",
         vorname,
         nachname,
         email,
