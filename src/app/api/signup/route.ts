@@ -82,7 +82,6 @@ export async function POST(req: NextRequest) {
               <p style="margin: 6px 0 0; font-size: 15px;">${eventDate}</p>
               <p style="margin: 4px 0 0; font-size: 15px;">Anzahl Personen: ${personen}</p>
             </div>
-            <p style="font-size: 15px; color: #888; margin-bottom: 4px;">Gumpendorfer Straße 10–12, 1060 Wien</p>
             <p style="font-size: 16px; line-height: 1.6;">Mit freundlichen Grüßen,<br/><strong>Das phil-Team</strong></p>
 
             <hr style="border: none; border-top: 1px solid #ddd; margin: 32px 0;" />
@@ -97,8 +96,19 @@ export async function POST(req: NextRequest) {
               <p style="margin: 6px 0 0; font-size: 15px;">${eventDate}</p>
               <p style="margin: 4px 0 0; font-size: 15px;">Number of guests: ${personen}</p>
             </div>
-            <p style="font-size: 15px; color: #888; margin-bottom: 4px;">Gumpendorfer Straße 10–12, 1060 Vienna, Austria</p>
             <p style="font-size: 16px; line-height: 1.6;">Kind regards,<br/><strong>The phil team</strong></p>
+
+            <!-- SIGNATUR -->
+            <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; line-height: 1.8;">
+              <strong style="color: #573B30;">phil – buch bar mobiliar</strong><br/>
+              Gumpendorfer Straße 10–12, 1060 Wien<br/>
+              Mo 15–23 &nbsp;|&nbsp; Di–Do 9–23 &nbsp;|&nbsp; Fr &amp; Sa 9–1 &nbsp;|&nbsp; So 9–22<br/>
+              Tel: <a href="tel:+43151810489" style="color: #888;">+43 1 581 04 89</a><br/>
+              <a href="mailto:info@phil.info" style="color: #D72333;">info@phil.info</a> &nbsp;|&nbsp;
+              <a href="https://www.cafephil.at" style="color: #D72333;">cafephil.at</a><br/>
+              <a href="https://www.instagram.com/phil.in.wien/" style="color: #888;">Instagram</a> &nbsp;|&nbsp;
+              <a href="https://www.facebook.com/prophil" style="color: #888;">Facebook</a>
+            </div>
 
           </div>
         </div>
