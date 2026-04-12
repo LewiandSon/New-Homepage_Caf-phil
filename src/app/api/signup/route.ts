@@ -60,28 +60,46 @@ export async function POST(req: NextRequest) {
       // Sheet-Fehler soll die Anmeldung nicht blockieren
     }
 
-    // 2) Bestätigungs-Mail an den Gast
+    // 2) Bestätigungs-Mail an den Gast (DE + EN)
     await getResend().emails.send({
       from: "phil Café <noreply@cafephil.at>",
       to: email,
-      subject: `Anmeldung bestätigt – ${eventTitle}`,
+      subject: `Anmeldung bestätigt – ${eventTitle} / Registration confirmed – ${eventTitle}`,
       html: `
         <div style="font-family: Georgia, serif; color: #573B30; max-width: 560px; margin: 0 auto;">
           <div style="background: #D72333; padding: 24px 32px;">
-            <h1 style="color: #F9F1DA; font-size: 24px; margin: 0;">phil Café & Buchhandlung</h1>
+            <h1 style="color: #F9F1DA; font-size: 24px; margin: 0;">phil Café &amp; Buchhandlung</h1>
           </div>
           <div style="background: #F9F1DA; padding: 32px;">
-            <p style="font-size: 18px;">Hallo ${vorname},</p>
-            <p style="font-size: 16px; line-height: 1.6;">
-              vielen Dank für deine Anmeldung! Wir freuen uns, dich begrüßen zu dürfen.
+
+            <!-- DEUTSCH -->
+            <p style="font-size: 18px; margin-bottom: 4px;">Sehr geehrte/r ${vorname} ${nachname},</p>
+            <p style="font-size: 16px; line-height: 1.7;">
+              vielen Dank, dass Sie sich für die Veranstaltung <strong>„${eventTitle}"</strong> am <strong>${eventDate}</strong> angemeldet haben. Wir freuen uns sehr auf Ihren Besuch!
             </p>
-            <div style="background: #fff; border-left: 4px solid #D72333; padding: 16px 20px; margin: 24px 0;">
-              <p style="margin: 0; font-size: 18px; font-weight: bold; color: #D72333;">${eventTitle}</p>
-              <p style="margin: 8px 0 0; font-size: 16px;">${eventDate}</p>
+            <div style="background: #fff; border-left: 4px solid #D72333; padding: 16px 20px; margin: 20px 0;">
+              <p style="margin: 0; font-size: 17px; font-weight: bold; color: #D72333;">${eventTitle}</p>
+              <p style="margin: 6px 0 0; font-size: 15px;">${eventDate}</p>
               <p style="margin: 4px 0 0; font-size: 15px;">Anzahl Personen: ${personen}</p>
             </div>
-            <p style="font-size: 15px; color: #888;">Gumpendorfer Straße 10–12, 1060 Wien</p>
-            <p style="font-size: 16px; line-height: 1.6;">Bis bald,<br/><strong>Dein phil-Team</strong></p>
+            <p style="font-size: 15px; color: #888; margin-bottom: 4px;">Gumpendorfer Straße 10–12, 1060 Wien</p>
+            <p style="font-size: 16px; line-height: 1.6;">Mit freundlichen Grüßen,<br/><strong>Das phil-Team</strong></p>
+
+            <hr style="border: none; border-top: 1px solid #ddd; margin: 32px 0;" />
+
+            <!-- ENGLISH -->
+            <p style="font-size: 18px; margin-bottom: 4px;">Dear ${vorname} ${nachname},</p>
+            <p style="font-size: 16px; line-height: 1.7;">
+              thank you for registering for <strong>${eventTitle}</strong> on <strong>${eventDate}</strong>. We very much look forward to welcoming you!
+            </p>
+            <div style="background: #fff; border-left: 4px solid #D72333; padding: 16px 20px; margin: 20px 0;">
+              <p style="margin: 0; font-size: 17px; font-weight: bold; color: #D72333;">${eventTitle}</p>
+              <p style="margin: 6px 0 0; font-size: 15px;">${eventDate}</p>
+              <p style="margin: 4px 0 0; font-size: 15px;">Number of guests: ${personen}</p>
+            </div>
+            <p style="font-size: 15px; color: #888; margin-bottom: 4px;">Gumpendorfer Straße 10–12, 1060 Vienna, Austria</p>
+            <p style="font-size: 16px; line-height: 1.6;">Kind regards,<br/><strong>The phil team</strong></p>
+
           </div>
         </div>
       `,
