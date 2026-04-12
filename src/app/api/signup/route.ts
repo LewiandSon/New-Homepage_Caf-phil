@@ -11,7 +11,9 @@ async function appendToGoogleSheet(row: string[]) {
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      private_key: (process.env.GOOGLE_PRIVATE_KEY ?? "")
+        .replace(/^["']|["']$/g, "")   // äußere Anführungszeichen entfernen
+        .replace(/\\n/g, "\n"),         // \n → echte Zeilenumbrüche
     },
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
