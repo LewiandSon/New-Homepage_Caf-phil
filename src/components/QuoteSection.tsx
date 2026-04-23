@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, useRef, Fragment } from "react";
 import { createPortal } from "react-dom";
 import { useLanguage } from "../LanguageContext";
 import { InstagramLink } from "./InstagramLink";
@@ -10,19 +10,13 @@ import { client } from "@/sanity/client";
 import { upcomingEventsQuery } from "@/sanity/queries";
 
 const MENU_ITEMS_DE = [
-  { src: "/images/assets/Kaffee.svg", alt: "Kaffee Karte" },
-  { src: "/images/assets/fruhstueck.svg", alt: "Frühstück Karte" },
-  { src: "/images/assets/snacks.svg", alt: "Snacks Karte" },
-  { src: "/images/assets/Wein.svg", alt: "Wein Karte" },
-  { src: "/images/assets/Limo.svg", alt: "Limo Karte" },
+  { src: "/images/assets/getraenke-de.png", alt: "Getränke Karte" },
+  { src: "/images/assets/speisen-de.png", alt: "Speisen Karte" },
 ];
 
 const MENU_ITEMS_EN = [
-  { src: "/images/assets/kaffee-en.svg", alt: "Coffee menu" },
-  { src: "/images/assets/fruhstueck-en.svg", alt: "Breakfast menu" },
-  { src: "/images/assets/snacks-en.svg", alt: "Snacks menu" },
-  { src: "/images/assets/wein-en.svg", alt: "Wine menu" },
-  { src: "/images/assets/limo-en.svg", alt: "Soft drinks menu" },
+  { src: "/images/assets/drinks-en.png", alt: "Drinks menu" },
+  { src: "/images/assets/food-en.png", alt: "Food menu" },
 ];
 
 interface QuoteSectionProps {
@@ -38,6 +32,20 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
   const [showInstagramStrichDesktop, setShowInstagramStrichDesktop] = useState(false);
   const { lang } = useLanguage();
   const menuItems = lang === "de" ? MENU_ITEMS_DE : MENU_ITEMS_EN;
+
+  // Zoom state für Lightbox (nur Desktop)
+  const [zoomed, setZoomed] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const dragRef = useRef(null);
+  const pinchRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     const now = new Date().toISOString();
@@ -66,6 +74,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
+    setZoomed(false);
     gtag.event({ 
       action: 'open', 
       category: 'Menu', 
@@ -75,12 +84,14 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
   const closeLightbox = () => {
     setLightboxIndex(null);
+    setZoomed(false);
   };
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (lightboxIndex !== null) {
       setLightboxIndex((lightboxIndex + 1) % menuItems.length);
+      setZoomed(false);
     }
   };
 
@@ -88,6 +99,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     e.stopPropagation();
     if (lightboxIndex !== null) {
       setLightboxIndex((lightboxIndex - 1 + menuItems.length) % menuItems.length);
+      setZoomed(false);
     }
   };
 
@@ -95,7 +107,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     <>
     {/* Mobile layout: vereinfachte, schmale Version */}
     <section className="block md:hidden px-6 pb-24 max-w-[720px] mx-auto" data-section="speisekarte" style={{ scrollMarginTop: "120px" }}>
-      {/* Speisekarte-Teaser */}
+      {/* Speisekarte – Mobile */}
       <div className="mb-8 mt-2">
         <h2
           className="mb-4 text-center"
@@ -109,72 +121,29 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         >
           {lang === "de" ? "Unsere Speisekarte" : "Our Menu"}
         </h2>
-        <div className="grid grid-cols-2 gap-4">
-          <button
-            type="button"
-            onClick={() => openLightbox(0)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
-          >
-            <Image
-              src={lang === "de" ? "/images/assets/Kaffee.svg" : "/images/assets/kaffee-en.svg"}
-              alt={lang === "de" ? "Kaffee Karte" : "Coffee menu"}
-              width={400}
-              height={600}
-              className="w-full h-auto object-contain"
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => openLightbox(1)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
-          >
-            <Image
-              src={lang === "de" ? "/images/assets/fruhstueck.svg" : "/images/assets/fruhstueck-en.svg"}
-              alt={lang === "de" ? "Frühstück Karte" : "Breakfast menu"}
-              width={400}
-              height={600}
-              className="w-full h-auto object-contain"
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => openLightbox(2)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
-          >
-            <Image
-              src={lang === "de" ? "/images/assets/snacks.svg" : "/images/assets/snacks-en.svg"}
-              alt={lang === "de" ? "Snacks Karte" : "Snacks menu"}
-              width={400}
-              height={600}
-              className="w-full h-auto object-contain"
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => openLightbox(3)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
-          >
-            <Image
-              src={lang === "de" ? "/images/assets/Wein.svg" : "/images/assets/wein-en.svg"}
-              alt={lang === "de" ? "Wein Karte" : "Wine menu"}
-              width={400}
-              height={600}
-              className="w-full h-auto object-contain"
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => openLightbox(4)}
-            className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150"
-          >
-            <Image
-              src={lang === "de" ? "/images/assets/Limo.svg" : "/images/assets/limo-en.svg"}
-              alt={lang === "de" ? "Limo Karte" : "Soft drinks menu"}
-              width={400}
-              height={600}
-              className="w-full h-auto object-contain"
-            />
-          </button>
+        <div className="flex flex-col gap-6">
+          {menuItems.map((item, i) => (
+            <button
+              key={item.src}
+              type="button"
+              onClick={() => openLightbox(i)}
+              className="cursor-pointer p-0 border-0 bg-transparent text-left w-full hover:scale-[1.01] active:scale-[0.99] transition-transform duration-150"
+              aria-label={item.alt}
+              style={{
+                borderRadius: "2px",
+                boxShadow: "0 4px 16px 0 rgba(80,40,20,0.22), 0 1.5px 4px 0 rgba(80,40,20,0.12)",
+              }}
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                width={800}
+                height={1132}
+                className="w-full h-auto object-contain"
+                style={{ display: "block", borderRadius: "2px" }}
+              />
+            </button>
+          ))}
         </div>
       </div>
 
@@ -917,56 +886,89 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
     )}
 
-    {/* Lightbox Overlay – per Portal in document.body, damit fixed nicht vom md:scale-Wrapper beeinflusst wird */}
+    {/* Lightbox Overlay */}
     {lightboxIndex !== null && typeof document !== "undefined" && createPortal(
       <div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-1 md:px-6"
+        className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm"
         onClick={closeLightbox}
       >
-        {/* Pfeile direkt links und rechts der Speisekarte, etwas größer */}
-        <div
-          className="flex flex-row items-center justify-center gap-1 md:gap-4 max-w-[99vw] md:max-w-[95vw]"
-          onClick={(e) => e.stopPropagation()}
-        >
+        {/* Pfeil Links */}
+        {menuItems.length > 1 && (
           <button
             type="button"
             onClick={prevImage}
-            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-1 md:p-2 rounded-full hover:bg-white/20 z-10"
+            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 text-white hover:text-[#D72333] transition-colors p-2 rounded-full hover:bg-white/10"
             aria-label="Previous image"
           >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[40px] md:h-[40px]">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <div className="relative max-h-[98vh] md:max-h-[90vh] flex items-center justify-center min-w-0">
+        )}
+
+        {/* Bild-Container – Klick auf Bild = Zoom toggle, Klick auf Hintergrund = schließen */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div
+            className="pointer-events-auto"
+            style={{
+              maxWidth: "95vw",
+              maxHeight: "92vh",
+              overflow: zoomed ? "auto" : "hidden",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={menuItems[lightboxIndex].src}
               alt={menuItems[lightboxIndex].alt}
-              className="max-h-[98vh] md:max-h-[90vh] w-auto object-contain bg-[#F8F7F6]"
-              width={558}
-              height={793}
+              draggable={false}
+              onClick={isDesktop ? () => setZoomed(prev => !prev) : undefined}
+              style={{
+                display: "block",
+                width: zoomed ? "1400px" : "auto",
+                maxWidth: zoomed ? "none" : "92vw",
+                maxHeight: zoomed ? "none" : "88vh",
+                height: "auto",
+                cursor: isDesktop ? (zoomed ? "zoom-out" : "zoom-in") : "default",
+                transition: "width 0.2s ease",
+              }}
             />
           </div>
+        </div>
+
+        {/* Pfeil Rechts */}
+        {menuItems.length > 1 && (
           <button
             type="button"
             onClick={nextImage}
-            className="flex-shrink-0 text-[#D72333] hover:opacity-90 transition-opacity p-1 md:p-2 rounded-full hover:bg-white/20 z-10"
+            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 text-white hover:text-[#D72333] transition-colors p-2 rounded-full hover:bg-white/10"
             aria-label="Next image"
           >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[40px] md:h-[40px]">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
-        </div>
+        )}
+
+        {/* Schließen-Button */}
         <button
           type="button"
           onClick={closeLightbox}
-          className="absolute top-4 right-4 text-white hover:text-primary text-3xl p-2 z-10"
+          className="absolute top-4 right-4 z-20 text-white hover:text-[#D72333] transition-colors text-4xl leading-none p-2"
           aria-label="Close"
         >
           ×
         </button>
+
+        {/* Zoom-Hinweis – nur Desktop */}
+        {isDesktop && !zoomed && (
+          <div
+            className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 text-white/75 text-xs px-3 py-1 rounded-full pointer-events-none"
+            style={{ background: "rgba(0,0,0,0.4)", whiteSpace: "nowrap" }}
+          >
+            {lang === "de" ? "Klicken zum Zoomen" : "Click to zoom"}
+          </div>
+        )}
       </div>,
       document.body
     )}
@@ -1336,100 +1338,47 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         </div>
       </div>
 
-      {/* Speisekarte Image (Left) */}
+      {/* Speisekarte: Getränke (Links) & Speisen (Rechts) – Desktop */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '2847px' }}>
         <button
           type="button"
-          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] left-[132px] top-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
-          style={{ left: '132px', top: '0px' }}
+          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
+          style={{ left: '132px', top: '0px', borderRadius: '2px', boxShadow: '0 6px 24px 0 rgba(80,40,20,0.25), 0 2px 6px 0 rgba(80,40,20,0.13)' }}
           onClick={() => openLightbox(0)}
-          aria-label={lang === "de" ? "Kaffee Karte vergrößern" : "View coffee menu"}
+          aria-label={lang === "de" ? "Getränke Karte vergrößern" : "View drinks menu"}
         >
           <Image
-            src={lang === "de" ? "/images/assets/Kaffee.svg" : "/images/assets/kaffee-en.svg"}
-            alt={lang === "de" ? "Kaffee Karte" : "Coffee menu"}
+            src={menuItems[0].src}
+            alt={menuItems[0].alt}
             width={558}
             height={793}
             className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
+            style={{ borderRadius: '2px' }}
             unoptimized
           />
         </button>
 
-        {/* Frühstück Image (Right) */}
         <button
           type="button"
           className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
-          style={{ left: '750px', top: '0px' }}
+          style={{ left: '750px', top: '0px', borderRadius: '2px', boxShadow: '0 6px 24px 0 rgba(80,40,20,0.25), 0 2px 6px 0 rgba(80,40,20,0.13)' }}
           onClick={() => openLightbox(1)}
-          aria-label={lang === "de" ? "Frühstück Karte vergrößern" : "View breakfast menu"}
+          aria-label={lang === "de" ? "Speisen Karte vergrößern" : "View food menu"}
         >
           <Image
-            src={lang === "de" ? "/images/assets/fruhstueck.svg" : "/images/assets/fruhstueck-en.svg"}
-            alt={lang === "de" ? "Frühstück Karte" : "Breakfast menu"}
+            src={menuItems[1].src}
+            alt={menuItems[1].alt}
             width={558}
             height={793}
             className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
+            style={{ borderRadius: '2px' }}
             unoptimized
           />
         </button>
       </div>
 
-      {/* Row 2: Snacks & Wein */}
+        {/* Quote & Saltpepper */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3700px' }}>
-        <button
-          type="button"
-          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
-          style={{ left: '132px', top: '0px' }}
-          onClick={() => openLightbox(2)}
-          aria-label={lang === "de" ? "Snacks Karte vergrößern" : "View snacks menu"}
-        >
-          <Image
-            src={lang === "de" ? "/images/assets/snacks.svg" : "/images/assets/snacks-en.svg"}
-            alt={lang === "de" ? "Snacks Karte" : "Snacks menu"}
-            width={558}
-            height={793}
-            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
-            unoptimized
-          />
-        </button>
-
-        <button
-          type="button"
-          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
-          style={{ left: '750px', top: '0px' }}
-          onClick={() => openLightbox(3)}
-          aria-label={lang === "de" ? "Wein Karte vergrößern" : "View wine menu"}
-        >
-          <Image
-            src={lang === "de" ? "/images/assets/Wein.svg" : "/images/assets/wein-en.svg"}
-            alt={lang === "de" ? "Wein Karte" : "Wine menu"}
-            width={558}
-            height={793}
-            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
-            unoptimized
-          />
-        </button>
-      </div>
-
-        {/* Row 3: Limo & Quote */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '4553px' }}>
-        <button
-          type="button"
-          className="absolute border-0 bg-transparent p-0 cursor-pointer w-[558px] h-[793px] hover:scale-[1.02] transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D72333] focus-visible:ring-offset-2"
-          style={{ left: '132px', top: '0px' }}
-          onClick={() => openLightbox(4)}
-          aria-label={lang === "de" ? "Limo Karte vergrößern" : "View soft drinks menu"}
-        >
-          <Image
-            src={lang === "de" ? "/images/assets/Limo.svg" : "/images/assets/limo-en.svg"}
-            alt={lang === "de" ? "Limo Karte" : "Soft drinks menu"}
-            width={558}
-            height={793}
-            className="object-contain w-full h-full transition-transform duration-300 pointer-events-none"
-            unoptimized
-          />
-        </button>
-
         {/* Quote & Saltpepper (Right) */}
         <div 
           className="absolute"
