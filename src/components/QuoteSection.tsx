@@ -74,7 +74,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
-    setZoomed(false);
+    setZoomed(true);
     gtag.event({ 
       action: 'open', 
       category: 'Menu', 
@@ -925,7 +925,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
               onClick={isDesktop ? () => setZoomed(prev => !prev) : undefined}
               style={{
                 display: "block",
-                width: zoomed ? "1400px" : "auto",
+                width: zoomed ? "1050px" : "auto",
                 maxWidth: zoomed ? "none" : "92vw",
                 maxHeight: zoomed ? "none" : "88vh",
                 height: "auto",
@@ -1007,7 +1007,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     {/* Scale-Effekt (0.855): Visuell endet Content bei 13246px, aber Layout-Höhe bleibt 13246px */}
     {/* Problem: Scale skaliert nur visuelle Höhe, nicht Layout-Höhe → Leerraum durch Scale-Effekt: 13246 * (1 - 0.855) = 1921px */}
     {/* Lösung: Negativer marginBottom kompensiert den Scale-Leerraum. Da marginBottom auch skaliert wird, muss er durch 0.855 geteilt werden */}
-    <section className="hidden md:block relative w-full" style={{ minHeight: '13246px', marginBottom: 'calc(-1 * (13246px * (1 - 0.855)) / 0.855)' }}>
+    <section className="hidden md:block relative w-full" style={{ minHeight: '12386px', marginBottom: 'calc(-1 * (12386px * (1 - 0.855)) / 0.855)' }}>
       {/* Quote container */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '600px' }}>
         <div 
@@ -1379,13 +1379,13 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
         {/* Quote & Saltpepper */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '3700px' }}>
-        {/* Quote & Saltpepper (Right) */}
+        {/* Quote & Saltpepper (zentriert) */}
         <div 
           className="absolute"
           style={{
             width: '558px',
             height: '793px',
-            left: '750px',
+            left: '441px',
             top: '0px',
             display: 'flex',
             flexDirection: 'column',
@@ -1451,7 +1451,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Speisekarte GIF – unterhalb der Speisekarten, mittig zentriert (Desktop) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px] flex justify-center" style={{ top: '5440px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px] flex justify-center" style={{ top: '4580px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/assets/phil-speisen-handbeschriftet.gif"
@@ -1465,7 +1465,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       {/* Schanigarten Section */}
       
       {/* Heading: Schanigarten */}
-      <div id="schanigarten" data-section="schanigarten" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6057px', scrollMarginTop: '120px' }}>
+      <div id="schanigarten" data-section="schanigarten" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '5197px', scrollMarginTop: '120px' }}>
         <div 
           className="absolute"
           style={{
@@ -1492,7 +1492,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
 
       {/* Bordüre 2 */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6147px', zIndex: 1 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '5287px', zIndex: 1 }}>
         <div 
           className="absolute"
           style={{
@@ -1514,7 +1514,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Schanigarten Image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6230px', zIndex: 10 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '5370px', zIndex: 10 }}>
         <div 
           className="absolute"
           style={{
@@ -1535,7 +1535,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Text: Genieße Kaffee... */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6928px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6068px' }}>
         <div 
           className="absolute"
           style={{
@@ -1575,7 +1575,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Veranstaltungen Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7311px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6451px' }}>
         <div 
           className="absolute"
           style={{
@@ -1601,7 +1601,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Disco Ball Image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7461px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6601px' }}>
         <div 
           className="absolute"
           style={{
@@ -1624,7 +1624,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
       {/* Single Event Image – nur anzeigen wenn ein bevorstehendes Event existiert */}
       {nextEvent && (
-        <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7561px', zIndex: 10 }}>
+        <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6701px', zIndex: 10 }}>
           <div
             className="absolute"
             style={{
@@ -1656,7 +1656,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       {/* Arrow + Label – nur wenn Event vorhanden */}
       {nextEvent && (
         <>
-          <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7811px' }}>
+          <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '6951px' }}>
             <div 
               className="absolute"
               style={{ width: '356px', height: '383px', left: '200px', top: '0px' }}
@@ -1672,7 +1672,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             </div>
           </div>
 
-          <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
+          <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7351px' }}>
             <div 
               className="absolute"
               style={{
@@ -1698,7 +1698,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       )}
 
       {/* Anmeldung / Alle Veranstaltungen Button */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8211px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7351px' }}>
         <a 
           href="/events"
           className="absolute transition-all duration-150 text-[#D72333] hover:bg-[#D72333] hover:text-[#f9f1da] active:bg-[#D72333] active:text-[#f9f1da] active:scale-95 cursor-pointer"
@@ -1730,7 +1730,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       {/* Events & Bar Section */}
       
       {/* Heading: Events & Bar */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8511px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7651px' }}>
         <div 
           className="absolute"
           style={{
@@ -1750,7 +1750,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Main Image (IMG_4843-2 1.svg) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8661px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '7801px' }}>
         <div 
           className="absolute"
           style={{
@@ -1905,7 +1905,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Video (Overlapping) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9061px', zIndex: 20 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8201px', zIndex: 20 }}>
         <div 
           className="absolute"
           style={{
@@ -1934,7 +1934,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Quote Right */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9511px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '8651px' }}>
         <div 
           className="absolute"
           style={{
@@ -1970,7 +1970,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Mirror Image */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9861px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9001px' }}>
         <div 
           className="absolute"
           style={{
@@ -1995,7 +1995,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       {/* Reviews Section */}
       
       {/* Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10511px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9651px' }}>
         <div 
           className="absolute"
           style={{
@@ -2015,7 +2015,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Reviews Grid */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10661px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9801px' }}>
         {/* Row 1 */}
         <div className="absolute left-[100px] flex gap-[30px]">
           {/* Box 1 */}
@@ -2119,7 +2119,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Reservations Section */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '11511px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '10651px' }}>
         
         {/* Lamp Image */}
         <div className="absolute left-[380px] top-[-50px] w-[200px] h-[300px]">
@@ -2190,7 +2190,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Info Section (Footer) */}
-      <div data-section="kontakt" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12111px', scrollMarginTop: '120px' }}>
+      <div data-section="kontakt" className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '11251px', scrollMarginTop: '120px' }}>
         <div className="flex justify-center gap-[60px]">
           
           {/* Box 1: Adresse */}
@@ -2289,7 +2289,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
       {/* Welcome Section */}
       {/* Mehr Abstand: Text höher positioniert für mehr Raum zu Bild/Zucker, und mehr Raum nach unten zum Footer */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '12711px', height: '535px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '11851px', height: '535px' }}>
         
         {/* Picture Frame */}
         <div className="absolute left-1/2 -translate-x-1/2 top-[-210px] w-[360px] h-[450px]">
