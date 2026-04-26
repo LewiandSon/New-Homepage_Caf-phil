@@ -74,7 +74,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
-    setZoomed(true);
+    setZoomed(isDesktop);
     gtag.event({ 
       action: 'open', 
       category: 'Menu', 
@@ -91,7 +91,6 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     e.stopPropagation();
     if (lightboxIndex !== null) {
       setLightboxIndex((lightboxIndex + 1) % menuItems.length);
-      setZoomed(false);
     }
   };
 
@@ -99,7 +98,6 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     e.stopPropagation();
     if (lightboxIndex !== null) {
       setLightboxIndex((lightboxIndex - 1 + menuItems.length) % menuItems.length);
-      setZoomed(false);
     }
   };
 
@@ -2334,7 +2332,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
       </div>
 
       {/* Sieve Image (Bottom Left) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9961px', zIndex: 10 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 w-[1440px]" style={{ top: '9101px', zIndex: 10 }}>
         <div 
           className="absolute"
           style={{
