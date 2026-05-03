@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   description:
     "phil – Café, Buchhandlung & Bar in Wien-Mariahilf. Kaffee, Frühstück, Bücher, Schanigarten, Events und eine sorgfältig kuratierte Bücherauswahl.",
   metadataBase: new URL("https://phil.info"),
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "phil Café – Café, Buchhandlung & Bar in Wien",
     description:
@@ -34,6 +38,14 @@ export const metadata: Metadata = {
     siteName: "phil Café",
     locale: "de_AT",
     type: "website",
+    images: [
+      {
+        url: "/images/assets/ausgesprochen_viel.webp",
+        width: 512,
+        height: 512,
+        alt: "phil Café Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
