@@ -18,16 +18,16 @@ const HOURS = [
 ] as const;
 
 const PHOTOS = [
-  { src: "/images/assets/1_Lokal.webp", alt: "café phil interior" },
-  { src: "/images/assets/2_Spiegel.webp", alt: "café phil mirror wall" },
-  { src: "/images/assets/6_Bedienung.webp", alt: "café phil service" },
-  { src: "/images/assets/schanigarten.webp", alt: "café phil Schanigarten" },
+  { src: "/images/assets/1_Lokal.webp",       alt: "café phil interior" },
+  { src: "/images/assets/breakfast-spread.jpg", alt: "phil breakfast spread" },
+  { src: "/images/assets/coffee-cake.jpg",      alt: "coffee and cake at phil" },
+  { src: "/images/assets/schanigarten.webp",   alt: "café phil Schanigarten" },
 ];
 
 const PRICES = [
-  ["Breakfast plate (egg, toast, butter, jam)", "from €9"],
+  ["Breakfast (phil good & more)", "from €13"],
   ["Coffee (espresso / cappuccino)", "from €3.20"],
-  ["Filter coffee", "from €3.50"],
+  ["Flat white", "€5.80"],
   ["Fresh juice", "from €4"],
 ] as const;
 
@@ -233,13 +233,13 @@ function IconBook() {
 const SERVE_CARDS = [
   {
     icon: <IconBreakfast />,
-    title: "Breakfast all day",
-    text: "Eggs, toast, müsli, pastries – served from opening until close. Regional & organic.",
+    title: "Breakfast until 2 PM",
+    text: "Our most popular: the phil good – falafel, hummus, sourdough, egg & müsli. After 2 PM: falafel, hummus, olives & snacks.",
   },
   {
     icon: <IconCoffee />,
     title: "Specialty coffee",
-    text: "Espresso, cappuccino, flat white, filter. Austrian roasters.",
+    text: "Espresso, cappuccino, flat white, cold brew. Austrian roasters.",
   },
   {
     icon: <IconBook />,
@@ -365,7 +365,7 @@ export function BreakfastContent() {
         <div
           className="p-6 md:p-8"
           style={{
-            background: "#fff",
+            background: "#F9F1DA",
             border: "1.5px solid #D72333",
             borderRadius: "2px",
           }}
@@ -410,48 +410,25 @@ export function BreakfastContent() {
               ))}
             </tbody>
           </table>
-          <div
-            className="mt-4"
-            style={{ fontFamily: "Vollkorn", fontSize: "15px", color: "#573B30", opacity: 0.65 }}
-          >
-            Phone: +43 1 581 04 89
-          </div>
         </div>
 
-        <div className="flex gap-3 mt-4">
-          <a
-            href={MAPS_URL}
-            onClick={trackDirections}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 py-3 text-center transition-opacity hover:opacity-85 active:opacity-70"
-            style={{
-              fontFamily: "Vollkorn",
-              fontSize: "16px",
-              fontWeight: 700,
-              color: "#F9F1DA",
-              background: "#D72333",
-              borderRadius: "2px",
-            }}
-          >
-            Open in Maps
-          </a>
-          <a
-            href="tel:+431581048"
-            className="flex-1 py-3 text-center transition-opacity hover:opacity-85 active:opacity-70"
-            style={{
-              fontFamily: "Vollkorn",
-              fontSize: "16px",
-              fontWeight: 700,
-              color: "#D72333",
-              background: "transparent",
-              border: "1.5px solid #D72333",
-              borderRadius: "2px",
-            }}
-          >
-            Call us
-          </a>
-        </div>
+        <a
+          href={MAPS_URL}
+          onClick={trackDirections}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full py-3 text-center mt-4 transition-opacity hover:opacity-85 active:opacity-70"
+          style={{
+            fontFamily: "Vollkorn",
+            fontSize: "16px",
+            fontWeight: 700,
+            color: "#F9F1DA",
+            background: "#D72333",
+            borderRadius: "2px",
+          }}
+        >
+          Open in Maps
+        </a>
       </section>
 
       {/* ─── D · What we serve ────────────────────────────────────────── */}
@@ -639,7 +616,7 @@ export function BreakfastContent() {
       {/* ─── H · CTA Banner ───────────────────────────────────────────── */}
       <section
         className="px-6 py-16 text-center"
-        style={{ background: "#573B30" }}
+        style={{ background: "#1a1a1a" }}
       >
         <p
           className="mb-3"
@@ -676,7 +653,7 @@ export function BreakfastContent() {
             fontFamily: "Vollkorn",
             fontSize: "18px",
             fontWeight: 700,
-            color: "#573B30",
+            color: "#1a1a1a",
             background: "#F9F1DA",
             borderRadius: "2px",
             padding: "12px 32px",
