@@ -457,7 +457,7 @@ export function BreakfastContent() {
       </section>
 
       {/* ─── D · What we serve ────────────────────────────────────────── */}
-      <section className="px-4 py-12" style={{ background: "rgba(255,255,255,0.45)" }}>
+      <section className="px-4 py-12" >
         <h2
           className="text-center mb-8"
           style={{
@@ -613,7 +613,7 @@ export function BreakfastContent() {
       </section>
 
       {/* ─── G · Reviews ──────────────────────────────────────────────── */}
-      <section className="px-4 py-12" style={{ background: "rgba(255,255,255,0.45)" }}>
+      <section className="px-4 py-12" >
         <h2
           className="text-center mb-8"
           style={{
