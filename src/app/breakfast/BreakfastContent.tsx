@@ -18,7 +18,7 @@ const HOURS = [
 ] as const;
 
 const PHOTOS = [
-  { src: "/images/assets/1_Lokal.webp",       alt: "café phil interior" },
+  { src: "/images/assets/phil-interior.jpg",   alt: "café phil interior" },
   { src: "/images/assets/breakfast-spread.jpg", alt: "phil breakfast spread" },
   { src: "/images/assets/coffee-cake.jpg",      alt: "coffee and cake at phil" },
   { src: "/images/assets/schanigarten.webp",   alt: "café phil Schanigarten" },
