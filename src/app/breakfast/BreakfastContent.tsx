@@ -626,7 +626,7 @@ export function BreakfastContent() {
         >
           What people say
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 gap-5 max-w-2xl mx-auto">
           {REVIEWS.map(({ quote, author }) => (
             <div
               key={author}
