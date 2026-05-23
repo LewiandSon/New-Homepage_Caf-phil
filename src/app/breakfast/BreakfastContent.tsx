@@ -284,11 +284,11 @@ export function BreakfastContent() {
       >
         <span className="flex items-center gap-2">
           <img
-            src="/images/assets/engel.svg"
+            src="/images/assets/phil-logo.png"
             alt="café phil logo"
-            width={28}
-            height={28}
-            style={{ borderRadius: "50%", background: "#D72333", padding: "3px" }}
+            width={32}
+            height={32}
+            style={{ borderRadius: "50%" }}
           />
           <span
             style={{
