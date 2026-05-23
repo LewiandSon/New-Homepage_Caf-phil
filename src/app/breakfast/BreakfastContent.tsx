@@ -50,31 +50,37 @@ const REVIEWS = [
 // TODO: Replace with real Google Reviews from your Business Profile
 const GOOGLE_REVIEWS = [
   {
-    initials: "SM",
+    initials: "S",
     name: "Sarah M.",
-    flag: "🇬🇧",
+    meta: "3 reviews · 8 photos",
     rating: 5,
+    timeAgo: "2 weeks ago",
     text: "Best breakfast spot in Vienna. Books everywhere, great coffee, unmatched vibe.",
+    scores: { Food: "5/5", Service: "5/5", Atmosphere: "5/5" },
     avatarBg: "#E8F0FE",
     avatarColor: "#1a73e8",
   },
   {
-    initials: "TK",
+    initials: "T",
     name: "Thomas K.",
-    flag: "🇩🇪",
+    meta: "12 reviews · 4 photos",
     rating: 5,
-    text: "Came for coffee, stayed two hours. A true Viennese gem.",
-    avatarBg: "#E6F4EA",
-    avatarColor: "#34a853",
+    timeAgo: "1 month ago",
+    text: "Came for coffee, stayed two hours. A true Viennese gem. The book selection is wonderful.",
+    scores: { Food: "5/5", Service: "5/5", Atmosphere: "5/5" },
+    avatarBg: "#FCE8E6",
+    avatarColor: "#EA4335",
   },
   {
-    initials: "EL",
+    initials: "E",
     name: "Emma L.",
-    flag: "🇺🇸",
+    meta: "6 reviews · 10 photos",
     rating: 5,
-    text: "Stumbled upon phil by accident – highlight of our Vienna trip.",
-    avatarBg: "#FEF7E0",
-    avatarColor: "#f9ab00",
+    timeAgo: "3 weeks ago",
+    text: "Stumbled upon phil by accident – highlight of our Vienna trip. Will be back next time.",
+    scores: { Food: "5/5", Service: "5/5", Atmosphere: "5/5" },
+    avatarBg: "#E6F4EA",
+    avatarColor: "#34a853",
   },
 ];
 
@@ -140,26 +146,38 @@ function GoogleReviewsCard() {
         {GOOGLE_REVIEWS.map((r, i) => (
           <div
             key={r.name}
-            className="flex gap-3 px-5 py-3"
-            style={{ borderBottom: i < GOOGLE_REVIEWS.length - 1 ? "1px solid rgba(0,0,0,0.06)" : undefined }}
+            className="px-5 py-4"
+            style={{ borderBottom: i < GOOGLE_REVIEWS.length - 1 ? "1px solid rgba(0,0,0,0.08)" : undefined }}
           >
-            <div
-              className="flex-shrink-0 flex items-center justify-center rounded-full"
-              style={{ width: 34, height: 34, background: r.avatarBg, color: r.avatarColor, fontSize: "11px", fontWeight: 700 }}
-            >
-              {r.initials}
+            {/* Reviewer header */}
+            <div className="flex items-center gap-3 mb-2">
+              <div
+                className="flex-shrink-0 flex items-center justify-center rounded-full"
+                style={{ width: 36, height: 36, background: r.avatarBg, color: r.avatarColor, fontSize: "15px", fontWeight: 700 }}
+              >
+                {r.initials}
+              </div>
+              <div>
+                <div style={{ fontSize: "14px", fontWeight: 600, color: "#1a1a1a", lineHeight: 1.2 }}>{r.name}</div>
+                <div style={{ fontSize: "12px", color: "#777" }}>{r.meta}</div>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-1">
-                <span style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>{r.name}</span>
-                <span style={{ fontSize: "12px" }}>{r.flag}</span>
-              </div>
-              <div style={{ color: "#F4B400", fontSize: "11px", letterSpacing: "1px", margin: "1px 0" }}>
-                {"★".repeat(r.rating)}
-              </div>
-              <p style={{ fontSize: "13px", color: "#444", lineHeight: 1.5, margin: 0 }}>
-                &ldquo;{r.text}&rdquo;
-              </p>
+            {/* Stars + time */}
+            <div className="flex items-center gap-2 mb-1">
+              <span style={{ color: "#F4B400", fontSize: "13px", letterSpacing: "1px" }}>{"★".repeat(r.rating)}</span>
+              <span style={{ fontSize: "12px", color: "#777" }}>{r.timeAgo}</span>
+            </div>
+            {/* Review text */}
+            <p style={{ fontSize: "13px", color: "#333", lineHeight: 1.55, margin: "0 0 8px" }}>
+              {r.text}
+            </p>
+            {/* Food / Service / Atmosphere */}
+            <div className="flex gap-3 flex-wrap">
+              {Object.entries(r.scores).map(([label, score]) => (
+                <span key={label} style={{ fontSize: "12px", color: "#555" }}>
+                  <span style={{ fontWeight: 600 }}>{label}:</span> {score}
+                </span>
+              ))}
             </div>
           </div>
         ))}
