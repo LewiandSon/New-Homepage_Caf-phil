@@ -731,7 +731,7 @@ export function BreakfastContent() {
         >
           café phil · Gumpendorfer Str. 10–12 · 1060 Wien · Austria
           <br />
-          © 2026 phil Cafe &amp; Bookshop
+          © 2026 phil Café &amp; Bookshop
         </p>
         <a
           href="https://cafephil.at"
