@@ -274,6 +274,8 @@ export function BreakfastContent() {
         html:has([data-page="breakfast"]) header { display: none !important; }
       `}</style>
 
+      <div style={{ maxWidth: 500, margin: "0 auto" }}>
+
       {/* ─── A · Sticky Mobile Header ─────────────────────────────────── */}
       <div
         className="md:hidden sticky top-0 z-50 flex items-center justify-between px-4 py-3"
@@ -284,7 +286,7 @@ export function BreakfastContent() {
       >
         <span className="flex items-center gap-2">
           <img
-            src="/images/assets/phil-logo.png"
+            src="/images/assets/phil-logo-white.png"
             alt="café phil logo"
             width={32}
             height={32}
@@ -384,7 +386,7 @@ export function BreakfastContent() {
       <GoogleReviewsCard />
 
       {/* ─── C · Hours & Address ──────────────────────────────────────── */}
-      <section className="px-4 py-10 max-w-lg mx-auto md:max-w-2xl">
+      <section className="px-4 py-10">
         <div
           className="p-6 md:p-8"
           style={{
@@ -468,7 +470,7 @@ export function BreakfastContent() {
         >
           What we serve
         </h2>
-        <div className="grid grid-cols-1 gap-5 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 gap-5">
           {SERVE_CARDS.map(({ icon, title, text }) => (
             <div
               key={title}
@@ -534,7 +536,7 @@ export function BreakfastContent() {
       </section>
 
       {/* ─── F · Prices ───────────────────────────────────────────────── */}
-      <section className="px-4 py-12 max-w-lg mx-auto md:max-w-2xl">
+      <section className="px-4 py-12">
         <h2
           className="mb-6"
           style={{
@@ -744,6 +746,8 @@ export function BreakfastContent() {
           Back to cafephil.at →
         </a>
       </footer>
+
+      </div>
     </main>
   );
 }
