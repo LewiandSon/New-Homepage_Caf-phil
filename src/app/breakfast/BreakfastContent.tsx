@@ -246,11 +246,6 @@ const SERVE_CARDS = [
     text: "Espresso, cappuccino, flat white, cold brew. Austrian roasters.",
   },
   {
-    icon: <IconBook />,
-    title: "4,000 books",
-    text: "Browse while you eat. Curated selection, English titles included.",
-  },
-  {
     icon: (
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 28h24v4H6zM6 18h24v10H6z" stroke="#D72333" strokeWidth="1.8" strokeLinejoin="round"/>
@@ -258,8 +253,13 @@ const SERVE_CARDS = [
         <path d="M18 10V6M14 8c0-1.1.9-2 2-2h4a2 2 0 0 1 0 4h-4a2 2 0 0 1-2-2z" stroke="#D72333" strokeWidth="1.8" strokeLinecap="round"/>
       </svg>
     ),
-    title: "Homemade cakes",
-    text: "Caramel cheesecake, blueberry cake, banana bread, chocolate mousse, brownies, berry cake. Baked fresh daily.",
+    title: "Local cakes",
+    text: "Caramel cheesecake, blueberry cake, banana bread, chocolate mousse, brownies, berry cake.",
+  },
+  {
+    icon: <IconBook />,
+    title: "4,000 books",
+    text: "Browse while you eat. Curated selection, English titles included.",
   },
 ];
 
