@@ -101,9 +101,10 @@ function GoogleReviewsCard() {
     <div className="px-4 max-w-lg mx-auto md:max-w-2xl -mt-6 relative z-20 pb-2">
       <div
         style={{
-          background: "#fff",
-          borderRadius: "12px",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.13)",
+          background: "#F9F1DA",
+          borderRadius: "2px",
+          border: "1.5px solid #D72333",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
           overflow: "hidden",
           fontFamily: "sans-serif",
         }}
@@ -111,7 +112,7 @@ function GoogleReviewsCard() {
         {/* Header: business name + Google branding */}
         <div
           className="flex items-center justify-between px-5 pt-4 pb-3"
-          style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+          style={{ borderBottom: "1px solid rgba(215,35,51,0.2)" }}
         >
           <div>
             <div style={{ fontSize: "15px", fontWeight: 600, color: "#1a1a1a", lineHeight: 1.3 }}>
@@ -147,7 +148,7 @@ function GoogleReviewsCard() {
           <div
             key={r.name}
             className="px-5 py-4"
-            style={{ borderBottom: i < GOOGLE_REVIEWS.length - 1 ? "1px solid rgba(0,0,0,0.08)" : undefined }}
+            style={{ borderBottom: i < GOOGLE_REVIEWS.length - 1 ? "1px solid rgba(215,35,51,0.15)" : undefined }}
           >
             {/* Reviewer header */}
             <div className="flex items-center gap-3 mb-2">
@@ -183,7 +184,7 @@ function GoogleReviewsCard() {
         ))}
 
         {/* See all link */}
-        <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+        <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(215,35,51,0.2)" }}>
           <a
             href={MAPS_URL}
             target="_blank"
