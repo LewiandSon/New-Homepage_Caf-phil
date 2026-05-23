@@ -104,7 +104,7 @@ function GoogleReviewsCard() {
     <div className="px-4 max-w-lg mx-auto md:max-w-2xl -mt-6 relative z-20 pb-2">
       <div
         style={{
-          background: "#fff",
+          background: "#F9F1DA",
           borderRadius: "2px",
           border: "1.5px solid #D72333",
           boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
@@ -448,7 +448,7 @@ export function BreakfastContent() {
         >
           What we serve
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 gap-5 max-w-2xl mx-auto">
           {SERVE_CARDS.map(({ icon, title, text }) => (
             <div
               key={title}
@@ -628,7 +628,7 @@ export function BreakfastContent() {
       {/* ─── H · CTA Banner ───────────────────────────────────────────── */}
       <section
         className="px-6 py-16 text-center"
-        style={{ background: "#1a1a1a" }}
+        style={{ background: "#F9F1DA" }}
       >
         <p
           className="mb-3"
@@ -637,7 +637,7 @@ export function BreakfastContent() {
             fontSize: "clamp(44px, 9vw, 76px)",
             fontStyle: "italic",
             fontWeight: 900,
-            color: "#F9F1DA",
+            color: "#D72333",
             lineHeight: 1.1,
           }}
         >
@@ -649,7 +649,7 @@ export function BreakfastContent() {
             fontFamily: "Vollkorn",
             fontSize: "clamp(16px, 2.5vw, 20px)",
             fontWeight: 500,
-            color: "#F9F1DA",
+            color: "#D72333",
             opacity: 0.8,
           }}
         >
@@ -665,8 +665,8 @@ export function BreakfastContent() {
             fontFamily: "Vollkorn",
             fontSize: "18px",
             fontWeight: 700,
-            color: "#1a1a1a",
-            background: "#F9F1DA",
+            color: "#F9F1DA",
+            background: "#D72333",
             borderRadius: "2px",
             padding: "12px 32px",
           }}
