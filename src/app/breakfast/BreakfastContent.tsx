@@ -29,7 +29,7 @@ const PHOTOS = [
 
 const PRICES = [
   ["Breakfast (phil good & more)", "from €13"],
-  ["Coffee (espresso / cappuccino)", "from €3.20"],
+  ["Coffee (espresso / cappuccino)", "from €3.10"],
   ["Flat white", "€5.80"],
   ["Fresh juice", "from €4"],
 ] as const;
