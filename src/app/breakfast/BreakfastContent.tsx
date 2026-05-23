@@ -18,10 +18,13 @@ const HOURS = [
 ] as const;
 
 const PHOTOS = [
-  { src: "/images/assets/phil-interior.jpg",   alt: "café phil interior" },
+  { src: "/images/assets/phil-interior.jpg",   alt: "café phil – the full interior",          wide: true },
   { src: "/images/assets/breakfast-spread.jpg", alt: "phil breakfast spread" },
   { src: "/images/assets/coffee-cake.jpg",      alt: "coffee and cake at phil" },
-  { src: "/images/assets/schanigarten.webp",   alt: "café phil Schanigarten" },
+  { src: "/images/assets/phil-good.jpg",        alt: "phil good – falafel, hummus, sourdough" },
+  { src: "/images/assets/phil-drinks.jpg",      alt: "drinks at café phil" },
+  { src: "/images/assets/schanigarten.webp",    alt: "café phil Schanigarten" },
+  { src: "/images/assets/1_Lokal.webp",         alt: "café phil interior" },
 ];
 
 const PRICES = [
@@ -487,13 +490,21 @@ export function BreakfastContent() {
 
       {/* ─── E · Photo Grid ───────────────────────────────────────────── */}
       <section>
-        <div className="grid grid-cols-2 md:grid-cols-4">
-          {PHOTOS.map(({ src, alt }) => (
-            <div key={src} className="relative aspect-square overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-3">
+          {PHOTOS.map(({ src, alt, wide }, i) => (
+            <div
+              key={src}
+              className={`relative overflow-hidden ${
+                wide
+                  ? "col-span-2 md:col-span-3 aspect-[16/9]"
+                  : "aspect-square"
+              }`}
+            >
               <Image
                 src={src}
                 alt={alt}
                 fill
+                loading={i === 0 ? "eager" : "lazy"}
                 className="object-cover transition-transform duration-500 hover:scale-105"
               />
             </div>
