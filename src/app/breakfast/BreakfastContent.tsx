@@ -20,11 +20,11 @@ const HOURS = [
 const PHOTOS = [
   { src: "/images/assets/phil-interior.jpg",    alt: "café phil – the full interior",          wide: true, position: "right center" },
   { src: "/images/assets/breakfast-spread.jpg", alt: "phil breakfast spread" },
-  { src: "/images/assets/schanigarten.webp",    alt: "café phil Schanigarten" },
-  { src: "/images/assets/phil-drinks.jpg",      alt: "drinks at café phil" },
-  { src: "/images/assets/1_Lokal.webp",         alt: "café phil interior" },
-  { src: "/images/assets/coffee-cake.jpg",      alt: "coffee and cake at phil" },
   { src: "/images/assets/phil-good.jpg",        alt: "phil good – falafel, hummus, sourdough" },
+  { src: "/images/assets/phil-drinks.jpg",      alt: "drinks at café phil" },
+  { src: "/images/assets/schanigarten.webp",    alt: "café phil Schanigarten" },
+  { src: "/images/assets/coffee-cake.jpg",      alt: "coffee and cake at phil" },
+  { src: "/images/assets/1_Lokal.webp",         alt: "café phil interior" },
 ];
 
 const PRICES = [
