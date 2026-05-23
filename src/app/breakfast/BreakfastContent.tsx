@@ -18,13 +18,13 @@ const HOURS = [
 ] as const;
 
 const PHOTOS = [
-  { src: "/images/assets/phil-interior.jpg",   alt: "café phil – the full interior",          wide: true },
+  { src: "/images/assets/phil-interior.jpg",    alt: "café phil – the full interior",          wide: true, position: "right center" },
   { src: "/images/assets/breakfast-spread.jpg", alt: "phil breakfast spread" },
+  { src: "/images/assets/schanigarten.webp",    alt: "café phil Schanigarten" },
+  { src: "/images/assets/phil-drinks.jpg",      alt: "drinks at café phil" },
+  { src: "/images/assets/1_Lokal.webp",         alt: "café phil interior" },
   { src: "/images/assets/coffee-cake.jpg",      alt: "coffee and cake at phil" },
   { src: "/images/assets/phil-good.jpg",        alt: "phil good – falafel, hummus, sourdough" },
-  { src: "/images/assets/phil-drinks.jpg",      alt: "drinks at café phil" },
-  { src: "/images/assets/schanigarten.webp",    alt: "café phil Schanigarten" },
-  { src: "/images/assets/1_Lokal.webp",         alt: "café phil interior" },
 ];
 
 const PRICES = [
@@ -491,7 +491,7 @@ export function BreakfastContent() {
       {/* ─── E · Photo Grid ───────────────────────────────────────────── */}
       <section>
         <div className="grid grid-cols-2 md:grid-cols-3">
-          {PHOTOS.map(({ src, alt, wide }, i) => (
+          {PHOTOS.map(({ src, alt, wide, position }, i) => (
             <div
               key={src}
               className={`relative overflow-hidden ${
@@ -506,6 +506,7 @@ export function BreakfastContent() {
                 fill
                 loading={i === 0 ? "eager" : "lazy"}
                 className="object-cover transition-transform duration-500 hover:scale-105"
+                style={{ objectPosition: position ?? "center" }}
               />
             </div>
           ))}
