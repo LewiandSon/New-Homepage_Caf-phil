@@ -101,7 +101,7 @@ function GoogleReviewsCard() {
     <div className="px-4 max-w-lg mx-auto md:max-w-2xl -mt-6 relative z-20 pb-2">
       <div
         style={{
-          background: "#F9F1DA",
+          background: "#fff",
           borderRadius: "2px",
           border: "1.5px solid #D72333",
           boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
