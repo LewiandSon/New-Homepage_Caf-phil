@@ -589,7 +589,7 @@ export function BreakfastContent() {
             opacity: 0.65,
           }}
         >
-          Full menu available on-site.
+          <a href="https://cafephil.at/#speisekarte" target="_blank" rel="noopener noreferrer" style={{ color: "#D72333", textDecoration: "underline" }}>Full menu available on-site.</a>
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
           {[
