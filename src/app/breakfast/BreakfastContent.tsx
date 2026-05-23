@@ -102,7 +102,7 @@ function GoogleReviewsCard() {
               ★★★★<span style={{ opacity: 0.35 }}>★</span>
             </div>
             <a
-              href="https://maps.google.com/?cid=your-cid"
+              href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{ fontSize: "13px", color: "#1a73e8", fontFamily: "Vollkorn", display: "block" }}
