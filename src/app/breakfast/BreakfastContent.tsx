@@ -47,6 +47,136 @@ const REVIEWS = [
   },
 ];
 
+// TODO: Replace with real Google Reviews from your Business Profile
+const GOOGLE_REVIEWS = [
+  {
+    initials: "SM",
+    name: "Sarah M.",
+    flag: "🇬🇧",
+    rating: 5,
+    text: "Best breakfast spot in Vienna. Books everywhere, great coffee, unmatched vibe.",
+    avatarBg: "#E8F0FE",
+    avatarColor: "#1a73e8",
+  },
+  {
+    initials: "TK",
+    name: "Thomas K.",
+    flag: "🇩🇪",
+    rating: 5,
+    text: "Came for coffee, stayed two hours. A true Viennese gem.",
+    avatarBg: "#E6F4EA",
+    avatarColor: "#34a853",
+  },
+  {
+    initials: "EL",
+    name: "Emma L.",
+    flag: "🇺🇸",
+    rating: 5,
+    text: "Stumbled upon phil by accident – highlight of our Vienna trip.",
+    avatarBg: "#FEF7E0",
+    avatarColor: "#f9ab00",
+  },
+];
+
+function GoogleReviewsCard() {
+  return (
+    <div className="px-4 max-w-lg mx-auto md:max-w-2xl -mt-6 relative z-20 pb-2">
+      <div
+        style={{
+          background: "#fff",
+          borderRadius: "12px",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.13)",
+          overflow: "hidden",
+        }}
+      >
+        {/* Rating overview */}
+        <div
+          className="flex items-center gap-4 px-5 py-4"
+          style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+        >
+          <span style={{ fontSize: "40px", fontWeight: 700, color: "#1a1a1a", lineHeight: 1, fontFamily: "Vollkorn" }}>
+            4.6
+          </span>
+          <div>
+            <div style={{ color: "#F4B400", fontSize: "18px", letterSpacing: "2px" }}>
+              ★★★★<span style={{ opacity: 0.35 }}>★</span>
+            </div>
+            <a
+              href="https://maps.google.com/?cid=your-cid"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: "13px", color: "#1a73e8", fontFamily: "Vollkorn", display: "block" }}
+            >
+              3,778 reviews on Google
+            </a>
+            <div style={{ fontSize: "12px", color: "#777", fontFamily: "Vollkorn" }}>
+              Google Business Profile · verified
+            </div>
+          </div>
+        </div>
+
+        {/* Individual reviews */}
+        {GOOGLE_REVIEWS.map((r, i) => (
+          <div
+            key={r.name}
+            className="flex gap-3 px-5 py-3"
+            style={{
+              borderBottom: i < GOOGLE_REVIEWS.length - 1 ? "1px solid rgba(0,0,0,0.06)" : undefined,
+            }}
+          >
+            {/* Avatar */}
+            <div
+              className="flex-shrink-0 flex items-center justify-center rounded-full"
+              style={{
+                width: 36,
+                height: 36,
+                background: r.avatarBg,
+                color: r.avatarColor,
+                fontSize: "12px",
+                fontWeight: 700,
+                fontFamily: "Vollkorn",
+              }}
+            >
+              {r.initials}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1 mb-0.5">
+                <span style={{ fontSize: "14px", fontWeight: 600, color: "#1a1a1a", fontFamily: "Vollkorn" }}>
+                  {r.name}
+                </span>
+                <span style={{ fontSize: "13px" }}>{r.flag}</span>
+              </div>
+              <div style={{ color: "#F4B400", fontSize: "12px", letterSpacing: "1px", marginBottom: "2px" }}>
+                {"★".repeat(r.rating)}
+              </div>
+              <p style={{ fontSize: "13px", color: "#444", fontFamily: "Vollkorn", lineHeight: 1.5, margin: 0 }}>
+                &ldquo;{r.text}&rdquo;
+              </p>
+            </div>
+          </div>
+        ))}
+
+        {/* See all link */}
+        <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+          <a
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontSize: "13px",
+              color: "#1a73e8",
+              fontFamily: "Vollkorn",
+              fontWeight: 600,
+            }}
+          >
+            See all 3,778 reviews on Google →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function IconBreakfast() {
   return (
     <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#D72333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -204,6 +334,9 @@ export function BreakfastContent() {
           </a>
         </div>
       </section>
+
+      {/* ─── Google Reviews Card ──────────────────────────────────────── */}
+      <GoogleReviewsCard />
 
       {/* ─── C · Hours & Address ──────────────────────────────────────── */}
       <section className="px-4 py-10 max-w-lg mx-auto md:max-w-2xl">
