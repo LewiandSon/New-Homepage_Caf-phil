@@ -490,13 +490,13 @@ export function BreakfastContent() {
 
       {/* ─── E · Photo Grid ───────────────────────────────────────────── */}
       <section>
-        <div className="grid grid-cols-2 md:grid-cols-3">
+        <div className="grid grid-cols-2">
           {PHOTOS.map(({ src, alt, wide, position }, i) => (
             <div
               key={src}
               className={`relative overflow-hidden ${
                 wide
-                  ? "col-span-2 md:col-span-3 aspect-[16/9]"
+                  ? "col-span-2 aspect-[16/9]"
                   : "aspect-square"
               }`}
             >
