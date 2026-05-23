@@ -98,8 +98,9 @@ function GoogleReviewsCard() {
             4.6
           </span>
           <div>
-            <div style={{ color: "#F4B400", fontSize: "18px", letterSpacing: "2px" }}>
-              ★★★★<span style={{ opacity: 0.35 }}>★</span>
+            <div style={{ position: "relative", display: "inline-block", fontSize: "18px", letterSpacing: "2px" }}>
+              <span style={{ color: "#ddd" }}>★★★★★</span>
+              <span style={{ position: "absolute", top: 0, left: 0, width: "92%", overflow: "hidden", whiteSpace: "nowrap", color: "#F4B400" }}>★★★★★</span>
             </div>
             <a
               href={MAPS_URL}
