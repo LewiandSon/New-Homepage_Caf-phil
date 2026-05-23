@@ -271,16 +271,25 @@ export function BreakfastContent() {
           borderBottom: "1px solid rgba(215,35,51,0.2)",
         }}
       >
-        <span
-          style={{
-            fontFamily: "Vollkorn",
-            fontSize: "22px",
-            fontStyle: "italic",
-            fontWeight: 900,
-            color: "#D72333",
-          }}
-        >
-          phil
+        <span className="flex items-center gap-2">
+          <img
+            src="/images/assets/engel.svg"
+            alt="café phil logo"
+            width={28}
+            height={28}
+            style={{ borderRadius: "50%", background: "#D72333", padding: "3px" }}
+          />
+          <span
+            style={{
+              fontFamily: "Vollkorn",
+              fontSize: "22px",
+              fontStyle: "italic",
+              fontWeight: 900,
+              color: "#D72333",
+            }}
+          >
+            phil
+          </span>
         </span>
         <a
           href={MAPS_URL}
@@ -568,8 +577,41 @@ export function BreakfastContent() {
             opacity: 0.65,
           }}
         >
-          Full menu available on-site. Card payments accepted.
+          Full menu available on-site.
         </p>
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
+          {/* Visa */}
+          <svg width="48" height="30" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: 4, border: "1px solid #e0e0e0" }}>
+            <rect width="48" height="30" fill="#1A1F71"/>
+            <text x="50%" y="57%" dominantBaseline="middle" textAnchor="middle" fill="#F9A533" fontSize="13" fontWeight="bold" fontFamily="Arial, sans-serif" letterSpacing="1">VISA</text>
+          </svg>
+          {/* Mastercard */}
+          <svg width="48" height="30" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: 4, border: "1px solid #e0e0e0" }}>
+            <rect width="48" height="30" fill="#fff"/>
+            <circle cx="18" cy="15" r="9" fill="#EB001B"/>
+            <circle cx="30" cy="15" r="9" fill="#F79E1B"/>
+            <path d="M24 8.3a9 9 0 0 1 0 13.4A9 9 0 0 1 24 8.3z" fill="#FF5F00"/>
+          </svg>
+          {/* Maestro */}
+          <svg width="48" height="30" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: 4, border: "1px solid #e0e0e0" }}>
+            <rect width="48" height="30" fill="#fff"/>
+            <circle cx="18" cy="15" r="9" fill="#0099DF"/>
+            <circle cx="30" cy="15" r="9" fill="#E30613" fillOpacity="0.85"/>
+            <path d="M24 8.3a9 9 0 0 1 0 13.4A9 9 0 0 1 24 8.3z" fill="#6C6BBD"/>
+          </svg>
+          {/* Apple Pay */}
+          <svg width="48" height="30" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: 4, border: "1px solid #e0e0e0" }}>
+            <rect width="48" height="30" fill="#000"/>
+            <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#fff" fontSize="8.5" fontWeight="600" fontFamily="Arial, sans-serif">Apple Pay</text>
+          </svg>
+          {/* Google Pay */}
+          <svg width="48" height="30" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: 4, border: "1px solid #e0e0e0" }}>
+            <rect width="48" height="30" fill="#fff"/>
+            <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="8.5" fontWeight="600" fontFamily="Arial, sans-serif">
+              <tspan fill="#4285F4">G</tspan><tspan fill="#555">oogle </tspan><tspan fill="#555">Pay</tspan>
+            </text>
+          </svg>
+        </div>
       </section>
 
       {/* ─── G · Reviews ──────────────────────────────────────────────── */}
