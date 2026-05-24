@@ -4,11 +4,11 @@ import { BreakfastContent } from "./BreakfastContent";
 export const metadata: Metadata = {
   title: "Breakfast in Vienna · café phil – Café & Bookshop",
   description:
-    "Breakfast until 2 PM at café phil – falafel, hummus, sourdough, specialty coffee & 4,000 books. Walk-ins welcome. Gumpendorfer Str. 10–12, 1060 Wien.",
+    "Breakfast until 2 PM at café phil – 5 min from Naschmarkt, 10 min walk from the Opera. Falafel, hummus, sourdough, specialty coffee & 4,000 books. Walk-ins welcome.",
   openGraph: {
     title: "Breakfast in Vienna · café phil",
     description:
-      "Breakfast until 2 PM at café phil – falafel, hummus, sourdough, specialty coffee & 4,000 books. Walk-ins welcome. Gumpendorfer Str. 10–12, 1060 Wien.",
+      "Breakfast until 2 PM at café phil – 5 min from Naschmarkt, 10 min walk from the Opera. Falafel, hummus, sourdough, specialty coffee & 4,000 books. Walk-ins welcome.",
     url: "https://cafephil.at/breakfast",
     siteName: "café phil",
     images: [
