@@ -7,7 +7,7 @@ import * as gtag from "@/lib/gtag";
 const MAPS_URL = "https://maps.app.goo.gl/pV95cu8bmQELWfgS8";
 
 function trackDirections() {
-  gtag.event({ action: "breakfast_directions_click", category: "breakfast_page", label: "get_directions" });
+  gtag.event({ action: "directions_click", category: "breakfast_page", label: "get_directions" });
 }
 
 const HOURS = [
