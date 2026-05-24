@@ -420,7 +420,7 @@ export function BreakfastContent() {
               Gumpendorfer Str. 10–12, 1060 Wien
             </div>
             <div style={{ opacity: 0.65, fontSize: "15px" }}>
-              6th district · ~10 min walk from Naschmarkt
+              6th district · 5 min from Naschmarkt · 10 min walk from the Opera
             </div>
           </div>
           <table className="w-full" style={{ fontFamily: "Vollkorn", fontSize: "16px", color: "#573B30" }}>
