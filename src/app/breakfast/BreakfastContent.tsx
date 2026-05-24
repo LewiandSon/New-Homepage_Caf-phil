@@ -385,6 +385,31 @@ export function BreakfastContent() {
       {/* ─── Google Reviews Card ──────────────────────────────────────── */}
       <GoogleReviewsCard />
 
+      {/* ─── E · Photo Grid ───────────────────────────────────────────── */}
+      <section>
+        <div className="grid grid-cols-2">
+          {PHOTOS.map(({ src, alt, wide, position }, i) => (
+            <div
+              key={src}
+              className={`relative overflow-hidden ${
+                wide
+                  ? "col-span-2 aspect-[16/9]"
+                  : "aspect-square"
+              }`}
+            >
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                loading={i === 0 ? "eager" : "lazy"}
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                style={{ objectPosition: position ?? "center" }}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ─── C · Hours & Address ──────────────────────────────────────── */}
       <section className="px-4 py-10">
         <div
@@ -517,31 +542,6 @@ export function BreakfastContent() {
               >
                 {text}
               </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ─── E · Photo Grid ───────────────────────────────────────────── */}
-      <section>
-        <div className="grid grid-cols-2">
-          {PHOTOS.map(({ src, alt, wide, position }, i) => (
-            <div
-              key={src}
-              className={`relative overflow-hidden ${
-                wide
-                  ? "col-span-2 aspect-[16/9]"
-                  : "aspect-square"
-              }`}
-            >
-              <Image
-                src={src}
-                alt={alt}
-                fill
-                loading={i === 0 ? "eager" : "lazy"}
-                className="object-cover transition-transform duration-500 hover:scale-105"
-                style={{ objectPosition: position ?? "center" }}
-              />
             </div>
           ))}
         </div>
