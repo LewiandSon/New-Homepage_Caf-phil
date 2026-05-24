@@ -437,6 +437,18 @@ export function BreakfastContent() {
           </table>
         </div>
 
+        <div className="mt-4 overflow-hidden" style={{ borderRadius: "2px", border: "1.5px solid #D72333" }}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2389.2432022508538!2d16.358565176076297!3d48.2002291712505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07856acc0163%3A0x610b6196d725192!2sphil%20-%20Caf%C3%A9%2C%20bookshop%20%26%20bar!5e1!3m2!1sen!2sat!4v1779604891416!5m2!1sen!2sat"
+            width="100%"
+            height="220"
+            style={{ border: 0, display: "block" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
         <a
           href={MAPS_URL}
           onClick={trackDirections}
