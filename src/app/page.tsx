@@ -28,7 +28,10 @@ export default function Home() {
         <div className="md:scale-[0.855] md:origin-top">
           <HeroSection />
           <AboutSection />
-          <PhotoGrid />
+          {/* PhotoGrid on desktop only – mobile version is embedded inside AboutSection */}
+          <div className="hidden md:block">
+            <PhotoGrid />
+          </div>
           <QuoteSection footerModal={footerModal} setFooterModal={setFooterModal} />
         </div>
       </main>

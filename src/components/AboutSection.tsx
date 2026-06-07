@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useLanguage } from "../LanguageContext";
 import * as gtag from "@/lib/gtag";
+import { PhotoGrid } from "./PhotoGrid";
 
 export function AboutSection() {
   const { lang } = useLanguage();
@@ -107,6 +108,11 @@ export function AboutSection() {
               </button>
             </>
           )}
+
+          {/* Foto-Grid – direkt nach "Unsere Geschichte" Text, nur Mobile */}
+          <div className="mt-8 -mx-4">
+            <PhotoGrid />
+          </div>
 
           {/* Thomas Bernhard Quote - Mobile */}
           <div className="mt-10 mb-2">
