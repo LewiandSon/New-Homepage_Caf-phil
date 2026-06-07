@@ -4,13 +4,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { useLanguage } from "../LanguageContext";
 import * as gtag from "@/lib/gtag";
-import { PhotoGrid } from "./PhotoGrid";
 
 export function AboutSection() {
   const { lang } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <section id="uber-uns" data-section="uber-uns" className="relative w-full z-10 md:min-h-[1567px]" style={{ scrollMarginTop: "120px" }}>
+    <section id="uber-uns" data-section="uber-uns" className="relative w-full z-10" style={{ scrollMarginTop: "120px" }}>
       {/* Mobile layout – ohne Foto (steht schon im Hero), nur Text */}
       <div className="block md:hidden px-4 pb-24 pt-6 max-w-[720px] mx-auto">
         <h2
@@ -108,11 +107,6 @@ export function AboutSection() {
               </button>
             </>
           )}
-
-          {/* Foto-Grid – direkt nach "Unsere Geschichte" Text, nur Mobile */}
-          <div className="mt-8 -mx-4">
-            <PhotoGrid />
-          </div>
 
           {/* Thomas Bernhard Quote - Mobile */}
           <div className="mt-10 mb-2">

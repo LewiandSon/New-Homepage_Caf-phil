@@ -206,19 +206,19 @@ export function HeroSection() {
           </p>
         </div>
 
-        {/* Foto-Grid – weit unten, unter Besuch uns + allen Dekoelementen */}
-        <div className="mt-24 w-full px-4 mx-auto grid grid-cols-3 gap-3">
+        {/* Foto-Grid – weit unten, unter Besuch uns + allen Dekoelementen (Pomidoro, Tassen etc.) */}
+        <div className="mt-24 w-full max-w-[900px] mx-auto grid grid-cols-3 gap-4">
           {[
-            { src: "/images/assets/breakfast-spread.jpg", alt: "phil Frühstück" },
-            { src: "/images/assets/phil-good.jpg",        alt: "phil good" },
-            { src: "/images/assets/phil-drinks.jpg",      alt: "Getränke im phil" },
-            { src: "/images/assets/schanigarten.webp",    alt: "Schanigarten" },
-            { src: "/images/assets/coffee-cake.jpg",      alt: "Kaffee und Kuchen" },
-            { src: "/images/assets/1_Lokal.webp",         alt: "phil Lokal" },
-          ].map(({ src, alt }) => (
-            <div key={src} className="relative aspect-square overflow-hidden">
+            { file: "1_Lokal", alt: "phil Lokal" },
+            { file: "2_Spiegel", alt: "phil Spiegel" },
+            { file: "3_Abend", alt: "phil Abend" },
+            { file: "4_Lampen", alt: "phil Lampen" },
+            { file: "5_Eingang", alt: "phil Eingang" },
+            { file: "6_Bedienung", alt: "phil Bedienung" },
+          ].map(({ file, alt }) => (
+            <div key={file} className="relative aspect-square overflow-hidden">
               <Image
-                src={src}
+                src={`/images/assets/${file}.webp`}
                 alt={alt}
                 fill
                 className="object-cover"
@@ -377,20 +377,20 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Foto-Grid – Desktop: neue Breakfast-Fotos */}
+      {/* Foto-Grid – Desktop: weit unten unter Collage (Besuch uns, Pomidoro, Tassen etc.) */}
       <div className="hidden md:block w-full max-w-[950px] mx-auto px-6 pt-8 pb-16">
         <div className="grid grid-cols-3 gap-5">
           {[
-            { src: "/images/assets/breakfast-spread.jpg", alt: "phil Frühstück" },
-            { src: "/images/assets/phil-good.jpg",        alt: "phil good" },
-            { src: "/images/assets/phil-drinks.jpg",      alt: "Getränke im phil" },
-            { src: "/images/assets/schanigarten.webp",    alt: "Schanigarten" },
-            { src: "/images/assets/coffee-cake.jpg",      alt: "Kaffee und Kuchen" },
-            { src: "/images/assets/1_Lokal.webp",         alt: "phil Lokal" },
-          ].map(({ src, alt }) => (
-            <div key={src} className="relative aspect-square overflow-hidden">
+            { file: "1_Lokal", alt: "phil Lokal" },
+            { file: "2_Spiegel", alt: "phil Spiegel" },
+            { file: "3_Abend", alt: "phil Abend" },
+            { file: "4_Lampen", alt: "phil Lampen" },
+            { file: "5_Eingang", alt: "phil Eingang" },
+            { file: "6_Bedienung", alt: "phil Bedienung" },
+          ].map(({ file, alt }) => (
+            <div key={file} className="relative aspect-square overflow-hidden">
               <Image
-                src={src}
+                src={`/images/assets/${file}.webp`}
                 alt={alt}
                 fill
                 className="object-cover"

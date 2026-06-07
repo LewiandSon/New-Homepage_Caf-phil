@@ -2,7 +2,6 @@
 
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
-import { PhotoGrid } from "@/components/PhotoGrid";
 import { QuoteSection } from "@/components/QuoteSection";
 import { HomeFooter } from "@/components/HomeFooter";
 import { useState, useEffect } from "react";
@@ -28,10 +27,6 @@ export default function Home() {
         <div className="md:scale-[0.855] md:origin-top">
           <HeroSection />
           <AboutSection />
-          {/* PhotoGrid on desktop only – mobile version is embedded inside AboutSection */}
-          <div className="hidden md:block">
-            <PhotoGrid />
-          </div>
           <QuoteSection footerModal={footerModal} setFooterModal={setFooterModal} />
         </div>
       </main>
