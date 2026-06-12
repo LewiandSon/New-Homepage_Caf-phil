@@ -125,7 +125,7 @@ export default function RootLayout({
               ],
               sameAs: [
                 "https://www.instagram.com/phil.in.wien/",
-                "https://maps.app.goo.gl/YourGoogleMapsURL",
+                "https://share.google/umRBhoVmFPwfBgmCY",
                 "https://www.wien.info/de/essen-trinken/cafes/phil-355232",
                 "https://www.falter.at/lokal/5631/phil",
               ],
