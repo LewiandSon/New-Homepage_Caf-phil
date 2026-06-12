@@ -20,21 +20,24 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   title: {
-    default: "phil Café – Café, Buchhandlung & Bar in Wien",
+    default: "phil – Café, Buchhandlung & Bar in Wien | Gumpendorfer Straße",
     template: "%s | phil Café Wien",
   },
   description:
-    "phil – Café, Buchhandlung & Bar in Wien-Mariahilf. Kaffee, Frühstück, Bücher, Schanigarten, Events und eine sorgfältig kuratierte Bücherauswahl.",
-  metadataBase: new URL("https://phil.info"),
+    "phil – laptopfreies Café, 4.000 Bücher & Bar in Wien-Mariahilf. Frühstück, Kaffee & Schanigarten auf der Gumpendorfer Straße seit 2004.",
+  metadataBase: new URL("https://www.cafephil.at"),
+  alternates: {
+    canonical: "https://www.cafephil.at",
+  },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "phil Café – Café, Buchhandlung & Bar in Wien",
+    title: "phil – Café, Buchhandlung & Bar in Wien | Gumpendorfer Straße",
     description:
-      "Café, Buchhandlung & Bar im 6. Bezirk. Frühstück, Kaffee, Bücher, Schanigarten und Veranstaltungen im phil in Wien.",
-    url: "/",
+      "laptopfreies Café, 4.000 Bücher & Bar im 6. Bezirk. Frühstück, Kaffee, Schanigarten und Veranstaltungen im phil in Wien.",
+    url: "https://www.cafephil.at",
     siteName: "phil Café",
     locale: "de_AT",
     type: "website",
@@ -49,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "phil Café – Café, Buchhandlung & Bar in Wien",
+    title: "phil – Café, Buchhandlung & Bar in Wien | Gumpendorfer Straße",
     description:
-      "Café, Buchhandlung & Bar im 6. Bezirk. Frühstück, Kaffee, Bücher, Schanigarten und Veranstaltungen im phil in Wien.",
+      "laptopfreies Café, 4.000 Bücher & Bar im 6. Bezirk. Frühstück, Kaffee, Schanigarten und Veranstaltungen im phil in Wien.",
   },
   robots: {
     index: true,
@@ -67,6 +70,68 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <head>
+        {/* Structured Data – CafeOrCoffeeShop */}
+        <Script
+          id="json-ld-cafe"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CafeOrCoffeeShop",
+              name: "phil – Café, Buchhandlung & Bar",
+              url: "https://www.cafephil.at",
+              telephone: "+43 1 5810489",
+              priceRange: "€€",
+              servesCuisine: ["Frühstück", "Kaffee", "Kuchen"],
+              foundingDate: "2004",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Gumpendorfer Straße 10–12",
+                addressLocality: "Wien",
+                postalCode: "1060",
+                addressCountry: "AT",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 48.19672,
+                longitude: 16.35691,
+              },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: "Monday",
+                  opens: "14:00",
+                  closes: "21:00",
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Tuesday", "Wednesday", "Thursday"],
+                  opens: "09:00",
+                  closes: "22:00",
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Friday", "Saturday"],
+                  opens: "09:00",
+                  closes: "23:00",
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: "Sunday",
+                  opens: "09:00",
+                  closes: "21:00",
+                },
+              ],
+              sameAs: [
+                "https://www.instagram.com/phil.in.wien/",
+                "https://maps.app.goo.gl/YourGoogleMapsURL",
+                "https://www.wien.info/de/essen-trinken/cafes/phil-355232",
+                "https://www.falter.at/lokal/5631/phil",
+              ],
+            }),
+          }}
+        />
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"

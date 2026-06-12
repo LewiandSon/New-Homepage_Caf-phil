@@ -1,6 +1,12 @@
 {
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "cafephil.at" }],
+      "destination": "https://www.cafephil.at/:path*",
+      "permanent": true
+    },
+    {
       "source": "/profil/:path*",
       "destination": "/",
       "permanent": true

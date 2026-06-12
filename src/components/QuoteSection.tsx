@@ -274,8 +274,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           ) : (
             <>
               Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Open from April to October. Whether you prefer sun or shade – here you'll find your favourite spot in the open air.{" "}
-              <a href="/#speisekarte" className="underline">
-                Learn more about our coffee and breakfast options.
+              <a href="/breakfast" className="underline">
+                Learn more about our breakfast options.
               </a>
             </>
           )}
@@ -631,6 +631,17 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
             >
               <h3 className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150 mb-0" style={{ fontFamily: 'Vollkorn', fontSize: '16px', fontStyle: 'italic', fontWeight: 900, lineHeight: '140%' }}>1000things</h3>
               <p className="text-[#D72333] group-hover:text-[#f9f1da] group-active:text-[#f9f1da] transition-colors duration-150" style={{ fontFamily: 'Vollkorn', fontSize: '14px', fontStyle: 'normal', fontWeight: 500, lineHeight: '140%' }}>Unsere liebsten Cafés im 6. Bezirk</p>
+            </a>
+          </div>
+
+          {/* Link zu Presse-Seite */}
+          <div className="text-center mt-4">
+            <a
+              href="/presse"
+              style={{ fontFamily: 'Vollkorn', fontSize: '15px', fontStyle: 'italic', fontWeight: 700, color: '#D72333', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+              onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'Alle Pressestimmen' })}
+            >
+              {lang === 'de' ? 'Alle Pressestimmen →' : 'All press mentions →'}
             </a>
           </div>
         </div>
@@ -1564,8 +1575,8 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           ) : (
             <>
               Enjoy coffee, breakfast and books outside as well, in our cosy outdoor seating right in the heart of Vienna. Open from April to October. Whether you prefer sun or shade – here you’ll find your favourite spot in the open air.{" "}
-              <a href="/#speisekarte" className="underline">
-                Learn more about our coffee and breakfast options.
+              <a href="/breakfast" className="underline">
+                Learn more about our breakfast options.
               </a>
             </>
           )}
@@ -2112,6 +2123,17 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           >
             <h3 className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300 mb-2" style={{ fontFamily: 'Vollkorn', fontSize: '25px', fontStyle: 'italic', fontWeight: 900, lineHeight: '150%' }}>1000things</h3>
             <p className="text-[#D72333] group-hover:text-[#f9f1da] transition-colors duration-300" style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'normal', fontWeight: 500, lineHeight: '150%' }}>Unsere liebsten Cafés<br/>im 6. Bezirk</p>
+          </a>
+        </div>
+
+        {/* Alle Pressestimmen Link */}
+        <div className="absolute left-[100px] top-[640px]">
+          <a
+            href="/presse"
+            style={{ fontFamily: 'Vollkorn', fontSize: '22px', fontStyle: 'italic', fontWeight: 700, color: '#D72333', textDecoration: 'underline', textUnderlineOffset: '4px' }}
+            onClick={() => gtag.event({ action: 'click', category: 'Review', label: 'Alle Pressestimmen - Desktop' })}
+          >
+            {lang === 'de' ? 'Alle Pressestimmen →' : 'All press mentions →'}
           </a>
         </div>
       </div>

@@ -2,18 +2,21 @@ import type { Metadata } from "next";
 import { BreakfastContent } from "./BreakfastContent";
 
 export const metadata: Metadata = {
-  title: "Breakfast in Vienna · café phil – Café & Bookshop",
+  title: "Frühstück in Wien-Mariahilf | phil – Café & Buchhandlung",
   description:
     "Breakfast until 2 PM at café phil – 5 min from Naschmarkt, 10 min walk from the Opera. Falafel, hummus, sourdough, specialty coffee & 4,000 books. Walk-ins welcome.",
+  alternates: {
+    canonical: "https://www.cafephil.at/breakfast",
+  },
   openGraph: {
-    title: "Breakfast in Vienna · café phil",
+    title: "Frühstück in Wien-Mariahilf | café phil",
     description:
       "Breakfast until 2 PM at café phil – 5 min from Naschmarkt, 10 min walk from the Opera. Falafel, hummus, sourdough, specialty coffee & 4,000 books. Walk-ins welcome.",
-    url: "https://cafephil.at/breakfast",
+    url: "https://www.cafephil.at/breakfast",
     siteName: "café phil",
     images: [
       {
-        url: "https://cafephil.at/images/assets/phil-good.jpg",
+        url: "https://www.cafephil.at/images/assets/phil-good.jpg",
         width: 1200,
         height: 630,
         alt: "phil good breakfast – falafel, hummus, sourdough at café phil Vienna",
@@ -27,15 +30,15 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CafeOrCoffeeShop",
-  name: "café phil",
+  name: "phil – Café, Buchhandlung & Bar",
   description:
     "Café, bookshop & bar in Vienna's 6th district. Breakfast until 2 PM, specialty coffee, 4,000 books. Walk-ins always welcome.",
-  url: "https://cafephil.at/breakfast",
-  telephone: "+43-1-581-04-89",
+  url: "https://www.cafephil.at/breakfast",
+  telephone: "+43 1 5810489",
   priceRange: "€€",
-  servesCuisine: ["Breakfast", "Middle Eastern", "Coffee"],
-  menu: "https://cafephil.at/speisekarte",
-  image: "https://cafephil.at/images/assets/phil-good.jpg",
+  servesCuisine: ["Frühstück", "Kaffee", "Kuchen"],
+  menu: "https://www.cafephil.at/#speisekarte",
+  image: "https://www.cafephil.at/images/assets/phil-good.jpg",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Gumpendorfer Str. 10–12",
