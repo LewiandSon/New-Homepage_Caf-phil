@@ -76,9 +76,7 @@ const PRESS_ENTRIES: PressEntry[] = [
     medium: "Der Standard",
     year: "2025",
     fragment: "\u201Ein vielerlei Hinsicht ein Pionier\u201C",
-    // URL zu verifizieren – derstandard.at, 18.10.2025
-    url: "https://www.derstandard.at",
-    placeholder: true,
+    url: "https://www.derstandard.de/story/3100000291907/buchgeschaefte-zum-heissgetraenk-verweilen",
   },
   {
     medium: "Der Standard",
@@ -90,17 +88,13 @@ const PRESS_ENTRIES: PressEntry[] = [
     medium: "Creme Guides",
     year: "2019",
     fragment: "\u201EEine Institution im 6. Bezirk\u201C",
-    // URL zu verifizieren – Creme Guides Archiv
-    url: "https://www.creme.at",
-    placeholder: true,
+    url: "https://www.cremeguides.com/wien/buchhandlung-und-cafe-phil/",
   },
   {
     medium: "Café Entropy",
     year: "–",
     fragment: "Literatur-Feature mit Autorin Susanne Gregor",
-    // URL zu verifizieren – cafeentropy.com
-    url: "https://www.cafeentropy.com",
-    placeholder: true,
+    url: "https://c.entropy.at/book/",
   },
   {
     medium: "Stadt Wien / ticket.wien.gv.at",
