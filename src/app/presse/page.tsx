@@ -102,13 +102,20 @@ const PRESS_ENTRIES: PressEntry[] = [
     fragment: "\u201EScience & Coffee\u201C \u2013 Quantenphysik im Café phil",
     url: "https://ticket.wien.gv.at/MDS/csqne/",
   },
-  // {
-  //   medium: "ERRR Magazine",
-  //   year: "demnächst",
-  //   fragment: "„Behind the shop" – erscheint demnächst",
-  //   url: "#",
-  //   placeholder: true,
-  // },
+  {
+    medium: "SUITCASE Magazine",
+    year: "2026",
+    fragment:
+      "\u201EDer Wien der B\u00E4lle, des Barock und der Sachertorte ist das nicht \u2013 und genau deshalb gef\u00E4llt es uns.\u201C",
+    url: "https://suitcasemag.com/our-favourite-bookshop-cafes-across-europe/",
+  },
+  {
+    medium: "ERRR Magazine",
+    year: "2026",
+    fragment:
+      "\u201ECurated disorder\u201C \u2013 das erweiterte Wohnzimmer der Nachbarschaft",
+    url: "https://errr-magazine.com/english/phil/",
+  },
 ];
 
 export default function PressePage() {
