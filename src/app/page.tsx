@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { QuoteSection } from "@/components/QuoteSection";
 import { HomeFooter } from "@/components/HomeFooter";
+import { ClimateBanner } from "@/components/ClimateBanner";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <>
       <main data-page="home" className="relative min-h-screen bg-background text-primary font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
+        <ClimateBanner />
         <div className="md:scale-[0.855] md:origin-top">
           <HeroSection />
           <AboutSection />
