@@ -35,29 +35,29 @@ export function ClimateBanner() {
       className="w-full"
       style={{ background: "#D72333" }}
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-5 md:py-7 flex items-center justify-center gap-4 md:gap-6 text-center">
-        <div className="hidden sm:block flex-shrink-0 opacity-90">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-7 md:py-10 flex items-center justify-center gap-4 md:gap-8 text-center">
+        <div className="hidden sm:block flex-shrink-0 opacity-90 scale-110 md:scale-150">
           <SnowflakeIcon />
         </div>
         <div>
           <p
             style={{
               fontFamily: "Vollkorn",
-              fontSize: "clamp(22px, 4.5vw, 36px)",
+              fontSize: "clamp(28px, 6vw, 52px)",
               fontStyle: "italic",
               fontWeight: 900,
               color: "#F9F1DA",
-              lineHeight: "130%",
+              lineHeight: "120%",
               margin: 0,
             }}
           >
             {headline}
           </p>
           <p
-            className="mt-1 md:mt-2"
+            className="mt-2 md:mt-3"
             style={{
               fontFamily: "Vollkorn",
-              fontSize: "clamp(15px, 2.5vw, 20px)",
+              fontSize: "clamp(16px, 3vw, 24px)",
               fontWeight: 500,
               color: "#F9F1DA",
               opacity: 0.92,
@@ -68,7 +68,7 @@ export function ClimateBanner() {
             {subline}
           </p>
         </div>
-        <div className="hidden sm:block flex-shrink-0 opacity-90 scale-x-[-1]">
+        <div className="hidden sm:block flex-shrink-0 opacity-90 scale-x-[-1] scale-110 md:scale-150">
           <SnowflakeIcon />
         </div>
       </div>
