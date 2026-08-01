@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "../../LanguageContext";
 
 const RED = "#D72333";
 const CREAM = "#F9F1DA";
 const PDF_URL = "/phil-jobinserat-buchhandel-fr-sa.pdf";
+const POSTER_URL = "/images/assets/jobinserat-buchhandel-fr-sa.webp";
 
 const CONTENT = {
   de: {
@@ -105,41 +107,33 @@ export function JobsContent() {
           </a>
         </div>
 
-        {/* Embedded PDF (A4 aspect ratio). Mobile browsers that can't render
-            it inline fall back to the message + link below. */}
-        <div
+        {/* Job posting rendered as a clean image (the PDF page), no viewer
+            chrome. The actual PDF stays available via the buttons above. */}
+        <a
+          href={PDF_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
           style={{
-            width: "100%",
-            aspectRatio: "595 / 842",
-            maxHeight: "82vh",
             border: `2px solid ${RED}`,
-            background: "#fff",
+            boxShadow: "0 10px 40px rgba(87, 59, 48, 0.18)",
+            lineHeight: 0,
           }}
         >
-          <object
-            data={`${PDF_URL}#view=FitH&toolbar=1`}
-            type="application/pdf"
-            width="100%"
-            height="100%"
-            style={{ display: "block", width: "100%", height: "100%" }}
-          >
-            <div
-              className="flex flex-col items-center justify-center gap-3 h-full text-center px-6 py-10"
-              style={{ fontFamily: "Vollkorn", color: RED }}
-            >
-              <p style={{ fontSize: "17px", fontWeight: 500 }}>{t.fallback}</p>
-              <a
-                href={PDF_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-                style={{ fontSize: "18px", fontStyle: "italic", fontWeight: 700 }}
-              >
-                {t.fallbackLink} ↗
-              </a>
-            </div>
-          </object>
-        </div>
+          <Image
+            src={POSTER_URL}
+            alt={
+              lang === "de"
+                ? "Stellenausschreibung: Buchhändler:in gesucht bei phil, Freitag & Samstag"
+                : "Job posting: bookseller wanted at phil, Fridays & Saturdays"
+            }
+            width={1500}
+            height={2122}
+            priority
+            className="w-full h-auto"
+            sizes="(max-width: 760px) 100vw, 760px"
+          />
+        </a>
 
         <p
           className="mt-8 text-center"
