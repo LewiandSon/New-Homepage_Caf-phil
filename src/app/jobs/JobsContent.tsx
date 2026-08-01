@@ -95,7 +95,7 @@ export function JobsContent() {
           {t.title}
         </h1>
         <p
-          className="mb-6"
+          className="mb-8"
           style={{
             fontFamily: "Vollkorn",
             fontSize: "clamp(16px, 2.2vw, 20px)",
@@ -108,11 +108,8 @@ export function JobsContent() {
           {t.subtitle}
         </p>
 
-        {/* Actions (above the poster) */}
-        <div className="mb-8">{actions}</div>
-
         {/* Job posting rendered as a clean image (the PDF page), no viewer
-            chrome. The actual PDF stays available via the buttons. */}
+            chrome. The actual PDF stays available via the buttons below. */}
         <a
           href={PDF_URL}
           target="_blank"
