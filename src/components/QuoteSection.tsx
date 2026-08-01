@@ -6,8 +6,7 @@ import { createPortal } from "react-dom";
 import { useLanguage } from "../LanguageContext";
 import { InstagramLink } from "./InstagramLink";
 import * as gtag from "@/lib/gtag";
-import { client } from "@/sanity/client";
-import { upcomingEventsQuery } from "@/sanity/queries";
+import type { EventPreview } from "@/sanity/queries";
 
 const MENU_ITEMS_DE = [
   { src: "/images/assets/getraenke-de.png", alt: "Getränke Karte" },
@@ -22,12 +21,13 @@ const MENU_ITEMS_EN = [
 interface QuoteSectionProps {
   footerModal: "imprint" | "privacy" | "terms" | null;
   setFooterModal: (modal: "imprint" | "privacy" | "terms" | null) => void;
+  initialNextEvent: EventPreview | null;
 }
 
-export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps) {
+export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: QuoteSectionProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showEventLightbox, setShowEventLightbox] = useState(false);
-  const [nextEvent, setNextEvent] = useState<{ title_de: string; title_en?: string; imageUrl?: string } | null>(null);
+  const nextEvent = initialNextEvent;
   const [showInstagramStrichMobile, setShowInstagramStrichMobile] = useState(false);
   const [showInstagramStrichDesktop, setShowInstagramStrichDesktop] = useState(false);
   const { lang } = useLanguage();
@@ -45,15 +45,6 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
     const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  useEffect(() => {
-    const now = new Date().toISOString();
-    client.fetch<Array<{ _id: string; title_de: string; title_en?: string; imageUrl?: string }>>(
-      upcomingEventsQuery, { now }
-    ).then((events) => {
-      if (events.length > 0) setNextEvent(events[0]);
-    });
   }, []);
 
   const nextEventImg = nextEvent?.imageUrl || "";
@@ -508,7 +499,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         <div className="flex flex-col items-center mb-10">
           <div className="mb-4 w-[140px] h-[210px] relative">
             <Image
-              src="/images/assets/lamp2 1.svg"
+              src="/images/assets/lamp2.webp"
               alt={lang === "de" ? "Lampe" : "Lamp"}
               fill
               className="object-contain"
@@ -2144,7 +2135,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
         {/* Lamp Image */}
         <div className="absolute left-[380px] top-[-50px] w-[200px] h-[300px]">
           <Image
-            src="/images/assets/lamp2 1.svg"
+            src="/images/assets/lamp2.webp"
             alt="Lampe"
             width={200}
             height={300}
@@ -2365,7 +2356,7 @@ export function QuoteSection({ footerModal, setFooterModal }: QuoteSectionProps)
           }}
         >
           <Image
-            src="/images/assets/sieb 1.svg"
+            src="/images/assets/sieb.webp"
             alt="Sieb"
             width={305}
             height={305}

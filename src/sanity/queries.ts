@@ -1,5 +1,13 @@
 import { groq } from "next-sanity";
 
+export interface EventPreview {
+  _id: string;
+  title_de: string;
+  title_en?: string;
+  date: string;
+  imageUrl?: string;
+}
+
 export const upcomingEventsQuery = groq`
   *[_type == "event" && date >= $now] | order(date asc) {
     _id,
