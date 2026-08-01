@@ -36,6 +36,45 @@ export function JobsContent() {
   const t = CONTENT[lang];
   const mailto = `mailto:info@phil.info?subject=${encodeURIComponent(t.mailSubject)}`;
 
+  const actions = (
+    <div className="flex flex-wrap gap-3">
+      <a
+        href={mailto}
+        className="inline-flex items-center justify-center transition-transform duration-150 active:scale-95"
+        style={{
+          fontFamily: "Vollkorn",
+          fontSize: "18px",
+          fontStyle: "italic",
+          fontWeight: 700,
+          color: CREAM,
+          background: RED,
+          border: `3px solid ${RED}`,
+          padding: "11px 26px",
+        }}
+      >
+        {t.apply} →
+      </a>
+      <a
+        href={PDF_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center transition-transform duration-150 active:scale-95"
+        style={{
+          fontFamily: "Vollkorn",
+          fontSize: "18px",
+          fontStyle: "italic",
+          fontWeight: 700,
+          color: RED,
+          background: "transparent",
+          border: `3px solid ${RED}`,
+          padding: "11px 26px",
+        }}
+      >
+        {t.openPdf} ↗
+      </a>
+    </div>
+  );
+
   return (
     <main
       className="relative min-h-screen pt-[100px] md:pt-[150px] pb-20 px-6 sm:px-8"
@@ -69,46 +108,11 @@ export function JobsContent() {
           {t.subtitle}
         </p>
 
-        {/* Actions */}
-        <div className="flex flex-wrap gap-3 mb-8">
-          <a
-            href={mailto}
-            className="inline-flex items-center justify-center transition-transform duration-150 active:scale-95"
-            style={{
-              fontFamily: "Vollkorn",
-              fontSize: "18px",
-              fontStyle: "italic",
-              fontWeight: 700,
-              color: CREAM,
-              background: RED,
-              border: `3px solid ${RED}`,
-              padding: "11px 26px",
-            }}
-          >
-            {t.apply} →
-          </a>
-          <a
-            href={PDF_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center transition-transform duration-150 active:scale-95"
-            style={{
-              fontFamily: "Vollkorn",
-              fontSize: "18px",
-              fontStyle: "italic",
-              fontWeight: 700,
-              color: RED,
-              background: "transparent",
-              border: `3px solid ${RED}`,
-              padding: "11px 26px",
-            }}
-          >
-            {t.openPdf} ↗
-          </a>
-        </div>
+        {/* Actions (above the poster) */}
+        <div className="mb-8">{actions}</div>
 
         {/* Job posting rendered as a clean image (the PDF page), no viewer
-            chrome. The actual PDF stays available via the buttons above. */}
+            chrome. The actual PDF stays available via the buttons. */}
         <a
           href={PDF_URL}
           target="_blank"
@@ -135,8 +139,11 @@ export function JobsContent() {
           />
         </a>
 
+        {/* Actions (below the poster) */}
+        <div className="mt-8 flex justify-center">{actions}</div>
+
         <p
-          className="mt-8 text-center"
+          className="mt-10 text-center"
           style={{
             fontFamily: "Vollkorn",
             fontSize: "14px",
