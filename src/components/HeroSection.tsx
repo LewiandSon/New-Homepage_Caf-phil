@@ -86,7 +86,7 @@ export function HeroSection() {
           {/* Bordüre: darüber, als Rahmen - muss transparente Bereiche haben */}
           <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
             <Image
-              src="/images/assets/bordüre 1.svg"
+              src="/images/assets/bordure1.webp"
               alt=""
               fill
               className="object-contain"
@@ -131,7 +131,7 @@ export function HeroSection() {
         {/* Handschriftlicher Spruch */}
         <div className="w-full mb-8">
           <Image
-            src="/images/assets/wo-kaffee-2 1.svg"
+            src="/images/assets/wo-kaffee-2.webp"
             alt={lang === "de" ? "Wo Kaffee, Bücher & Kultur in Wien zusammenkommen" : "Where coffee, books & culture come together in Vienna"}
             width={800}
             height={300}
@@ -232,10 +232,10 @@ export function HeroSection() {
 
       {/* Collage-Layout – nur auf Desktop (Besuch uns, Pomidoro, Tassen etc.) */}
       <div className="hidden md:block relative w-[1440px] mx-auto" style={{ minHeight: '1650px' }}>
-        {/* Handwritten text graphic "wo-kaffee-2 1.svg" - positioned relative to centered container */}
+        {/* Handwritten text graphic "wo-kaffee-2.webp" - positioned relative to centered container */}
         <div className="absolute left-[420px] w-[550px] h-[203px]" style={{ top: '980px', transform: 'rotate(4.548deg)' }}>
           <Image
-            src="/images/assets/wo-kaffee-2 1.svg"
+            src="/images/assets/wo-kaffee-2.webp"
             alt={lang === 'de' ? 'Wo Kaffee, Bücher & Kultur in Wien zusammenkommen' : 'Where coffee, books & culture come together in Vienna'}
             width={550}
             height={203}
@@ -297,7 +297,7 @@ export function HeroSection() {
               </div>
               <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
                 <Image
-                  src="/images/assets/bordüre 1.svg"
+                  src="/images/assets/bordure1.webp"
                   alt=""
                   fill
                   className="object-contain"

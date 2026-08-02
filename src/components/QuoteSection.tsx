@@ -237,7 +237,7 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
           </div>
           <div className="absolute inset-0 pointer-events-none z-10">
             <Image
-              src="/images/assets/bordüre2.svg"
+              src="/images/assets/bordure2.webp"
               alt=""
               fill
               className="object-contain"
@@ -1503,7 +1503,7 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
           }}
         >
           <Image
-            src="/images/assets/bordüre2.svg"
+            src="/images/assets/bordure2.webp"
             alt="Bordüre"
             width={674}
             height={860}
@@ -2080,7 +2080,7 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
             {/* Cursor */}
             <div className="absolute -right-[160px] bottom-[0px] w-[100px] h-[100px]">
                <Image
-                src="/images/assets/cursor 2.svg"
+                src="/images/assets/cursor-2.webp"
                 alt="Cursor"
                 width={100}
                 height={100}
