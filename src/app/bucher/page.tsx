@@ -170,7 +170,7 @@ export default function BucherPage() {
           }}
         >
            <Image
-             src="/images/assets/bordüre2.svg"
+             src="/images/assets/bordure2.webp"
              alt="Border"
              fill
              className="object-contain"
