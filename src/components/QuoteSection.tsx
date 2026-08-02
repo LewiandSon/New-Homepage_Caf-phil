@@ -140,7 +140,7 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
       <div className="mt-16 mb-16 flex justify-center w-full">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/assets/phil-speisen-handbeschriftet.gif"
+          src="/images/assets/phil-speisen-handbeschriftet.webp"
           alt={lang === "de" ? "Speisekarte handbeschriftet" : "Handwritten menu"}
           className="max-w-full object-contain"
           style={{ maxWidth: "328px" }}
@@ -1088,7 +1088,7 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
           }}
         >
           <Image
-            src="/images/assets/analog-cafe_v2.gif"
+            src="/images/assets/analog-cafe_v2.webp"
             alt="Analog Cafe"
             width={1536}
             height={966}
@@ -1454,7 +1454,7 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
       <div className="absolute left-1/2 -translate-x-1/2 w-[1440px] flex justify-center" style={{ top: '4580px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/assets/phil-speisen-handbeschriftet.gif"
+          src="/images/assets/phil-speisen-handbeschriftet.webp"
           alt={lang === "de" ? "Speisekarte handbeschriftet" : "Handwritten menu"}
           className="object-contain"
           style={{ width: '558px', height: '558px' }}
