@@ -226,7 +226,7 @@ export default function EventsPage() {
                   </a>
                 )}
                 {signupGeschlossen && (
-                  <p style={{ padding: "14px 0", fontFamily: "Vollkorn", fontSize: "15px", color: "#d9534f", fontWeight: 700 }}>
+                  <p style={{ padding: "14px 0", fontFamily: "Vollkorn", fontSize: "15px", color: "#d9534f", fontWeight: 700, textAlign: "center" }}>
                     {lang === "de" ? "Anmeldung geschlossen" : "Registration closed"}
                   </p>
                 )}
