@@ -90,6 +90,13 @@ function isLong(blocks?: SanityBlock[]): boolean {
   return (blocks?.length ?? 0) > 1;
 }
 
+/** Liefert Sanity-Bilder verkleinert & als WebP aus (spart massiv Ladezeit).
+    Lokale Fallback-Bilder bleiben unverändert. */
+function sanityImg(url: string, width: number): string {
+  if (!url.includes("cdn.sanity.io")) return url;
+  return `${url}?w=${width}&auto=format&q=72`;
+}
+
 // ── Seite ────────────────────────────────────────────────────────────────────
 
 export default function EventsPage() {
@@ -172,13 +179,15 @@ export default function EventsPage() {
                   <button
                     type="button"
                     className="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-[#F9F1DA] block cursor-pointer border-0 p-0 text-left"
-                    onClick={() => setImageLightbox(imgSrc)}
+                    onClick={() => setImageLightbox(sanityImg(imgSrc, 1600))}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={imgSrc}
+                      src={sanityImg(imgSrc, 800)}
                       alt={event.title}
                       className="w-full h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </button>
                 )}
@@ -269,10 +278,10 @@ export default function EventsPage() {
                       <button
                         type="button"
                         className="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-[#F9F1DA] block cursor-pointer border-0 p-0 text-left"
-                        onClick={() => setImageLightbox(imgSrc)}
+                        onClick={() => setImageLightbox(sanityImg(imgSrc, 1600))}
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={imgSrc} alt={event.title} className="w-full h-full object-contain" />
+                        <img src={sanityImg(imgSrc, 800)} alt={event.title} className="w-full h-full object-contain" loading="lazy" decoding="async" />
                       </button>
                     )}
                     <div className="flex flex-col flex-1">
