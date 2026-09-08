@@ -10,6 +10,7 @@ type AnmeldungModalProps = {
   onClose: () => void;
   eventTitle: string;
   eventDate: string; // z.B. "30.10.2025, 19:00 Uhr"
+  eventId?: string;
 };
 
 const labelStyle = {
@@ -37,6 +38,7 @@ export function AnmeldungModal({
   onClose,
   eventTitle,
   eventDate,
+  eventId,
 }: AnmeldungModalProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
@@ -49,6 +51,7 @@ export function AnmeldungModal({
 
     fd.set("eventTitle", eventTitle);
     fd.set("eventDate", eventDate);
+    if (eventId) fd.set("eventId", eventId);
 
     setStatus("sending");
     setStatusMessage("");
@@ -60,6 +63,13 @@ export function AnmeldungModal({
       if (data?.status === "success") {
         form.reset();
         setStatus("success");
+      } else if (data?.status === "full") {
+        setStatus("error");
+        setStatusMessage(
+          lang === "de"
+            ? "Dieses Event ist leider bereits ausgebucht."
+            : "This event is unfortunately already fully booked.",
+        );
       } else {
         throw new Error(data?.message || "Unbekannter Fehler");
       }

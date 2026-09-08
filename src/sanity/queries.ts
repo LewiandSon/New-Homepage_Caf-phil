@@ -6,6 +6,7 @@ export interface EventPreview {
   title_en?: string;
   date: string;
   imageUrl?: string;
+  maxTeilnehmer?: number;
 }
 
 export const upcomingEventsQuery = groq`
@@ -20,6 +21,7 @@ export const upcomingEventsQuery = groq`
     signupLink,
     signupType,
     signupUrl,
+    maxTeilnehmer,
   }
 `;
 
@@ -35,6 +37,7 @@ export const pastEventsQuery = groq`
     signupLink,
     signupType,
     signupUrl,
+    maxTeilnehmer,
   }
 `;
 
@@ -50,5 +53,6 @@ export const allEventsQuery = groq`
     signupLink,
     signupType,
     signupUrl,
+    maxTeilnehmer,
   }
 `;

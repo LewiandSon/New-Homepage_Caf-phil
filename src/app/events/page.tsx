@@ -24,6 +24,7 @@ type SanityEvent = {
   description_en?: SanityBlock[];
   signupType?: string;
   signupUrl?: string;
+  maxTeilnehmer?: number;
 };
 
 type LangEvent = {
@@ -34,6 +35,7 @@ type LangEvent = {
   description?: SanityBlock[];
   signupType?: string;
   signupUrl?: string;
+  maxTeilnehmer?: number;
 };
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
@@ -61,6 +63,7 @@ function toLangEvent(e: SanityEvent, lang: string): LangEvent {
     description: lang === "de" ? e.description_de : (e.description_en ?? e.description_de),
     signupType: e.signupType,
     signupUrl: e.signupUrl,
+    maxTeilnehmer: e.maxTeilnehmer,
   };
 }
 
@@ -94,9 +97,11 @@ export default function EventsPage() {
   const [upcomingRaw, setUpcomingRaw] = useState<SanityEvent[]>([]);
   const [pastRaw, setPastRaw] = useState<SanityEvent[]>([]);
   const [loading, setLoading] = useState(true);
-  const [signupModal, setSignupModal] = useState<{ eventTitle: string; eventDate: string } | null>(null);
+  const [signupModal, setSignupModal] = useState<{ eventTitle: string; eventDate: string; eventId: string } | null>(null);
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
   const [imageLightbox, setImageLightbox] = useState<string | null>(null);
+  // Bereits angemeldete Personen je Event-ID (für Events mit Teilnehmer-Limit)
+  const [signupCounts, setSignupCounts] = useState<Record<string, number>>({});
 
   useEffect(() => {
     const now = new Date().toISOString();
@@ -109,6 +114,22 @@ export default function EventsPage() {
       setLoading(false);
     });
   }, []);
+
+  // Verfügbarkeit (bereits angemeldete Personen) für Events mit Limit laden
+  useEffect(() => {
+    const limited = upcomingRaw.filter((e) => typeof e.maxTeilnehmer === "number" && e.maxTeilnehmer > 0);
+    if (limited.length === 0) return;
+    fetch("/api/event-availability", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        events: limited.map((e) => ({ id: e._id, titles: [e.title_de, e.title_en].filter(Boolean) })),
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => setSignupCounts(data?.counts ?? {}))
+      .catch(() => {});
+  }, [upcomingRaw]);
 
   useEffect(() => {
     if (imageLightbox) document.body.style.overflow = "hidden";
@@ -157,6 +178,12 @@ export default function EventsPage() {
             const signupAktiv = event.signupType === "ja";
             const signupExtern = event.signupType === "extern" && !!event.signupUrl;
             const signupGeschlossen = event.signupType === "geschlossen";
+            // Teilnehmer-Limit: verbleibende Plätze (null = kein Limit / noch unbekannt)
+            const max = event.maxTeilnehmer;
+            const count = signupCounts[event.id];
+            const remaining =
+              typeof max === "number" && max > 0 && typeof count === "number" ? max - count : null;
+            const ausgebucht = remaining !== null && remaining <= 0;
 
             return (
               <div
@@ -196,20 +223,38 @@ export default function EventsPage() {
                   )}
                 </div>
 
-                {signupAktiv && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSignupModal({ eventTitle: event.title, eventDate: event.date });
-                      gtag.event({ action: "click", category: "Event", label: `Anmelden: ${event.title}` });
-                    }}
-                    className="transition-all duration-200 w-fit mx-auto"
-                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
-                  >
-                    {lang === "de" ? "Anmelden" : "Sign Up"}
-                  </button>
+                {signupAktiv && ausgebucht && (
+                  <div className="w-fit mx-auto text-center">
+                    <div
+                      style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 700, color: "#F9F1DA", backgroundColor: "#8a8a8a", border: "2px solid #8a8a8a" }}
+                    >
+                      {lang === "de" ? "Ausgebucht" : "Fully booked"}
+                    </div>
+                  </div>
+                )}
+                {signupAktiv && !ausgebucht && (
+                  <div className="flex flex-col items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSignupModal({ eventTitle: event.title, eventDate: event.date, eventId: event.id });
+                        gtag.event({ action: "click", category: "Event", label: `Anmelden: ${event.title}` });
+                      }}
+                      className="transition-all duration-200 w-fit"
+                      style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
+                    >
+                      {lang === "de" ? "Anmelden" : "Sign Up"}
+                    </button>
+                    {remaining !== null && (
+                      <span style={{ fontFamily: "Vollkorn", fontSize: "14px", fontWeight: 500, color: "#D72333", opacity: 0.7 }}>
+                        {lang === "de"
+                          ? `Noch ${remaining} ${remaining === 1 ? "Platz" : "Plätze"} frei`
+                          : `${remaining} ${remaining === 1 ? "spot" : "spots"} left`}
+                      </span>
+                    )}
+                  </div>
                 )}
                 {signupExtern && (
                   <a
@@ -328,7 +373,7 @@ export default function EventsPage() {
         <div className="mt-12 flex flex-col items-center"><InstagramLink /></div>
       </footer>
 
-      <AnmeldungModal isOpen={!!signupModal} onClose={() => setSignupModal(null)} eventTitle={signupModal?.eventTitle ?? ""} eventDate={signupModal?.eventDate ?? ""} />
+      <AnmeldungModal isOpen={!!signupModal} onClose={() => setSignupModal(null)} eventTitle={signupModal?.eventTitle ?? ""} eventDate={signupModal?.eventDate ?? ""} eventId={signupModal?.eventId ?? ""} />
 
       {footerModal && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{ backgroundColor: "rgba(0,0,0,0.5)" }} onClick={() => setFooterModal(null)}>

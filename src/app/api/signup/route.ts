@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { google } from "googleapis";
+import { client } from "@/sanity/client";
+import { readSignupRows, countPersonsForEvent } from "@/lib/eventCapacity";
 
 const getResend = () => new Resend(process.env.RESEND_API_KEY ?? "placeholder");
 
@@ -30,6 +32,7 @@ export async function POST(req: NextRequest) {
 
     const eventTitle   = formData.get("eventTitle")?.toString()     ?? "";
     const eventDate    = formData.get("eventDate")?.toString()      ?? "";
+    const eventId      = formData.get("eventId")?.toString()        ?? "";
     const vorname      = formData.get("vorname")?.toString()        ?? "";
     const nachname     = formData.get("nachname")?.toString()       ?? "";
     const email        = formData.get("email")?.toString()          ?? "";
@@ -39,6 +42,35 @@ export async function POST(req: NextRequest) {
 
     if (!email || !vorname || !eventTitle) {
       return NextResponse.json({ status: "error", message: "Pflichtfelder fehlen." }, { status: 400 });
+    }
+
+    const personenNum = Math.max(1, parseInt(personen, 10) || 1);
+
+    // 0) Teilnehmer-Limit prüfen (nur wenn Event-ID vorhanden & Limit gesetzt).
+    //    Fail-open: jeder Fehler beim Zählen/Sanity darf eine gültige Anmeldung NICHT blockieren.
+    if (eventId) {
+      try {
+        const ev = await client.fetch<{ maxTeilnehmer?: number; title_de?: string; title_en?: string } | null>(
+          `*[_type == "event" && _id == $id][0]{ maxTeilnehmer, title_de, title_en }`,
+          { id: eventId },
+        );
+        const max = ev?.maxTeilnehmer;
+        if (typeof max === "number" && max > 0) {
+          const rows = await readSignupRows();
+          const current = countPersonsForEvent(rows, {
+            id: eventId,
+            titles: [ev?.title_de ?? "", ev?.title_en ?? ""],
+          });
+          if (current + personenNum > max) {
+            return NextResponse.json(
+              { status: "full", message: "Dieses Event ist leider bereits ausgebucht." },
+              { status: 409 },
+            );
+          }
+        }
+      } catch (capErr) {
+        console.error("Kapazitätsprüfung übersprungen (fail-open):", capErr);
+      }
     }
 
     // 1) Google Sheet speichern
@@ -62,6 +94,7 @@ export async function POST(req: NextRequest) {
         personen,
         kommentar,
         newsletter,
+        eventId,
       ]);
     } catch (sheetError: unknown) {
       const msg = sheetError instanceof Error ? sheetError.message : String(sheetError);

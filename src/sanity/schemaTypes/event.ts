@@ -62,6 +62,15 @@ export const eventType = defineType({
       description: "Nur ausfüllen wenn oben \"Externer Link\" gewählt wurde.",
       hidden: ({ document }) => document?.signupType !== "extern",
     }),
+    defineField({
+      name: "maxTeilnehmer",
+      title: "Max. Teilnehmer (optional)",
+      type: "number",
+      description:
+        "Maximale Anzahl anmeldbarer Personen. Leer lassen = unbegrenzt. Ist das Limit erreicht, wird der Anmelde-Button automatisch zu \"Ausgebucht\".",
+      validation: (r) => r.min(1).integer(),
+      hidden: ({ document }) => document?.signupType !== "ja",
+    }),
   ],
   preview: {
     select: {
