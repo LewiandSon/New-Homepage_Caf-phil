@@ -24,6 +24,12 @@ interface QuoteSectionProps {
   initialNextEvent: EventPreview | null;
 }
 
+/** Liefert Sanity-Bilder verkleinert & als WebP aus. Lokale/leere URLs unverändert. */
+function sanityImg(url: string, width: number): string {
+  if (!url.includes("cdn.sanity.io")) return url;
+  return `${url}?w=${width}&auto=format&q=72`;
+}
+
 export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: QuoteSectionProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showEventLightbox, setShowEventLightbox] = useState(false);
@@ -985,7 +991,7 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={nextEventImg}
+            src={sanityImg(nextEventImg, 1600)}
             alt={nextEventTitle}
             className="max-h-[90vh] w-auto object-contain border-2 border-[#D72333]"
           />

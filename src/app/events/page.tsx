@@ -80,16 +80,6 @@ const ptComponents = {
   },
 };
 
-/** Gibt nur den ersten Block zurück */
-function shortBlocks(blocks?: SanityBlock[]): SanityBlock[] {
-  if (!blocks || blocks.length === 0) return [];
-  return [blocks[0]];
-}
-
-function isLong(blocks?: SanityBlock[]): boolean {
-  return (blocks?.length ?? 0) > 1;
-}
-
 /** Liefert Sanity-Bilder verkleinert & als WebP aus (spart massiv Ladezeit).
     Lokale Fallback-Bilder bleiben unverändert. */
 function sanityImg(url: string, width: number): string {
@@ -106,7 +96,6 @@ export default function EventsPage() {
   const [loading, setLoading] = useState(true);
   const [signupModal, setSignupModal] = useState<{ eventTitle: string; eventDate: string } | null>(null);
   const [footerModal, setFooterModal] = useState<"imprint" | "privacy" | "terms" | null>(null);
-  const [expandedEvent, setExpandedEvent] = useState<string | null>(null);
   const [imageLightbox, setImageLightbox] = useState<string | null>(null);
 
   useEffect(() => {
@@ -168,7 +157,6 @@ export default function EventsPage() {
             const signupAktiv = event.signupType === "ja";
             const signupExtern = event.signupType === "extern" && !!event.signupUrl;
             const signupGeschlossen = event.signupType === "geschlossen";
-            const isExpanded = expandedEvent === event.id;
 
             return (
               <div
@@ -201,21 +189,10 @@ export default function EventsPage() {
                   {event.description && (
                     <div style={{ fontFamily: "Vollkorn", fontSize: "16px", lineHeight: "1.6", color: "#D72333", marginBottom: "12px" }}>
                       <PortableText
-                        value={isExpanded ? event.description : shortBlocks(event.description)}
+                        value={event.description}
                         components={ptComponents}
                       />
                     </div>
-                  )}
-                  {isLong(event.description) && (
-                    <button
-                      type="button"
-                      onClick={() => setExpandedEvent(isExpanded ? null : event.id)}
-                      style={{ fontFamily: "Vollkorn", fontSize: "16px", fontWeight: 600, color: "#D72333", textDecoration: "underline", background: "none", border: "none", cursor: "pointer", padding: 0, marginBottom: "12px" }}
-                    >
-                      {isExpanded
-                        ? (lang === "de" ? "Weniger anzeigen" : "Show less")
-                        : (lang === "de" ? "Vollständiges Programm anzeigen" : "Show full program")}
-                    </button>
                   )}
                 </div>
 
@@ -226,10 +203,10 @@ export default function EventsPage() {
                       setSignupModal({ eventTitle: event.title, eventDate: event.date });
                       gtag.event({ action: "click", category: "Event", label: `Anmelden: ${event.title}` });
                     }}
-                    className="transition-all duration-200 w-fit"
-                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "18px", fontWeight: 600, color: "#D72333", backgroundColor: "#F9F1DA", border: "2px solid #D72333", cursor: "pointer" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
+                    className="transition-all duration-200 w-fit mx-auto"
+                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "18px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
                   >
                     {lang === "de" ? "Anmelden" : "Sign Up"}
                   </button>
@@ -240,10 +217,10 @@ export default function EventsPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => gtag.event({ action: "click", category: "Event", label: `Extern-Anmeldung: ${event.title}` })}
-                    className="transition-all duration-200 w-fit inline-flex items-center"
-                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "18px", fontWeight: 600, color: "#D72333", backgroundColor: "#F9F1DA", border: "2px solid #D72333", cursor: "pointer", textDecoration: "none" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
+                    className="transition-all duration-200 w-fit mx-auto inline-flex items-center"
+                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "18px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer", textDecoration: "none" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
                   >
                     {lang === "de" ? "Jetzt anmelden" : "Register now"}
                   </a>
@@ -270,7 +247,6 @@ export default function EventsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-70">
               {pastEvents.map((event) => {
                 const imgSrc = event.imageUrl || "/images/assets/veranstaltung_1.webp";
-                const isExpanded = expandedEvent === `past-${event.id}`;
 
                 return (
                   <div key={event.id} className="flex flex-col grayscale-[0.5] hover:grayscale-0 transition-all duration-300 md:max-w-[280px] md:mx-auto">
@@ -294,21 +270,10 @@ export default function EventsPage() {
                       {event.description && (
                         <div style={{ fontFamily: "Vollkorn", fontSize: "16px", lineHeight: "1.6", color: "#D72333" }}>
                           <PortableText
-                            value={isExpanded ? event.description : shortBlocks(event.description)}
+                            value={event.description}
                             components={ptComponents}
                           />
                         </div>
-                      )}
-                      {isLong(event.description) && (
-                        <button
-                          type="button"
-                          onClick={() => setExpandedEvent(isExpanded ? null : `past-${event.id}`)}
-                          style={{ fontFamily: "Vollkorn", fontSize: "16px", fontWeight: 600, color: "#D72333", textDecoration: "underline", background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: "8px" }}
-                        >
-                          {isExpanded
-                            ? (lang === "de" ? "Weniger anzeigen" : "Show less")
-                            : (lang === "de" ? "Vollständiges Programm anzeigen" : "Show full program")}
-                        </button>
                       )}
                     </div>
                   </div>
