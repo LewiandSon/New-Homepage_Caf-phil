@@ -257,18 +257,20 @@ export default function EventsPage() {
                   </div>
                 )}
                 {signupExtern && (
-                  <a
-                    href={event.signupUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => gtag.event({ action: "click", category: "Event", label: `Extern-Anmeldung: ${event.title}` })}
-                    className="transition-all duration-200 w-fit mx-auto inline-flex items-center"
-                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer", textDecoration: "none" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
-                  >
-                    {lang === "de" ? "Jetzt anmelden" : "Register now"}
-                  </a>
+                  <div className="flex flex-col items-center">
+                    <a
+                      href={event.signupUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => gtag.event({ action: "click", category: "Event", label: `Extern-Anmeldung: ${event.title}` })}
+                      className="transition-all duration-200 w-fit inline-flex items-center"
+                      style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer", textDecoration: "none" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
+                    >
+                      {lang === "de" ? "Jetzt anmelden" : "Register now"}
+                    </a>
+                  </div>
                 )}
                 {signupGeschlossen && (
                   <p style={{ padding: "14px 0", fontFamily: "Vollkorn", fontSize: "15px", color: "#d9534f", fontWeight: 700, textAlign: "center" }}>
