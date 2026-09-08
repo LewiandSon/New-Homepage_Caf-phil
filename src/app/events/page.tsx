@@ -234,6 +234,13 @@ export default function EventsPage() {
                 )}
                 {signupAktiv && !ausgebucht && (
                   <div className="flex flex-col items-center gap-2">
+                    {remaining !== null && (
+                      <span style={{ fontFamily: "Vollkorn", fontSize: "14px", fontWeight: 500, color: "#D72333", opacity: 0.7 }}>
+                        {lang === "de"
+                          ? `Noch ${remaining} ${remaining === 1 ? "Platz" : "Plätze"} frei`
+                          : `${remaining} ${remaining === 1 ? "spot" : "spots"} left`}
+                      </span>
+                    )}
                     <button
                       type="button"
                       onClick={() => {
@@ -247,13 +254,6 @@ export default function EventsPage() {
                     >
                       {lang === "de" ? "Anmelden" : "Sign Up"}
                     </button>
-                    {remaining !== null && (
-                      <span style={{ fontFamily: "Vollkorn", fontSize: "14px", fontWeight: 500, color: "#D72333", opacity: 0.7 }}>
-                        {lang === "de"
-                          ? `Noch ${remaining} ${remaining === 1 ? "Platz" : "Plätze"} frei`
-                          : `${remaining} ${remaining === 1 ? "spot" : "spots"} left`}
-                      </span>
-                    )}
                   </div>
                 )}
                 {signupExtern && (
