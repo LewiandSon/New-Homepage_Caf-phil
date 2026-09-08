@@ -178,7 +178,7 @@ export default function EventsPage() {
                     <img
                       src={imgSrc}
                       alt={event.title}
-                      className="w-full h-full object-cover border-2 border-[#D72333]"
+                      className="w-full h-full object-contain"
                     />
                   </button>
                 )}
@@ -272,7 +272,7 @@ export default function EventsPage() {
                         onClick={() => setImageLightbox(imgSrc)}
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={imgSrc} alt={event.title} className="w-full h-full object-cover border-2 border-[#D72333]" />
+                        <img src={imgSrc} alt={event.title} className="w-full h-full object-contain" />
                       </button>
                     )}
                     <div className="flex flex-col flex-1">
