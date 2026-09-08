@@ -204,7 +204,7 @@ export default function EventsPage() {
                       gtag.event({ action: "click", category: "Event", label: `Anmelden: ${event.title}` });
                     }}
                     className="transition-all duration-200 w-fit mx-auto"
-                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "18px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer" }}
+                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer" }}
                     onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
                   >
@@ -218,7 +218,7 @@ export default function EventsPage() {
                     rel="noopener noreferrer"
                     onClick={() => gtag.event({ action: "click", category: "Event", label: `Extern-Anmeldung: ${event.title}` })}
                     className="transition-all duration-200 w-fit mx-auto inline-flex items-center"
-                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "18px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer", textDecoration: "none" }}
+                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer", textDecoration: "none" }}
                     onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
                   >
