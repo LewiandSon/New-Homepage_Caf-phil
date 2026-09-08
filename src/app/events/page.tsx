@@ -230,6 +230,14 @@ export default function EventsPage() {
                     {lang === "de" ? "Anmeldung geschlossen" : "Registration closed"}
                   </p>
                 )}
+                {!signupAktiv && !signupExtern && !signupGeschlossen && (
+                  <div
+                    className="w-fit mx-auto"
+                    style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#D72333", backgroundColor: "#F9F1DA", border: "2px solid #D72333" }}
+                  >
+                    Open House
+                  </div>
+                )}
               </div>
             );
           })}
