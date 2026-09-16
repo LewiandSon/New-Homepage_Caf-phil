@@ -9,13 +9,13 @@ import * as gtag from "@/lib/gtag";
 import type { EventPreview } from "@/sanity/queries";
 
 const MENU_ITEMS_DE = [
-  { src: "/images/assets/getraenke-de.png", alt: "Getränke Karte" },
-  { src: "/images/assets/speisen-de.png", alt: "Speisen Karte" },
+  { src: "/images/assets/getraenke-de.webp", alt: "Getränke Karte" },
+  { src: "/images/assets/speisen-de.webp", alt: "Speisen Karte" },
 ];
 
 const MENU_ITEMS_EN = [
-  { src: "/images/assets/drinks-en.png", alt: "Drinks menu" },
-  { src: "/images/assets/food-en.png", alt: "Food menu" },
+  { src: "/images/assets/drinks-en.webp", alt: "Drinks menu" },
+  { src: "/images/assets/food-en.webp", alt: "Food menu" },
 ];
 
 interface QuoteSectionProps {

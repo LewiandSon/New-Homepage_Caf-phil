@@ -144,7 +144,7 @@ export async function POST(req: NextRequest) {
             <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; line-height: 1.8;">
               <strong style="color: #573B30;">phil – Café, Bookshop &amp; Bar</strong><br/>
               Gumpendorfer Straße 10–12, 1060 Wien<br/>
-              Mo 15–23 &nbsp;|&nbsp; Di–Do 9–23 &nbsp;|&nbsp; Fr &amp; Sa 9–1 &nbsp;|&nbsp; So 9–22<br/>
+              Mo 14–21 &nbsp;|&nbsp; Di–Do 9–22 &nbsp;|&nbsp; Fr &amp; Sa 9–23 &nbsp;|&nbsp; So 9–21<br/>
               Tel: <a href="tel:+43151810489" style="color: #888;">+43 1 581 04 89</a><br/>
               <a href="mailto:info@phil.info" style="color: #D72333;">info@phil.info</a> &nbsp;|&nbsp;
               <a href="https://www.cafephil.at" style="color: #D72333;">cafephil.at</a><br/>
