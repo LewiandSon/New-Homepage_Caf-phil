@@ -140,6 +140,26 @@ export default function EventsPage() {
   const upcomingEvents = upcomingRaw.map(e => toLangEvent(e, lang));
   const pastEvents = pastRaw.map(e => toLangEvent(e, lang));
 
+  // Hinweis unter den Anmelde-Buttons: Anmeldung ≠ Sitzplatzreservierung
+  const seatNote = (
+    <span
+      style={{
+        maxWidth: "260px",
+        fontFamily: "Vollkorn",
+        fontSize: "13px",
+        fontWeight: 500,
+        color: "#573b30",
+        opacity: 0.75,
+        lineHeight: 1.4,
+        textAlign: "center",
+      }}
+    >
+      {lang === "de"
+        ? "Die Anmeldung ist keine Sitzplatzreservierung – es gibt auch Stehplätze. Am besten 30–60 Min vor Beginn da sein, um dir einen Sitzplatz zu sichern."
+        : "Registration is not a seat reservation – standing room is also available. Best to arrive 30–60 min before the start to secure a seat."}
+    </span>
+  );
+
   return (
     <main className="relative min-h-screen bg-[#F9F1DA] text-[#D72333] font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
       <div className="md:scale-[0.855] md:origin-top">
@@ -254,10 +274,11 @@ export default function EventsPage() {
                     >
                       {lang === "de" ? "Anmelden" : "Sign Up"}
                     </button>
+                    {seatNote}
                   </div>
                 )}
                 {signupExtern && (
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center gap-2">
                     <a
                       href={event.signupUrl}
                       target="_blank"
@@ -270,6 +291,7 @@ export default function EventsPage() {
                     >
                       {lang === "de" ? "Jetzt anmelden" : "Register now"}
                     </a>
+                    {seatNote}
                   </div>
                 )}
                 {signupGeschlossen && (
