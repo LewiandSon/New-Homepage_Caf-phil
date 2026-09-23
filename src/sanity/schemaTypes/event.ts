@@ -57,10 +57,21 @@ export const eventType = defineType({
     }),
     defineField({
       name: "signupUrl",
-      title: "Externer Anmeldelink (URL)",
-      type: "url",
-      description: "Nur ausfüllen wenn oben \"Externer Link\" gewählt wurde.",
+      title: "Externer Anmelde-Link oder E-Mail",
+      type: "string",
+      description:
+        "Nur bei \"Externer Link\". Entweder eine URL (https://…) ODER eine E-Mail-Adresse (z. B. events@phil.info) – bei einer E-Mail öffnet der Button das Mailprogramm.",
       hidden: ({ document }) => document?.signupType !== "extern",
+      validation: (r) =>
+        r.custom((value) => {
+          if (!value) return true; // Feld optional
+          const s = String(value).trim();
+          const ok =
+            /^https?:\/\/.+/i.test(s) ||
+            /^mailto:.+@.+/i.test(s) ||
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+          return ok || "Bitte eine gültige URL (https://…) oder E-Mail-Adresse eingeben.";
+        }),
     }),
     defineField({
       name: "maxTeilnehmer",

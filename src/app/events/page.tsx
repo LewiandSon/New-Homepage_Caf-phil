@@ -90,6 +90,15 @@ function sanityImg(url: string, width: number): string {
   return `${url}?w=${width}&auto=format&q=72`;
 }
 
+/** Externe Anmeldung: URL bleibt URL, blanke E-Mail-Adresse wird zu mailto:. */
+function externalHref(value?: string): string {
+  if (!value) return "";
+  const s = value.trim();
+  if (/^(https?:|mailto:|tel:)/i.test(s)) return s;
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s)) return `mailto:${s}`;
+  return s;
+}
+
 // ── Seite ────────────────────────────────────────────────────────────────────
 
 export default function EventsPage() {
@@ -198,6 +207,8 @@ export default function EventsPage() {
             const signupAktiv = event.signupType === "ja";
             const signupExtern = event.signupType === "extern" && !!event.signupUrl;
             const signupGeschlossen = event.signupType === "geschlossen";
+            const extHref = externalHref(event.signupUrl);
+            const extIsMail = extHref.startsWith("mailto:");
             // Teilnehmer-Limit: verbleibende Plätze (null = kein Limit / noch unbekannt)
             const max = event.maxTeilnehmer;
             const count = signupCounts[event.id];
@@ -280,16 +291,18 @@ export default function EventsPage() {
                 {signupExtern && (
                   <div className="flex flex-col items-center gap-2">
                     <a
-                      href={event.signupUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={extHref}
+                      target={extIsMail ? undefined : "_blank"}
+                      rel={extIsMail ? undefined : "noopener noreferrer"}
                       onClick={() => gtag.event({ action: "click", category: "Event", label: `Extern-Anmeldung: ${event.title}` })}
                       className="transition-all duration-200 w-fit inline-flex items-center"
                       style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#F9F1DA", backgroundColor: "#D72333", border: "2px solid #D72333", cursor: "pointer", textDecoration: "none" }}
                       onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#F9F1DA"; e.currentTarget.style.color = "#D72333"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D72333"; e.currentTarget.style.color = "#F9F1DA"; }}
                     >
-                      {lang === "de" ? "Jetzt anmelden" : "Register now"}
+                      {extIsMail
+                        ? (lang === "de" ? "Per E-Mail anmelden" : "Register by email")
+                        : (lang === "de" ? "Jetzt anmelden" : "Register now")}
                     </a>
                     {seatNote}
                   </div>
