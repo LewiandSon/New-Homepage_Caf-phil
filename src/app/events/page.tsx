@@ -155,8 +155,8 @@ export default function EventsPage() {
       }}
     >
       {lang === "de"
-        ? "Die Anmeldung ist keine Sitzplatzreservierung – es gibt auch Stehplätze. Am besten 30–60 Min vor Beginn da sein, um dir einen Sitzplatz zu sichern."
-        : "Registration is not a seat reservation – standing room is also available. Best to arrive 30–60 min before the start to secure a seat."}
+        ? "Die Anmeldung ist keine Sitzplatzreservierung – es gibt auch Stehplätze. Am besten 15 Min vor Beginn da sein, um dir einen Sitzplatz zu sichern."
+        : "Registration is not a seat reservation – standing room is also available. Best to arrive 15 min before the start to secure a seat."}
     </span>
   );
 
