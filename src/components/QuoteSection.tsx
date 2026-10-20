@@ -56,6 +56,10 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
   const nextEventImg = nextEvent?.imageUrl || "";
   const nextEventTitle = nextEvent ? (lang === "de" ? nextEvent.title_de : (nextEvent.title_en || nextEvent.title_de)) : "";
   const nextEventDesc = "";
+  const nextEventAbgesagt = !!nextEvent?.abgesagt;
+  const nextEventAbsageText =
+    (lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") +
+    (nextEvent?.abgesagtGrund ? ` ${nextEvent.abgesagtGrund}` : "");
 
   // Prevent scrolling when lightbox or footer modal is open
   useEffect(() => {
@@ -320,7 +324,18 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
               fill
               className="object-cover border-2 border-[#D72333]"
               loading="lazy"
+              style={{ opacity: nextEventAbgesagt ? 0.45 : 1 }}
             />
+            {nextEventAbgesagt && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
+                <span style={{ backgroundColor: "#D72333", color: "#F9F1DA", fontFamily: "Vollkorn", fontSize: "20px", fontWeight: 800, letterSpacing: "2px", padding: "6px 18px", transform: "rotate(-7deg)" }}>
+                  {lang === "de" ? "ABGESAGT" : "CANCELLED"}
+                </span>
+                <span style={{ backgroundColor: "#D72333", color: "#F9F1DA", fontFamily: "Vollkorn", fontSize: "14px", fontWeight: 600, padding: "4px 12px", lineHeight: 1.3 }}>
+                  {nextEventAbsageText}
+                </span>
+              </div>
+            )}
           </button>
         )}
 
@@ -1653,7 +1668,18 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
                 fill
                 className="object-cover pointer-events-none border-2 border-[#D72333]"
                 loading="lazy"
+                style={{ opacity: nextEventAbgesagt ? 0.45 : 1 }}
               />
+              {nextEventAbgesagt && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center pointer-events-none">
+                  <span style={{ backgroundColor: "#D72333", color: "#F9F1DA", fontFamily: "Vollkorn", fontSize: "30px", fontWeight: 800, letterSpacing: "3px", padding: "10px 28px", transform: "rotate(-7deg)" }}>
+                    {lang === "de" ? "ABGESAGT" : "CANCELLED"}
+                  </span>
+                  <span style={{ backgroundColor: "#D72333", color: "#F9F1DA", fontFamily: "Vollkorn", fontSize: "18px", fontWeight: 600, padding: "6px 16px", lineHeight: 1.3 }}>
+                    {nextEventAbsageText}
+                  </span>
+                </div>
+              )}
             </button>
           </div>
         </div>

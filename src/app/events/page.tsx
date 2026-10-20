@@ -25,6 +25,8 @@ type SanityEvent = {
   signupType?: string;
   signupUrl?: string;
   maxTeilnehmer?: number;
+  abgesagt?: boolean;
+  abgesagtGrund?: string;
 };
 
 type LangEvent = {
@@ -36,6 +38,8 @@ type LangEvent = {
   signupType?: string;
   signupUrl?: string;
   maxTeilnehmer?: number;
+  abgesagt?: boolean;
+  abgesagtGrund?: string;
 };
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
@@ -64,6 +68,8 @@ function toLangEvent(e: SanityEvent, lang: string): LangEvent {
     signupType: e.signupType,
     signupUrl: e.signupUrl,
     maxTeilnehmer: e.maxTeilnehmer,
+    abgesagt: e.abgesagt,
+    abgesagtGrund: e.abgesagtGrund,
   };
 }
 
@@ -204,9 +210,9 @@ export default function EventsPage() {
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 ${upcomingEvents.length === 1 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
           {upcomingEvents.map((event) => {
             const imgSrc = event.imageUrl || "/images/assets/veranstaltung_1.webp";
-            const signupAktiv = event.signupType === "ja";
-            const signupExtern = event.signupType === "extern" && !!event.signupUrl;
-            const signupGeschlossen = event.signupType === "geschlossen";
+            const signupAktiv = !event.abgesagt && event.signupType === "ja";
+            const signupExtern = !event.abgesagt && event.signupType === "extern" && !!event.signupUrl;
+            const signupGeschlossen = !event.abgesagt && event.signupType === "geschlossen";
             const extHref = externalHref(event.signupUrl);
             const extIsMail = extHref.startsWith("mailto:");
             // Teilnehmer-Limit: verbleibende Plätze (null = kein Limit / noch unbekannt)
@@ -234,7 +240,26 @@ export default function EventsPage() {
                       className="w-full h-full object-contain"
                       loading="lazy"
                       decoding="async"
+                      style={{ opacity: event.abgesagt ? 0.45 : 1 }}
                     />
+                    {event.abgesagt && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span
+                          style={{
+                            backgroundColor: "#D72333",
+                            color: "#F9F1DA",
+                            fontFamily: "Vollkorn",
+                            fontSize: "22px",
+                            fontWeight: 800,
+                            letterSpacing: "2px",
+                            padding: "8px 22px",
+                            transform: "rotate(-7deg)",
+                          }}
+                        >
+                          {lang === "de" ? "ABGESAGT" : "CANCELLED"}
+                        </span>
+                      </div>
+                    )}
                   </button>
                 )}
                 <div className="flex flex-col flex-1">
@@ -254,6 +279,24 @@ export default function EventsPage() {
                   )}
                 </div>
 
+                {event.abgesagt && (
+                  <div
+                    className="w-fit mx-auto text-center"
+                    style={{
+                      padding: "12px 24px",
+                      backgroundColor: "#D72333",
+                      color: "#F9F1DA",
+                      fontFamily: "Vollkorn",
+                      fontSize: "18px",
+                      fontWeight: 700,
+                      lineHeight: 1.4,
+                      maxWidth: "320px",
+                    }}
+                  >
+                    {(lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") +
+                      (event.abgesagtGrund ? ` ${event.abgesagtGrund}` : "")}
+                  </div>
+                )}
                 {signupAktiv && ausgebucht && (
                   <div className="w-fit mx-auto text-center">
                     <div
@@ -312,7 +355,7 @@ export default function EventsPage() {
                     {lang === "de" ? "Anmeldung geschlossen" : "Registration closed"}
                   </p>
                 )}
-                {!signupAktiv && !signupExtern && !signupGeschlossen && (
+                {!event.abgesagt && !signupAktiv && !signupExtern && !signupGeschlossen && (
                   <div
                     className="w-fit mx-auto"
                     style={{ padding: "14px 32px", fontFamily: "Vollkorn", fontSize: "22px", fontWeight: 600, color: "#D72333", backgroundColor: "#F9F1DA", border: "2px solid #D72333" }}

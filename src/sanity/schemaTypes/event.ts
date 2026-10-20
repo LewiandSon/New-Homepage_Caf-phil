@@ -82,6 +82,22 @@ export const eventType = defineType({
       validation: (r) => r.min(1).integer(),
       hidden: ({ document }) => document?.signupType !== "ja",
     }),
+    defineField({
+      name: "abgesagt",
+      title: "Veranstaltung abgesagt?",
+      type: "boolean",
+      description:
+        "Ankreuzen, wenn die Veranstaltung abgesagt wurde. Es erscheint ein „Leider abgesagt\"-Banner und der Anmelde-Button verschwindet.",
+      initialValue: false,
+    }),
+    defineField({
+      name: "abgesagtGrund",
+      title: "Grund der Absage (optional)",
+      type: "string",
+      description:
+        "Wird im Banner angehängt, z. B. „aufgrund von Krankheit\". Leer lassen = nur „Leider abgesagt\".",
+      hidden: ({ document }) => !document?.abgesagt,
+    }),
   ],
   preview: {
     select: {
