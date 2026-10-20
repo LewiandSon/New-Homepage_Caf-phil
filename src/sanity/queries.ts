@@ -9,6 +9,7 @@ export interface EventPreview {
   maxTeilnehmer?: number;
   abgesagt?: boolean;
   abgesagtGrund?: string;
+  abgesagtGrundFrei?: string;
 }
 
 export const upcomingEventsQuery = groq`
@@ -26,6 +27,7 @@ export const upcomingEventsQuery = groq`
     maxTeilnehmer,
     abgesagt,
     abgesagtGrund,
+    abgesagtGrundFrei,
   }
 `;
 
@@ -44,6 +46,7 @@ export const pastEventsQuery = groq`
     maxTeilnehmer,
     abgesagt,
     abgesagtGrund,
+    abgesagtGrundFrei,
   }
 `;
 
@@ -62,5 +65,6 @@ export const allEventsQuery = groq`
     maxTeilnehmer,
     abgesagt,
     abgesagtGrund,
+    abgesagtGrundFrei,
   }
 `;

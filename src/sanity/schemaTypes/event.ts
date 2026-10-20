@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { ABSAGE_GRUENDE } from "../../lib/absageGruende";
 
 export const eventType = defineType({
   name: "event",
@@ -95,8 +96,22 @@ export const eventType = defineType({
       title: "Grund der Absage (optional)",
       type: "string",
       description:
-        "Wird im Banner angehängt, z. B. „aufgrund von Krankheit\". Leer lassen = nur „Leider abgesagt\".",
+        "Erscheint im Banner und in der Absage-Mail – automatisch auf Deutsch UND Englisch. Leer lassen = nur „Leider abgesagt\".",
+      options: {
+        list: [
+          ...ABSAGE_GRUENDE.map((g) => ({ title: g.de, value: g.key })),
+          { title: "Sonstiges (eigener Text)", value: "sonstiges" },
+        ],
+      },
       hidden: ({ document }) => !document?.abgesagt,
+    }),
+    defineField({
+      name: "abgesagtGrundFrei",
+      title: "Grund – eigener Text",
+      type: "string",
+      description:
+        "Nur ausfüllen, wenn oben „Sonstiges\" gewählt ist. Erscheint nur in den deutschen Texten.",
+      hidden: ({ document }) => !document?.abgesagt || document?.abgesagtGrund !== "sonstiges",
     }),
   ],
   preview: {

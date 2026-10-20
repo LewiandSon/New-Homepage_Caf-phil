@@ -9,6 +9,7 @@ import * as gtag from "@/lib/gtag";
 import { client } from "@/sanity/client";
 import { upcomingEventsQuery, pastEventsQuery } from "@/sanity/queries";
 import { PortableText } from "@portabletext/react";
+import { absageGrundText } from "@/lib/absageGruende";
 
 // ── Typen ────────────────────────────────────────────────────────────────────
 
@@ -27,6 +28,7 @@ type SanityEvent = {
   maxTeilnehmer?: number;
   abgesagt?: boolean;
   abgesagtGrund?: string;
+  abgesagtGrundFrei?: string;
 };
 
 type LangEvent = {
@@ -40,6 +42,7 @@ type LangEvent = {
   maxTeilnehmer?: number;
   abgesagt?: boolean;
   abgesagtGrund?: string;
+  abgesagtGrundFrei?: string;
 };
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
@@ -70,6 +73,7 @@ function toLangEvent(e: SanityEvent, lang: string): LangEvent {
     maxTeilnehmer: e.maxTeilnehmer,
     abgesagt: e.abgesagt,
     abgesagtGrund: e.abgesagtGrund,
+    abgesagtGrundFrei: e.abgesagtGrundFrei,
   };
 }
 
@@ -294,9 +298,10 @@ export default function EventsPage() {
                         maxWidth: "320px",
                       }}
                     >
-                      {lang === "de"
-                        ? "Leider abgesagt" + (event.abgesagtGrund ? ` ${event.abgesagtGrund}` : "")
-                        : "Unfortunately cancelled"}
+                      {(() => {
+                        const g = absageGrundText(event.abgesagtGrund, event.abgesagtGrundFrei, lang);
+                        return (lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") + (g ? ` ${g}` : "");
+                      })()}
                     </div>
                     {/* Unsichtbarer Platzhalter in Höhe des Hinweistexts der anderen
                         Karten – damit der Banner auf Button-Höhe sitzt (nicht ganz unten). */}

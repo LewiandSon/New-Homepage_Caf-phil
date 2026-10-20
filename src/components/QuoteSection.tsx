@@ -7,6 +7,7 @@ import { useLanguage } from "../LanguageContext";
 import { InstagramLink } from "./InstagramLink";
 import * as gtag from "@/lib/gtag";
 import type { EventPreview } from "@/sanity/queries";
+import { absageGrundText } from "@/lib/absageGruende";
 
 const MENU_ITEMS_DE = [
   { src: "/images/assets/getraenke-de.webp", alt: "Getränke Karte" },
@@ -57,10 +58,10 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
   const nextEventTitle = nextEvent ? (lang === "de" ? nextEvent.title_de : (nextEvent.title_en || nextEvent.title_de)) : "";
   const nextEventDesc = "";
   const nextEventAbgesagt = !!nextEvent?.abgesagt;
+  const nextEventAbsageGrund = absageGrundText(nextEvent?.abgesagtGrund, nextEvent?.abgesagtGrundFrei, lang);
   const nextEventAbsageText =
-    lang === "de"
-      ? "Leider abgesagt" + (nextEvent?.abgesagtGrund ? ` ${nextEvent.abgesagtGrund}` : "")
-      : "Unfortunately cancelled";
+    (lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") +
+    (nextEventAbsageGrund ? ` ${nextEventAbsageGrund}` : "");
 
   // Prevent scrolling when lightbox or footer modal is open
   useEffect(() => {

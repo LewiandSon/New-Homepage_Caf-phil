@@ -8,6 +8,7 @@ import {
   absageAlreadySent,
   logAbsageSent,
 } from "@/lib/eventCapacity";
+import { absageGrundText } from "@/lib/absageGruende";
 
 export const maxDuration = 30;
 
@@ -19,6 +20,7 @@ type EventDoc = {
   title_en?: string;
   date: string;
   abgesagtGrund?: string;
+  abgesagtGrundFrei?: string;
   abgesagt?: boolean;
 };
 
@@ -49,9 +51,10 @@ function fmtDate(iso: string): string {
   }
 }
 
-function buildEmail(vorname: string, titleDe: string, dateStr: string, grund?: string) {
+function buildEmail(vorname: string, titleDe: string, dateStr: string, gDe: string, gEn: string) {
   const anrede = vorname ? ` ${vorname}` : "";
-  const grundDe = grund ? ` ${grund}` : "";
+  const grundDe = gDe ? ` ${gDe}` : "";
+  const grundEn = gEn ? ` ${gEn}` : "";
   const subject = `Absage: ${titleDe}`;
   const html = `
     <div style="font-family: Georgia, serif; color: #573B30; max-width: 560px; margin: 0 auto;">
@@ -73,7 +76,7 @@ function buildEmail(vorname: string, titleDe: string, dateStr: string, grund?: s
 
         <p style="font-size: 18px; margin-bottom: 4px;">Dear${anrede},</p>
         <p style="font-size: 16px; line-height: 1.7;">
-          unfortunately we have to cancel <strong>${titleDe}</strong> on <strong>${dateStr}</strong>.
+          unfortunately we have to cancel <strong>${titleDe}</strong> on <strong>${dateStr}</strong>${grundEn}.
           We're very sorry and hope to reschedule — we'll let you know in good time.
         </p>
         <p style="font-size: 16px; line-height: 1.7;">
@@ -111,7 +114,7 @@ export async function GET(req: NextRequest) {
         id: e._id,
         title: e.title_de,
         date: fmtDate(e.date),
-        grund: e.abgesagtGrund ?? "",
+        grund: absageGrundText(e.abgesagtGrund, e.abgesagtGrundFrei, "de"),
         empfaenger: recipients.length,
         gesendetAm: absageAlreadySent(rows, e._id),
       };
@@ -168,10 +171,12 @@ export async function POST(req: NextRequest) {
 
     const resend = getResend();
     const dateStr = fmtDate(ev.date);
+    const gDe = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "de");
+    const gEn = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "en");
     let sent = 0;
     let failed = 0;
     for (const r of recipients) {
-      const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, ev.abgesagtGrund);
+      const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
       try {
         const res = await resend.emails.send({
           from: "phil Café <noreply@cafephil.at>",
