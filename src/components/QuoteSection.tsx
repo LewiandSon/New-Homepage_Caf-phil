@@ -58,8 +58,9 @@ export function QuoteSection({ footerModal, setFooterModal, initialNextEvent }: 
   const nextEventDesc = "";
   const nextEventAbgesagt = !!nextEvent?.abgesagt;
   const nextEventAbsageText =
-    (lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") +
-    (nextEvent?.abgesagtGrund ? ` ${nextEvent.abgesagtGrund}` : "");
+    lang === "de"
+      ? "Leider abgesagt" + (nextEvent?.abgesagtGrund ? ` ${nextEvent.abgesagtGrund}` : "")
+      : "Unfortunately cancelled";
 
   // Prevent scrolling when lightbox or footer modal is open
   useEffect(() => {

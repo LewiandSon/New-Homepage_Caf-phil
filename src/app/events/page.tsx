@@ -294,8 +294,9 @@ export default function EventsPage() {
                         maxWidth: "320px",
                       }}
                     >
-                      {(lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") +
-                        (event.abgesagtGrund ? ` ${event.abgesagtGrund}` : "")}
+                      {lang === "de"
+                        ? "Leider abgesagt" + (event.abgesagtGrund ? ` ${event.abgesagtGrund}` : "")
+                        : "Unfortunately cancelled"}
                     </div>
                     {/* Unsichtbarer Platzhalter in Höhe des Hinweistexts der anderen
                         Karten – damit der Banner auf Button-Höhe sitzt (nicht ganz unten). */}
