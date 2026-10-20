@@ -280,21 +280,26 @@ export default function EventsPage() {
                 </div>
 
                 {event.abgesagt && (
-                  <div
-                    className="w-fit mx-auto text-center"
-                    style={{
-                      padding: "12px 24px",
-                      backgroundColor: "#D72333",
-                      color: "#F9F1DA",
-                      fontFamily: "Vollkorn",
-                      fontSize: "18px",
-                      fontWeight: 700,
-                      lineHeight: 1.4,
-                      maxWidth: "320px",
-                    }}
-                  >
-                    {(lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") +
-                      (event.abgesagtGrund ? ` ${event.abgesagtGrund}` : "")}
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-fit text-center"
+                      style={{
+                        padding: "12px 24px",
+                        backgroundColor: "#D72333",
+                        color: "#F9F1DA",
+                        fontFamily: "Vollkorn",
+                        fontSize: "18px",
+                        fontWeight: 700,
+                        lineHeight: 1.4,
+                        maxWidth: "320px",
+                      }}
+                    >
+                      {(lang === "de" ? "Leider abgesagt" : "Unfortunately cancelled") +
+                        (event.abgesagtGrund ? ` ${event.abgesagtGrund}` : "")}
+                    </div>
+                    {/* Unsichtbarer Platzhalter in Höhe des Hinweistexts der anderen
+                        Karten – damit der Banner auf Button-Höhe sitzt (nicht ganz unten). */}
+                    <div aria-hidden style={{ visibility: "hidden" }}>{seatNote}</div>
                   </div>
                 )}
                 {signupAktiv && ausgebucht && (

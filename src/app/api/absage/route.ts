@@ -52,7 +52,6 @@ function fmtDate(iso: string): string {
 function buildEmail(vorname: string, titleDe: string, dateStr: string, grund?: string) {
   const anrede = vorname ? ` ${vorname}` : "";
   const grundDe = grund ? ` ${grund}` : "";
-  const grundEn = grund ? ` (${grund})` : "";
   const subject = `Absage: ${titleDe}`;
   const html = `
     <div style="font-family: Georgia, serif; color: #573B30; max-width: 560px; margin: 0 auto;">
@@ -62,7 +61,7 @@ function buildEmail(vorname: string, titleDe: string, dateStr: string, grund?: s
       <div style="background: #F9F1DA; padding: 32px;">
         <p style="font-size: 18px; margin-bottom: 4px;">Liebe/r${anrede},</p>
         <p style="font-size: 16px; line-height: 1.7;">
-          leider müssen wir die Veranstaltung <strong>„${titleDe}"</strong> am <strong>${dateStr}</strong> absagen${grundDe}.
+          leider müssen wir die Veranstaltung <strong>„${titleDe}"</strong> am <strong>${dateStr}</strong>${grundDe} absagen.
           Das tut uns sehr leid. Wir hoffen, sie zu einem späteren Zeitpunkt nachzuholen, und informieren dich rechtzeitig.
         </p>
         <p style="font-size: 16px; line-height: 1.7;">
@@ -74,7 +73,7 @@ function buildEmail(vorname: string, titleDe: string, dateStr: string, grund?: s
 
         <p style="font-size: 18px; margin-bottom: 4px;">Dear${anrede},</p>
         <p style="font-size: 16px; line-height: 1.7;">
-          unfortunately we have to cancel <strong>${titleDe}</strong> on <strong>${dateStr}</strong>${grundEn}.
+          unfortunately we have to cancel <strong>${titleDe}</strong> on <strong>${dateStr}</strong>.
           We're very sorry and hope to reschedule — we'll let you know in good time.
         </p>
         <p style="font-size: 16px; line-height: 1.7;">
