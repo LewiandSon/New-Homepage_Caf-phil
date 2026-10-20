@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import crypto from "crypto";
 import { Resend } from "resend";
 import { client } from "@/sanity/client";
 import {
@@ -21,9 +22,17 @@ type EventDoc = {
   abgesagt?: boolean;
 };
 
+// Zugangscode wird aus einem ohnehin vorhandenen Server-Secret abgeleitet –
+// kein separater Env-Var/Setup nötig, aber trotzdem nicht erratbar.
+function expectedKey(): string {
+  const base = process.env.RESEND_API_KEY || process.env.GOOGLE_SHEET_ID || "";
+  return crypto.createHash("sha256").update("phil-absage-v1:" + base).digest("hex").slice(0, 20);
+}
+
 function keyOk(key: string | null): boolean {
-  const secret = process.env.ABSAGE_SECRET;
-  return !!secret && key === secret;
+  if (!key) return false;
+  const exp = expectedKey();
+  return key.length === exp.length && crypto.timingSafeEqual(Buffer.from(key), Buffer.from(exp));
 }
 
 function fmtDate(iso: string): string {
