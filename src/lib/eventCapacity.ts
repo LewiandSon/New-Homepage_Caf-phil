@@ -3,10 +3,15 @@ import { google } from "googleapis";
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 
 // Spalten im Anmelde-Sheet (0-basiert):
-//  2 = Event-Titel, 8 = Personenanzahl, 11 = Event-ID (neu, seit Teilnehmer-Limit)
+//  2 = Event-Titel, 5 = Vorname, 7 = E-Mail, 8 = Personenanzahl, 11 = Event-ID
 const COL_TITLE = 2;
+const COL_VORNAME = 5;
+const COL_EMAIL = 7;
 const COL_PERSONS = 8;
 const COL_EVENT_ID = 11;
+
+// Markierungszeile im Sheet, die festhält, dass eine Absage-Mail verschickt wurde.
+const ABSAGE_MARKER = "ABSAGE_GESENDET";
 
 function getSheets() {
   const auth = new google.auth.GoogleAuth({
@@ -36,20 +41,63 @@ export async function readSignupRows(): Promise<string[][]> {
 
 type EventKey = { id: string; titles: string[] };
 
-/** Summiert die angemeldeten Personen für ein Event.
- *  Match: Zeile hat exakt diese Event-ID – oder (Alt-Anmeldungen ohne ID) passender Titel. */
+/** Gehört eine Zeile zu diesem Event? Match per Event-ID – oder (Alt-Anmeldungen
+ *  ohne ID) per Titel. Markierungszeilen (Absage-Log) zählen nie dazu. */
+function rowMatchesEvent(row: string[], ev: EventKey, titlesLc: string[]): boolean {
+  if ((row[0] ?? "").trim() === ABSAGE_MARKER) return false;
+  const rowId = (row[COL_EVENT_ID] ?? "").trim();
+  if (rowId !== "") return rowId === ev.id;
+  return titlesLc.includes((row[COL_TITLE] ?? "").trim().toLowerCase());
+}
+
+/** Summiert die angemeldeten Personen für ein Event. */
 export function countPersonsForEvent(rows: string[][], ev: EventKey): number {
-  const titles = ev.titles.filter(Boolean).map((t) => t.trim().toLowerCase());
+  const titlesLc = ev.titles.filter(Boolean).map((t) => t.trim().toLowerCase());
   let sum = 0;
   for (const row of rows) {
-    const rowId = (row[COL_EVENT_ID] ?? "").trim();
-    const matchesById = rowId !== "" && rowId === ev.id;
-    const matchesByTitle =
-      rowId === "" && titles.includes((row[COL_TITLE] ?? "").trim().toLowerCase());
-    if (matchesById || matchesByTitle) {
+    if (rowMatchesEvent(row, ev, titlesLc)) {
       const n = parseInt((row[COL_PERSONS] ?? "1").trim(), 10);
       sum += Number.isFinite(n) && n > 0 ? n : 1;
     }
   }
   return sum;
+}
+
+export type Registrant = { email: string; vorname: string };
+
+/** Eindeutige Empfänger (nach E-Mail) für ein Event – für den Absage-Versand. */
+export function getRegistrantsForEvent(rows: string[][], ev: EventKey): Registrant[] {
+  const titlesLc = ev.titles.filter(Boolean).map((t) => t.trim().toLowerCase());
+  const byEmail = new Map<string, Registrant>();
+  for (const row of rows) {
+    if (!rowMatchesEvent(row, ev, titlesLc)) continue;
+    const email = (row[COL_EMAIL] ?? "").trim();
+    if (!email || !email.includes("@")) continue;
+    const key = email.toLowerCase();
+    if (!byEmail.has(key)) {
+      byEmail.set(key, { email, vorname: (row[COL_VORNAME] ?? "").trim() });
+    }
+  }
+  return [...byEmail.values()];
+}
+
+/** Datum (ISO) der bereits verschickten Absage für dieses Event – oder null. */
+export function absageAlreadySent(rows: string[][], eventId: string): string | null {
+  for (const row of rows) {
+    if ((row[0] ?? "").trim() === ABSAGE_MARKER && (row[1] ?? "").trim() === eventId) {
+      return (row[2] ?? "").trim() || "unbekannt";
+    }
+  }
+  return null;
+}
+
+/** Hält im Sheet fest, dass die Absage-Mail verschickt wurde (Doppelversand-Schutz). */
+export async function logAbsageSent(eventId: string, count: number): Promise<void> {
+  const sheets = getSheets();
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: SHEET_ID,
+    range: "A:D",
+    valueInputOption: "USER_ENTERED",
+    requestBody: { values: [[ABSAGE_MARKER, eventId, new Date().toISOString(), String(count)]] },
+  });
 }
