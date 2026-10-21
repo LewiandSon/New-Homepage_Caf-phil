@@ -173,27 +173,39 @@ export async function POST(req: NextRequest) {
     const dateStr = fmtDate(ev.date);
     const gDe = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "de");
     const gEn = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "en");
+    const messages = recipients.map((r) => {
+      const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
+      return {
+        from: "phil Café <noreply@cafephil.at>",
+        to: r.email,
+        replyTo: "info@phil.info",
+        subject,
+        html,
+      };
+    });
+
     let sent = 0;
     let failed = 0;
-    for (const r of recipients) {
-      const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
+    // Batch-Versand: eine Anfrage pro 100 Mails → kein Rate-Limit.
+    // Falls der Batch ausfällt, einzeln mit Drosselung (< 2/s) nachversuchen.
+    for (let i = 0; i < messages.length; i += 100) {
+      const chunk = messages.slice(i, i + 100);
       try {
-        const res = await resend.emails.send({
-          from: "phil Café <noreply@cafephil.at>",
-          to: r.email,
-          replyTo: "info@phil.info",
-          subject,
-          html,
-        });
-        if (res.error) {
-          failed++;
-          console.error("Absage-Mail Fehler", r.email, res.error);
-        } else {
-          sent++;
+        const res = await resend.batch.send(chunk);
+        if (res.error) throw res.error;
+        sent += Array.isArray(res.data?.data) ? res.data.data.length : chunk.length;
+      } catch (batchErr) {
+        console.error("Batch-Versand fehlgeschlagen, Fallback einzeln:", batchErr);
+        for (const mail of chunk) {
+          try {
+            const r2 = await resend.emails.send(mail);
+            if (r2.error) failed++;
+            else sent++;
+          } catch {
+            failed++;
+          }
+          await new Promise((rsv) => setTimeout(rsv, 600));
         }
-      } catch (e) {
-        failed++;
-        console.error("Absage-Mail Ausnahme", r.email, e);
       }
     }
 
