@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 import { google } from "googleapis";
 import { client } from "@/sanity/client";
 import { readSignupRows, countPersonsForEvent } from "@/lib/eventCapacity";
-
-const getResend = () => new Resend(process.env.RESEND_API_KEY ?? "placeholder");
+import { sendMail } from "@/lib/mailer";
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 const CAFE_EMAIL = "info@phil.info";
@@ -103,8 +101,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 2) Bestätigungs-Mail an den Gast (DE + EN)
-    await getResend().emails.send({
-      from: "phil Café <noreply@cafephil.at>",
+    await sendMail({
       to: email,
       subject: `Anmeldung bestätigt – ${eventTitle} / Registration confirmed – ${eventTitle}`,
       html: `
@@ -158,8 +155,7 @@ export async function POST(req: NextRequest) {
     });
 
     // 3) Benachrichtigung ans Café
-    await getResend().emails.send({
-      from: "phil Website <noreply@cafephil.at>",
+    await sendMail({
       to: CAFE_EMAIL,
       subject: `Neue Anmeldung: ${eventTitle}`,
       html: `

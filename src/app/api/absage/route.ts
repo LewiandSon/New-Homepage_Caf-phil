@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
-import { Resend } from "resend";
 import { client } from "@/sanity/client";
 import {
   readSignupRows,
@@ -10,10 +9,9 @@ import {
   logAbsageRecipients,
 } from "@/lib/eventCapacity";
 import { absageGrundText } from "@/lib/absageGruende";
+import { sendMail } from "@/lib/mailer";
 
-export const maxDuration = 30;
-
-const getResend = () => new Resend(process.env.RESEND_API_KEY ?? "placeholder");
+export const maxDuration = 60;
 
 type EventDoc = {
   _id: string;
@@ -170,41 +168,17 @@ export async function POST(req: NextRequest) {
     if (recipients.length === 0)
       return NextResponse.json({ status: "ok", sent: 0, failed: 0, message: "Keine Angemeldeten." });
 
-    const resend = getResend();
     const dateStr = fmtDate(ev.date);
     const gDe = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "de");
     const gEn = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "en");
     const results: { name: string; email: string; ok: boolean }[] = [];
-    // Batch-Versand: eine Anfrage pro 100 Mails → kein Rate-Limit.
-    // Falls der Batch ausfällt, einzeln mit Drosselung (< 2/s) nachversuchen.
-    for (let i = 0; i < recipients.length; i += 100) {
-      const chunkR = recipients.slice(i, i + 100);
-      const chunkMsgs = chunkR.map((r) => {
-        const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
-        return {
-          from: "phil Café <noreply@cafephil.at>",
-          to: r.email,
-          replyTo: "info@phil.info",
-          subject,
-          html,
-        };
-      });
-      try {
-        const res = await resend.batch.send(chunkMsgs);
-        if (res.error) throw res.error;
-        chunkR.forEach((r) => results.push({ name: r.vorname, email: r.email, ok: true }));
-      } catch (batchErr) {
-        console.error("Batch-Versand fehlgeschlagen, Fallback einzeln:", batchErr);
-        for (let j = 0; j < chunkR.length; j++) {
-          try {
-            const r2 = await resend.emails.send(chunkMsgs[j]);
-            results.push({ name: chunkR[j].vorname, email: chunkR[j].email, ok: !r2.error });
-          } catch {
-            results.push({ name: chunkR[j].vorname, email: chunkR[j].email, ok: false });
-          }
-          await new Promise((rsv) => setTimeout(rsv, 600));
-        }
-      }
+    // Versand über Gmail (info@phil.info), sequenziell mit kurzer Pause.
+    for (const r of recipients) {
+      const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
+      const res = await sendMail({ to: r.email, subject, html });
+      if (!res.ok) console.error("Absage-Mail Fehler", r.email, res.error);
+      results.push({ name: r.vorname, email: r.email, ok: res.ok });
+      await new Promise((rsv) => setTimeout(rsv, 150));
     }
 
     const sent = results.filter((r) => r.ok).length;
