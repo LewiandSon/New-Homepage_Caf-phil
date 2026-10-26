@@ -16,8 +16,10 @@ function getTransporter(): Transporter {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
-      pool: true,
-      maxConnections: 3,
+      // Serverless-tauglich: kein Pool, mit Timeouts statt ewigem Hängen.
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 20000,
     });
   }
   return transporter;
