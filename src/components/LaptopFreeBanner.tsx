@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useLanguage } from "../LanguageContext";
 
-// Banner ganz oben auf der Startseite – außerhalb des Scale-Wrappers eingehängt
-// (wie zuvor der ClimateBanner), damit das absolute Figma-Layout unberührt bleibt.
-// Macht sofort sichtbar, dass das phil ein laptopfreier Ort ist.
+// Dezenter Hinweis ganz oben auf der Startseite – außerhalb des Scale-Wrappers
+// eingehängt, damit das absolute Figma-Layout unberührt bleibt.
+// Creme-Hintergrund + feine Linien, fügt sich ruhig ein statt zu dominieren.
 export function LaptopFreeBanner() {
   const { lang } = useLanguage();
 
@@ -16,47 +16,53 @@ export function LaptopFreeBanner() {
       : "Daydreaming, chatting, writing, kissing – very much encouraged!";
 
   return (
-    <section aria-label={headline} className="w-full" style={{ background: "#D72333" }}>
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-6 md:py-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-7 text-center">
+    <section
+      aria-label={headline}
+      className="w-full"
+      style={{
+        background: "#F9F1DA",
+        borderTop: "1px solid rgba(215,35,51,0.18)",
+        borderBottom: "1px solid rgba(215,35,51,0.18)",
+      }}
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-3 md:py-3.5 flex items-center justify-center gap-3 md:gap-4 text-left">
         <div className="flex-shrink-0">
           <Image
-            src="/images/assets/no-laptop-cream.webp"
+            src="/images/assets/no-laptop-red.webp"
             alt={lang === "de" ? "Kein-Laptop-Symbol" : "No-laptop symbol"}
             width={420}
             height={449}
-            className="object-contain w-[64px] h-auto md:w-[92px]"
+            className="object-contain w-[34px] h-auto md:w-[40px]"
             unoptimized
-            priority
           />
         </div>
         <div>
-          <p
+          <span
             style={{
               fontFamily: "Vollkorn",
-              fontSize: "clamp(26px, 5vw, 46px)",
+              fontSize: "clamp(16px, 2.3vw, 21px)",
               fontStyle: "italic",
               fontWeight: 900,
-              color: "#F9F1DA",
-              lineHeight: "120%",
-              margin: 0,
+              color: "#D72333",
+              lineHeight: "130%",
             }}
           >
             {headline}
-          </p>
-          <p
-            className="mt-1.5 md:mt-2.5"
+          </span>
+          <span
+            className="hidden sm:inline"
             style={{
               fontFamily: "Vollkorn",
-              fontSize: "clamp(15px, 2.6vw, 22px)",
+              fontSize: "clamp(13px, 1.6vw, 15px)",
               fontWeight: 500,
-              color: "#F9F1DA",
-              opacity: 0.92,
-              lineHeight: "150%",
-              margin: 0,
+              color: "#D72333",
+              opacity: 0.8,
+              lineHeight: "130%",
             }}
           >
+            <span aria-hidden style={{ margin: "0 0.5em", opacity: 0.6 }}>·</span>
             {subline} <span aria-hidden>♥</span>
-          </p>
+          </span>
         </div>
       </div>
     </section>
