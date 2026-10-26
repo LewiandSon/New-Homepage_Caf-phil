@@ -104,6 +104,7 @@ export async function GET(req: NextRequest) {
       `*[_type == "event" && abgesagt == true] | order(date desc){ _id, title_de, title_en, date, abgesagtGrund }`,
     );
     const rows = await readSignupRows();
+    const now = Date.now();
     const list = events.map((e) => {
       const recipients = getRegistrantsForEvent(rows, {
         id: e._id,
@@ -116,6 +117,7 @@ export async function GET(req: NextRequest) {
         grund: absageGrundText(e.abgesagtGrund, e.abgesagtGrundFrei, "de"),
         empfaenger: recipients.length,
         gesendetAm: absageAlreadySent(rows, e._id),
+        past: new Date(e.date).getTime() < now,
       };
     });
     return NextResponse.json({ status: "ok", events: list });
@@ -144,6 +146,13 @@ export async function POST(req: NextRequest) {
     if (!ev.abgesagt)
       return NextResponse.json(
         { status: "error", message: "Event ist nicht als abgesagt markiert." },
+        { status: 400 },
+      );
+    // Schutz: keine Absage-Mails für bereits vergangene Veranstaltungen –
+    // das wäre für die Angemeldeten sinnlos und peinlich.
+    if (new Date(ev.date).getTime() < Date.now())
+      return NextResponse.json(
+        { status: "past", message: "Veranstaltung liegt in der Vergangenheit – kein Versand." },
         { status: 400 },
       );
 

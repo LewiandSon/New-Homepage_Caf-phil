@@ -17,8 +17,9 @@ async function appendToGoogleSheet(row: string[]) {
 
   const sheets = google.sheets({ version: "v4", auth });
   await sheets.spreadsheets.values.append({
+    // Tab explizit: siehe Hinweis in eventCapacity.ts (mehrere Tabs im Sheet).
     spreadsheetId: SHEET_ID,
-    range: "A:I",
+    range: "Anmeldungen!A:L",
     valueInputOption: "USER_ENTERED",
     requestBody: { values: [row] },
   });

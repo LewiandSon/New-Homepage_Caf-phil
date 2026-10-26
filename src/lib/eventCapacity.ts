@@ -2,6 +2,12 @@ import { google } from "googleapis";
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 
+// Tab mit den Anmeldungen. MUSS explizit genannt werden – im Sheet liegen
+// daneben noch andere Tabs (Sheet2, Sheet4, Absage-Protokoll). Ohne Tab-Name
+// greift die API auf den jeweils ERSTEN Tab zu, was beim Umsortieren lautlos
+// die falsche Tabelle träfe.
+const TAB = "Anmeldungen";
+
 // Spalten im Anmelde-Sheet (0-basiert):
 //  2 = Event-Titel, 5 = Vorname, 7 = E-Mail, 8 = Personenanzahl, 11 = Event-ID
 const COL_TITLE = 2;
@@ -29,7 +35,7 @@ export async function readSignupRows(): Promise<string[][]> {
   const sheets = getSheets();
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: SHEET_ID,
-    range: "A:L",
+    range: `${TAB}!A:L`,
   });
   const values = (res.data.values ?? []) as string[][];
   // Erste Zeile könnte eine Kopfzeile sein – nur überspringen, wenn Spalte "Personen" keine Zahl ist.
@@ -96,7 +102,7 @@ export async function logAbsageSent(eventId: string, count: number): Promise<voi
   const sheets = getSheets();
   await sheets.spreadsheets.values.append({
     spreadsheetId: SHEET_ID,
-    range: "A:D",
+    range: `${TAB}!A:D`,
     valueInputOption: "USER_ENTERED",
     requestBody: { values: [[ABSAGE_MARKER, eventId, new Date().toISOString(), String(count)]] },
   });

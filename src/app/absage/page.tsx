@@ -9,6 +9,7 @@ type AbsageEvent = {
   grund: string;
   empfaenger: number;
   gesendetAm: string | null;
+  past?: boolean;
 };
 
 const RED = "#D72333";
@@ -105,6 +106,10 @@ export default function AbsagePage() {
                 {ev.gesendetAm ? (
                   <span style={{ fontSize: 14, color: "#2e7d32", fontWeight: 700 }}>
                     ✓ Absage bereits gesendet{ev.gesendetAm !== "unbekannt" ? ` (${new Date(ev.gesendetAm).toLocaleString("de-AT")})` : ""}
+                  </span>
+                ) : ev.past ? (
+                  <span style={{ fontSize: 14, opacity: 0.7, fontWeight: 600 }}>
+                    Veranstaltung ist bereits vorbei – kein Versand mehr nötig.
                   </span>
                 ) : (
                   <button
