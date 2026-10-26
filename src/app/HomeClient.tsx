@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { QuoteSection } from "@/components/QuoteSection";
 import { HomeFooter } from "@/components/HomeFooter";
+import { LaptopFreeBanner } from "@/components/LaptopFreeBanner";
 // Saisonal (Sommer/Hitze): bei Bedarf wieder einkommentieren – hier und unten bei <ClimateBanner />
 // import { ClimateBanner } from "@/components/ClimateBanner";
 import { useState, useEffect } from "react";
@@ -33,6 +34,7 @@ export function HomeClient({ initialNextEvent }: HomeClientProps) {
       <main data-page="home" className="relative min-h-screen bg-background text-primary font-serif pt-[100px] md:pt-[150px] overflow-x-hidden">
         {/* Saisonal ausgeblendet – nächsten Sommer wieder einkommentieren (auch den Import oben): */}
         {/* <ClimateBanner /> */}
+        <LaptopFreeBanner />
         <div className="md:scale-[0.855] md:origin-top">
           <HeroSection />
           <AboutSection />

@@ -53,7 +53,7 @@ export function AboutSection() {
                     .
                   </p>
                   <p className="mb-4">
-                    Unser Frühstück beziehen wir von regionalen Lieferanten und legen großen Wert auf Bio-Qualität. Für konzentriertes Arbeiten steht unter der Woche ein eigener Laptoptisch zur Verfügung. Am Wochenende bitten wir, auf Laptops zu verzichten, um die gemütliche Atmosphäre für alle zu bewahren.
+                    Unser Frühstück beziehen wir von regionalen Lieferanten und legen großen Wert auf Bio-Qualität. Das phil ist ein komplett laptopfreier Ort – so bleibt die entspannte, analoge Atmosphäre für alle erhalten.
                   </p>
                 </>
               )}
@@ -89,7 +89,7 @@ export function AboutSection() {
                     .
                   </p>
                   <p className="mb-4">
-                    We source our breakfast from regional suppliers and care deeply about organic quality. During the week there’s a dedicated laptop table for focused work. On weekends we kindly ask you to keep laptops closed so that everyone can enjoy the relaxed atmosphere.
+                    We source our breakfast from regional suppliers and care deeply about organic quality. phil is a completely laptop-free space – so that everyone can enjoy the relaxed, analogue atmosphere.
               </p>
             </>
               )}
@@ -400,7 +400,7 @@ export function AboutSection() {
                 .
               </p>
               <p style={{ marginTop: "1rem" }}>
-                Unser Frühstück beziehen wir von regionalen Lieferanten und legen großen Wert auf Bio-Qualität. Für konzentriertes Arbeiten steht unter der Woche ein eigener Laptoptisch zur Verfügung. Am Wochenende bitten wir, auf Laptops zu verzichten, um die gemütliche Atmosphäre für alle zu bewahren.
+                Unser Frühstück beziehen wir von regionalen Lieferanten und legen großen Wert auf Bio-Qualität. Das phil ist ein komplett laptopfreier Ort – so bleibt die entspannte, analoge Atmosphäre für alle erhalten.
               </p>
             </>
           ) : (
@@ -417,7 +417,7 @@ export function AboutSection() {
                 .
               </p>
               <p style={{ marginTop: "1rem" }}>
-                We source our breakfast from regional suppliers and care deeply about organic quality. During the week there’s a dedicated laptop table for focused work. On weekends we kindly ask you to keep laptops closed so that everyone can enjoy the relaxed atmosphere.
+                We source our breakfast from regional suppliers and care deeply about organic quality. phil is a completely laptop-free space – so that everyone can enjoy the relaxed, analogue atmosphere.
               </p>
             </>
           )}

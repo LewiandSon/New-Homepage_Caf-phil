@@ -49,7 +49,7 @@ const FAQ_DATA_DE: FAQItem[] = [
   },
   {
     question: "Kann man bei euch arbeiten oder studieren?",
-    answer: "Unter der Woche steht ein eigener Laptoptisch zur Verfügung. Am Wochenende bitten wir, auf Laptops zu verzichten, um die gemütliche Atmosphäre für alle zu bewahren.",
+    answer: "Das phil ist ein komplett laptopfreier Ort – an allen Tagen. So bleibt die entspannte, analoge Atmosphäre für alle erhalten: Lesen, von Hand schreiben, Plaudern und Tagträumen sind ausdrücklich erwünscht.",
   },
   {
     question: "Habt ihr WLAN?",
@@ -126,7 +126,7 @@ const FAQ_DATA_EN: FAQItem[] = [
   },
   {
     question: "Can I work or study at your café?",
-    answer: "During the week there’s a dedicated laptop table. On weekends we kindly ask you to keep laptops closed to preserve the cosy atmosphere.",
+    answer: "phil is a completely laptop-free space – every day. This keeps our relaxed, analogue atmosphere intact for everyone: reading, writing by hand, chatting and daydreaming are very much encouraged.",
   },
   {
     question: "Do you have Wi-Fi?",
