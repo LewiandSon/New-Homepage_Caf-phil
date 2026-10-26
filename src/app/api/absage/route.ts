@@ -7,6 +7,7 @@ import {
   getRegistrantsForEvent,
   absageAlreadySent,
   logAbsageSent,
+  logAbsageRecipients,
 } from "@/lib/eventCapacity";
 import { absageGrundText } from "@/lib/absageGruende";
 
@@ -173,40 +174,47 @@ export async function POST(req: NextRequest) {
     const dateStr = fmtDate(ev.date);
     const gDe = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "de");
     const gEn = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "en");
-    const messages = recipients.map((r) => {
-      const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
-      return {
-        from: "phil Café <noreply@cafephil.at>",
-        to: r.email,
-        replyTo: "info@phil.info",
-        subject,
-        html,
-      };
-    });
-
-    let sent = 0;
-    let failed = 0;
+    const results: { name: string; email: string; ok: boolean }[] = [];
     // Batch-Versand: eine Anfrage pro 100 Mails → kein Rate-Limit.
     // Falls der Batch ausfällt, einzeln mit Drosselung (< 2/s) nachversuchen.
-    for (let i = 0; i < messages.length; i += 100) {
-      const chunk = messages.slice(i, i + 100);
+    for (let i = 0; i < recipients.length; i += 100) {
+      const chunkR = recipients.slice(i, i + 100);
+      const chunkMsgs = chunkR.map((r) => {
+        const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
+        return {
+          from: "phil Café <noreply@cafephil.at>",
+          to: r.email,
+          replyTo: "info@phil.info",
+          subject,
+          html,
+        };
+      });
       try {
-        const res = await resend.batch.send(chunk);
+        const res = await resend.batch.send(chunkMsgs);
         if (res.error) throw res.error;
-        sent += Array.isArray(res.data?.data) ? res.data.data.length : chunk.length;
+        chunkR.forEach((r) => results.push({ name: r.vorname, email: r.email, ok: true }));
       } catch (batchErr) {
         console.error("Batch-Versand fehlgeschlagen, Fallback einzeln:", batchErr);
-        for (const mail of chunk) {
+        for (let j = 0; j < chunkR.length; j++) {
           try {
-            const r2 = await resend.emails.send(mail);
-            if (r2.error) failed++;
-            else sent++;
+            const r2 = await resend.emails.send(chunkMsgs[j]);
+            results.push({ name: chunkR[j].vorname, email: chunkR[j].email, ok: !r2.error });
           } catch {
-            failed++;
+            results.push({ name: chunkR[j].vorname, email: chunkR[j].email, ok: false });
           }
           await new Promise((rsv) => setTimeout(rsv, 600));
         }
       }
+    }
+
+    const sent = results.filter((r) => r.ok).length;
+    const failed = results.filter((r) => !r.ok).length;
+
+    // Nachweis ins Sheet (Tab „Absage-Protokoll"): eine Zeile pro Empfänger.
+    try {
+      await logAbsageRecipients(ev.title_de, results);
+    } catch (e) {
+      console.error("Absage-Protokoll Fehler:", e);
     }
 
     if (sent > 0) {

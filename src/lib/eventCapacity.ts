@@ -41,12 +41,12 @@ export async function readSignupRows(): Promise<string[][]> {
 
 type EventKey = { id: string; titles: string[] };
 
-/** Gehört eine Zeile zu diesem Event? Match per Event-ID – oder (Alt-Anmeldungen
- *  ohne ID) per Titel. Markierungszeilen (Absage-Log) zählen nie dazu. */
-function rowMatchesEvent(row: string[], ev: EventKey, titlesLc: string[]): boolean {
-  if ((row[0] ?? "").trim() === ABSAGE_MARKER) return false;
-  const rowId = (row[COL_EVENT_ID] ?? "").trim();
-  if (rowId !== "") return rowId === ev.id;
+/** Gehört eine Zeile zu diesem Event? Abgleich über den **Titel** (= was die
+ *  Person tatsächlich angeklickt hat). Die Event-ID im Sheet ist historisch
+ *  teils falsch/vertauscht, deshalb NICHT zum Zuordnen verwenden.
+ *  Protokoll-/Markierungszeilen (ABSAGE_*) zählen nie dazu. */
+function rowMatchesEvent(row: string[], _ev: EventKey, titlesLc: string[]): boolean {
+  if ((row[0] ?? "").trim().startsWith("ABSAGE_")) return false;
   return titlesLc.includes((row[COL_TITLE] ?? "").trim().toLowerCase());
 }
 
@@ -99,5 +99,47 @@ export async function logAbsageSent(eventId: string, count: number): Promise<voi
     range: "A:D",
     valueInputOption: "USER_ENTERED",
     requestBody: { values: [[ABSAGE_MARKER, eventId, new Date().toISOString(), String(count)]] },
+  });
+}
+
+const PROTOKOLL_TAB = "Absage-Protokoll";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function ensureProtokollTab(sheets: any): Promise<void> {
+  const meta = await sheets.spreadsheets.get({
+    spreadsheetId: SHEET_ID,
+    fields: "sheets.properties.title",
+  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const exists = (meta.data.sheets ?? []).some((s: any) => s.properties?.title === PROTOKOLL_TAB);
+  if (!exists) {
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId: SHEET_ID,
+      requestBody: { requests: [{ addSheet: { properties: { title: PROTOKOLL_TAB } } }] },
+    });
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: SHEET_ID,
+      range: `${PROTOKOLL_TAB}!A:E`,
+      valueInputOption: "RAW",
+      requestBody: { values: [["Zeitpunkt", "Veranstaltung", "Name", "E-Mail", "Status"]] },
+    });
+  }
+}
+
+export type AbsageLogRow = { name: string; email: string; ok: boolean };
+
+/** Schreibt für jede verschickte Absage-Mail eine Zeile ins Sheet
+ *  (Tab „Absage-Protokoll") – nachvollziehbarer Nachweis in der eigenen Tabelle. */
+export async function logAbsageRecipients(title: string, rows: AbsageLogRow[]): Promise<void> {
+  if (rows.length === 0) return;
+  const sheets = getSheets();
+  await ensureProtokollTab(sheets);
+  const now = new Date().toLocaleString("de-AT");
+  const values = rows.map((r) => [now, title, r.name || "", r.email, r.ok ? "gesendet" : "FEHLER"]);
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: SHEET_ID,
+    range: `${PROTOKOLL_TAB}!A:E`,
+    valueInputOption: "RAW",
+    requestBody: { values },
   });
 }
