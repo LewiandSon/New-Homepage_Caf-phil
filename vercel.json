@@ -60,6 +60,16 @@
       "source": "/bar/:path*",
       "destination": "/events",
       "permanent": true
+    },
+    {
+      "source": "/jobs",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/phil-jobinserat-buchhandel-fr-sa.pdf",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
