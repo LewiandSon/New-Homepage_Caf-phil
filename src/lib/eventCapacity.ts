@@ -104,6 +104,7 @@ export async function logAbsageSent(eventId: string, count: number): Promise<voi
     spreadsheetId: SHEET_ID,
     range: `${TAB}!A:D`,
     valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS", // nie überschreiben, auch bei aktivem Filter
     requestBody: { values: [[ABSAGE_MARKER, eventId, new Date().toISOString(), String(count)]] },
   });
 }
@@ -127,6 +128,7 @@ async function ensureProtokollTab(sheets: any): Promise<void> {
       spreadsheetId: SHEET_ID,
       range: `${PROTOKOLL_TAB}!A:E`,
       valueInputOption: "RAW",
+      insertDataOption: "INSERT_ROWS",
       requestBody: { values: [["Zeitpunkt", "Veranstaltung", "Name", "E-Mail", "Status"]] },
     });
   }
@@ -146,6 +148,7 @@ export async function logAbsageRecipients(title: string, rows: AbsageLogRow[]): 
     spreadsheetId: SHEET_ID,
     range: `${PROTOKOLL_TAB}!A:E`,
     valueInputOption: "RAW",
+    insertDataOption: "INSERT_ROWS",
     requestBody: { values },
   });
 }

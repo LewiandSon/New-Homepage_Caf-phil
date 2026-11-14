@@ -21,6 +21,10 @@ async function appendToGoogleSheet(row: string[]) {
     spreadsheetId: SHEET_ID,
     range: "Anmeldungen!A:L",
     valueInputOption: "USER_ENTERED",
+    // INSERT_ROWS ist Pflicht: Mit dem Standard (OVERWRITE) überschreibt die API
+    // bei aktivem Filter im Sheet die erste ausgeblendete Zeile – jede neue
+    // Anmeldung hat so die vorherige gelöscht (Okt./Nov. 2026 passiert).
+    insertDataOption: "INSERT_ROWS",
     requestBody: { values: [row] },
   });
 }
