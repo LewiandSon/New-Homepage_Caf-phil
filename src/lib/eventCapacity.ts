@@ -110,6 +110,7 @@ export async function logAbsageSent(eventId: string, count: number): Promise<voi
 }
 
 const PROTOKOLL_TAB = "Absage-Protokoll";
+const STATUS_GESENDET = "gesendet";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function ensureProtokollTab(sheets: any): Promise<void> {
@@ -143,7 +144,7 @@ export async function logAbsageRecipients(title: string, rows: AbsageLogRow[]): 
   const sheets = getSheets();
   await ensureProtokollTab(sheets);
   const now = new Date().toLocaleString("de-AT");
-  const values = rows.map((r) => [now, title, r.name || "", r.email, r.ok ? "gesendet" : "FEHLER"]);
+  const values = rows.map((r) => [now, title, r.name || "", r.email, r.ok ? STATUS_GESENDET : "FEHLER"]);
   await sheets.spreadsheets.values.append({
     spreadsheetId: SHEET_ID,
     range: `${PROTOKOLL_TAB}!A:E`,
@@ -151,4 +152,33 @@ export async function logAbsageRecipients(title: string, rows: AbsageLogRow[]): 
     insertDataOption: "INSERT_ROWS",
     requestBody: { values },
   });
+}
+
+/** Liest das Absage-Protokoll (ohne Kopfzeile). Existiert der Tab noch nicht,
+ *  ist niemand informiert → []. Andere Fehler werden geworfen, damit der
+ *  Versand abbricht statt Leute doppelt anzuschreiben. */
+export async function readAbsageProtokoll(): Promise<string[][]> {
+  try {
+    const res = await getSheets().spreadsheets.values.get({
+      spreadsheetId: SHEET_ID,
+      range: `${PROTOKOLL_TAB}!A:E`,
+    });
+    return ((res.data.values ?? []) as string[][]).slice(1);
+  } catch (e) {
+    if (String(e instanceof Error ? e.message : e).includes("Unable to parse range")) return [];
+    throw e;
+  }
+}
+
+/** E-Mails (klein geschrieben), die für diese Veranstaltung laut Protokoll
+ *  bereits erfolgreich eine Absage bekommen haben. */
+export function notifiedEmails(protokoll: string[][], title: string): Set<string> {
+  const t = title.trim().toLowerCase();
+  const out = new Set<string>();
+  for (const r of protokoll) {
+    if ((r[1] ?? "").trim().toLowerCase() === t && (r[4] ?? "").trim() === STATUS_GESENDET) {
+      out.add((r[3] ?? "").trim().toLowerCase());
+    }
+  }
+  return out;
 }

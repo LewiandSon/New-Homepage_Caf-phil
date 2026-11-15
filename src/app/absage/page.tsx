@@ -8,6 +8,7 @@ type AbsageEvent = {
   date: string;
   grund: string;
   empfaenger: number;
+  informiert?: number;
   gesendetAm: string | null;
   past?: boolean;
 };
@@ -52,22 +53,42 @@ export default function AbsagePage() {
 
   const send = async (ev: AbsageEvent) => {
     if (!key) return;
-    if (!window.confirm(`Absage-Mail an ${ev.empfaenger} Angemeldete für „${ev.title}" senden?`)) return;
+    const offen = ev.empfaenger - (ev.informiert ?? 0);
+    if (!window.confirm(`Absage-Mail an ${offen} Angemeldete für „${ev.title}" senden?`)) return;
     setBusy(ev.id);
     setMsg((m) => ({ ...m, [ev.id]: "" }));
     try {
-      const res = await fetch("/api/absage", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key, eventId: ev.id }),
-      });
-      const data = await res.json();
-      if (data.status === "ok") {
-        setMsg((m) => ({ ...m, [ev.id]: `✓ Gesendet an ${data.sent} (Fehler: ${data.failed})` }));
-      } else if (data.status === "already_sent") {
-        setMsg((m) => ({ ...m, [ev.id]: "Bereits gesendet." }));
-      } else {
-        setMsg((m) => ({ ...m, [ev.id]: `Fehler: ${data.message ?? data.status}` }));
+      // Ein Durchgang ist serverseitig auf ~35 s begrenzt. Bleibt etwas offen,
+      // geht es automatisch weiter – bereits Informierte überspringt der Server.
+      // Abbruch, sobald ein Durchgang nichts mehr schafft (z.B. kaputte Adressen).
+      let total = 0;
+      for (let round = 1; round <= 10; round++) {
+        const res = await fetch("/api/absage", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ key, eventId: ev.id }),
+        });
+        const data = await res.json();
+        if (data.status === "ok" || data.status === "partial") total += data.sent;
+
+        if (data.status === "partial" && !data.warnung && data.sent > 0) {
+          setMsg((m) => ({ ...m, [ev.id]: `Wird gesendet … ${total} verschickt, ${data.offen} noch offen` }));
+          continue;
+        }
+
+        if (data.status === "ok") {
+          setMsg((m) => ({ ...m, [ev.id]: `✓ Gesendet an ${total} – alle Angemeldeten sind informiert.` }));
+        } else if (data.status === "partial") {
+          const text = data.warnung
+            ? `${total} gesendet, ${data.offen} offen. ${data.warnung}`
+            : `${total} gesendet, ${data.offen} konnten nicht zugestellt werden. Später nochmal „Restliche senden" klicken – bereits Informierte bekommen keine zweite Mail.`;
+          setMsg((m) => ({ ...m, [ev.id]: text }));
+        } else if (data.status === "already_sent") {
+          setMsg((m) => ({ ...m, [ev.id]: "Bereits gesendet." }));
+        } else {
+          setMsg((m) => ({ ...m, [ev.id]: `Fehler: ${data.message ?? data.status}` }));
+        }
+        break;
       }
       await load(key);
     } catch {
@@ -100,6 +121,9 @@ export default function AbsagePage() {
               {ev.grund && <div style={{ fontSize: 14, opacity: 0.75 }}>Grund: {ev.grund}</div>}
               <div style={{ fontSize: 15, marginTop: 8 }}>
                 <strong>{ev.empfaenger}</strong> angemeldete Person(en) mit E-Mail
+                {!ev.gesendetAm && (ev.informiert ?? 0) > 0 && (
+                  <> – davon <strong>{ev.informiert}</strong> bereits informiert</>
+                )}
               </div>
 
               <div style={{ marginTop: 12, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
@@ -127,7 +151,11 @@ export default function AbsagePage() {
                       cursor: busy === ev.id || ev.empfaenger === 0 ? "not-allowed" : "pointer",
                     }}
                   >
-                    {busy === ev.id ? "Wird gesendet …" : "Absage senden"}
+                    {busy === ev.id
+                      ? "Wird gesendet …"
+                      : (ev.informiert ?? 0) > 0
+                        ? "Restliche senden"
+                        : "Absage senden"}
                   </button>
                 )}
                 {msg[ev.id] && <span style={{ fontSize: 14, fontWeight: 600 }}>{msg[ev.id]}</span>}

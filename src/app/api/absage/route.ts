@@ -7,11 +7,17 @@ import {
   absageAlreadySent,
   logAbsageSent,
   logAbsageRecipients,
+  readAbsageProtokoll,
+  notifiedEmails,
 } from "@/lib/eventCapacity";
 import { absageGrundText } from "@/lib/absageGruende";
-import { sendMail } from "@/lib/mailer";
+import { sendMailBulk } from "@/lib/mailer";
 
 export const maxDuration = 60;
+
+// Zeit, in der neue Mails begonnen werden dürfen. Rest des 60-s-Limits bleibt
+// für laufende Mails (Socket-Timeout 15 s) und das Schreiben ins Sheet.
+const SEND_BUDGET_MS = 35_000;
 
 type EventDoc = {
   _id: string;
@@ -104,13 +110,16 @@ export async function GET(req: NextRequest) {
       `*[_type == "event" && abgesagt == true] | order(date desc){ _id, title_de, title_en, date, abgesagtGrund }`,
     );
     const rows = await readSignupRows();
+    const protokoll = await readAbsageProtokoll().catch(() => [] as string[][]);
     const now = Date.now();
     const list = events.map((e) => {
       const recipients = getRegistrantsForEvent(rows, {
         id: e._id,
         titles: [e.title_de, e.title_en ?? ""],
       });
+      const done = notifiedEmails(protokoll, e.title_de);
       return {
+        informiert: recipients.filter((r) => done.has(r.email.toLowerCase())).length,
         id: e._id,
         title: e.title_de,
         date: fmtDate(e.date),
@@ -166,11 +175,17 @@ export async function POST(req: NextRequest) {
       titles: [ev.title_de, ev.title_en ?? ""],
     });
 
+    // Wer laut Absage-Protokoll schon eine Absage bekommen hat, wird übersprungen.
+    // So kann nach Teilversand oder Fehlern gefahrlos erneut gesendet werden.
+    const done = notifiedEmails(await readAbsageProtokoll(), ev.title_de);
+    const todo = recipients.filter((r) => !done.has(r.email.toLowerCase()));
+
     if (body.dryRun) {
       return NextResponse.json({
         status: "dry_run",
         empfaenger: recipients.length,
-        beispiel: recipients.slice(0, 3).map((r) => r.email.replace(/^(..).*(@.*)$/, "$1***$2")),
+        offen: todo.length,
+        beispiel: todo.slice(0, 3).map((r) => r.email.replace(/^(..).*(@.*)$/, "$1***$2")),
       });
     }
 
@@ -180,35 +195,49 @@ export async function POST(req: NextRequest) {
     const dateStr = fmtDate(ev.date);
     const gDe = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "de");
     const gEn = absageGrundText(ev.abgesagtGrund, ev.abgesagtGrundFrei, "en");
-    const results: { name: string; email: string; ok: boolean }[] = [];
-    // Versand über Gmail (info@phil.info), sequenziell mit kurzer Pause.
-    for (const r of recipients) {
-      const { subject, html } = buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn);
-      const res = await sendMail({ to: r.email, subject, html });
-      if (!res.ok) console.error("Absage-Mail Fehler", r.email, res.error);
-      results.push({ name: r.vorname, email: r.email, ok: res.ok });
-      await new Promise((rsv) => setTimeout(rsv, 150));
-    }
+    const bulk = await sendMailBulk(
+      todo.map((r) => ({ to: r.email, ...buildEmail(r.vorname, ev.title_de, dateStr, gDe, gEn) })),
+      SEND_BUDGET_MS,
+    );
 
-    const sent = results.filter((r) => r.ok).length;
-    const failed = results.filter((r) => !r.ok).length;
+    // Übersprungene (Zeitbudget) werden nicht protokolliert – sie bleiben offen.
+    const attempted = bulk
+      .map((b, i) => ({ name: todo[i].vorname, email: todo[i].email, ok: b.ok, skipped: b.skipped, error: b.error }))
+      .filter((r) => !r.skipped);
+    for (const r of attempted) if (!r.ok) console.error("Absage-Mail Fehler", r.email, r.error);
+    const sent = attempted.filter((r) => r.ok).length;
+    const failed = attempted.length - sent;
+    const offen = todo.length - sent;
 
     // Nachweis ins Sheet (Tab „Absage-Protokoll"): eine Zeile pro Empfänger.
+    let protokollOk = true;
     try {
-      await logAbsageRecipients(ev.title_de, results);
+      await logAbsageRecipients(ev.title_de, attempted);
     } catch (e) {
+      protokollOk = false;
       console.error("Absage-Protokoll Fehler:", e);
     }
 
-    if (sent > 0) {
+    // Der Marker sperrt weiteren Versand: setzen, sobald alle informiert sind –
+    // oder wenn das Protokoll nicht geschrieben werden konnte (sonst würde ein
+    // erneuter Klick dieselben Leute nochmal anschreiben).
+    if (offen === 0 || (!protokollOk && sent > 0)) {
       try {
-        await logAbsageSent(ev._id, sent);
+        await logAbsageSent(ev._id, done.size + sent);
       } catch (e) {
         console.error("Absage-Log Fehler:", e);
       }
     }
 
-    return NextResponse.json({ status: "ok", sent, failed });
+    return NextResponse.json({
+      status: offen === 0 ? "ok" : "partial",
+      sent,
+      failed,
+      offen,
+      ...(protokollOk
+        ? {}
+        : { warnung: "Protokoll konnte nicht geschrieben werden – Versand gesperrt, um Doppel-Mails zu vermeiden." }),
+    });
   } catch (err) {
     console.error("Absage-Versand Fehler:", err);
     return NextResponse.json({ status: "error", message: "Versand fehlgeschlagen." }, { status: 500 });
