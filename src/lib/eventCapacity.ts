@@ -143,7 +143,7 @@ export async function logAbsageRecipients(title: string, rows: AbsageLogRow[]): 
   if (rows.length === 0) return;
   const sheets = getSheets();
   await ensureProtokollTab(sheets);
-  const now = new Date().toLocaleString("de-AT");
+  const now = new Date().toLocaleString("de-AT", { timeZone: "Europe/Vienna" });
   const values = rows.map((r) => [now, title, r.name || "", r.email, r.ok ? STATUS_GESENDET : "FEHLER"]);
   await sheets.spreadsheets.values.append({
     spreadsheetId: SHEET_ID,

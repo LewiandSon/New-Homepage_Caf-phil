@@ -47,15 +47,19 @@ type LangEvent = {
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
 
+// Immer Wiener Zeit – unabhängig von Server (UTC) und Zeitzone des Besuchers.
+// Der Text landet auch in Sheet und Bestätigungsmail.
 function formatDate(iso: string, lang: string): string {
   const d = new Date(iso);
   if (lang === "de") {
     return d.toLocaleDateString("de-AT", {
+      timeZone: "Europe/Vienna",
       day: "2-digit", month: "2-digit", year: "numeric",
       hour: "2-digit", minute: "2-digit",
     }).replace(",", ",") + " Uhr";
   }
   return d.toLocaleDateString("en-GB", {
+    timeZone: "Europe/Vienna",
     day: "2-digit", month: "short", year: "numeric",
     hour: "2-digit", minute: "2-digit",
   });

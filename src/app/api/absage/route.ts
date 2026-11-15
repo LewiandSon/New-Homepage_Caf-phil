@@ -45,6 +45,7 @@ function keyOk(key: string | null): boolean {
 function fmtDate(iso: string): string {
   try {
     return new Date(iso).toLocaleDateString("de-AT", {
+      timeZone: "Europe/Vienna", // Server läuft in UTC – sonst 2 h zu früh
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
